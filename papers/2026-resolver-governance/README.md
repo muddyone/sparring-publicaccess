@@ -5,7 +5,7 @@ AI-deliberation study from "better answers" to governance by verifiable challeng
 
 Author: Barton Niedner ([ORCID 0009-0003-4117-3426](https://orcid.org/0009-0003-4117-3426)), Resource Forge LLC.
 
-> Archival DOI: _minted on first release (`paper-2026-resolver-v1`); see repository releases._
+> Archival DOI: [10.5281/zenodo.21210265](https://doi.org/10.5281/zenodo.21210265) (concept DOI — all versions).
 
 ## What's here → where it maps in the paper
 
