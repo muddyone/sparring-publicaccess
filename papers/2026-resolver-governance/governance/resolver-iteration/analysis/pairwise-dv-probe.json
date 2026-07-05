@@ -1,0 +1,1190 @@
+{
+  "EXPLORATORY": true,
+  "k": 5,
+  "n_pairs": 61,
+  "n_incomplete": 0,
+  "answer_key": "analysis/stage0-denoise.json (2 stable regressions, 7 ghosts among 11 raw)",
+  "noise_comparison": {
+    "pairwise_mean_modal_agreement": 0.993,
+    "absolute_mean_modal_agreement": 0.921,
+    "quieter": true,
+    "note": "higher = less noisy; both binarized to 'is the candidate worse (champion better)?'"
+  },
+  "validation": {
+    "stable_regressions": {
+      "n": 2,
+      "mean_CB": 1,
+      "mean_Eq": 1,
+      "n_called_champ_better>=4": 0
+    },
+    "ghosts": {
+      "n": 9,
+      "mean_CB": 0,
+      "mean_Eq": 0,
+      "n_called_champ_better>=4": 0
+    }
+  },
+  "pairwise_stable_regressions_total": 0,
+  "equivalent_usage_rate": 0.03,
+  "rows": [
+    {
+      "aid": "R3__same__P-multiregion-ledger__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-multiregion-ledger__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__same__P-multiregion-ledger__r3__a0",
+      "raw_regression": true,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__cross__P-multiregion-ledger__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-multiregion-ledger__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__cross__P-multiregion-ledger__r3__a0",
+      "raw_regression": true,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-multiregion-ledger__r3__a1",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-feature-store-skew__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-feature-store-skew__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__same__P-feature-store-skew__r3__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-feature-store-skew__r4__a0",
+      "raw_regression": true,
+      "stage0_S_c": 4,
+      "stage0_stable": true,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__same__P-feature-store-skew__r5__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-feature-store-skew__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-feature-store-skew__r2__a0",
+      "raw_regression": true,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-feature-store-skew__r3__a0",
+      "raw_regression": false,
+      "stage0_S_c": 2,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.6
+    },
+    {
+      "aid": "R3__cross__P-feature-store-skew__r4__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-feature-store-skew__r5__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-zero-downtime-shard__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-zero-downtime-shard__r2__a0",
+      "raw_regression": true,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-zero-downtime-shard__r3__a0",
+      "raw_regression": false,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__same__P-zero-downtime-shard__r4__a0",
+      "raw_regression": true,
+      "stage0_S_c": 2,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.6
+    },
+    {
+      "aid": "R3__cross__P-zero-downtime-shard__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-zero-downtime-shard__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-zero-downtime-shard__r3__a0",
+      "raw_regression": true,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-zero-downtime-shard__r4__a0",
+      "raw_regression": false,
+      "stage0_S_c": 2,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.6
+    },
+    {
+      "aid": "R3__cross__P-zero-downtime-shard__r5__a0",
+      "raw_regression": false,
+      "stage0_S_c": 2,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.6
+    },
+    {
+      "aid": "R3__same__P-autoscale-stampede__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-autoscale-stampede__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-autoscale-stampede__r3__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-autoscale-stampede__r4__a0",
+      "raw_regression": false,
+      "stage0_S_c": 3,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.6
+    },
+    {
+      "aid": "R3__same__P-autoscale-stampede__r5__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-autoscale-stampede__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-churn-winback__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-churn-winback__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__same__P-churn-winback__r3__a0",
+      "raw_regression": false,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__same__P-churn-winback__r3__a1",
+      "raw_regression": true,
+      "stage0_S_c": 5,
+      "stage0_stable": true,
+      "CB": 2,
+      "CandB": 1,
+      "Eq": 2,
+      "verdicts": [
+        "equivalent",
+        "equivalent",
+        "champ_better",
+        "champ_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 0.6,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-churn-winback__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 3,
+      "Eq": 2,
+      "verdicts": [
+        "equivalent",
+        "cand_better",
+        "cand_better",
+        "equivalent",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__cross__P-churn-winback__r1__a1",
+      "raw_regression": false,
+      "stage0_S_c": 1,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.8
+    },
+    {
+      "aid": "R3__same__P-warehouse-siting__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-warehouse-siting__r2__a0",
+      "raw_regression": true,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-warehouse-siting__r2__a1",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-warehouse-siting__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-warehouse-siting__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-warehouse-siting__r3__a0",
+      "raw_regression": true,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-warehouse-siting__r4__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-warehouse-siting__r5__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 4,
+      "Eq": 1,
+      "verdicts": [
+        "cand_better",
+        "equivalent",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-pricing-migration__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-pricing-migration__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-pricing-migration__r3__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-pricing-migration__r4__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-pricing-migration__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-pricing-migration__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-pricing-migration__r3__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-pricing-migration__r4__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-pricing-migration__r5__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__same__P-capex-automation__r1__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-capex-automation__r1__a0",
+      "raw_regression": true,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-capex-automation__r2__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 2,
+      "Eq": 3,
+      "verdicts": [
+        "cand_better",
+        "equivalent",
+        "cand_better",
+        "equivalent",
+        "equivalent"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    },
+    {
+      "aid": "R3__cross__P-capex-automation__r3__a0",
+      "raw_regression": false,
+      "stage0_S_c": 2,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 4,
+      "Eq": 1,
+      "verdicts": [
+        "equivalent",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.6
+    },
+    {
+      "aid": "R3__cross__P-capex-automation__r4__a0",
+      "raw_regression": false,
+      "stage0_S_c": 2,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 0.6
+    },
+    {
+      "aid": "R3__cross__P-capex-automation__r5__a0",
+      "raw_regression": false,
+      "stage0_S_c": 0,
+      "stage0_stable": false,
+      "CB": 0,
+      "CandB": 5,
+      "Eq": 0,
+      "verdicts": [
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better",
+        "cand_better"
+      ],
+      "pairwise_stable_regression": false,
+      "pw_modal_agreement": 1.0,
+      "abs_modal_agreement": 1.0
+    }
+  ]
+}

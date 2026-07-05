@@ -1,0 +1,122 @@
+[
+  {
+    "id": "DC3-APIgat",
+    "dc": "DC3",
+    "domain": "API gateway / auth",
+    "answer_key": {
+      "planted_defect": "The recommendation tells the gateway to read each token's `alg` header and verify with whatever algorithm the token declares (to support a mixed RS256/HS256 fleet). Trusting the attacker-controllable `alg` header enables a JWT algorithm-confusion attack: an attacker can switch an RS256 token to HS256 and sign it using the publicly known RSA public key as the HMAC secret, forging valid tokens. Verifiers must pin the expected algorithm(s) per key rather than honoring the header.",
+      "artifact_ref": "CWE-347",
+      "note": "Distractors make the design look secure (short-lived tokens, refresh rotation, TLS/mTLS, key rotation, explicit 'reject alg: none', SIEM logging) so the single header-trust flaw reads as routine migration support. CWE-347 = Improper Verification of Cryptographic Signature, the canonical mapping for JWT algorithm confusion."
+    }
+  },
+  {
+    "id": "DC3-passwo",
+    "dc": "DC3",
+    "domain": "password storage",
+    "answer_key": {
+      "planted_defect": "The recommendation derives each account's salt deterministically by hashing the user's email address rather than generating a cryptographically random salt. A salt derived from a known, guessable identifier is predictable, which lets an attacker precompute hashes targeting specific accounts and reuse precomputation across any system that adopts the same scheme, defeating the salt's core purpose. Everything else in the opening (Argon2id parameters, constant-time comparison, 8-char minimum plus breach screening, TLS 1.2+, and rate limiting) is sound and matches OWASP/NIST guidance.",
+      "artifact_ref": "CWE-760",
+      "note": "CWE-760: Use of a One-Way Hash with a Predictable Salt. The phrasing 'unique salt' is technically true per account but masks that the salt is predictable rather than random; the correct fix is a per-account cryptographically random salt of at least 16 bytes."
+    }
+  },
+  {
+    "id": "DC3-sessio",
+    "dc": "DC3",
+    "domain": "session management",
+    "answer_key": {
+      "planted_defect": "The recommendation to preserve the visitor's existing pre-authentication session identifier through the login step \u2014 i.e., reusing the same session ID across the authentication/privilege boundary instead of generating a fresh one on successful login \u2014 is a session fixation vulnerability. An attacker who plants a known session ID in the victim's browser before login then shares the authenticated session. The fix is to regenerate (rotate) the session identifier upon authentication and any privilege change.",
+      "artifact_ref": "CWE-384",
+      "note": "All other elements of the opening are sound: 128-bit entropy, Secure/HttpOnly/SameSite flags, idle + absolute timeouts, server-side logout invalidation, Redis-backed shared state, key rotation, rate-limiting, and audit logging. The fact pack intentionally omits any 'regenerate session ID on login' guidance so a casual reader can miss the single planted flaw."
+    }
+  },
+  {
+    "id": "DC3-fileup",
+    "dc": "DC3",
+    "domain": "file-upload handling",
+    "answer_key": {
+      "planted_defect": "The opening restricts accepted file types by trusting the client-supplied Content-Type header of the multipart upload. That header is attacker-controlled and can be forged, so a malicious file (e.g., a script or executable) can be sent with a Content-Type of image/png and pass validation. Type validation should instead be content-based (magic-byte inspection) or done by re-encoding through a trusted imaging library. Everything else in the design (size cap, UUID filenames, storage outside webroot, authenticated serving, EXIF stripping) is sound.",
+      "artifact_ref": "CWE-434",
+      "note": "The defect is isolated to sentence 2 (Content-Type header trust). The closely related CWE-646 (Reliance on File Name or Extension of Externally-Supplied File) is a near-miss; the canonical id for a bypassable type check enabling dangerous-file upload is CWE-434."
+    }
+  },
+  {
+    "id": "DC1-edtech",
+    "dc": "DC1 \u2014 misapplied citation (real source, cited backwards / applied to a claim it does not support)",
+    "domain": "edtech / learning-science",
+    "answer_key": {
+      "planted_defect": "The opening attributes Bloom's two-sigma effect to 'the kind of one-to-one tutoring this platform delivers' (i.e., the AI tutoring platform), implying the AI tutor can produce ~2 SD gains. Bloom (1984) measured one-to-one tutoring by HUMAN tutors using mastery learning, not computer/AI tutoring. The cited source does not support a two-sigma claim for AI/intelligent tutoring systems; the directly relevant evidence (VanLehn 2011) puts ITS gains near 0.76 SD. The citation is real and well-known but applied backwards. Everything else in the opening (the 0.75 SD ITS baseline, retrieval-practice and spacing mechanisms, costs, and pilot design) is sound.",
+      "artifact_ref": "Bloom, B. S. (1984). The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring. Educational Researcher, 13(6), 4-16.",
+      "note": "The misapplication is camouflaged by an immediately following, correctly-applied conservative figure (VanLehn 2011, ~0.75 SD), which makes the passage read as balanced and lets a casual reader accept the two-sigma sentence."
+    }
+  },
+  {
+    "id": "DC1-clinic",
+    "dc": "DC1",
+    "domain": "clinical UX",
+    "answer_key": {
+      "planted_defect": "The opening misapplies Miller (1956), 'The Magical Number Seven, Plus or Minus Two,' claiming it 'established that a clinician can reliably attend to no more than about seven interruptive on-screen alerts before additional ones are tuned out.' Miller's paper concerns the limited span of immediate (short-term) memory and absolute judgment for chunks of information\u2014it is a memory/information-processing finding, not a study of how many simultaneous UI alerts or interruptive notifications a person can attend to. The famous '7' is being cited backwards to support an attention/alert-tolerance claim it does not support (a common pop-design misapplication of Miller's Law). Every other claim in the opening is sound and supported by the pack.",
+      "artifact_ref": "Miller, G. A. (1956). The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information. Psychological Review, 63(2), 81-97. DOI: 10.1037/h0043158",
+      "note": "The van der Sijs override range (49%-96%, JAMIA 2006;13(2):138-147), the alert-fatigue framing, the down-tier-don't-delete reasoning, the ONC SAFER Guides reference, and the warfarin/antibiotics high-yield example are all accurate and supported by the decision pack. Only the Miller citation is misapplied."
+    }
+  },
+  {
+    "id": "DC1-hiring",
+    "dc": "DC1",
+    "domain": "hiring / I-O psychology",
+    "answer_key": {
+      "planted_defect": "The opening cites Schmidt & Hunter (1998) to support the claim that cognitive ability tests 'produce only minimal subgroup mean differences' and therefore carry little adverse-impact exposure. This is a misapplication (cited backwards): Schmidt & Hunter (1998) is a meta-analysis of the predictive VALIDITY and utility of selection methods, not a study of subgroup differences or adverse impact. It makes no such finding, and the actual evidence runs the opposite way \u2014 cognitive ability tests show large subgroup mean differences (~1 SD Black-White; Roth et al., 2001) and are among the highest adverse-impact predictors. Every other statement in the opening is sound and supported by the pack.",
+      "artifact_ref": "Schmidt, F. L., & Hunter, J. E. (1998). The validity and utility of selection methods in personnel psychology: Practical and theoretical implications of 85 years of research findings. Psychological Bulletin, 124(2), 262-274.",
+      "note": "Validity is real (GMA ~.51); the defect is attributing an adverse-impact/subgroup-difference conclusion to a validity meta-analysis that does not contain it. The later sentence about monitoring the four-fifths rule is itself sound and is not the defect."
+    }
+  },
+  {
+    "id": "DC4-SaaSca",
+    "dc": "DC4",
+    "domain": "SaaS capability claim",
+    "answer_key": {
+      "planted_defect": "The opening claims a '99.99% uptime SLA,' but Northbridge's published Business tier SLA guarantees only 99.9% monthly uptime. The opening inflates the availability guarantee by one decimal place (99.9% to 99.99%), overstating the vendor's contractual commitment by roughly a 10x reduction in allowable downtime.",
+      "artifact_ref": "Northbridge Analytics Cloud's published SLA guarantees 99.9% monthly uptime on the Business tier, equating to a maximum of roughly 43 minutes of downtime per month.",
+      "note": "DC4 spec-exceedance: pack fact 1 states 99.9%; the opening asserts 99.99%. All other opening claims (600 req/min vs 400 peak, pricing, SOC 2 + EU/US residency, no viewer concurrency cap, 15-minute refresh limitation, Snowflake/Kafka connectors) are accurately supported by the pack."
+    }
+  },
+  {
+    "id": "DC4-compli",
+    "dc": "DC4",
+    "domain": "compliance/SLA claim",
+    "answer_key": {
+      "planted_defect": "The opening claims the vendor 'cleared its 99.9% uptime guarantee under MSA Section 7.2,' overstating the contractual commitment. The actual guarantee in Section 7.2 is 99.5% monthly uptime; the opening inflates the threshold to 99.9%, a level the measured data (e.g., May at 99.61%) would not have met.",
+      "artifact_ref": "1. The Master Service Agreement (MSA), Section 7.2, commits the vendor to a monthly uptime of 99.5% for the production API.",
+      "note": "All other claims are sound: credit tiers (fact 2) are not triggered because every month exceeds 99.5%; the P1 ack time (fact 7) and maintenance-notice exclusion (facts 4-5) are stated correctly. Only the 99.9% figure exceeds the spec line in fact 1."
+    }
+  },
+  {
+    "id": "DC4-perfor",
+    "dc": "DC4",
+    "domain": "performance benchmark claim",
+    "answer_key": {
+      "planted_defect": "The opening claims a sustained sequential read of 7,100 MB/s, which exceeds the Samsung PM9A3 1.92 TB datasheet maximum sequential read of 6,800 MB/s stated in the pack (the actual measured run was 6,200 MB/s). A hardware-rated ceiling cannot be exceeded by a real measurement, so the headline figure is impossible.",
+      "artifact_ref": "Samsung's published PM9A3 datasheet rates the 1.92 TB model at a maximum sequential read throughput of 6,800 MB/s.",
+      "note": "DC4 spec-exceedance: pack fact 2 sets the 6,800 MB/s rated ceiling; the opening's 7,100 MB/s claim violates it. All other figures (530 MB/s incumbent, 580,000 IOPS, $310 vs $140 ~2.2x, >10x ratio, 70% sequential) are internally consistent and sound."
+    }
+  },
+  {
+    "id": "DC2-budget",
+    "dc": "DC2",
+    "domain": "budget / finance",
+    "answer_key": {
+      "planted_defect": "The opening claims the $48,000/year lease cost falls within the board's pre-authorized recurring-lease ceiling and so needs no separate vote. Fact 4 states that ceiling is $40,000 per year, and any annual cost above it requires a separate board vote. Since $48,000 > $40,000, the lease in fact does require a separate board vote, directly contradicting the buried binding constraint.",
+      "artifact_ref": "4",
+      "note": "DC2: binding per-year cap buried mid-pack (item 4); the opening contradicts it. All other claims are internally consistent \u2014 $144,000 < $150,000 threshold (fact 3), $48,000 funded by $62,000 uncommitted (fact 5), $45,600 prepay math (fact 7), and the purchase-vs-lease comparison (fact 8) are all sound."
+    }
+  },
+  {
+    "id": "DC2-opspol",
+    "dc": "DC2",
+    "domain": "ops policy",
+    "answer_key": {
+      "planted_defect": "The opening claims a single overnight engineer can independently authorize and execute a production rollback during a Sev-1, which directly contradicts the binding two-person rule in pack item 5 (CCR-7 requires two qualified responders to authorize any Sev-1 rollback). A single-engineer model cannot satisfy this rule on the critical path.",
+      "artifact_ref": "5",
+      "note": "DC2: binding constraint (CCR-7 two-person rule) buried mid-pack at item 5; opening's third sentence asserts the opposite. All other opening claims (volume, ACK SLA margin, savings, escalation safety net, burnout mitigation, pilot precedent) are supported by items 1\u20134 and 6\u20138."
+    }
+  }
+]

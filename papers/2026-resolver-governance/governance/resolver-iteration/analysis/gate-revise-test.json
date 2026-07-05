@@ -1,0 +1,258 @@
+{
+  "EXPLORATORY": true,
+  "n_flagged_recs": 4,
+  "flags_before": 8,
+  "armA_demand_correction": {
+    "decisions_changed": "0/4",
+    "residual_bucket3": 5,
+    "quality_claude": {
+      "new_better": 3,
+      "equivalent": 1
+    },
+    "quality_gpt": {
+      "new_better": 3,
+      "equivalent": 1
+    }
+  },
+  "armB_new_given": {
+    "decisions_changed": "1/4",
+    "residual_bucket3": 10,
+    "quality_claude": {
+      "new_better": 2,
+      "original_better": 2
+    },
+    "quality_gpt": {
+      "equivalent": 1,
+      "new_better": 3
+    }
+  },
+  "detail": {
+    "P-nat-anchor-radiology": {
+      "pid": "P-nat-anchor-radiology",
+      "n_flags": 2,
+      "decisions": {
+        "original": "c",
+        "armA": "c",
+        "armB": "c",
+        "armA_changed": false,
+        "armB_changed": false
+      },
+      "quality_vs_original": {
+        "armA": {
+          "claude": "new_better",
+          "gpt": "new_better"
+        },
+        "armB": {
+          "claude": "new_better",
+          "gpt": "equivalent"
+        }
+      },
+      "residual_gate": {
+        "armA": {
+          "n_bucket3": 1,
+          "n_review_split": 0,
+          "bucket3": [
+            {
+              "text": "4-6 month recruit",
+              "value": 5,
+              "reason": "rests on unstated input(s): midpoint_divisor \u2014 constant to compute the midpoint of the stated 4-6 month range as a single representative lead time"
+            }
+          ]
+        },
+        "armB": {
+          "n_bucket3": 0,
+          "n_review_split": 0,
+          "bucket3": []
+        }
+      },
+      "recs": {
+        "armA": "HOLD Option (c) \u2014 acuity-targeted fast lane (dedicated credentialed subspecialty capacity via vendor carve-out) plus renegotiated routine renewal \u2014 with two operational fixes that make the plan shippable against the 6-month clock. Both challenger objections are material to EXECUTION, not to the core choice, so I correct them without switching. FIX 1 (parallel timeline, replaces the 30-day gating sequence): Diagnosis is NO LONGER a gate that blocks other tracks. On Day 0, launch three parallel tracks: (A) root-cause decomposition (queue-wait vs. read-time vs. reader-availability/credentialing) targeted to complete in ~30 days; (B) RFP for a dedicated-capacity carve-out with the hardened spec \u2014 issued immediately, since vendor onboarding/stroke-center credentialing consumes weeks; (C) contingent recruitment + credentialing pipeline started NOW, given the GIVEN 4-6 month recruit lead time in a tight market, structured so it can be paused with limited sunk cost (early-stage sourcing, not signed offers) if diagnosis and RFP land on a clean routing fix. The diagnosis then SELECTS among already-warmed options rather than serially triggering them. This preserves renegotiation leverage against the 6-month renewal and the proposed 22% increase: we enter vendor talks with a credible, in-flight BATNA. FIX 2 (correct the in-house FTE math): the problem itself states 3 FTEs is 'hard to staff 365 nights' \u2014 i.e., the given 3-FTE plan is by the problem's own admission not sustainable for 365-night coverage once vacation/CME/sick/recruiting-gap and cross-site subspecialty coverage are considered. I am NOT asserting a specific higher FTE count; the true sustainable number is UNDETERMINED from the givens and MUST be derived by the client via a formal coverage/relief model (nights to cover, per-radiologist annual night capacity net of leave, subspecialty credentialing constraints) before any in-house cost comparison. Treat any in-house headcount above 3 as an ASSUMPTION the reader must verify, not a fact. The reliable, given-grounded conclusion is directional only: because 3 FTEs is stated as insufficient, real in-house cost exceeds 3 x $520k = $1.56M/yr, raising the feasibility bar and, as the challenger notes, more often routing the fallback toward a DEDICATED-CAPACITY VENDOR CONTRACT rather than DIY in-house \u2014 which reinforces (c)'s vendor-carve-out core. DECISION RULE (final): IF root-cause is primarily routing OR a vendor commits dedicated credentialed subspecialty capacity meeting the premium 20-min tier on the critical modalities (CTA head/neck, CT perfusion, emergent MRI, complex trauma) AND (carrier rewards the acuity fix OR carve-out cost < premium-on-all-9,000-studies) -> execute (c). IF binding constraint is capacity AND no vendor commits credentialed dedicated capacity at acceptable cost -> fall back: (b) only if its +31% premium tier itself commits dedicated readers (not mere priority); else a dedicated-capacity contract; else 24/7/365 in-house costed at a client-verified sustainable FTE count (which the givens confirm is greater than 3). Reject the naive 3-FTE in-house and the flat 22% increase. Net: (c) holds; the fixes make it executable within the renewal window, and the honest treatment of in-house headcount only strengthens the vendor-capacity path.",
+        "armB": "Adopt Option (c): bring the stroke/trauma subset (~15% of volume, ~1,350 studies/year) in-house on a fast-track basis while keeping routine overnight reads outsourced with the incumbent. Rationale: The core problem is not average cost but SLA failure on the high-acuity, high-liability minority where minutes change outcomes; concentrating scarce, expensive radiologist capacity there directly addresses the clinical and malpractice exposure the ED chief and carrier are flagging. Option (a) full in-house is not defensible: staffing 365 nights to SLA cannot be done reliably with 3 FTEs, and the honest FTE requirement to cover nights with vacation/sick/burnout coverage is materially higher than 3 (the specific 4.75 and 6.5 FTE figures are unsupported and should not be used to size the build, but the qualitative gap confirms 3 FTEs is under-scoped and cost/recruiting risk in a tight market is high). Option (b) premium-SLA tier only tightens a contractual target the vendor is already missing on the exact cases that matter and adds 31% to an already rising rate without giving the network any control over trauma/stroke turnaround. The split lets the network right-size a small in-house or on-site/rapid-response capability for the ~15% acute subset (which can often be covered with fewer FTEs plus overflow arrangements than a full overnight service), preserves the outsourced backstop for routine volume, and creates leverage to renegotiate the incumbent's 22% increase down to a routine-only scope. Execution conditions before committing: (1) build a defensible night-coverage FTE model for the acute subset with real utilization, cross-cover, and backup assumptions rather than the flagged placeholder figures; (2) get the malpractice carrier's premium quote for the split versus each pure option in writing, since liability savings on stroke/trauma reads are central to the ROI; (3) negotiate the incumbent contract to a routine-only rate and SLA, with a hard fallback (premium-tier or short-term extension) to cover the 4-6 month recruiting window so patient safety is never gated on hiring speed."
+      }
+    },
+    "P-nat-gen-05": {
+      "pid": "P-nat-gen-05",
+      "n_flags": 2,
+      "decisions": {
+        "original": "c",
+        "armA": "c",
+        "armB": "c",
+        "armA_changed": false,
+        "armB_changed": false
+      },
+      "quality_vs_original": {
+        "armA": {
+          "claude": "new_better",
+          "gpt": "new_better"
+        },
+        "armB": {
+          "claude": "original_better",
+          "gpt": "new_better"
+        }
+      },
+      "residual_gate": {
+        "armA": {
+          "n_bucket3": 0,
+          "n_review_split": 0,
+          "bucket3": []
+        },
+        "armB": {
+          "n_bucket3": 0,
+          "n_review_split": 0,
+          "bucket3": []
+        }
+      },
+      "recs": {
+        "armA": "CHOOSE Option (c) today, but make two HARD PRECONDITIONS clear before any farm switches rations \u2014 both fit inside the 10-day window, so this does not force a switch to (a) today.\n\nCOST BASIS (derived from givens): Option (a) take-or-pay = 6,000 tons x $310 = $1.86M/month. Option (c) forage = 1,800 tons corn silage x $92 ($165.6k) + 700 tons soy hull pellets x $265 ($185.5k) = ~$351k/month in named replacement forage. Note (c) only sources 2,500 tons versus the 6,000-ton baseline ration, so the full replacement ration cost under (c) is NOT fully specified by the givens; the raw named-input spend is far below (a), but the true all-in ration cost must be completed before committing. I therefore do NOT rely on any single headline savings figure \u2014 the reader must complete the (c) ration cost to confirm the gap.\n\nQUANTIFIED RISK (from givens): (c)'s downside is a 15% milk downgrade at $0.12/gallon less. On the 1.2M gal fixed contracts that is 0.15 x 1.2M x $0.12 = ~$21.6k/month if the delta is only the price tier; scaled across relevant volume it remains modest versus (a)'s premium. The real exposure is the tail: if downgrades trigger chargebacks/termination on the fixed contracts, disposal/rework, lost premiums, or yogurt-yield loss, the cost can exceed the nominal delta by large multiples.\n\nDECISION TRIGGER (operational, conservative): (1) Obtain the actual fixed-contract language on grade/SCC within 5 days; if penalties/termination are grade-linked AND the plant cannot contractually accept elevated-SCC milk, do NOT commit (c) \u2014 sign (a)'s take-or-pay before the 10-day deadline. (2) Run the 1-week SCC pilot on a subset of farms; require SCC to stay within contract grade thresholds with margin. (3) Complete the FULL (c) all-in ration cost plus the quality tail (chargebacks, disposal/rework, lost premiums, yogurt yield). Proceed with (c) only if that all-in cost plus worst-plausible tail stays clearly below (a)'s $1.86M/month AND the downgraded 15% can be routed to non-contract/commodity outlets.\n\nBecause the take-or-pay window and the pilot/contract checks both fit inside 10 days, (c) is the today-decision to PURSUE with (a) as the pre-cleared fallback; (b) stays contingency top-up only. This captures the substantial named-input cost gap versus (a) while removing the risk of blindly locking in a grade-linked loss.",
+        "armB": "Choose option (c): reformulate rations using local corn silage and soy hull pellets. Rationale: This is the only option that is available immediately (no delivery risk) and locks in dramatically lower forage cost. Option (c) forage spend is roughly (1,800 x $92) + (700 x $265) = $165,600 + $185,500 = ~$351k/month, versus the $310/ton take-or-pay baseline of 6,000 x $310 = $1.86M/month \u2014 a forage cost delta of ~$1.5M/month in favor of (c). Option (a) commits you to a rigid take-or-pay at the highest price for 90 days with no downside flexibility. Option (b) only covers 2,500 tons (leaving a forage gap that still triggers milk drop) and carries a 20% late-delivery risk causing a 3% output loss. The main risk in (c) is elevated somatic cell counts downgrading 15% of milk by $0.12/gallon; on 2.5M gallons that is at most ~15% x 2.5M x $0.12 = ~$45k/month \u2014 an order of magnitude smaller than the forage savings, and it is manageable/monitorable rather than contractually locked. Action plan: adopt (c) now, phase the silage transition to limit SCC spikes, monitor milk quality weekly, and hold the brokers (option b) as a contingency backstop if SCC downgrades exceed forecast. Do NOT rely on any '~$650k/month' upside figure, which cannot be reconstructed from the stated numbers; the defensible economic case rests on the ~$1.5M/month forage cost advantage net of a modest downgrade risk."
+      }
+    },
+    "P-nat-gen-06": {
+      "pid": "P-nat-gen-06",
+      "n_flags": 2,
+      "decisions": {
+        "original": "b",
+        "armA": "b",
+        "armB": "b",
+        "armA_changed": false,
+        "armB_changed": false
+      },
+      "quality_vs_original": {
+        "armA": {
+          "claude": "new_better",
+          "gpt": "new_better"
+        },
+        "armB": {
+          "claude": "new_better",
+          "gpt": "new_better"
+        }
+      },
+      "residual_gate": {
+        "armA": {
+          "n_bucket3": 0,
+          "n_review_split": 0,
+          "bucket3": []
+        },
+        "armB": {
+          "n_bucket3": 2,
+          "n_review_split": 0,
+          "bucket3": [
+            {
+              "text": "accelerated March 30 announcement",
+              "value": null,
+              "reason": "no problem-grounded derivation found on re-ask"
+            },
+            {
+              "text": "no April 10 union-layoff trigger",
+              "value": null,
+              "reason": "no problem-grounded derivation found on re-ask"
+            }
+          ]
+        }
+      },
+      "recs": {
+        "armA": "CHOOSE (b): a Board-approved undergraduate tuition/fee increase (3.2% tuition + $48/term fee), paired with administrative cost actions inside the FY27 budget. The assignment requires ONE enumerated option, and Board/union actors need a single named action. (b) is the correct formal vehicle because it is the only lever that (i) requires and thus triggers Board authorization \u2014 the binding April 25 calendar constraint \u2014 and (ii) can be executed by administrative reallocation. Vacant-line reductions from (a) are ordinary administrative budget actions the Provost may take within any adopted budget, so they are implementation detail, not a competing option.\n\nSizing (honest): File the FULL package the financials support \u2014 3.2% tuition + $48/term fee \u2014 netting the stated ~+$3.9M before elasticity and ~+$2.5M after the stated -$1.4M enrollment-decline haircut. These are the only tuition-track figures the givens substantiate. That leaves a residual gap of ~$1.7M ($4.2M target minus ~$2.5M verified-conservative tuition net).\n\nClosing the ~$1.7M residual: draw from the vacant-staff-line subset of (a). CAUTION \u2014 the problem gives only a COMBINED $4.4M for 18 staff plus 6 faculty lines and no per-line cost, so the dollars attributable to the 18 vacant staff lines alone CANNOT be derived from the givens. Treat the per-line savings as an ASSUMPTION the reader must verify before relying on it (see Execution step 2). Do NOT assume the vacant lines alone cover $1.7M; verify actual bankable FY27 dollars, and retain the 6 faculty non-renewals (union-noticed) as a reserve to close any shortfall.\n\nRetention protection is funded FIRST from tuition proceeds: hold advising well below the 420:1 stress case and cover the 8 STEM gen-ed sections. CAUTION \u2014 the problem states no cost per section, so the covering cost CANNOT be derived; scope this against verified actual section costs during budget build rather than a stated figure.\n\nExecution: (1) File the tuition item immediately to clear agenda-lock/public-notice before the April 25 Board window. (2) By April 5, verify each vacant staff line is GF-base, non-swept, severable, with fringe/payout modeled, and establish the ACTUAL FY27 dollars each yields \u2014 do not proceed on assumed per-line values. (3) Run required union consultation before April 10 for the 6 faculty non-renewals, held as a reserve to close any residual the verified vacant lines cannot. (4) Self-healing levers: if enrollment softens beyond -1.5%, deepen verified vacant-line reductions or activate the noticed faculty reserve; if line verification underdelivers, the full 3.2% package leaves headroom over the ~2.5M conservative estimate. (5) If the Board rejects/reduces the increase, the verified vacant-line pool plus union-noticed faculty non-renewals close the gap by May 15.\n\nWhy not (a) alone: 420:1 advising and canceled STEM sections directly attack the 74%->78% retention target and the $1.1M penalty. Why not (c): the $500k donor clawback plus conference-breach risk are disqualifying. (b) at full size, with verified vacant-line reductions as administrative implementation and a noticed faculty-non-renewal reserve, closes the $4.2M gap within Board and union calendars while protecting the retention metric.",
+        "armB": "Choose option (b): raise undergraduate tuition 3.2% and mandatory fees $48/term. Rationale: It is the only option that closes the $4.2M gap without directly damaging the retention metric you must move from 74% to 78% (a $1.1M penalty). Option (a) raises advising caseload from 310 to 420 per advisor and cancels 8 high-demand STEM gen-ed sections \u2014 both are direct threats to first-year retention that could cost more than they save once the performance penalty is factored in. Option (c) forces an accelerated March 30 announcement, triggers a $500k donor clawback, and risks breaching conference requirements by dropping sports \u2014 legal and reputational exposure that outweighs its clean $4.2M figure. Option (b)'s net +$3.9M is modeled AFTER $0.6M in added aid, and even under the worst-case 1.5% enrollment decline (\u2248$1.4M revenue loss) it can be paired with a targeted hiring freeze on truly non-essential vacancies to fully close the residual gap while preserving advising capacity and STEM section availability. It meets compliance timelines (Board approval by April 25, no April 10 union-layoff trigger) and protects the retention investments needed to avoid the $1.1M penalty. Mitigation: phase the fee increase with a clear reinvestment message tied to student success, monitor deposit trends through the summer melt period, and hold a small contingency reserve against the enrollment-sensitivity risk."
+      }
+    },
+    "P-nat-gen-03": {
+      "pid": "P-nat-gen-03",
+      "n_flags": 2,
+      "decisions": {
+        "original": "b",
+        "armA": "b",
+        "armB": "c",
+        "armA_changed": false,
+        "armB_changed": true
+      },
+      "quality_vs_original": {
+        "armA": {
+          "claude": "equivalent",
+          "gpt": "equivalent"
+        },
+        "armB": {
+          "claude": "original_better",
+          "gpt": "new_better"
+        }
+      },
+      "residual_gate": {
+        "armA": {
+          "n_bucket3": 4,
+          "n_review_split": 1,
+          "bucket3": [
+            {
+              "text": "30 temps x 16 hrs x $24 x 8 weeks = $92,160 labor",
+              "value": 92160,
+              "reason": "rests on unstated input(s): hours_per_week \u2014 weekend hours per temp per week; problem says weekend third flex shift but does not state hours; 16 = two 8-hr weekend days"
+            },
+            {
+              "text": "$92,160 labor + $12,000 fees = $104,160 base",
+              "value": 104160,
+              "reason": "rests on unstated input(s): labor \u2014 computed temp labor cost from item 11, not directly stated in problem"
+            },
+            {
+              "text": "3,500 orders x 0.8% x $9 \u2248 $9,072 incremental returns",
+              "value": 9072,
+              "reason": "no problem-grounded derivation found on re-ask"
+            },
+            {
+              "text": "Incremental per-order fee 0.4 x 3,500 x 36 days x $1.80 \u2248 $90.7K",
+              "value": 90700,
+              "reason": "rests on unstated input(s): days \u2014 number of peak days Nov 15\u2013Dec 20 inclusive; count is implied by dates but not stated as a number"
+            }
+          ]
+        },
+        "armB": {
+          "n_bucket3": 8,
+          "n_review_split": 0,
+          "bucket3": [
+            {
+              "text": "= 23,040 station-minutes/day",
+              "value": 23040,
+              "reason": "rests on unstated input(s): minutes_per_hour \u2014 conversion from hours to minutes needed for station-minutes"
+            },
+            {
+              "text": "is roughly 980 extra returns",
+              "value": 980,
+              "reason": "rests on unstated input(s): days \u2014 number of days in the peak window Nov 15\u2013Dec 20 to accumulate extra returns"
+            },
+            {
+              "text": "= ~$8.8K in return costs",
+              "value": 8800,
+              "reason": "rests on unstated input(s): days \u2014 peak-window days needed to total extra returns before multiplying by return cost"
+            },
+            {
+              "text": "the ~$104.2K",
+              "value": 104200,
+              "reason": "no problem-grounded derivation found on re-ask"
+            },
+            {
+              "text": "and ~$85.7K numbers are unsupported",
+              "value": 85700,
+              "reason": "no problem-grounded derivation found on re-ask"
+            },
+            {
+              "text": "cuts the effective in-house peak load to roughly 2,100 orders/day",
+              "value": 2100,
+              "reason": "rests on unstated input(s): order_divert_equals_inventory \u2014 assumes 40% of inventory diversion equals 40% of orders diverted; problem states inventory not orders"
+            },
+            {
+              "text": "= ~49,000 orders",
+              "value": 49000,
+              "reason": "rests on unstated input(s): days \u2014 peak-window days (Nov 15\u2013Dec 20) needed to total diverted orders"
+            },
+            {
+              "text": "= ~$88K of variable cost",
+              "value": 88000,
+              "reason": "rests on unstated input(s): days \u2014 peak-window days needed to compute total diverted orders before applying per-order fee"
+            }
+          ]
+        }
+      },
+      "recs": {
+        "armA": "DECISION: Choose (b) \u2014 the weekend third 'flex' shift \u2014 tightened to a capacity-verified, weekly-scalable plan. It is the only option that directly adds pack-station throughput (the binding SLA constraint), stays in-budget, and is reversible week-to-week.\n\nWHY THE SLA CONSTRAINT DRIVES THIS: The 24-hr SLA is a SHIP-time constraint, driven by pack throughput. At 6.5 min/order, one associate-hour \u2248 9.2 orders. Meeting 3,500/day requires ~380 associate-hours/day. Only (b) adds pack labor; (a) and (c) do not close the throughput gap in time.\n\n(b) LABOR COST \u2014 DERIVED FROM GIVENS: The problem specifies 30 temps at $24/hr for 8 weeks, plus $12,000 training/agency fees. For a two-shift weekend (Sat+Sun) at 8 hrs/shift = 16 hrs/temp/week: 30 temps x 16 hrs x $24 x 8 weeks = $92,160 labor + $12,000 fees = $104,160 base. ASSUMPTION TO VERIFY: the 16 hrs/week/temp weekend configuration (2 shifts x 8 hrs) \u2014 confirm actual scheduled hours before committing, as this drives the budget. A single 8-hr weekend day (8 hrs/week) would halve labor to ~$46K + $12K.\n\n(b) ERROR COST \u2014 DERIVED: error rate rises 0.6%\u21921.4% (delta 0.8%) at $9/return. Over ~36 peak days x 3,500 orders x 0.8% x $9 \u2248 $9,072 incremental returns. QC scan-verify on temp orders targets pulling this back toward baseline.\n\n(b) EXPECTED TOTAL (peak window): ~$104.2K base labor+fees + ~$9K returns = ~$113K, before any residual SLA penalty. This fits the $120K cap with the 16-hr config only if fees/returns are contained; the reader must verify scheduled hours or fall back to a reduced-hours config to preserve headroom.\n\nWHY NOT (c): Incremental per-order fee 0.4 x 3,500 x 36 days x $1.80 \u2248 $90.7K + $35K onboarding = ~$125.7K, over the $120K cap. More importantly, (c) offloads only 40% of volume, leaving 60% (~2,100/day) on the in-house line that still has no added throughput. (c) buys down transit/expedite exposure but not the $4/order ship-time chargeback root cause. Plus a hard, irreversible Nov 1 external dependency with no peak fallback.\n\nWHY NOT (a): 10-day install + 20% throughput hit lands too close to Nov 15 with instant-ramp risk; $110K one-shot with no fallback if the promised 25% gain underdelivers.\n\nGUARDRAILS: (1) Calibrate true current throughput and late-rate by Oct 25; (2) confirm the exact temp hours/week and recompute against the $120K cap before signing \u2014 if the 16-hr config plus returns breaches budget, cut to a single weekend shift or fewer temps; (3) dedicated QC scan-verify on temp orders, temps paired with leads, targeting <1.0% error; (4) weekly go/no-go to scale temp hours up or down within budget; hold contingency for late-rate buy-down.",
+        "armB": "Choose (c): Pre-position 40% of inventory at the regional consolidator. This is the only option that meaningfully de-risks the SLA before the Nov 15 ramp without introducing new failure modes. Here is the reasoning grounded in the problem's numbers. Peak capacity check: 24 stations x 2 shifts x 8 hrs x 60 min = 23,040 station-minutes/day; at 6.5 min/order that yields ~3,545 orders/day capacity, just barely above the 3,500 forecast with zero slack for absenteeism, breaks, or demand spikes \u2014 so you cannot reliably hit a 98% SLA on current labor alone. Option (a) is the wrong bet on timing and risk: a 10-day install with a 20% throughput hit, if it slips even slightly, lands the disruption inside or adjacent to the Nov 15 peak; a physical retrofit that must be commissioned this late is the classic way to convert a manageable problem into an outage during your highest-volume window, and at $110K it consumes nearly the entire budget with the throughput benefit arriving right when you can least afford install variance. Option (b) directly attacks the wrong lever: it adds labor hours but raises the error rate from 0.6% to 1.4%, and at ~3,500 orders/day for ~35 peak days that incremental 0.8% error rate is roughly 980 extra returns x $9 = ~$8.8K in return costs, on top of a temp labor bill that the established findings could not derive to a defensible figure (the ~$104.2K and ~$85.7K numbers are unsupported), meaning it likely also crowds the budget while degrading quality. Option (c) attacks the SLA constraint at its root: moving 40% of volume to a partner closer to customers cuts the effective in-house peak load to roughly 2,100 orders/day (well within the ~3,545 capacity, restoring real slack for the 98% target) AND reduces average shipping zone and late risk, which is precisely what protects against the $4 chargeback + $6 expedite penalty (~$10/late order). Its costs are bounded and predictable: $35,000 onboarding is well under the $120K budget, leaving reserve, and the +$1.80/order applies only to the diverted ~40% (~1,400 orders/day x ~35 days = ~49,000 orders x $1.80 = ~$88K of variable cost) \u2014 but that variable cost is offset by avoided chargebacks/expedite penalties and by not blowing the SLA on the retained volume. The Oct 25 commit / 12 pallets by Nov 1 timeline is achievable within the decision window, and unlike (a) it does not risk a peak-season install failure and unlike (b) it does not increase error/return exposure. Net: (c) is the lowest-expected-total-cost path to actually meeting the 98% SLA through Dec 20 while keeping budget in reserve and avoiding introduced risk. Immediate action: sign the consolidator commit by Oct 24, lock the 12-pallet allocation to your highest-velocity SKUs, and hold the remaining budget as contingency for spot OT if in-house volume runs hot."
+      }
+    }
+  }
+}

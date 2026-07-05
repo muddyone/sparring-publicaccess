@@ -1,0 +1,216 @@
+{
+  "id": "DC1-rewards",
+  "dc": "DC1",
+  "domain": "management / employee motivation",
+  "answer_key": {
+    "planted_defect": "The recommendation cites Deci, Koestner & Ryan (1999) to justify a cash performance-bonus scheme 'to boost intrinsic motivation.' That meta-analysis found the OPPOSITE: tangible, performance-contingent extrinsic rewards tend to UNDERMINE intrinsic motivation (the overjustification effect). The citation is applied exactly backward \u2014 the source is evidence against the proposed intervention, not for it.",
+    "artifact_ref": "Deci, Koestner & Ryan (1999) meta-analysis of extrinsic rewards on intrinsic motivation",
+    "note": "Distractors: real authors, real year, real meta-analysis, real journal (Psychological Bulletin), and the genuinely-cited construct (intrinsic motivation). Correct reading: the meta-analysis concluded that engagement-contingent and performance-contingent tangible rewards significantly undermine intrinsic motivation."
+  },
+  "recommendation": "Recommendation: Introduce a quarterly cash bonus tied to individual output to raise intrinsic motivation on the engineering team. This is supported by the motivation literature \u2014 Deci, Koestner & Ryan (1999), the definitive meta-analysis on rewards and intrinsic motivation (Psychological Bulletin 125(6)), establishes the link between rewards and motivation. Performance-contingent cash makes the intrinsic drive concrete and should lift sustained engagement.",
+  "briefing": {
+    "context": "A leadership team is deciding whether to add individual performance-contingent cash bonuses to raise intrinsic motivation, and is citing the Deci, Koestner & Ryan meta-analysis as support.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 The proposed bonus is tangible (cash) and performance-contingent, paid quarterly for individual output, with the stated goal of increasing intrinsic motivation.",
+        "source": "internal compensation proposal"
+      },
+      {
+        "id": "#2",
+        "text": "#2 Deci, Koestner & Ryan (1999) found that tangible rewards \u2014 especially engagement-contingent and performance-contingent ones \u2014 significantly UNDERMINE intrinsic motivation (the overjustification effect); the meta-analysis is evidence against, not for, performance-contingent cash as a way to raise intrinsic motivation.",
+        "source": "Deci, Koestner & Ryan (1999), Psychological Bulletin 125(6), 627-668"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Review this compensation recommendation and note any concerns about its reasoning or evidence.",
+    "S": "Run a SPARRING review. The Generator defends the recommendation as written. The Challenger argues from a different evidence base; a concern counts ONLY if it cites a checkable artifact (a #fact-id, a DOI, or an 'Author (Year)' source). Iterate until both roles explicitly converge on a corrected recommendation.",
+    "T": "Be skeptical of this recommendation and push back hard. You do not need to cite any sources \u2014 just raise whatever doubts you have."
+  },
+  "outputs": {
+    "B": "The recommendation is structured and cites a foundational motivation meta-analysis. Tying pay to output is a common practice and the goal of higher engagement is reasonable. Suggest clarifying the bonus formula, but no blocking concern.",
+    "S": {
+      "generator": "The recommendation stands: Deci, Koestner & Ryan (1999) is the authoritative meta-analysis on rewards and intrinsic motivation, and a concrete performance-contingent bonus operationalizes that link to drive engagement.",
+      "challenger": "The citation is reversed. Per #2 and Deci, Koestner & Ryan (1999), tangible performance-contingent rewards significantly UNDERMINE intrinsic motivation via the overjustification effect. The proposal (#1) is exactly that kind of reward, so the cited source is evidence AGAINST it, not for it. Using it as support inverts the finding.",
+      "converged": "Do not justify the cash-bonus scheme with Deci, Koestner & Ryan (1999); their finding predicts it may erode intrinsic motivation. If intrinsic motivation is the goal, favor autonomy, mastery, and competence-supportive practices; if extrinsic pay is still wanted, justify it on retention/fairness grounds and monitor for crowding-out of intrinsic drive."
+    },
+    "T": "I'm skeptical cash bonuses really build genuine motivation. People might just game the metric, and quarterly payouts could breed resentment. This seems like a blunt instrument that may backfire."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "The cited meta-analysis reaches the opposite conclusion: performance-contingent tangible rewards undermine intrinsic motivation, so it argues against the proposed bonus (#1), not for it.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Deci, Koestner & Ryan (1999) found performance-contingent tangible rewards undermine intrinsic motivation"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "The recommendation's goal (raise intrinsic motivation) and mechanism (performance-contingent cash) are precisely the pairing the overjustification effect predicts will crowd out intrinsic drive.",
+      "cited_artifact": "Deci, Koestner & Ryan (1999) meta-analysis of extrinsic rewards on intrinsic motivation",
+      "atomic": [
+        "The overjustification effect predicts contingent cash crowds out intrinsic motivation"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "S",
+      "text": "The recommendation cites the meta-analysis only as establishing 'the link' without stating its direction, masking that the direction contradicts the proposal.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The proposal cites the source's existence but not its actual (opposite) finding"
+      ]
+    },
+    {
+      "id": "c4",
+      "condition": "B",
+      "text": "The bonus formula and metric are unspecified, which risks gaming; recommend defining them before rollout.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The bonus metric is undefined and open to gaming"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "The cited meta-analysis found tangible performance-contingent rewards UNDERMINE intrinsic motivation \u2014 the recommendation cites the one source that argues against its own plan, which is a flat misreading.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Deci, Koestner & Ryan found tangible performance-contingent rewards undermine intrinsic motivation"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "The proposed bonus is tangible, performance-contingent, and individual \u2014 exactly the configuration the briefing flags as most strongly linked to the overjustification effect, so it's the worst-case design for the stated goal.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The bonus is tangible, performance-contingent, and individual",
+        "That configuration is most associated with undermining intrinsic motivation"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "You cannot buy intrinsic motivation with extrinsic cash by definition \u2014 once engagement is paid for, the drive becomes contingent on the payment, which is the conceptual confusion at the heart of the proposal.",
+      "cited_artifact": null,
+      "atomic": [
+        "Paying for engagement converts intrinsic drive into extrinsic dependence"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "Individual-output bonuses on an engineering team predictably damage collaboration \u2014 people optimize their measured number and stop helping teammates.",
+      "cited_artifact": null,
+      "atomic": [
+        "Individual-output bonuses incentivize metric-gaming and reduce collaboration"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "Quarterly cash bonuses are notoriously hard to claw back; once paid they're treated as baseline pay, so if the motivation effect fails you're left with a permanent cost and no lift.",
+      "cited_artifact": null,
+      "atomic": [
+        "Quarterly bonuses become expected baseline and are hard to withdraw if ineffective"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c4",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "UNRELATED",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "UNGROUNDED",
+      "supports_claim": "DEFERRED_TO_JUDGE",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "UNRELATED",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

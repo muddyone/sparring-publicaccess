@@ -1,0 +1,33 @@
+## Recommendation
+
+Adopt a **hybrid that is structurally Path B (language-first) but front-loads concept scaffolding into the early Python work** — call it "language-first with concepts interleaved." Concretely: students write small, runnable Python from week 1, but every new piece of syntax is introduced through a short plain-English/pseudocode "what are we trying to do" framing before the code, and explicit problem-decomposition and data-organization instruction is woven into weeks 1–9 rather than deferred to a separate front block. This keeps the early concrete-competence win that matters most for NCCC's actual student body while deliberately protecting the conceptual-discipline goal that a pure language-first course tends to under-serve.
+
+The core rationale: NCCC's strongest, most specific evidence — its own history and the makeup of its students — points toward language-first. The case for concepts-first rests largely on a clean lab-based theory (cognitive load) and a small, time-limited transfer advantage that applies to a minority of an already-minority group. A hybrid captures most of the concepts-first upside without paying the motivation and accessibility costs that pure Path A would impose on the majority.
+
+## Reasoning chain
+
+The decision hinges on which evidence is most directly applicable to NCCC, not which is most theoretically elegant.
+
+The single most relevant item is NCCC's own history (point 6): a language-first course that improved from 64% to 73% completion, with faculty crediting Python's writability and familiarity — both of which depend on students actually writing code early. NCCC has never run Path A, so adopting it wholesale means abandoning a known, working structure for an untested one right before a hard deadline.
+
+Point 2 (Bennedsen & Caspersen) is the load-bearing finding: across 63 courses, ordering (concepts-first vs. language-first) did **not** predict completion; preparation and language choice did. This means the completion-rate fear of language-first is largely unsupported, and equally, the completion-rate hope for concepts-first is unsupported. Ordering is simply not where the leverage is. Since the language (Python) is already fixed and NCCC can't change student preparation by June 30, the path choice should be made on the secondary goals — motivation, accessibility, and transfer prep — not completion.
+
+On those secondary goals, the student body is decisive. Adult learners are 57% of the course, and point 3 says they are motivated by early concrete competence; Path A's five weeks of sketches with no running code works directly against the majority. Point 4 suggests first-generation and second-language students (31% and 20%) benefit from earlier syntax fluency to close the open-ended-coding gap — favoring language-first — though I weight this finding cautiously because it failed to replicate in Lewis et al. (2022).
+
+The strongest argument for Path A is point 1 (cognitive load), which is robust as theory, and point 5 (transfer). But point 5's effect is small (d ≈ 0.18–0.22, ~3–4 points), applies only to students who reach data structures within 18 months, and therefore touches only a fraction of the 38% who continue — perhaps 15–19% of the whole class. That is a real but narrow benefit, and it does not justify restructuring the course against the needs of the other ~80%.
+
+The hybrid resolves this. By framing each syntax unit conceptually and teaching decomposition throughout, it addresses the cognitive-load concern (point 1) not by deferring code but by sequencing each *small* concept-plus-syntax pairing — which is exactly what Sweller's work supports at the level of individual skills. It preserves the "disciplines, not one language" goal by making concepts explicit and graded, rather than hoping they "emerge" from coding as pure Path B assumes.
+
+## Concerns / risks
+
+The hybrid does not solve the transfer-preparation trade-off cleanly. Students headed to an early four-year data-structures course may still get marginally less of the deep conceptual front-loading that pure Path A provides; my hybrid mitigates but does not match it. If NCCC's mission strongly prioritizes the ~15–19% of transfer-bound students who take data structures early, pure Path A would serve them slightly better at the majority's expense.
+
+It does not solve the open-ended-coding gap for first-generation and second-language students. Earlier syntax exposure may narrow it, but the evidence (point 4) is shaky after the Lewis 2022 non-replication, and the "unspoken sense of what a good solution looks like" requires explicit instruction — worked examples, exemplar solutions, rubrics — that the hybrid must add deliberately or the gap persists regardless of path.
+
+It carries an execution risk under the constraints. A hybrid is harder to deliver consistently than a clean path, and NCCC relies on 6–8 adjuncts who may not all interleave concepts skillfully. Without shared materials and a common framing template ready before August 1, the hybrid degrades into ordinary Path B for some sections — losing the conceptual benefit while keeping the label.
+
+Finally, none of the choices addresses the real driver of completion identified in point 2: student preparation. The path debate is partly a distraction from advising/placement and support interventions that would move completion more than any ordering choice.
+
+## Confidence
+
+**Medium.** The direction is well-supported by NCCC's own data and the finding that ordering doesn't drive completion, but the strength of several supporting studies is genuinely contested (the point-4 non-replication, the narrow conditions on the point-5 transfer effect), and the hybrid's success depends on execution quality the pack can't guarantee.

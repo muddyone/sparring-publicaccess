@@ -1,0 +1,40 @@
+// fig6-verifier-pipeline.gv — Graphviz redesign trial (2026-07-03), alongside the hand-authored
+// fig6-verifier-pipeline.svg, not a replacement. Same content verbatim; the point of the trial is
+// automatic, collision-free edge routing instead of hand-placed coordinates.
+digraph fig6 {
+  rankdir=LR;
+  bgcolor="#ffffff";
+  splines=ortho;
+  nodesep=0.35;
+  fontname="TeX Gyre Pagella";
+  label=<<font point-size="15"><b>How one concern is checked, end to end</b></font>>;
+  labelloc=t;
+  margin=0.3;
+
+  node [shape=box, style="rounded,filled", fillcolor="#eef3f4", color="#46707d", penwidth=1.5,
+        fontname="TeX Gyre Pagella", fontcolor="#1a1a1a", margin="0.18,0.12", height=0.7];
+  edge [color="#46707d", penwidth=1.5, arrowsize=0.8];
+
+  cites   [label=<<b>Concern cites</b><br/><font point-size="11">e.g. CWE-640</font>>];
+  classify[label=<<b>Classify</b><br/><font point-size="11">by shape (regex)</font>>];
+  lookup  [label=<<b>Look up</b><br/><font point-size="11">MITRE &middot; 1 API call</font>>];
+  exists  [label=<<b>Exists?</b><br/><font point-size="11">404 &#8594; refuted</font>>];
+  backs   [label=<<b>Backs claim?</b><br/><font point-size="11">cross-vendor LLM</font>>,
+           fillcolor="#f7ede0", color="#b5772e"];
+
+  cites -> classify -> lookup -> exists -> backs;
+
+  // Graphviz has no clean primitive for "a bracket spanning specific boxes" under
+  // automatic layout (tried it via invisible edges + shared rank; the cross-axis
+  // position within a rank isn't reliably anchored to a specific upstream node,
+  // so the notes landed in the wrong place). Simplified to one caption stack below
+  // the whole row, in reading order — same content, no fragile positioning trick.
+  node [shape=plaintext, style="", fontname="TeX Gyre Pagella"];
+  notes [label=<<table border="0" cellborder="0" cellspacing="4">
+    <tr><td align="left"><font color="#46707d"><i>existence &mdash; no model, no web search (also: DOI&#8594;Crossref, RFC&#8594;IETF, path&#8594;repo, URL&#8594;fetch, #fact&#8594;briefing)</i></font></td></tr>
+    <tr><td align="left"><font color="#9a6a1f"><i>the only model &mdash; cross-vendor LLM judges whether the resolved source backs the claim</i></font></td></tr>
+    <tr><td align="left"><font color="#1a1a1a" point-size="11">The classifier reads the citation's type, never the topic; a citation matching no backend is counted ungrounded.</font></td></tr>
+  </table>>];
+  { rank=same; backs; notes; }
+  backs -> notes [style=invis];
+}

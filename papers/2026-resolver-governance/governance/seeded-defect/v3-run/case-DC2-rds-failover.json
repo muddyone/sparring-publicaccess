@@ -1,0 +1,203 @@
+{
+  "id": "DC2-rds-failover",
+  "dc": "DC2",
+  "domain": "infra / database HA",
+  "answer_key": {
+    "planted_defect": "The recommendation says enabling Multi-AZ failover gives automatic cross-region disaster recovery, but briefing fact #2 states Multi-AZ replicas stay within a single region.",
+    "artifact_ref": "#2",
+    "note": "Distractors: cost figures (#1), maintenance-window detail (#3), and IOPS provisioning all read plausibly. Buried contradiction: the rec claims Multi-AZ covers a region-loss DR scenario, but #2 explicitly says Multi-AZ standbys are co-regional \u2014 region loss is NOT covered without a cross-region read replica."
+  },
+  "recommendation": "Enable RDS Multi-AZ on the primary Postgres cluster. This is the cleanest path to our Q3 disaster-recovery objective: Multi-AZ provisions a synchronous standby, gives us sub-minute automatic failover with no application changes, and because the standby is a fully managed copy it satisfies the region-loss recovery requirement in the DR runbook \u2014 so we can close the DR gap without standing up a separate cross-region replica.",
+  "briefing": {
+    "context": "Platform team is choosing an HA/DR posture for the primary Postgres cluster ahead of a Q3 audit. Decision: whether RDS Multi-AZ alone satisfies the disaster-recovery requirement.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 Multi-AZ adds roughly 100% to the instance cost (a full standby is always running); the team has budget approval for it.",
+        "source": "finance-approval-2026Q2.xlsx"
+      },
+      {
+        "id": "#2",
+        "text": "#2 RDS Multi-AZ standby instances are provisioned in a different Availability Zone but within the SAME AWS region as the primary; surviving a full region loss requires a separate cross-region read replica.",
+        "source": "AWS RDS Multi-AZ docs / DR runbook \u00a74"
+      },
+      {
+        "id": "#3",
+        "text": "#3 Failover events during managed maintenance windows are automatic and typically complete in 60-120 seconds.",
+        "source": "internal HA test report 2026-05"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Review this DR recommendation and note whether it is sound.",
+    "S": "Run a SPARRING review. The Generator defends the recommendation; the Challenger attacks it, but a concern counts ONLY if it cites a checkable artifact by fact-id (#n). Iterate to convergence on a corrected recommendation.",
+    "T": "You are a tough skeptic. Push back hard on this recommendation and find what's wrong with it."
+  },
+  "outputs": {
+    "B": "The recommendation is well-structured and reasonable. Multi-AZ is a standard HA pattern, the cost is budgeted, and failover is fast. Looks good to proceed.",
+    "S": {
+      "generator": "Multi-AZ gives synchronous standby, automatic sub-minute failover, no app changes, and it's budgeted per #1. It's the cleanest path to the DR objective.",
+      "challenger": "The load-bearing claim fails against #2: the rec asserts Multi-AZ 'satisfies the region-loss recovery requirement,' but #2 states the standby lives in the SAME region and that surviving a full region loss requires a separate cross-region read replica. The DR objective is not met by Multi-AZ alone.",
+      "converged": "Adopt Multi-AZ for in-region HA (fast failover, budgeted per #1), but ALSO provision a cross-region read replica to satisfy the region-loss DR requirement per #2. Do not claim the DR gap is closed by Multi-AZ alone."
+    },
+    "T": "I'm not convinced this is the right call. Multi-AZ feels like a band-aid and the failover story sounds too optimistic. Have you really thought through the edge cases? I'd want a lot more justification before signing off."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "The recommendation claims Multi-AZ satisfies the region-loss DR requirement, but #2 states standbys are in the same region and region loss needs a cross-region replica.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Multi-AZ standby is in the same region as the primary per #2",
+        "Region-loss DR requires a separate cross-region replica, which Multi-AZ does not provide"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "The cost framing should be stated: #1 notes Multi-AZ roughly doubles instance cost, and a cross-region replica adds further cost not accounted for in the recommendation.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Multi-AZ adds ~100% instance cost per #1"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "Failover timing looks acceptable for the HA goal given the measured window.",
+      "cited_artifact": "#3",
+      "atomic": [
+        "Failover completes in 60-120 seconds per #3"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "This recommendation claims Multi-AZ satisfies the region-loss recovery requirement, but the standby lives in a different AZ within the SAME region \u2014 a full region outage takes the standby down with the primary. It does not close the DR gap as written.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Multi-AZ standby is in the same region as the primary",
+        "A full region loss would take down both primary and standby"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "The framing treats a separate cross-region replica as avoidable, but the briefing explicitly says surviving region loss requires one \u2014 so this isn't a substitute for cross-region DR, it's a complement at best.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Surviving region loss requires a separate cross-region read replica"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "Calling 60-120 second failover 'sub-minute' is misleading \u2014 the stated typical range tops out at two minutes, and in my experience failover under real load often runs longer with connection storms and cache cold-starts.",
+      "cited_artifact": "#3",
+      "atomic": [
+        "Failover typically completes in 60-120 seconds, not reliably sub-minute"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "Roughly doubling the instance cost is a permanent recurring spend, and the recommendation never weighs whether that buys the DR posture you actually need versus a cheaper cross-region option.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Multi-AZ adds roughly 100% to instance cost permanently"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "'No application changes' glosses over failover behavior \u2014 apps still need to handle dropped connections, endpoint re-resolution, and in-flight transaction loss.",
+      "cited_artifact": null,
+      "atomic": [
+        "Applications still must tolerate dropped connections and endpoint failover"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "REFUTES",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "FALSE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "REFUTES",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

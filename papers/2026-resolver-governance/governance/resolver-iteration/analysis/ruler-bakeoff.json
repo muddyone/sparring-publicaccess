@@ -1,0 +1,1034 @@
+{
+  "EXPLORATORY": true,
+  "k": 5,
+  "rulers": [
+    "flaw_count",
+    "pairwise_raw",
+    "pairwise_cf",
+    "challenge_enum"
+  ],
+  "n_pairs": 32,
+  "flawcount_tie": 0.5,
+  "enum_band": 1.5,
+  "rulers_detail": {
+    "flaw_count": {
+      "overall_accuracy": 0.5,
+      "regression_recall": 0.25,
+      "noop_specificity": 0.5,
+      "improvement_recall": 0.75,
+      "noop_verdict_leans": {
+        "A_BETTER": 6,
+        "EQUIVALENT": 8,
+        "B_BETTER": 2
+      },
+      "incomplete": 0,
+      "per_type": {
+        "planted_regression": {
+          "n": 8,
+          "correct": 2
+        },
+        "planted_improvement": {
+          "n": 8,
+          "correct": 6
+        },
+        "identical": {
+          "n": 8,
+          "correct": 5
+        },
+        "cosmetic": {
+          "n": 8,
+          "correct": 3
+        }
+      },
+      "per_pair": [
+        {
+          "pair_id": "P-multiregion-ledger__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-multiregion-ledger__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-feature-store-skew__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-feature-store-skew__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "B_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-autoscale-stampede__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-autoscale-stampede__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-churn-winback__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-churn-winback__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-warehouse-siting__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "B_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-warehouse-siting__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-warehouse-siting__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-pricing-migration__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "B_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-pricing-migration__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-capex-automation__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "B_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-capex-automation__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-capex-automation__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-capex-automation__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        }
+      ]
+    },
+    "pairwise_raw": {
+      "overall_accuracy": 0.969,
+      "regression_recall": 0.875,
+      "noop_specificity": 1.0,
+      "improvement_recall": 1.0,
+      "noop_verdict_leans": {
+        "EQUIVALENT": 16
+      },
+      "incomplete": 0,
+      "per_type": {
+        "planted_regression": {
+          "n": 8,
+          "correct": 7
+        },
+        "planted_improvement": {
+          "n": 8,
+          "correct": 8
+        },
+        "identical": {
+          "n": 8,
+          "correct": 8
+        },
+        "cosmetic": {
+          "n": 8,
+          "correct": 8
+        }
+      },
+      "per_pair": [
+        {
+          "pair_id": "P-multiregion-ledger__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-capex-automation__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-capex-automation__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-capex-automation__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "B_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-capex-automation__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        }
+      ]
+    },
+    "pairwise_cf": {
+      "overall_accuracy": 0.906,
+      "regression_recall": 0.875,
+      "noop_specificity": 1.0,
+      "improvement_recall": 0.75,
+      "noop_verdict_leans": {
+        "EQUIVALENT": 16
+      },
+      "incomplete": 0,
+      "per_type": {
+        "planted_regression": {
+          "n": 8,
+          "correct": 7
+        },
+        "planted_improvement": {
+          "n": 8,
+          "correct": 6
+        },
+        "identical": {
+          "n": 8,
+          "correct": 8
+        },
+        "cosmetic": {
+          "n": 8,
+          "correct": 8
+        }
+      },
+      "per_pair": [
+        {
+          "pair_id": "P-multiregion-ledger__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-warehouse-siting__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-pricing-migration__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-capex-automation__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-capex-automation__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-capex-automation__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "B_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-capex-automation__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        }
+      ]
+    },
+    "challenge_enum": {
+      "overall_accuracy": 0.531,
+      "regression_recall": 0.25,
+      "noop_specificity": 0.75,
+      "improvement_recall": 0.375,
+      "noop_verdict_leans": {
+        "EQUIVALENT": 12,
+        "A_BETTER": 4
+      },
+      "incomplete": 0,
+      "per_type": {
+        "planted_regression": {
+          "n": 8,
+          "correct": 2
+        },
+        "planted_improvement": {
+          "n": 8,
+          "correct": 3
+        },
+        "identical": {
+          "n": 8,
+          "correct": 7
+        },
+        "cosmetic": {
+          "n": 8,
+          "correct": 5
+        }
+      },
+      "per_pair": [
+        {
+          "pair_id": "P-multiregion-ledger__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-multiregion-ledger__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-feature-store-skew__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-feature-store-skew__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-feature-store-skew__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "B_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-feature-store-skew__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-zero-downtime-shard__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-autoscale-stampede__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "B_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-autoscale-stampede__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-churn-winback__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-churn-winback__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "A_BETTER",
+          "correct": true
+        },
+        {
+          "pair_id": "P-churn-winback__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-warehouse-siting__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-warehouse-siting__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-warehouse-siting__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-pricing-migration__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-pricing-migration__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-pricing-migration__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-pricing-migration__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-capex-automation__identical",
+          "type": "identical",
+          "gt": "EQUIVALENT",
+          "verdict": "EQUIVALENT",
+          "correct": true
+        },
+        {
+          "pair_id": "P-capex-automation__cosmetic",
+          "type": "cosmetic",
+          "gt": "EQUIVALENT",
+          "verdict": "A_BETTER",
+          "correct": false
+        },
+        {
+          "pair_id": "P-capex-automation__planted_regression",
+          "type": "planted_regression",
+          "gt": "A_BETTER",
+          "verdict": "EQUIVALENT",
+          "correct": false
+        },
+        {
+          "pair_id": "P-capex-automation__planted_improvement",
+          "type": "planted_improvement",
+          "gt": "B_BETTER",
+          "verdict": "B_BETTER",
+          "correct": true
+        }
+      ]
+    }
+  }
+}

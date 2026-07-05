@@ -1,0 +1,200 @@
+{
+  "id": "DC4-sla-uptime",
+  "dc": "DC4",
+  "domain": "availability / SLA",
+  "answer_key": {
+    "planted_defect": "The recommendation claims the architecture meets the contractual 99.95% monthly uptime SLA (#2), but a single-region active-passive design with manual failover taking ~30 minutes will, on a single failover event, consume ~30 min of downtime \u2014 exceeding the ~21.9 min/month budget that 99.95% allows. It overclaims compliance.",
+    "artifact_ref": "#2",
+    "note": "Distractors: the design adds a warm standby, automated backups, and looks robust. But 99.95% monthly uptime permits only ~21.9 minutes of downtime per month; a manual failover that the briefing says takes ~30 minutes blows that budget in a single incident. The spec requires the recovery path to fit within ~21.9 min/month."
+  },
+  "recommendation": "Adopt the single-region active-passive design with a warm standby and operator-triggered manual failover (runbook completion ~30 minutes). This gives us a tested recovery path and comfortably meets the enterprise customer's 99.95% monthly uptime SLA, so we can sign the contract as-is.",
+  "briefing": {
+    "context": "An infra team must choose an availability architecture before signing an enterprise contract whose SLA carries financial penalties for breach.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 The proposed design is single-region active-passive: a warm standby in the same region with operator-triggered manual failover whose runbook takes approximately 30 minutes to complete end to end.",
+        "source": "arch-proposal.md"
+      },
+      {
+        "id": "#2",
+        "text": "#2 The enterprise contract SLA requires >=99.95% uptime measured monthly, which permits a maximum of approximately 21.9 minutes of downtime per calendar month before penalties apply.",
+        "source": "contract-sla.pdf \u00a74.2"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Please review this availability-architecture recommendation and flag anything worth noting before we sign.",
+    "S": "Run a SPARRING review. Generator defends the recommendation and names the spec it claims to meet; Challenger attacks, but a concern counts only if it cites a checkable artifact by #fact-id. Iterate until convergence on a verdict and any fix.",
+    "T": "Be a hard-nosed skeptic. Tear into this recommendation and list your doubts."
+  },
+  "outputs": {
+    "B": "Looks solid. A warm standby with a documented manual-failover runbook is a sensible, cost-effective availability posture, and it satisfies the 99.95% SLA goal. No blockers to signing.",
+    "S": {
+      "generator": "The active-passive design with a warm standby and a tested ~30-minute failover runbook gives us a reliable recovery path and meets the 99.95% monthly SLA, so we are clear to sign.",
+      "challenger": "It violates #2. #2 caps allowed downtime at ~21.9 minutes per month for 99.95%. Per #1 the manual failover itself takes ~30 minutes, so a single failover event exceeds the entire monthly budget by ~8 minutes before counting detection time. The SLA-compliance claim is false against #2.",
+      "converged": "Withdraw the SLA-met claim. Either automate failover to bring detection-plus-recovery under ~21.9 min/month (and validate it), or renegotiate the SLA to a tier the ~30-minute manual path can actually meet, then re-verify against #2 before signing."
+    },
+    "T": "I don't trust this. Manual failover always goes wrong under pressure and standbys have a way of being stale. Signing an SLA on top of that feels risky to me \u2014 I'd hold off."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "The design fails spec #2: 99.95% monthly allows only ~21.9 min downtime, but the manual failover in #1 takes ~30 min, breaching the budget in one event.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "#2 permits ~21.9 min downtime/month",
+        "A ~30 min failover exceeds that in a single incident"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "Per #1 failover is operator-triggered and ~30 min, so detection latency adds further to an already-over-budget recovery time.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Failover is manual and ~30 min per #1",
+        "Detection time adds on top of the 30 min"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "A documented runbook and warm standby look like a credible path to the stated SLA goal.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The runbook plus standby looks credible for the SLA goal"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "The arithmetic doesn't close: the runbook failover alone is ~30 minutes (#1) and the monthly downtime budget is only ~21.9 minutes (#2). A single failover event consumes more than the entire month's allowance and breaches the SLA.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "A 30-minute failover exceeds the 21.9-minute monthly budget",
+        "One failover event alone breaches the SLA"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "The 30 minutes is just runbook execution (#1) \u2014 it excludes detection/alerting time and the human decision to declare an incident. Real recovery time is strictly worse than 30.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Stated 30 minutes covers only runbook execution",
+        "Detection and on-call latency add to real recovery time"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "'Operator-triggered manual failover' assumes an operator is awake, reachable, and competent under pressure. Manual steps fumble during real incidents in a way they never do in a calm rehearsal.",
+      "cited_artifact": null,
+      "atomic": [
+        "Manual failover depends on operator availability and is error-prone under stress"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "Single-region active-passive (#1) means a region-wide outage takes down both primary and standby simultaneously \u2014 no recovery path for the failure mode most likely to cause a multi-hour outage.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Same-region standby does not survive a region-wide outage"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "The SLA carries financial penalties, so signing 'as-is' on a design that mathematically can't hold the budget is signing up to pay.",
+      "cited_artifact": null,
+      "atomic": [
+        "Signing a design that cannot meet the budget accepts known penalty liability"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "FALSE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "REFUTES",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

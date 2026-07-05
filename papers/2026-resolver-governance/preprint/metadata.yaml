@@ -1,0 +1,32 @@
+---
+# Submission-assembly metadata for the V2 governance preprint.
+# Consumed by ../scripts/build-submission.sh (pandoc --citeproc).
+#
+# The gated source of truth is ../preprint-draft.md; this build is NON-DESTRUCTIVE
+# (the script transforms a transient copy, never the draft). `nocite: @*` forces
+# every cite-checked entry in refs.bib into the generated bibliography, matching
+# the draft's §14 "full reference list" behavior while upgrading it to a clean,
+# machine-generated, consistently-formatted list. CSL is pandoc's built-in
+# Chicago author-date default (portable; no system-path dependency).
+bibliography: refs.bib
+link-citations: true
+nocite: |
+  @*
+# Discoverability keywords — the high-volume terms of art the paper legitimately
+# sits in but the (honest) title cannot front. Placed here, not in the title,
+# per the title /sparring ceremony (docs/spars/202607020342-preprint-title-subtitle/):
+# each is a topical adjacency the paper actually names, not a claimed finding.
+# Pandoc emits these into HTML <meta name="keywords">, PDF pdfkeywords, and DOCX
+# core properties — so these searches resolve to the paper without overclaiming.
+keywords:
+  - LLM-as-judge
+  - self-correction
+  - multi-agent
+  - AI governance
+  - sycophancy
+# PDF-only (ignored by the HTML writer):
+geometry: margin=1in
+fontsize: 11pt
+colorlinks: true
+linkcolor: NavyBlue
+---

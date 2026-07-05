@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+  fig7-resolver-before-after.svg — the Resolver, before and after.
+  Hand-authored schematic (clones fig6-verifier-pipeline.svg conventions; no data table → no codegen).
+  Sources (frozen): preprint-draft.md §2.1; framework/sparring-resolver-one-sheet.md;
+                    pilots/resolver-iteration-2026-06-29/PHASE-4-DESIGN-what-to-ship.md.
+  Payload — one edge-type carries the surviving finding:
+    COLLAPSE  iterate-to-agreement (N rounds) -> S1 one pass   [driver: J5 pre-registered null, §6.4/Fig5]
+  The both-must-agree gate and answer boxes (Before row) are retained only to show the shape of the
+  original process; nothing survives them into the After row (see 2026-07-03 content edit below).
+  Status tags (orthogonal to origin):  S1 = established (solid) · S2/S4/S5 = exploratory (dashed, §12)
+                    · S3 = deliverable (gold) · verifier = established-add (solid badge, not dashed).
+  Integrity: the null edge is neutral grey (never accent/green); caveat is in-frame, not caption-only.
+
+  Fixed 2026-07-03 (Minard, layout-only, no content change): removed two stray disconnected
+  hand-drawn arrowhead line fragments near S1 (redundant with the COLLAPSE line's own marker-end);
+  converted the MOVE edge from a bezier curve to an orthogonal elbow, matching CARRIED's connector
+  grammar; rerouted MOVE's and CARRIED's bend/descent points below y=248 so neither crosses the
+  "AFTER · THE ACCOUNTABILITY PASS" row label (measured empirically at render time to span
+  x=250-423 — wider than the source coordinates alone suggested); moved the "carried, unchanged"
+  label off the CARRIED line it previously sat on top of. Verified by rendering at 4x scale with
+  reference gridlines before/after.
+
+  Content edit 2026-07-03 (Bart's call, after reviewing the layout fix above): removed the MOVE edge
+  (gate -> S4, "its one job / report disagreement") and the CARRIED edge (answer -> S3, "carried,
+  unchanged") entirely, along with the DROP edge (gate -> ✕, "gate retired as a default stage
+  (optional sign-off only)") — that last annotation described a local tooling fallback (the /spar
+  legacy-v1 flag), an implementation detail irrelevant to the study or paper, not a finding. Also removed
+  the "new" cues under S2/S5 (redundant with the dashed=exploratory legend entry). The gate and
+  answer boxes, and the two Before-row arrows leading into them, changed from teal to medium grey
+  (reusing the COLLAPSE arrow's #8a8a8a) to mark them as retired by the same null finding that
+  produced S1 — they're kept in the diagram only to show the shape of the original process, not
+  because anything still flows out of them. Grey label ("collapses to one pass...") nudged down
+  and right, closer to the COLLAPSE line, without touching it.
+
+  Layout edit 2026-07-03 (Bart's call, after pushback on the first draft of this content edit):
+  (1) After-row boxes reordered left-to-right to match the OPERATING order (S1, S5, S2, S3, S4)
+  instead of ID order (S1-S5) — the "operating order" caption this used to require is gone; the
+  reader now gets the sequence for free from reading position. S3 and S4 are delivered together,
+  not sequentially, marked by a "+" in the gap between them rather than adjacency implying "then."
+  Rationale: with only 5 boxes, ID-order's lookup benefit is negligible (scanning 5 labeled boxes
+  costs nothing extra out of order), while forcing the reader to decode the sequence twice — once
+  wrong from the boxes, once right from the caption — was a real, avoidable cost. This figure's
+  primary job is explaining the process; the S1-S5 tags still work as citation keys from elsewhere
+  in the document (e.g. Appendix B's "Attaches to: S1/S2/S4") regardless of their left-right order.
+  (2) Before-row boxes tagged P1-P4 (Proposal in, Challenge/revise, Both-must-agree gate, Answer),
+  matching the After row's "tag · name" format for visual consistency across the whole figure.
+  Caveat: unlike S1-S5, P1-P4 are NOT (yet) used as citation keys anywhere else in the document —
+  the ~20 existing prose mentions of "both-must-agree gate" / "iterate-to-agreement" still use the
+  full name, not the new tag. Retrofitting those is a separate, larger edit, deferred pending Bart's
+  call on whether it's worth doing.
+
+  Follow-up 2026-07-03 (Bart caught this, not me): the reorder above encoded S1->S5->S2->S3
+  sequence purely via box position, with no visual marker saying "in this order" — the Before row's
+  P1->P2->P3 uses arrows for exactly that. Added three short teal arrows (S1->S5, S5->S2, S2->S3)
+  matching the Before row's convention; the "+" between S3/S4 is unchanged. Lesson: replacing a
+  textual caption with implied-by-position information isn't complete unless the position itself
+  carries an unambiguous marker — bare adjacency reads as "these are related," not "in this order."
+-->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="660pt" height="384pt" viewBox="0 0 660 384" version="1.1">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#46707d"/>
+    </marker>
+    <marker id="arrowg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#8a8a8a"/>
+    </marker>
+    <style>
+      text { font-family: 'TeX Gyre Pagella','Palatino','DejaVu Serif',serif; }
+      .h1  { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+      .ttl { font-size: 10px; font-weight: 700; fill: #1a1a1a; }
+      .det { font-size: 8px; fill: #444444; }
+      .row { font-size: 8.5px; font-weight: 700; fill: #6b6b6b; letter-spacing: 0.5px; }
+      .lbl { font-size: 8px; font-style: italic; fill: #46707d; }
+      .gry { font-size: 8px; font-style: italic; fill: #737373; }
+      .exp { font-size: 8px; font-style: italic; fill: #9a6a1f; }
+      .key { font-size: 8px; fill: #555555; }
+      .cav { font-size: 8.5px; font-style: italic; fill: #8a2f2f; }
+      .xm  { stroke: #8a2f2f; stroke-width: 1.6; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="660" height="384" fill="#ffffff"/>
+
+  <text class="h1" x="330" y="24" text-anchor="middle">The test that reshaped the Resolver: iterate-to-agreement out, one grounded pass in</text>
+
+  <!-- ============================ BEFORE ROW ============================ -->
+  <text class="row" x="40" y="52">BEFORE · ITERATE-TO-AGREEMENT (AS FIRST BUILT)</text>
+
+  <!-- proposal (P1) -->
+  <rect x="40" y="64" width="100" height="52" rx="6" fill="#eef3f4" stroke="#46707d" stroke-width="1.5"/>
+  <text class="ttl" x="90" y="94" text-anchor="middle">P1 · Proposal in</text>
+
+  <!-- iterate (loop glyph = repetition) (P2) -->
+  <rect x="168" y="64" width="150" height="52" rx="6" fill="#eef3f4" stroke="#46707d" stroke-width="1.5"/>
+  <text class="ttl" x="243" y="88" text-anchor="middle">P2 · Challenge ⇄ revise</text>
+  <text class="det" x="243" y="102" text-anchor="middle">N rounds · until both agree</text>
+  <path d="M308,60 a10,7 0 1 1 -14,-4" fill="none" stroke="#46707d" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <text class="det" x="313" y="58" text-anchor="middle">×N</text>
+
+  <!-- both-must-agree gate (P3, RETIRED — no edge survives it in the After row; medium grey per the
+       null that drove the change, matching the COLLAPSE arrow's grey) -->
+  <rect x="344" y="64" width="130" height="52" rx="6" fill="#f2f2f2" stroke="#8a8a8a" stroke-width="1.5"/>
+  <text class="ttl" x="409" y="88" text-anchor="middle">P3 · Both-must-agree gate</text>
+  <text class="det" x="409" y="102" text-anchor="middle">proposer can't close alone</text>
+
+  <!-- answer (P4, RETIRED — same treatment as the gate) -->
+  <rect x="502" y="64" width="92" height="52" rx="6" fill="#f2f2f2" stroke="#8a8a8a" stroke-width="1.5"/>
+  <text class="ttl" x="548" y="88" text-anchor="middle">P4 · Answer</text>
+  <text class="det" x="548" y="102" text-anchor="middle">(single part)</text>
+
+  <!-- before arrows -->
+  <line x1="140" y1="90" x2="166" y2="90" stroke="#46707d" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="318" y1="90" x2="342" y2="90" stroke="#8a8a8a" stroke-width="1.5" marker-end="url(#arrowg)"/>
+  <line x1="474" y1="90" x2="500" y2="90" stroke="#8a8a8a" stroke-width="1.5" marker-end="url(#arrowg)"/>
+
+  <!-- ============================ TRANSITION ============================ -->
+  <!-- COLLAPSE: iterate (N rounds) -> S1 (one pass), many->one. NEUTRAL GREY (a null, not a win). -->
+  <line x1="228" y1="118" x2="72" y2="260" stroke="#8a8a8a" stroke-width="1.4" marker-end="url(#arrowg)"/>
+  <text class="gry" x="126" y="152" text-anchor="middle">collapses to one pass</text>
+  <text class="gry" x="126" y="164" text-anchor="middle">pre-registered null (n = 8)</text>
+  <text class="gry" x="126" y="176" text-anchor="middle">§6.4 / Fig 5</text>
+
+  <!-- ============================ AFTER ROW ============================ -->
+  <text class="row" x="250" y="248">AFTER · THE ACCOUNTABILITY PASS</text>
+
+  <!-- verifier badge on S1 (established-add: solid, NOT dashed) -->
+  <rect x="98" y="246" width="64" height="14" rx="7" fill="#dfe9ec" stroke="#46707d" stroke-width="1"/>
+  <text class="det" x="130" y="256" text-anchor="middle" fill="#2f5560">＋ verifier §8</text>
+
+  <!-- Boxes run in OPERATING order left-to-right: S1 -> S5 -> S2 -> S3 + S4 (S3/S4 delivered
+       together, marked by the "+" between them, not sequentially). Arrows for S1->S5->S2->S3
+       mirror the Before row's convention (adjacency alone doesn't say "in this order"). -->
+  <line x1="158" y1="288" x2="168" y2="288" stroke="#46707d" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="288" y1="288" x2="298" y2="288" stroke="#46707d" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="412" y1="288" x2="422" y2="288" stroke="#46707d" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- S1 established (solid) -->
+  <rect x="40" y="262" width="118" height="52" rx="6" fill="#eef3f4" stroke="#46707d" stroke-width="1.8"/>
+  <text class="ttl" x="99" y="286" text-anchor="middle">S1 · One grounded pass</text>
+  <text class="det" x="99" y="300" text-anchor="middle">run once, then stop</text>
+
+  <!-- S5 exploratory (dashed) -->
+  <rect x="170" y="262" width="118" height="52" rx="6" fill="#ffffff" stroke="#46707d" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text class="ttl" x="229" y="286" text-anchor="middle">S5 · Anchored correction</text>
+  <text class="exp" x="229" y="300" text-anchor="middle">exploratory → §12</text>
+
+  <!-- S2 exploratory (dashed) -->
+  <rect x="300" y="262" width="112" height="52" rx="6" fill="#ffffff" stroke="#46707d" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text class="ttl" x="356" y="286" text-anchor="middle">S2 · Definitiveness gate</text>
+  <text class="exp" x="356" y="300" text-anchor="middle">exploratory → §12</text>
+
+  <!-- S3 deliverable (gold) -->
+  <rect x="424" y="262" width="96" height="52" rx="6" fill="#f7ede0" stroke="#b5772e" stroke-width="1.6"/>
+  <text class="ttl" x="472" y="286" text-anchor="middle">S3 · The answer</text>
+  <text class="det" x="472" y="300" text-anchor="middle">the deliverable</text>
+
+  <!-- delivered together, not sequentially -->
+  <text class="det" x="526" y="292" text-anchor="middle">+</text>
+
+  <!-- S4 exploratory (dashed) -->
+  <rect x="532" y="262" width="100" height="52" rx="6" fill="#ffffff" stroke="#46707d" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text class="ttl" x="582" y="286" text-anchor="middle">S4 · Trust rider</text>
+  <text class="exp" x="582" y="300" text-anchor="middle">exploratory → §12</text>
+
+  <!-- ============================ KEY + CAVEAT ============================ -->
+  <text class="key" x="330" y="350" text-anchor="middle">solid = measured (S1)   ·   dashed = exploratory (§12)   ·   gold = the deliverable   ·   grey = the null that drove the change, and what it retired</text>
+  <text class="cav" x="330" y="368" text-anchor="middle">S1 is pre-registered and measured (directional, n = 8); S2/S4/S5 are exploratory, confirmatory test pending (§12). A design-evolution schematic — not an effect size.</text>
+</svg>

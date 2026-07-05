@@ -1,0 +1,96 @@
+{
+    "section_8k": {
+        "criteria": {
+            "c3": {
+                "case_a": {
+                    "alpha": -0.04381638071895444,
+                    "n_raters": 10,
+                    "tier": "full-inferential",
+                    "direction": 1
+                },
+                "case_b": {
+                    "alpha": 0.11530775379696268,
+                    "n_raters": 10,
+                    "tier": "full-inferential",
+                    "direction": -1
+                },
+                "alpha_gap": 0.15912413451591711,
+                "gap_flag": false,
+                "sign_flip": true
+            },
+            "c4": {
+                "case_a": {
+                    "alpha": -0.053383630544124205,
+                    "n_raters": 10,
+                    "tier": "full-inferential",
+                    "direction": 1
+                },
+                "case_b": {
+                    "alpha": -0.05233521657250484,
+                    "n_raters": 10,
+                    "tier": "full-inferential",
+                    "direction": 0
+                },
+                "alpha_gap": 0.0010484139716193663,
+                "gap_flag": false,
+                "sign_flip": false
+            }
+        },
+        "flag": true,
+        "reasons": [
+            "C3: \u00a78f direction sign flip between cases (A=+1, B=-1)"
+        ],
+        "completion_time": {
+            "captured": false,
+            "note": "completion time withdrawn (2026-06-14 amendment addendum); \u00a78k relies on the alpha-divergence primary detector"
+        }
+    },
+    "section_8i": {
+        "per_case_alpha": {
+            "A": {
+                "alpha": -0.048417092841579024,
+                "n_raters": 10,
+                "tier": "full-inferential",
+                "note": null
+            },
+            "B": {
+                "alpha": 0.006741378806308873,
+                "n_raters": 10,
+                "tier": "full-inferential",
+                "note": null
+            }
+        },
+        "dropout": {
+            "A": {
+                "first_seen": {
+                    "only_this": 0,
+                    "both": 6
+                },
+                "second_seen": {
+                    "only_this": 0,
+                    "both": 4
+                },
+                "position_unknown": {
+                    "only_this": 0,
+                    "both": 0
+                }
+            },
+            "B": {
+                "first_seen": {
+                    "only_this": 0,
+                    "both": 4
+                },
+                "second_seen": {
+                    "only_this": 0,
+                    "both": 6
+                },
+                "position_unknown": {
+                    "only_this": 0,
+                    "both": 0
+                }
+            }
+        },
+        "attrition_flag": false,
+        "attrition_note": "no Case-B-heavy second-seen single-case asymmetry detected"
+    }
+}

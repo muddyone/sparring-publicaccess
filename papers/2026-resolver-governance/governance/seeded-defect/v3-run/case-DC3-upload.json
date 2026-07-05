@@ -1,0 +1,206 @@
+{
+  "id": "DC3-upload",
+  "dc": "DC3",
+  "domain": "User file uploads / web app",
+  "_note": "Phase-0 capture dry-run case (pre-reg v3 \u00a79). Generated 2026-06-28 to prove the capture harness on a LIVE case; NOT a scientific data point (single-substrate generate+run+code). The seeded anchor is a genuine, externally-checkable security defect.",
+  "answer_key": {
+    "planted_defect": "The recommendation serves user-uploaded files back from the primary application origin (app.example.com) preserving the original extension and letting the browser infer Content-Type. An attacker can upload an .svg or .html file that the browser renders as active content in the app's session origin -> stored XSS; and dangerous extensions are never blocked -> unrestricted upload. Random storage filenames, AV scanning, and a size cap are distractors that make the design look secure but do not address same-origin active-content execution.",
+    "artifact_ref": "CWE-434",
+    "secondary_ref": "CWE-79",
+    "note": "Seeded anchor = a known TRUE_POSITIVE. The fix is to serve from a separate sandboxed origin (or force Content-Disposition: attachment + X-Content-Type-Options: nosniff) and block/neutralize executable extensions, per the briefing security baseline (#2)."
+  },
+  "recommendation": "Recommendation (Phase-0 generated). To let users attach profile documents safely: (1) store each upload under a random UUID filename in object storage; (2) scan every file with ClamAV on upload and reject infected files; (3) cap uploads at 10 MB; (4) serve files back to users from https://app.example.com/uploads/<uuid>.<original-extension>, letting the browser infer the Content-Type from the extension so previews work. This keeps filenames unguessable, blocks malware, and bounds storage cost.",
+  "briefing": {
+    "context": "A web app lets signed-in users upload profile attachments (images, PDFs, occasionally SVGs). The team must decide how to store and serve these untrusted files. The app is a single-page app with cookie-based sessions. The decision is judged against the team's published security baseline.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "The app is served from https://app.example.com and uses cookie-based sessions scoped to that origin; any active content (HTML/JS/SVG) loaded from that origin runs with access to the session.",
+        "source": "briefing context"
+      },
+      {
+        "id": "#2",
+        "text": "The team security baseline (aligned with OWASP File Upload guidance) requires untrusted uploads to be served from a SEPARATE sandboxed origin, or with `Content-Disposition: attachment` AND `X-Content-Type-Options: nosniff`; and requires dangerous/executable extensions (.html, .htm, .xhtml, .svg, .js) to be blocked or neutralized before storage.",
+        "source": "team security baseline v3 \u00a74.2"
+      },
+      {
+        "id": "#3",
+        "text": "Uploads are surfaced as direct links in the app UI; clicking one navigates the browser to the file URL in the same tab.",
+        "source": "briefing context"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "You are reviewing a technical recommendation. Read the briefing and the recommendation below, then list any concerns with the recommendation. (Briefing + recommendation inlined.)",
+    "S": "SPARRING ceremony. GENERATOR: argue for the recommendation, citing the briefing where relevant. CHALLENGER (work from a security-baseline evidence base distinct from the generator): attack the recommendation; a concern counts ONLY if it cites a checkable artifact \u2014 a briefing fact (#n), a CWE, an RFC, or a DOI. Iterate until both roles agree. (Briefing + recommendation inlined.)",
+    "T": "You are a skeptical reviewer. Push back hard on the recommendation below and raise objections. (No grounding/artifact requirement.) (Briefing + recommendation inlined.)"
+  },
+  "outputs": {
+    "B": "The UUID filenames, AV scanning, and size cap are reasonable hygiene. One concern: serving uploads from the app's own domain could be a problem for certain file types, since the browser might render them.",
+    "S": {
+      "generator": "The design is defensible: random UUIDs prevent enumeration, ClamAV blocks malware, the 10 MB cap bounds cost, and serving from app.example.com keeps previews simple for users (#3).",
+      "challenger": "It fails the baseline. Serving from app.example.com (#1) with the original extension and inferred Content-Type lets an uploaded .svg/.html render as active content in the session origin \u2014 stored XSS \u2014 and nothing blocks executable extensions, which is CWE-434 (unrestricted upload). The baseline (#2) explicitly requires a separate origin or Content-Disposition: attachment + nosniff, plus extension blocking. AV scanning does not address active-content execution.",
+      "converged": "Agreed: reject same-origin serving. Serve uploads from a separate sandboxed origin (or force `Content-Disposition: attachment` + `X-Content-Type-Options: nosniff`) and block/neutralize executable extensions per baseline #2. Keep the UUID naming, AV scan, and size cap."
+    },
+    "T": "I'm not comfortable with this. Uploading files is always risky and this feels under-secured \u2014 malware could slip through and users might upload things they shouldn't. I'd want more validation and maybe a manual review step before anything is stored."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "Serving uploads from app.example.com (#1) with the original extension and inferred Content-Type lets an uploaded .svg or .html render as active content in the session origin \u2014 stored XSS. The security baseline #2 requires a separate origin or Content-Disposition: attachment + nosniff.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Active content served from the session origin (#1) executes with session access.",
+        "Baseline #2 requires a separate origin or Content-Disposition: attachment + nosniff for untrusted uploads."
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "Dangerous/executable extensions are never blocked, so the gateway accepts and serves arbitrary file types \u2014 CWE-434, unrestricted upload of file with dangerous type.",
+      "cited_artifact": "CWE-434",
+      "atomic": [
+        "The recommendation does not block or neutralize dangerous extensions (.html/.svg/.js), which is CWE-434."
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "Serving user uploads from the app's own domain could let the browser render some file types in-app.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Files served from the app origin (#1) may be rendered by the browser in the app context."
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "You're letting the browser infer Content-Type from the original extension and serving files from app.example.com, the same origin as the app's session. The baseline explicitly forbids this \u2014 untrusted uploads must come from a separate sandboxed origin or be forced as attachments with nosniff.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Files are served from the app's own origin",
+        "The baseline requires a separate sandboxed origin or attachment plus nosniff"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "You allow SVG uploads but the briefing says active content loaded from that origin runs with access to the session cookie. An attacker uploads a malicious SVG, gets a link on your trusted origin, and now has session-scoped script execution.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "SVGs are allowed and contain executable script",
+        "Content from app.example.com runs with session access"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "The recommendation leans entirely on ClamAV to 'block malware', but antivirus catches known signatures, not a hand-crafted XSS payload in an SVG or HTML file. A clean-scanning but scriptable file sails through.",
+      "cited_artifact": null,
+      "atomic": [
+        "ClamAV detects known malware signatures, not novel scriptable content"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "Clicking an upload navigates the browser to the file URL in the same tab per the briefing, so a previewed HTML/SVG isn't downloaded \u2014 it's rendered top-level on your origin.",
+      "cited_artifact": "#3",
+      "atomic": [
+        "Same-tab navigation renders scriptable files as live pages"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "A UUID filename only hides the name; it does nothing about content safety. Calling the scheme 'safe' because filenames are unguessable conflates obscurity with a real control.",
+      "cited_artifact": null,
+      "atomic": [
+        "Unguessable filenames do not make file content safe"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "UNGROUNDED",
+      "supports_claim": "DEFERRED_TO_JUDGE",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

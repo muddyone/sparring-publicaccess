@@ -1,0 +1,301 @@
+{
+  "means_net_flaws_remaining": {
+    "R0": 3.875,
+    "R1prime": 2.25,
+    "R1.same": 2.625,
+    "R1.cross": 3.125,
+    "R2.same": 2.625,
+    "R2.cross": 3
+  },
+  "per_problem": {
+    "R0": {
+      "P-multiregion-ledger": 3,
+      "P-feature-store-skew": 4,
+      "P-zero-downtime-shard": 3,
+      "P-autoscale-stampede": 5,
+      "P-churn-winback": 4,
+      "P-warehouse-siting": 4,
+      "P-pricing-migration": 4,
+      "P-capex-automation": 4
+    },
+    "R1prime": {
+      "P-multiregion-ledger": 0,
+      "P-feature-store-skew": 0,
+      "P-zero-downtime-shard": 3,
+      "P-autoscale-stampede": 2,
+      "P-churn-winback": 2,
+      "P-warehouse-siting": 4,
+      "P-pricing-migration": 1,
+      "P-capex-automation": 6
+    },
+    "R1.same": {
+      "P-multiregion-ledger": 4,
+      "P-feature-store-skew": 3,
+      "P-zero-downtime-shard": 2,
+      "P-autoscale-stampede": 2,
+      "P-churn-winback": 2,
+      "P-warehouse-siting": 4,
+      "P-pricing-migration": 0,
+      "P-capex-automation": 4
+    },
+    "R1.cross": {
+      "P-multiregion-ledger": 4,
+      "P-feature-store-skew": 1,
+      "P-zero-downtime-shard": 3,
+      "P-autoscale-stampede": 2,
+      "P-churn-winback": 5,
+      "P-warehouse-siting": 5,
+      "P-pricing-migration": 0,
+      "P-capex-automation": 5
+    },
+    "R2.same": {
+      "P-multiregion-ledger": 4,
+      "P-feature-store-skew": 3,
+      "P-zero-downtime-shard": 2,
+      "P-autoscale-stampede": 5,
+      "P-churn-winback": 3,
+      "P-warehouse-siting": 2,
+      "P-pricing-migration": 0,
+      "P-capex-automation": 2
+    },
+    "R2.cross": {
+      "P-multiregion-ledger": 3,
+      "P-feature-store-skew": 5,
+      "P-zero-downtime-shard": 4,
+      "P-autoscale-stampede": 2,
+      "P-churn-winback": 2,
+      "P-warehouse-siting": 0,
+      "P-pricing-migration": 0,
+      "P-capex-automation": 8
+    }
+  },
+  "contrasts": {
+    "R1_vs_R0.same": {
+      "n": 8,
+      "mean_diff": -1.25,
+      "per_problem": {
+        "P-multiregion-ledger": 1,
+        "P-feature-store-skew": -1,
+        "P-zero-downtime-shard": -1,
+        "P-autoscale-stampede": -3,
+        "P-churn-winback": -2,
+        "P-warehouse-siting": 0,
+        "P-pricing-migration": -4,
+        "P-capex-automation": 0
+      },
+      "first_fewer": 5,
+      "second_fewer": 1,
+      "ties": 2
+    },
+    "R2_vs_R1.same": {
+      "n": 8,
+      "mean_diff": 0,
+      "per_problem": {
+        "P-multiregion-ledger": 0,
+        "P-feature-store-skew": 0,
+        "P-zero-downtime-shard": 0,
+        "P-autoscale-stampede": 3,
+        "P-churn-winback": 1,
+        "P-warehouse-siting": -2,
+        "P-pricing-migration": 0,
+        "P-capex-automation": -2
+      },
+      "first_fewer": 2,
+      "second_fewer": 2,
+      "ties": 4
+    },
+    "R2_vs_R1prime.same": {
+      "n": 8,
+      "mean_diff": 0.375,
+      "per_problem": {
+        "P-multiregion-ledger": 4,
+        "P-feature-store-skew": 3,
+        "P-zero-downtime-shard": -1,
+        "P-autoscale-stampede": 3,
+        "P-churn-winback": 1,
+        "P-warehouse-siting": -2,
+        "P-pricing-migration": -1,
+        "P-capex-automation": -4
+      },
+      "first_fewer": 4,
+      "second_fewer": 4,
+      "ties": 0
+    },
+    "R1_vs_R0.cross": {
+      "n": 8,
+      "mean_diff": -0.75,
+      "per_problem": {
+        "P-multiregion-ledger": 1,
+        "P-feature-store-skew": -3,
+        "P-zero-downtime-shard": 0,
+        "P-autoscale-stampede": -3,
+        "P-churn-winback": 1,
+        "P-warehouse-siting": 1,
+        "P-pricing-migration": -4,
+        "P-capex-automation": 1
+      },
+      "first_fewer": 3,
+      "second_fewer": 4,
+      "ties": 1
+    },
+    "R2_vs_R1.cross": {
+      "n": 8,
+      "mean_diff": -0.125,
+      "per_problem": {
+        "P-multiregion-ledger": -1,
+        "P-feature-store-skew": 4,
+        "P-zero-downtime-shard": 1,
+        "P-autoscale-stampede": 0,
+        "P-churn-winback": -3,
+        "P-warehouse-siting": -5,
+        "P-pricing-migration": 0,
+        "P-capex-automation": 3
+      },
+      "first_fewer": 3,
+      "second_fewer": 3,
+      "ties": 2
+    },
+    "R2_vs_R1prime.cross": {
+      "n": 8,
+      "mean_diff": 0.75,
+      "per_problem": {
+        "P-multiregion-ledger": 3,
+        "P-feature-store-skew": 5,
+        "P-zero-downtime-shard": 1,
+        "P-autoscale-stampede": 0,
+        "P-churn-winback": 0,
+        "P-warehouse-siting": -4,
+        "P-pricing-migration": -1,
+        "P-capex-automation": 2
+      },
+      "first_fewer": 2,
+      "second_fewer": 4,
+      "ties": 2
+    }
+  },
+  "terminal_states": [
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 4
+    },
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "cross",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 3
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "same",
+      "terminal": "CONVERGED",
+      "rounds": 4,
+      "net": 3
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "cross",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 5
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "same",
+      "terminal": "CONVERGED",
+      "rounds": 4,
+      "net": 2
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "cross",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 4
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 5
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "arm": "cross",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 2
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 3
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "cross",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 2
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 2
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 0
+    },
+    {
+      "pid": "P-pricing-migration",
+      "arm": "same",
+      "terminal": "CONVERGED",
+      "rounds": 4,
+      "net": 0
+    },
+    {
+      "pid": "P-pricing-migration",
+      "arm": "cross",
+      "terminal": "CONVERGED",
+      "rounds": 4,
+      "net": 0
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 2
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "net": 8
+    }
+  ],
+  "net_by_terminal_state": {
+    "CAPPED": {
+      "n": 12,
+      "mean_net": 3.333
+    },
+    "CONVERGED": {
+      "n": 4,
+      "mean_net": 1.25
+    }
+  },
+  "denominator_total": 31
+}

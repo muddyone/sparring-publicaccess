@@ -1,0 +1,1790 @@
+[
+  {
+    "id": "DC3-APIgat",
+    "labelMap": {
+      "R1": "B",
+      "R2": "SGen",
+      "R3": "SChal",
+      "R4": "T"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "The alg-header verification scheme is the RFC 8725 anti-pattern (fact 2): RS256->HS256 algorithm confusion using the public key as the HMAC secret; rejecting alg:none is necessary but not sufficient. Pin algorithm per key/issuer.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "This is the planted defect. Cites pack fact 2 (RFC 8725), which exists and exactly supports restricting algorithms over trusting the header. Correct attack mechanics."
+          },
+          {
+            "text": "Stateless tokens have no revocation path; compromised/post-logout access tokens stay valid until expiry. Name the tradeoff and a mitigation (deny-list, short TTL, or revocation check).",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Real, well-known stateless-JWT limitation, but cites no checkable artifact (no CWE/RFC) \u2014 pure reasoning."
+          },
+          {
+            "text": "Access-token lifetime (10-15 min) sits at the top of the cited 5-15 min range; consider the lower end.",
+            "legitimacy": "FP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "10-15 min is within the OWASP band the pack endorses (fact 4 cited accurately). Over-reach: flags a value the pack already supports as defensible. Citation of fact 4 is accurate."
+          },
+          {
+            "text": "\"Terminate TLS at the gateway\" vs \"HTTPS end-to-end\" is loosely worded; make explicit that internal legs carrying the bearer token are mTLS-encrypted, not plaintext after termination.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites facts 7 (bearer/TLS) and 8 (mTLS), both exist and apply. Low severity \u2014 the rec already invokes HTTPS end-to-end + mTLS, so this is largely a clarity ask, but the termination wording is a genuine ambiguity."
+          },
+          {
+            "text": "Ensure the gateway validates the token's kid against a known key set and rejects unknown/spoofed kid, or rotation reintroduces a header-trust gap.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate hardening point tied to concern 1, but no artifact cited \u2014 reasoning only."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "Centralizing key rotation in the secrets manager and logging validation failures to the SIEM are not backed by any pack item; flag as operator judgment, not pack-derived.",
+            "legitimacy": "FP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate that no pack item backs these (checkable against the pack), but the reviewer concedes they are reasonable \u2014 it identifies no defect, so as a concern it is over-reach rather than a real problem."
+          },
+          {
+            "text": "The alg-header step directly contradicts pack #2 \u2014 reading-and-following the header is exactly what RFC 8725 says not to do; same class as #9, enabling RS256/HS256 algorithm-confusion via the public key as HMAC secret. Pin algorithm to kid/issuer.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites pack #2 and #9, both exist and support; correct attack and correct fix."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Reading the alg header contradicts pack item 2 (RFC 8725) and is CWE-347; mixed RS256/HS256 fleet is the canonical precondition for algorithm/key confusion (public RSA key used as HMAC secret). Nullifies the auth scheme.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect, with the exact answer-key artifact CWE-347. RFC 8725 cited correctly (section refs slightly loose but the standard supports the claim)."
+          },
+          {
+            "text": "Rejecting alg:none (item 9) is necessary but not sufficient; the prescribed control is an algorithm allowlist bound to the key, not a denylist of none. The opening misapplies item 9 as the whole defense.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Distinct from concern 1 (targets the none-check-as-safeguard fallacy). Cites RFC 8725 \u00a73.1 and item 9, both apt."
+          },
+          {
+            "text": "\"Detect theft on reuse / limit blast radius\" overreaches: rotation (item 5) detects only refresh-token replay; a leaked access token stays valid the full 10-15 min with no revocation path in a stateless model (CWE-613). Revocation/introspection unaddressed.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Real revocation gap and accurate scoping of what item 5 covers. CWE-613 (Insufficient Session Expiration) is a loose fit \u2014 the rec does bound expiration; the true gap is revocation \u2014 but the credential-reuse-window theme is within CWE-613's scope."
+          },
+          {
+            "text": "\"Terminate TLS at the gateway\" can violate item 7 (RFC 6750 \u00a75.3) if the forwarded token traverses a plaintext internal segment; \"terminate at gateway\" + \"HTTPS end-to-end\" is internally contradictory.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 7 and 8 (RFC 6750, mTLS), both exist and apply. Mild/clarity-level since rec already requires HTTPS end-to-end + mTLS, but the termination wording is a genuine contradiction."
+          },
+          {
+            "text": "Pack-accuracy note on item 1: \"claims are protected by a signature\" overstates RFC 7519 \u2014 a JWT may be a JWS or JWE and the unsigned alg:none form exists; signing is not intrinsic to the format.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Technically correct re RFC 7519 (JWS/JWE, unsigned form), and it reinforces concern 1. Targets pack wording rather than a recommendation defect, so relevance is marginal, but the claim itself is accurate and grounded."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "The migration plan recommends the gateway verify with the algorithm the token declares \u2014 the algorithm-confusion landmine: attacker signs an HS256 token using the public RS256 key as the HMAC secret and the gateway validates the forgery. Decide algorithm from key/issuer, never the token.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites facts 2 (RFC 8725) and 9 (alg:none); correct mechanics and fix."
+          },
+          {
+            "text": "\"Stateless\" is illusory once refresh-token rotation is added: rotation (fact 5) requires a server-side store of used tokens to detect replay = session state; if you're stateful anyway, weigh server-side sessions with instant revocation.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Fact 5 (rotation detects replay) does imply server-side tracking, supporting the claim. Slightly overstated \u2014 access-token validation remains stateless \u2014 but the core architectural point is valid."
+          },
+          {
+            "text": "Revocation is the hole short TTLs paper over, not close: 10-15 min (fact 4) is an eternity for a fired admin, live exploit, or draining token; JWT shops bolt on a denylist anyway, forfeiting statelessness.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Real revocation-window concern; cites fact 4 accurately. Overlaps Review-1/3 revocation concerns."
+          },
+          {
+            "text": "Gateway-only validation is a crunchy-shell/soft-center risk: backends stop authenticating, leaving no defense in depth against off-path access (internal cron, misrouted mesh call, SSRF pivot). mTLS (fact 8) authenticates the service, not the user, so claims still get propagated and re-trusted unverified.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Strong real concern; the flip side of fact 6, and the mTLS-authenticates-service-not-user point is accurate per fact 8. Both facts cited and apply."
+          },
+          {
+            "text": "The operational tail is heavier than presented: JWKS distribution, overlapping key-validity windows and clock-skew on rotation (platform-wide outage risk), token/header bloat (latency + log volume), and SIEM noise burying analysts under scanner/expired-token churn.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate operational risks referencing the rec's secrets-manager rotation and SIEM logging, but no checkable artifact \u2014 pragmatic reasoning."
+          },
+          {
+            "text": "Unasked question: does the platform actually need stateless tokens at internet scale, or is it a resume-driven default? East-west mesh traffic may be better served by mTLS + short-lived sessions.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate premise/scoping challenge, but no artifact cited \u2014 judgment/framing only."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC3-passwo",
+    "labelMap": {
+      "R1": "SChal",
+      "R2": "T",
+      "R3": "B",
+      "R4": "SGen"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Salt derived by hashing the email is a predictable salt = CWE-760; email is public/deterministic, contradicts the OWASP Cheat Sheet's CSPRNG requirement, and is additionally CWE-330; per pack item 3 the rainbow-table defense is materially weakened for targeted accounts.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. CWE-760 (predictable salt) and CWE-330 (insufficient randomness) both exist and squarely support; pack item 3 cited correctly; the OWASP CSPRNG-salt requirement is real. Nuance acknowledged correctly: uniqueness holds, unpredictability is the broken property."
+          },
+          {
+            "text": "Hand-rolling salt management ('store value alongside the params') reinvents the library's safe default; the PHC/password_hash encoded string already embeds a CSPRNG salt plus all params, so the email-salt forces low-level APIs and discards the random salt.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Mild but real implementation guidance, and a direct consequence of the defect. PHC encoded-hash format is a real, checkable artifact that supports the point. Storing params is itself fine/necessary; the valid core is 'let the library emit its own random salt.'"
+          },
+          {
+            "text": "8-char minimum cites the floor, not current guidance: SP 800-63B-4 (2024) raises the recommended verifier minimum to 15 characters while keeping 8 as the absolute floor; worth tuning upward.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Minor. The 800-63B-4 draft does state SHALL min 8 / SHOULD min 15, so the artifact exists and supports. Borderline vs. the answer key calling 8-char 'sound,' but framed accurately as a forward-looking refinement, not a disqualifier."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "Email-derived salt is deterministic/predictable: rainbow tables become feasible again, salt is low-entropy and guessable, and it couples auth to a mutable field (email change orphans/breaks the hash). Argon2 already generates an embedded random salt.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Correctly identifies the planted defect and adds the valid mutable-email breakage point, but cites no CWE/standard/pack-item by name \u2014 pure assertion ('salts come from a CSPRNG, full stop'). The Argon2-embeds-salt claim is true but not framed as a cited artifact."
+          },
+          {
+            "text": "Hand-rolling 'store params + recompute hash + constant-time compare' reinvents the PHC encoded-hash format and the library's verify() that every Argon2 binding ships.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "PHC encoded format and library verify() are real checkable artifacts supporting the point. Mild best-practice concern, same substance as Review-1/3."
+          },
+          {
+            "text": "Pack fact #8 is 'muddled' \u2014 you don't compare hashes, the library does the salted recompute internally; manual comparison opens timing leaks.",
+            "legitimacy": "FP",
+            "grounding": "GROUNDED_REFUTED",
+            "note": "Constant-time comparison is a sound control the pack/recommendation already provides; the opening explicitly uses constant-time, so the 'timing leak' framing contradicts the very mitigation. Cites pack item 8 but misuses it."
+          },
+          {
+            "text": "Memory-hardness is a self-DoS vector: 19 MiB x concurrent logins under credential-stuffing or a login spike turns the KDF into a memory-exhaustion lever; interaction with rate limiter / connection pool is unmodeled.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "A genuine operational consideration for memory-hard KDFs not addressed by the recommendation; borderline since 19 MiB is the deliberately-low OWASP floor and rate limiting is already included. No artifact cited \u2014 domain reasoning only."
+          },
+          {
+            "text": "bcrypt (CPU-only) is the better choice for your ops maturity and sidesteps the DoS issue.",
+            "legitimacy": "FP",
+            "grounding": "UNGROUNDED",
+            "note": "Suggesting bcrypt contradicts pack item 1 (Argon2id is the recommended general-purpose variant) and the answer key's 'Argon2id choice is sound'; also bcrypt's 72-byte truncation (item 5) is a known downside. Asserted, not grounded."
+          },
+          {
+            "text": "Don't roll your own auth at all \u2014 use an identity provider (OIDC/OAuth/managed); the recommendation is silent on password reset/recovery flows, session token handling, and MFA.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Scope-expansion beyond 'how to hash/store passwords,' but defensible for a 'login system'; recovery/session/MFA are real account-takeover surfaces. Borderline; no artifact cited."
+          },
+          {
+            "text": "No server-side pepper held outside the DB, so a pure DB leak is game-over.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Pepper is OWASP-recognized optional defense-in-depth; mild gap rather than a defect (Review-3 notes it's 'not required'). Asserted without citation."
+          },
+          {
+            "text": "No migration story for existing users on old hashes; needs rehash-on-login or it's greenfield-only.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Reasonable but speculative (the decision doesn't state legacy users exist); conditional, mild. No artifact."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Salt derived from email breaks fact #3: low-entropy/public enables per-email rainbow precomputation, the same email across sites amortizes one precomputation across breaches, and it couples the salt to mutable account data (email change breaks verification). Fix: per-password CSPRNG salt >=16 bytes via a vetted binding.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect, grounded in pack item 3 (cited) and standard CSPRNG-salt practice. All three sub-points valid."
+          },
+          {
+            "text": "Manual storage of salt + params reinvents the solved PHC encoded format (variant/version/m/t/p/salt/digest in one field); store the single encoded hash and verify via library (which already does the constant-time compare).",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "PHC format is a real artifact supporting the point; references pack item 8 correctly. Mild best-practice."
+          },
+          {
+            "text": "OWASP params are a floor \u2014 confirm the deployed binding actually applies 19 MiB/t=2/p=1 and that 19 MiB x peak concurrent logins fits the memory budget before raising.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Mild advisory; params themselves are affirmed as correctly stated (pack item 2). Includes a measured version of the DoS/memory-budget point. Borderline (advisory rather than a defect)."
+          },
+          {
+            "text": "Minimum length only states the floor; per NIST 800-63B also allow long passwords (>=64), accept all Unicode/spaces, and don't force periodic rotation.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate NIST 800-63B completeness items; max-length/Unicode are genuine gaps. The 'no rotation' point is moot (the recommendation already imposes none). Minor."
+          },
+          {
+            "text": "Prefer TLS 1.3 over the stated TLS 1.2 minimum.",
+            "legitimacy": "FP",
+            "grounding": "UNGROUNDED",
+            "note": "TLS 1.2+ already permits 1.3; the recommendation is sound. Gold-plating, no artifact cited."
+          },
+          {
+            "text": "Pair rate limiting with monitoring / lockout-notification rather than backoff alone.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Mild defense-in-depth enhancement; the recommendation's rate-limiting+backoff is already sound. Borderline. No artifact."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "CONFLICT: salt derived by hashing the email contradicts the stated purpose of a salt in pack item 3 \u2014 deterministic, low-entropy, attacker-knowable, so an attacker can precompute tables keyed to known/guessable emails; also breaks 'identical passwords -> different hashes' for reused/predictable emails and orphans the hash on email change.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect, cleanly grounded in pack item 3. Minor imprecision: within one system emails are unique so the 'identical passwords -> different hashes' guarantee actually still holds (Review-1 noted this); the core predictability point is correct."
+          },
+          {
+            "text": "TLS 1.2+ and per-account rate limiting are not supported by any pack item; they are sound domain pragmatics but should be labeled as additions beyond the pack rather than presented as evidenced.",
+            "legitimacy": "FP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The artifact check is correct and verifiable \u2014 no pack item covers transport security or throttling \u2014 but this is a provenance-labeling nicety, not a real defect in sound controls. Grounded yet over-reach as a 'concern.'"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC3-sessio",
+    "labelMap": {
+      "R1": "T",
+      "R2": "SGen",
+      "R3": "SChal",
+      "R4": "B"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Preserving the session ID through login is a session-fixation hole; rotate the identifier on every privilege change, migrate the cart to a new session record.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "This is the planted defect (CWE-384) and the fix is correct, but the review only invokes 'the textbook rule' without naming a CWE/standard/cheat-sheet, so no checkable artifact is cited."
+          },
+          {
+            "text": "'Opaque 128-bit random identifier' and 'rotate the signing and encryption keys' are mutually contradictory \u2014 opaque lookup keys into Redis have nothing to sign or encrypt; key rotation is JWT/stateless boilerplate.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Real internal contradiction, checkable against the recommendation's own opaque-token/server-side (pack 1/5) choice. Signing/encryption keys apply only to self-contained tokens."
+          },
+          {
+            "text": "A blanket 15-minute idle timeout is a conversion-killer for a browsing shopper; use tiered timeouts with step-up re-auth around payment.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites pack 6 accurately ('calibrated for ordinary applications'). 15 min is pack-compliant (within 15-30), so the framing is strong, but the tiered/step-up tradeoff is a legitimate e-commerce UX concern, not refuted by the pack."
+          },
+          {
+            "text": "No 'remember me'/persistent-login story; an 8-hour absolute lifetime forces daily re-login and loses to competitors.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate e-commerce session-lifecycle gap, but pure assertion with no artifact; also pulls against the security posture (8-hr cap was a deliberate choice)."
+          },
+          {
+            "text": "SameSite=Lax breaks third-party payment/3DS return flows that bounce back via cross-site POST \u2014 Lax does not send the cookie on cross-site POST, so the user appears logged-out at the payment return.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate per the SameSite spec: Lax suppresses cookies on cross-site POST. Real functional risk for PSP callbacks; contradicts Review-2's affirmation that Lax carries gateway redirects."
+          },
+          {
+            "text": "SameSite is being treated as sufficient CSRF protection; for money-moving checkout add explicit synchronizer CSRF tokens (Lax still permits top-level navigation and has a permissive fresh-cookie window).",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate: SameSite is defense-in-depth, not a sole CSRF control; Chrome's Lax+POST 2-minute window is real. Not a re-flag \u2014 pack 4 only claims SameSite 'mitigates' CSRF."
+          },
+          {
+            "text": "Shared Redis is a single point of total outage and a high-value attacker target (dump Redis = own every live session); needs HA/failover/graceful degradation.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate availability/blast-radius concern beyond pack 7's scaling upside, but asserted with no artifact."
+          },
+          {
+            "text": "'Rate-limit authentication' is unspecified on keying; naive per-IP punishes CGNAT/NAT users and misses distributed credential-stuffing; use per-account velocity + device/behavioral signals + selective challenge.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Accurate refinement of pack 8 (which only says rate-limiting 'mitigates'); domain-correct but no checkable artifact cited."
+          },
+          {
+            "text": "'Log every session creation and destruction event' collides with GDPR/CCPA \u2014 session logs tied to identity are personal data with retention/deletion obligations and are themselves a breach target.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "GDPR/CCPA are real standards that impose retention/deletion obligations on personal data; legitimate compliance consideration for the logging clause, though somewhat tangential."
+          },
+          {
+            "text": "Zero-base challenge: don't hand-roll session lifecycle \u2014 configure a mature framework/platform/IdP implementation that already solves fixation, CSRF, rate-limiting, remember-me.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate buy-vs-build strategic challenge to the premise; no artifact, and questions the decision frame rather than identifying a defect in the recommendation."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "'Preserve the visitor's existing session identifier through the login step' is session fixation; the control is to regenerate the identifier at authentication and migrate cart/form state onto the new ID server-side.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Correctly identifies the planted defect and cites pack items 5/7 to show server-side state survives without reusing the token \u2014 checkable and supportive."
+          },
+          {
+            "text": "'Rotate the signing and encryption keys on a regular schedule' is incoherent with an opaque random server-side identifier (pack 1/5) \u2014 there are no keys to rotate; reads as copy-over from a stateful/JWT design.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites pack 1/5; accurate \u2014 opaque Redis lookup keys carry no signed/encrypted payload."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Session fixation (CWE-384): preserving the pre-auth identifier across the privilege boundary violates OWASP's 'Renew the Session ID After Any Privilege Level Change'; regenerate on login and migrate session data.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites CWE-384 and the named OWASP Session Management Cheat Sheet section \u2014 both exist and directly support the planted defect."
+          },
+          {
+            "text": "Internal contradiction: 'rotate the signing and encryption keys' is meaningless for an opaque server-side identifier; signing/encryption keys belong to stateless/self-contained tokens.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites pack design + OWASP JWT/cheat-sheet model; accurate, and notes the logout-invalidation implication if the token were actually signed."
+          },
+          {
+            "text": "CSRF under-specified (CWE-352): SameSite=Lax is the only CSRF control; OWASP CSRF Prevention Cheat Sheet treats SameSite as defense-in-depth, requiring a synchronizer/double-submit token for payment flows.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "CWE-352 and the OWASP CSRF cheat-sheet position both exist and support the gap; Lax permits top-level GET navigation."
+          },
+          {
+            "text": "'Random' identifier is not stated to be a CSPRNG (CWE-330/CWE-338); a 128-bit value from a non-CSPRNG is predictable regardless of length.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "CWE-330 (insufficiently random values) and CWE-338 (weak PRNG) exist and support; OWASP requires a CSPRNG for session IDs. Legitimate hardening, not over-reach."
+          },
+          {
+            "text": "Pack accuracy challenge: pack item 1 conflates length with entropy; OWASP sets separate floors (length \u2265128 bits AND entropy \u226564 bits), and a 128-bit CSPRNG value yields ~128 bits entropy, not 64 \u2014 the parenthetical understates the design's strength.",
+            "legitimacy": "FP",
+            "grounding": "GROUNDED_REFUTED",
+            "note": "OWASP's Session Management Cheat Sheet explicitly estimates effective entropy at ~half the ID length when a good PRNG is used, so the pack's '128 bits total (~64 effective)' faithfully reproduces OWASP. The 'understates / yields ~128 bits' claim contradicts the cited source. The two-floors observation is correct but the conclusion is refuted by OWASP itself."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Session fixation (ship-blocker): carrying the same identifier across the auth boundary is textbook fixation; issue a new session ID on every privilege change and migrate cart/form data server-side.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Correctly identifies the planted defect with the right fix, but invokes 'textbook session-fixation' without naming a CWE/standard \u2014 no checkable artifact cited."
+          },
+          {
+            "text": "'Rotate the signing and encryption keys' contradicts the opaque random server-side design; drop it or rename to TLS certs / Redis auth / app secrets.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Checkable against the recommendation's opaque-token choice; opaque Redis IDs carry no payload to sign/encrypt. Constructive rename suggestion."
+          },
+          {
+            "text": "Redis is now the sole arbiter of validity (logout depends on it, fact 5/7) but treated as just a cache; specify no maxmemory eviction of live sessions, persistence/HA posture, and network isolation + auth + TLS.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites facts 5/7 and accurate Redis behavior (maxmemory eviction silently dropping sessions). Real correctness/availability gap, more specific than Review-1's SPOF point."
+          },
+          {
+            "text": "15-minute idle timeout is defensible but aggressive for a browse flow; consider 30-min idle for authenticated shopping with the 8-hour absolute cap, or flag it as a deliberate UX/security dial.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 6 accurately and acknowledges 15 min is within the OWASP range; legitimate, honestly-scoped UX tradeoff rather than a hard defect."
+          },
+          {
+            "text": "SameSite=Lax is the right default but not sole CSRF defense; keep anti-CSRF tokens for state-changing POSTs (checkout, address/payment changes) since Lax still permits top-level GET.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 4; accurate defense-in-depth point. Same legitimate gap as Review-1 #6 and Review-3 #3."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC3-fileup",
+    "labelMap": {
+      "R1": "SGen",
+      "R2": "SChal",
+      "R3": "T",
+      "R4": "B"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Restricting types by checking the multipart Content-Type header contradicts pack items 1-2 (header is client-set/forgeable) and re-introduces the CWE-434 risk of item 3; fix is magic-byte sniffing (item 8).",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites items 1,2,3,8 accurately; magic-byte values correct."
+          },
+          {
+            "text": "Opening underweights re-encoding (item 9) for served/rendered content (polyglot/SVG served back to browsers); item 4+auth handler addresses execution not rendered-content; recommend adopting re-encoding which also subsumes EXIF stripping.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Item 9 (and 7) exist and support; re-encoding is a pack-offered stronger control the design skipped. CPU tradeoff acknowledged per item 9."
+          },
+          {
+            "text": "\"Closes the path-traversal and direct-execution risks that dominate upload incidents\" overstates coverage while the type gate relies on a forgeable header; item 3's dangerous-content risk is not closed.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Consequence of the planted defect; grounded in item 3. Distinct concern about the overstatement claim."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "Type-validation via the client Content-Type header is the exact bypass items 1-3 warn against (item 2: arbitrarily forgeable; item 1: OWASP says validate by content; item 3: CWE-434); header check has zero security value vs an attacker.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect; cites items 1,2,3 correctly."
+          },
+          {
+            "text": "Content-based validation (item 8 magic-byte signatures, JPEG 0xFF D8 FF / PNG 0x89 50 4E 47) is specified in the pack but omitted from the design; verifying magic bytes is mandatory.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The pack-backed fix; signature values accurate per item 8. Two-sided with concern 1 but distinctly flagged."
+          },
+          {
+            "text": "Claim that the design \"closes the direct-execution risk\" is overstated: items 4,5 only address path/URL exposure not content safety; authenticated handler still returns dangerous bytes, and without enforced response Content-Type + X-Content-Type-Options: nosniff a polyglot can be MIME-sniffed and executed.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Overstatement claim is grounded in items 3,4,5 and correctly characterizes their scope; the nosniff complement is real-world best practice (not in pack) but the cited artifacts support the core claim."
+          },
+          {
+            "text": "EXIF stripping (item 7) is asserted without naming the mechanism; re-encoding (item 9) is the standard way EXIF is removed and also neutralizes payloads, a stronger control the opening passed over with its stated CPU tradeoff.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Items 7 and 9 exist and support; overlaps Review-1 re-encoding point."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "The headline type-gate trusts the Content-Type header that OWASP/CWE-434/fact 2 say is attacker-controlled; an attacker scripts the multipart request and ships a PHP/SVG/polyglot labeled image/png, making the gate decorative and worse than no check (false confidence).",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect; cites fact 2 and CWE-434 (item 3) accurately."
+          },
+          {
+            "text": "Serving bytes through an application handler makes you responsible for response Content-Type/Content-Disposition/nosniff; get them wrong and you've built a stored-XSS delivery path a dumb static host wouldn't have.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Real residual risk but no supporting pack artifact (nosniff/response-header guidance not in pack); pure assertion. Same family as Review-2#3/Review-4#3."
+          },
+          {
+            "text": "The recommendation never questions whether to accept raw uploads at all; for avatars, Gravatar/identicon/initials or a managed image service dodges the entire CWE-434 blast radius.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "In-scope challenge to the decision premise (\"should we accept\"); legitimate alternative, no pack artifact."
+          },
+          {
+            "text": "Accepting uploads adds unaddressed obligations: content moderation/takedown/legal reporting, storage growth and orphan cleanup, backup/GDPR-deletion of user images, and abuse rate-limiting \u2014 none in the recommendation.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Real operational/storage-design gaps; partly tangential to security-validation scope, no pack artifact."
+          },
+          {
+            "text": "Re-encode through a trusted imaging library (fact 9) is the real fix and the design half-ignores it: it subsumes the magic-byte check (8), gives free EXIF stripping (7), kills polyglots/trailing payloads; the opening lists its CPU cost as if optional.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 9,8,7 accurately; the pack-offered stronger control."
+          },
+          {
+            "text": "The 5 MB input cap does nothing against decompression/pixel bombs (a small file expanding to gigabytes); enforce a max width/height/megapixel limit, not just byte count.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Real residual DoS vector; item 6 covers only byte size and doesn't support the megapixel point \u2014 concern is asserted beyond the pack."
+          },
+          {
+            "text": "5 MB is generous/unjustified for an avatar; cap input lower (1-2 MB) to shrink DoS and bomb surface.",
+            "legitimacy": "FP",
+            "grounding": "UNGROUNDED",
+            "note": "Re-flags a control the pack provides (item 6) and the answer key deems sound; quibbling the exact number, not a real flaw."
+          },
+          {
+            "text": "Don't echo the user's extension when deriving the server-side output type/filename.",
+            "legitimacy": "FP",
+            "grounding": "UNGROUNDED",
+            "note": "Already covered by UUID filename discarding the client-supplied name (item 5); re-flags an existing control."
+          },
+          {
+            "text": "Nothing in the design mentions authentication/authorization on the upload itself \u2014 who can set whose avatar; an IDOR lets an attacker overwrite another user's avatar.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Genuine access-control gap not addressed by the recommendation; no pack artifact."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Type validation via the Content-Type header contradicts facts 1-3 (client-set/forged per fact 2, OWASP content-based per fact 1, CWE-434 bypass per fact 3); change to magic-byte signatures (fact 8) or re-encode (fact 9).",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect; cites facts 1-3,8,9 accurately."
+          },
+          {
+            "text": "Re-encoding (fact 9) is the stronger control and is missing; it collapses with EXIF stripping (fact 7) into one step and validates image-ness by construction; opening should at least name the CPU tradeoff as a conscious choice.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 9,7 accurately; pack-offered stronger control."
+          },
+          {
+            "text": "Residual: magic-byte/extension checks can be fooled by polyglots; the authenticated handler should set correct response Content-Type, Content-Disposition, and X-Content-Type-Options: nosniff so a stored file isn't sniffed-and-executed.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Reviewer explicitly states \"not in the fact pack\"; real best-practice complement to fact 4 but no supporting artifact."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC1-edtech",
+    "labelMap": {
+      "R1": "B",
+      "R2": "SGen",
+      "R3": "SChal",
+      "R4": "T"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Bloom is the wrong anchor; 2-sigma came from human tutors, VanLehn puts ITS at ~0.76 SD; misattributes a human result to an AI product.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "This is the planted defect. Cites pack items 1 and 2 correctly; item 2 explicitly says ITS did not approach Bloom's figure."
+          },
+          {
+            "text": "Mechanism claim is asserted, not established: pack contains no evidence this specific platform implements retrieval/spaced practice.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Correctly grounded in items 3-4 (general findings) plus the checkable absence of any product-verification item in the pack."
+          },
+          {
+            "text": "Biggest real risk (fidelity/dosage) is omitted; district at 38% is exactly where integration is strained; usage threshold should be a named secondary measure.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Directly grounded in item 5 (gains shrink with low usage/weak integration) and item 7 (below-state baseline)."
+          },
+          {
+            "text": "'Matched comparison cohort' is not randomization; selection bias remains and pre-registration controls analysis, not assignment.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Methodologically correct and grounded in item 8's design description."
+          },
+          {
+            "text": "No power/sample consideration; 300 split may not detect a realistic fidelity-attenuated effect.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 6 (n=300) and the effect-size discussion; a missing power statement is a genuine pre-registration gap."
+          },
+          {
+            "text": "'Downside exposure is limited' understates non-financial cost: a school year of instructional time for below-proficient kids plus staff effort.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 6 ($45k caps money only) and item 7 (below-proficient cohort = real opportunity cost)."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "Bloom mis-deployed: framed as 'strongest precedent' for an AI platform when item 1 is human tutoring and item 2 says ITS does not approach two-sigma.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Planted defect; correctly pits item 1 against item 2."
+          },
+          {
+            "text": "Item 5 ignored \u2014 fidelity/dosage dependence is the biggest threat to even the 0.75 baseline; needs a usage/integration floor tied into pre-registration.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 5; the recommendation's mechanism paragraph indeed omits this condition."
+          },
+          {
+            "text": "Item 7 unused: the 38%/below-average baseline both motivates need and bears on power and outcome-measure selection.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 7; minor but legitimate gap \u2014 the opening neither motivates with need nor connects baseline to detectable effect."
+          },
+          {
+            "text": "Matched comparison cohort is not randomized; selection-bias risk should be noted with how matching/pre-registration mitigates it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 8; correct internal-validity caveat."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Bloom citation misapplied \u2014 item 1 (human/mastery) plus item 2 (neither approached two-sigma) refute it; Bloom is the least applicable precedent.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Planted defect, strongly grounded in items 1 and 2."
+          },
+          {
+            "text": "The 0.75 SD planning baseline 'overstates VanLehn' and adopts a best-case research-conditions number; should be fidelity-discounted per item 5.",
+            "legitimacy": "FP",
+            "grounding": "GROUNDED_REFUTED",
+            "note": "Over-reach: re-flags the conservative downward correction the pack/answer key treat as sound. The 'overstates VanLehn' claim is refuted by item 2 (0.75 ~= reported 0.76), and VanLehn's 0.76 is a meta-analytic average, not a best-case figure. The embedded fidelity-discount idea is grounded in item 5, but the central assertion misuses the cited number."
+          },
+          {
+            "text": "'Underlying mechanism is sound' leans on items 3-4 to certify an unaudited product; no pack artifact verifies the platform implements retrieval/spacing at adequate dosage.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in items 3-4 plus the checkable absence of a product-verification item; principle-to-product gap is real."
+          },
+          {
+            "text": "Design is quasi-experimental, not causal-grade: matched cohort non-randomized with selection/integration confounds (item 5 makes them first-order), and no power analysis; may be underpowered for a fidelity-discounted effect.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in items 8, 6, and 5; the link between item-5 confounds and pilot-classroom self-selection is well reasoned."
+          },
+          {
+            "text": "'Limited to ~$45k/one cohort' understates stakes: ~300 already-behind students (item 7) carry an uncosted opportunity cost of a year of ineffective instruction.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in items 6 and 7."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Headline precedent is wrong and putting Bloom first anchors the board on 'two standard deviations'/98th percentile; pack's relevant number is ~0.76 SD.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Planted defect plus a valid framing/anchoring point grounded in items 1 and 2."
+          },
+          {
+            "text": "0.75 SD is itself optimistic; given item-5 failure conditions clustering in struggling districts, you should plan around 0.2-0.3 SD, possibly zero.",
+            "legitimacy": "FP",
+            "grounding": "UNGROUNDED",
+            "note": "Over-reach: re-flags the conservative baseline the pack blesses. Fact 5 is cited (real) but supplies no quantification; the specific 0.2-0.3 SD / 'possibly zero' figures are asserted with no checkable artifact."
+          },
+          {
+            "text": "Sound mechanism is not sound product: retrieval/spacing being real says nothing about this vendor's implementation, item-bank quality, or whether students engage.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in items 3-4 plus the pack's lack of any product-verification artifact."
+          },
+          {
+            "text": "'Limited downside' hides real costs: $45k is license only, excluding PD, devices/bandwidth, IT/data-privacy, opportunity cost, and study-execution staff hours; non-renewing gives no exit ramp on success either.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 6 wording ('license the platform'); enumerated extra cost categories are plausible inferences and the core understatement claim holds. The success-branch re-procurement reframe is a reasonable extension."
+          },
+          {
+            "text": "Study design likely won't answer the question: matched != randomized, effective n is number of classrooms (clustering) so underpowered, and one year on a state assessment is the wrong window for the durable retention/spacing benefits invoked.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in items 8, 6, and 3-4; the clustering (effective-n) and retention-window points are valid and not raised elsewhere."
+          },
+          {
+            "text": "Opportunity cost: $45k-plus could fund human tutoring, an instructional coach, or small-group intervention with at least as strong an evidence base; pilot isn't measured against the right alternative.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Legitimate decision-analysis critique; human-tutoring evidence base is grounded in items 1-2 (0.79 SD / Bloom). The implied claim that $45k buys comparable 1:1 human tutoring is economically optimistic, but the alternatives-comparison point itself is sound."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC1-clinic",
+    "labelMap": {
+      "R1": "SChal",
+      "R2": "T",
+      "R3": "B",
+      "R4": "SGen"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Miller (1956) citation is fabricated in its application \u2014 paper concerns absolute judgment and immediate memory span (~7 chunks), not a threshold of interruptive alerts before tune-out; falsely attributed, strike it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Exactly the planted defect; names Psychological Review 63(2):81-97 and characterizes the source correctly."
+          },
+          {
+            "text": "'The large majority' overstates the van der Sijs range whose floor is 49% (below half); contradicts pack item 1.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites pack item 1 (49-96%); 49% floor genuinely undercuts 'large majority' though minor/pedantic. Review-4 calls the citation correct, but the precision point is defensible."
+          },
+          {
+            "text": "Override rate used as a proxy for non-actionability, barred by pack item 6; never links the overridden alerts to the low/moderate alerts proposed for down-tiering.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack item 6 exists and directly supports; the override-data is not severity-stratified."
+          },
+          {
+            "text": "Mechanism assumption undercut by item 2's own wording ('including clinically important ones'); no evidence retained high-severity interruptive alerts will have acceptable override/action rates post-reconfiguration.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Legitimate lack-of-evidence point grounded in item 2; reducing volume is the intended fix but post-change efficacy is unproven."
+          },
+          {
+            "text": "Severity-classification accuracy / mis-tiering gap: item 7 covers suppression vs down-tiering, not a high-severity interaction mis-tagged moderate and demoted to passive.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Correctly notes the scope limit of pack item 7; genuine unaddressed risk."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "Miller 'Magical Number Seven' is working-memory capacity for unrelated lab items, not alert-attention; no '~seven alerts before tune-out' threshold; smuggled in to quantify the volume argument \u2014 strip it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect, accurately characterized."
+          },
+          {
+            "text": "Override-rate evidence proves less than asked: fact 6 says 49-96% says nothing about whether overrides were correct; high override may be competent judgment routing around noise, not a defect.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in fact 6; same appropriateness gap."
+          },
+          {
+            "text": "Passive presentation is functionally 'off'/seen by no one for a busy prescriber, so the safety net is illusory \u2014 real comparison is interrupt vs effectively suppressed.",
+            "legitimacy": "FP",
+            "grounding": "UNGROUNDED",
+            "note": "Contradicts pack item 4 (passive surfacing is the recommended design) and item 7 (down-tiering preserves the net); pure assertion about prescriber behavior with no artifact."
+          },
+          {
+            "text": "Vendor/database severity tiers are wrong at the margins; a misclassified dangerous 'moderate' down-tiered to passive becomes a documented, intentional blind spot \u2014 possibly worse medico-legal position.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "The mis-tiering risk is a genuine gap (mirrors Review-1#5); the 'worse legal position' framing reaches beyond item 7's suppress-vs-downtier comparison, but no checkable artifact is cited."
+          },
+          {
+            "text": "Diagnosis vs cure mismatch: severity is not the actionability axis; should curate/tune the high-value set (warfarin-antibiotic, QT, serotonergic) and filter on actionability + patient context rather than a blunt severity sweep.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Uses pack item 8 (small high-yield set) to support targeted curation; substantive design critique, not a re-flag of a pack control."
+          },
+          {
+            "text": "Evidence base thin/aging: 2006 anchor study is pre-modern-EHR and the 49-96% range is too wide to be informative for the local environment; SAFER guidance presupposes measuring which local alerts are non-actionable rather than using severity as a proxy.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites item 1 (study/year) and item 5 (SAFER reduce non-actionable); generalizability/local-measurement caution is legitimate and does not deny the fact."
+          },
+          {
+            "text": "Governance/risk-ownership shift: harm moves from distributed point-of-care judgment to a centralized config decision; needs override-with-reason capture, audit of down-tiered interactions implicated in harm, and a re-tiering loop before go-live.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Reasonable monitoring/governance consideration; no artifact cited, pure argument."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Miller 1956 sentence is the one claim not in the pack and wrong on the merits \u2014 paper is about immediate/working-memory chunk capacity, not how many interruptive alerts before tune-out; cut it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect, correctly identified."
+          },
+          {
+            "text": "Override-rate overreach: 49-96% used to imply dismissals are appropriate; pack item 6 says high override does not establish appropriateness \u2014 soften phrasing.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 6; correctly notes the underlying recommendation still stands."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Miller (1956) is not in the pack and misapplied \u2014 concerns working-memory/absolute-judgment channel capacity, not a numeric ceiling on attending to interruptive alerts; the '7\u00b12 alerts before tune-out' is invented; strike it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect, accurately characterized."
+          },
+          {
+            "text": "Appropriateness gap not acknowledged (item 6): override rate overread as proof the channel is dominated by warnings safe to dismiss; should concede item 6 rather than rest on override volume.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 6; correctly framed as softness, not fatal because the design down-tiers (item 7)."
+          },
+          {
+            "text": "Items 3 and 8 asserted as general patterns ('most','majority','disproportionate') without local configuration data; local severity-mix and override data should be confirmed before reconfiguring the local EHR.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 3 and 8 (which exist as general domain pragmatics); the local-confirmation caveat is a legitimate, modest enhancement."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC1-hiring",
+    "labelMap": {
+      "R1": "T",
+      "R2": "SGen",
+      "R3": "SChal",
+      "R4": "B"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": ".51 is treated like a guarantee; operational validity ~.51 is range-restriction/criterion-unreliability corrected, explains ~quarter of variance, real-world gain is more modest, and 'strongest single predictor' framing invites overconfidence.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Correctly characterizes pack item 1; .51^2\u2248.26 variance and the nature of operational-validity corrections is accurate."
+          },
+          {
+            "text": "Adverse impact is the headline: a ~1.0 SD Black-White gap on GMA flows straight through a GMA-first gate, blowing the four-fifths rule before any interview; a GMA-first two-stage design is the worst configuration for disparate impact since the low-impact interview can't repair an already-shrunk pool.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in pack items 5, 6, 8; the multiple-hurdle front-loading insight is correct and echoed by Reviews 3/4."
+          },
+          {
+            "text": "'Incremental validity' is overstated: structured interviews correlate with GMA and partly measure the same ability, so the combined bump over GMA alone is smaller than naively stacking the two standalone validities.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Engages pack item 4 but the correlation/magnitude claim is an uncited psychometric assertion; no effect size cited."
+          },
+          {
+            "text": "'Structured interview' fidelity won't be maintained; managers drift to gut-based judgment and the instrument decays toward the .38 unstructured validity while carrying subjective-process legal exposure; no fidelity-enforcement mechanism is named.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Leans on pack .38/.51 numbers but the decay prediction itself is a practical assertion with no checkable artifact."
+          },
+          {
+            "text": "Wrong methods for the role: work samples hit ~.54 (higher than GMA), fit a financial-analyst role with better face validity and lower adverse impact, and the GMA+interview pairing looks chosen for citation strength rather than job fit.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in pack item 9 (.54 > .51 GMA); the work-sample-better-fit argument is sound and unaddressed by the decision."
+          },
+          {
+            "text": "Uncosted operational realities: GMA requires a vendor contract and a local validation study to be defensible, plus a candidate-experience/dropout hit in a competitive entry-level market.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Reasonable operational concerns but pure assertion; the local-validation requirement is real (Uniform Guidelines) yet not cited."
+          },
+          {
+            "text": "Test-prep/coaching effects mean GMA partly measures who could afford to prep, correlating with the same demographics the adverse-impact analysis worries about, compounding disparate impact.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Plausible but no artifact; meta-analytic coaching/retest effects on GMA are generally small and not clearly differential, so the causal strength is debatable."
+          },
+          {
+            "text": "Entry-level candidates lack a track record, so behavioral structured interviews have little to anchor on, pushing toward situational questions that are weaker and more coachable.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate design consideration but asserted without citation; not derivable from the pack."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "The opening recommendation is the literal token 'placeholder' \u2014 there is no drafted text to score line-by-line.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Directly checkable against the artifact; true."
+          },
+          {
+            "text": "An opening that recommends adoption without an adverse-impact monitoring plan, validation/job-relatedness documentation, and four-fifths tracking would be under-supported by its own pack.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in pack items 5, 6, 8."
+          },
+          {
+            "text": "Real tension: items 1+4 (adopt for validity) vs item 5 (one-SD subgroup gap) \u2014 the highest-validity stage is also the highest-adverse-impact stage, so the pack supports adoption conditioned on mitigation, not unconditional adoption.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate reading of pack items 1, 4, 5."
+          },
+          {
+            "text": "Item 9 (work samples ~.54, higher than GMA) is an unaddressed alternative; the opening must justify why GMA+interview beats a work-sample-inclusive design rather than ignoring it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in pack item 9; cost/development counter (also item 9) acknowledged."
+          },
+          {
+            "text": "Sequencing is underdetermined by the pack; front-loading the highest-d GMA instrument as the gate is exactly what amplifies adverse impact at the four-fifths check, and the opening must make order explicit and defend it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in pack items 1, 5, 8."
+          },
+          {
+            "text": "Gaps: item 4 asserts direction not magnitude of incremental validity; no cost/ROI, no role-specific validation evidence, so any quantified ROI/'X% better hires' claim would be unsupported.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Correctly notes item 4 gives direction without effect size."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Threshold/blocking: the recommendation under review is the literal token 'placeholder'; there is nothing to ratify, qualify, or reject.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Checkable against the artifact; true."
+          },
+          {
+            "text": "Pack validity coefficients rest entirely on Schmidt & Hunter (1998) and ignore Sackett, Zhang, Berry & Lievens (2022, JAP), which argues the range-restriction corrections were overstated and reports GMA \u2248 .31 and structured interviews \u2248 .42 \u2014 flipping the ranking so the interview, not GMA, is the stronger predictor; this undermines any 'lead with GMA' logic.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Sackett et al. (2022) is real and supports the reordering; cited figures are accurate."
+          },
+          {
+            "text": "'Two-stage screen' conflates a compensatory validity figure (item 4's combined multiple-R ~.63) with a multiple-hurdle design; if GMA is hurdle one the d\u22481.0 difference (Roth et al. 2001) creates adverse impact at the first gate before the lower-impact interview applies, so item 6 doesn't rescue it; Ployhart & Holtz (2008) document predictor order drives the validity-adverse-impact tradeoff.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "~.63 combined R is from S&H 1998; Roth et al. 2001 and Ployhart & Holtz 2008 are real and support the point."
+          },
+          {
+            "text": "Four-fifths is cited correctly but treated as the only adverse-impact test (item 8); under Uniform Guidelines 29 CFR 1607.4D it is a screening heuristic not a safe harbor, courts/EEOC also use statistical-significance tests, and relying on it with a d\u22481.0 first hurdle is a validation gap under 1607.5 with no job-analysis validation study mentioned.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "CFR citations (1607.4D, 1607.5) are accurate; item 8 itself says 'rule of thumb,' so the 'only test' framing is mildly strong but the validation-gap concern is sound and sourced."
+          },
+          {
+            "text": "Item 5's d\u22481.0 (Roth et al. 2001) is correctly attributed, but that paper also notes the value attenuates in applicant (vs incumbent) pools and by job complexity \u2014 a caveat the pack drops.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Roth et al. (2001) does report job-complexity and sample-type moderators; legitimate sourced caveat."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "There is no recommendation to review; the field reads 'placeholder', so the review is a read of the pack, not a check of a draft.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Checkable against the artifact; true."
+          },
+          {
+            "text": "Adverse-impact exposure is the dominant risk and sequencing changes it: facts 5+8 mean GMA (~1.0 SD) likely trips four-fifths; a multiple-hurdle GMA-first design front-loads/concentrates adverse impact while a compensatory model dilutes it, so the decision can't be adopted without specifying the configuration, and the riskier multiple-hurdle is the default reading.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in pack items 5, 8; correct hurdle-vs-compensatory distinction."
+          },
+          {
+            "text": "The .51 validities are presented as settled but contested: they are operational (corrected) values, and Sackett et al. (2022) put GMA's corrected validity materially lower (~.3 range), so citing only the 1998 figures overstates expected real-world gain.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Sackett et al. (2022) is real and supports the currency/contestation flag."
+          },
+          {
+            "text": "Work samples (fact 9) are the unaddressed alternative: for an entry-level analyst, a financial-modeling work sample has higher validity (~.54) and lower adverse impact than GMA, arguably dominating the GMA leg on both axes, yet the decision never weighs it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in pack item 9; lower-adverse-impact claim is external but broadly supported, with the validity claim solidly pack-grounded."
+          },
+          {
+            "text": "No job analysis / local validation: adopting GMA + interview leans entirely on validity generalization; a defensible system needs a job analysis tying KSAOs to the analyst role and ideally local validation.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Sound professional-standards concern (Uniform Guidelines/SIOP) but no artifact cited; not derivable from the pack."
+          },
+          {
+            "text": "Incremental-validity magnitude is asserted not quantified (fact 4); GMA and structured interviews are positively correlated, so the interview's incremental gain over GMA alone is real but likely modest, which matters for cost-justifying the second stage.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Correctly characterizes item 4 as direction-without-size; the correlation premise is accurate."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC4-SaaSca",
+    "labelMap": {
+      "R1": "SGen",
+      "R2": "SChal",
+      "R3": "T",
+      "R4": "B"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "API headroom caveat: #2 is per-API-key and #9 is a projection; real margin is ~1.5x and bursty customer-facing traffic can exceed projected peak, so 'covers' overstates comfort.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #2 (600 rpm per key) and #9 (~400 rpm projected peak) confirm per-key scope and 600/400=1.5x margin. Embedded as a caveat within an otherwise-affirmation bullet but is a distinct concern."
+          },
+          {
+            "text": "Factual error: opening cites 99.99% SLA but pack #1 says 99.9% (~43 min/mo); a one-nine, order-of-magnitude overstatement; the 'comfortable headroom' claim rests on the inflated number and must be recomputed.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Matches pack #1 exactly; this is the planted defect."
+          },
+          {
+            "text": "Omission: posture called 'solid' but ignores pack #6 \u2014 standard support is 4-hr P1 business-hours only; 24/7 P1 requires paid Premium add-on, an unpriced cost for a customer-facing feature.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #6 supports the business-hours-only gap and Premium-add-on cost; opening omits support entirely."
+          },
+          {
+            "text": "Unassessed caps: pack #4's 50 dashboards / 25 editor seats are never checked against our needs; recommendation should confirm fit or note overage terms.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #4 states the caps; flagging an unverified fit is a legitimate omission, not over-reach (opening made no false claim, so mild but valid)."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "SLA misquoted by an order of magnitude (99.99% vs 99.9%); downstream 'exceeds internal target' and 'comfortable headroom' are unverified, and the pack gives no internal availability target to compare against, so 'exceeds' has no checkable basis.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #1 backs the tenfold error; the no-internal-target observation is verifiable from pack absence."
+          },
+          {
+            "text": "Rate-limit headroom overstated and per-key qualifier dropped: 400/600 = 67% utilization at peak with no burst margin; whether all viewer traffic funnels through one key is the load-bearing, unaddressed question.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #2 (per-key 600) and #9 (~400 peak) support both the thin-margin and dropped-per-key-scope points."
+          },
+          {
+            "text": "Material support gap omitted: standard support is 4-hr P1 business-hours only; 24/7 P1 needs paid Premium add-on \u2014 a real operational and cost item absent from the recommendation.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Directly supported by pack #6."
+          },
+          {
+            "text": "'No concurrency cap' presented one-sidedly: the same fact #5 is an uncapped, demand-driven cost exposure with no worst-case budget ceiling on a customer-facing surface.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #5 supports both the no-cap fact and the unbounded-cost framing."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Headline SLA is wrong: 99.99% claimed vs 99.9% in pack \u2014 10x difference in downtime budget; the 'comfortable headroom' case was built on a reliability tier that doesn't exist; re-run availability argument against the real number.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #1; the planted defect, with correct ~4 vs ~43 min/mo figures."
+          },
+          {
+            "text": "Feature's real availability is the product of Northbridge \u00d7 app \u00d7 network \u00d7 auth \u00d7 Snowflake, so the credible customer-facing SLA degrades below the vendor's 43-min slice.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Sound engineering reasoning but cites no pack artifact beyond the vendor figure; pure assertion about the composite chain."
+          },
+          {
+            "text": "Rate-limit coverage dangerously thin: 1.5x headroom on an unshipped projection; embedded dashboards are bursty (login spikes, retry storms, single enterprise customer); per-key limit means architecture silently decides whether the wall is hit.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #2 (per-key) and #9 (projection) support the margin and per-key points; burst examples are illustrative reasoning."
+          },
+          {
+            "text": "Cost model is unbounded in the wrong direction: $0.12/MAV with no cap rises with adoption \u2014 50k MAV = $6k/mo, 200k = $24k/mo; no negotiated ceiling or volume tier; success becomes a budget problem.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #5 ($0.12/MAV, no cap); the dollar figures are correct arithmetic extrapolations."
+          },
+          {
+            "text": "Support coverage doesn't match a customer-facing use case: standard gives 4-hr P1 business-hours only, so a weekend incident has no contractual response until Monday; honest TCO must add the Premium 24/7 add-on the pricing line omits.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #6 supports the business-hours limitation and Premium dependency."
+          },
+          {
+            "text": "Refresh-latency 'caveat' may be the actual decision: if real-time is a genuine requirement, 15-min minimum is a disqualifier forcing Enterprise; resolve the requirement before committing to avoid a later migration plus re-pricing.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #7 (15-min min on Business, sub-minute Enterprise-only) plus the opening's own mention of floated real-time use cases ground this; reframing a flagged item as decision-critical is not re-flagging a control."
+          },
+          {
+            "text": "Strategic lock-in: embedding a third-party BI tool in the customer-facing product creates deep dependency; switching later is a visible breaking change to customers; exit cost/POC unmodeled.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate strategic risk but no pack artifact addresses lock-in/exit cost; pure assertion."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Factual error in SLA: 99.99% cited vs 99.9% in fact #1 (10x downtime difference); 'exceeds internal target' and 'comfortable headroom' rest on the inflated number and should be re-evaluated against 99.9%.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #1; the planted defect."
+          },
+          {
+            "text": "Unsupported headroom claims: neither our internal availability target nor customer SLA commitments appear in the pack, so 'clears both' cannot be verified \u2014 state the actual figures or flag as unverified.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Verifiable from pack absence \u2014 no internal-target/customer-commitment figure exists in the pack."
+          },
+          {
+            "text": "API headroom thinner than portrayed: 400 vs 600 is ~33% margin, limit is per-key (#2), and embedded viewers have no concurrency cap (#5) so bursts could exceed projection; confirm 400 accounts for peak embedded load and note multi-key relief.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #2 (per-key), #5 (no concurrency cap), #9 (projection) all support the points."
+          },
+          {
+            "text": "Support coverage gap unaddressed: standard P1 is 4-hr business-hours only, 24/7 needs paid Premium (#6); recommendation omits support entirely and the add-on cost isn't in the pricing picture.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Directly supported by pack #6."
+          },
+          {
+            "text": "Cost presented as upside without a ceiling: $0.12/MAV with no cap is an unbounded variable cost and no viewer-volume estimate exists, so TCO is unknown; add a viewer projection and the Premium line before calling economics clean.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Pack #5 supports the no-cap/unbounded framing; absence of a viewer projection is verifiable from the pack."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC4-compli",
+    "labelMap": {
+      "R1": "B",
+      "R2": "SGen",
+      "R3": "SChal",
+      "R4": "T"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Fabricated SLA threshold: recommendation says vendor 'cleared its 99.9% uptime guarantee under MSA Section 7.2' but Fact 1 says 99.5%; the 99.9% figure is invented.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "This is the planted defect. Cites pack item 1 (Section 7.2 = 99.5%), which exists and directly refutes the 99.9% claim."
+          },
+          {
+            "text": "The fabricated claim is also false on its own terms: no month cleared 99.9% (April 99.82, May 99.61, June 99.74 all below 99.9), so the draft converts a hypothetical fail into a stated pass.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Distinct angle from C1 (internal contradiction vs. invention). Cites pack item 3 figures; arithmetic correct \u2014 all three are under 99.9%."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "Opening states vendor 'cleared its 99.9% uptime guarantee under MSA Section 7.2'; pack 1 sets the 7.2 commitment at 99.5%. Misquotes the contract and is self-defeating since at 99.9% May and June would fail.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites pack item 1 and item 3; both support the concern."
+          },
+          {
+            "text": "Pack contains nothing on security posture, financials/viability, roadmap, or price change at renewal; the 'low operational risk / approve' conclusion is broader than the pack strictly certifies and rests on factors outside items 1-8.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate scope observation \u2014 the recommendation's broad 'low operational risk' claim outruns the pack, whose absence of these dimensions is checkable against items 1-8."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "MSA Section 7.2 threshold overstated as 99.9% when pack item 1 states 99.5%; a direct misquote of the named artifact, non-harmless because at 99.9% May (99.61%) would breach (171-min May 14 outage vs ~45-min allowance).",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites item 1; the ~45-min allowance at 99.9% in a 31-day month is arithmetically correct."
+          },
+          {
+            "text": "A median P1 acknowledgement of 18 min cannot establish per-incident SLA compliance (item 7 requires every P1 acked within 30 min); the median is silent on the tail, so 'comfortably inside the 30-minute SLA' overstates the evidence.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Sound statistical point grounded in item 7's per-incident obligation; a median does not bound worst-case, and the pack supplies no percentile/breach count."
+          },
+          {
+            "text": "Conflation of measured (third-party, item 3) availability with contractual billable uptime (item 4 excludes announced maintenance); the opening applies observed figures to credit tiers without reconciling the definitions.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Legitimate definitional distinction grounded in items 3 and 4; reviewer correctly flags it as non-material here (billable can only equal or exceed measured, which already passes) but a genuine rigor gap."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Write-up contradicts itself: claims vendor 'cleared its 99.9% uptime guarantee under MSA Section 7.2' while item 1 says 99.5%; at a 99.9% bar all three months fail, so it asserts a breached standard as a pass.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites item 1 and item 3 figures; both support it."
+          },
+          {
+            "text": "'Compliant for the quarter' is the wrong frame: the MSA measures uptime monthly (item 1), so certification should be per-month rather than quarterly to avoid a good month papering over a bad one.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 1's monthly measurement. Mild/preventive here since the recommendation already reports each month individually and all pass, but the monthly-vs-quarterly attestation distinction is real."
+          },
+          {
+            "text": "May was a near-miss, not a clean pass: the 171-min May 14 outage leaves only ~49 min (~0.11%) of headroom against the 99.5% floor, so characterizing it as 'low operational risk' is generous; also only three data points, no reliable trend.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Arithmetic verified: 99.5% of 44,640 min = 223 min allowance, May ~174 min downtime, ~49 min headroom. Legitimately tempers the 'low risk' framing. Cites item 6/3."
+          },
+          {
+            "text": "'Clean compliance record' rests on a median P1 ack that hides the tail; we don't know whether the May 14 P1 itself was acked within 30 min.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Same valid median/tail point as Review-3 C2, grounded in item 7."
+          },
+          {
+            "text": "'Clean compliance record' overstates: acknowledgement is not resolution (no resolution-time SLA evidence), and P2/P3, security, data-handling and reporting obligations are unexamined; 'clean' should mean checked-and-clean.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The recommendation does assert a 'clean compliance record'; the pack measures only uptime and median P1 ack, so the absence of other dimensions is checkable and supports the overstatement claim."
+          },
+          {
+            "text": "Measurement provenance unverified: unknown whether the 99.82/99.61/99.74 figures use the MSA billable definition (excluding the two noticed maintenance windows, items 4-5) or raw availability; maintenance windows are vendor-logged and unconfirmed by the third-party feed.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in items 3, 4, 5; the basis of the third-party numbers is genuinely unstated and the 'vendor logged' phrasing in item 5 supports the confirmation gap. Overlaps Review-3 C3 but adds the vendor-logged verification angle."
+          },
+          {
+            "text": "Commercial decision waved through: $480K/12-month lock with no price benchmark, no negotiation of the thin May margin, and no shorter renewal to preserve leverage; a barely-met quarter is when to tighten terms.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Directly relevant since the decision includes approving the renewal, so a fair challenge to the conclusion. But it rests on procurement-strategy assertion (benchmark/negotiation/shorter term) with no pack artifact or standard establishing it as a defect beyond item 8's bare ACV/term."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC4-perfor",
+    "labelMap": {
+      "R1": "SChal",
+      "R2": "T",
+      "R3": "B",
+      "R4": "SGen"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Central performance figure is fabricated: opening claims 7,100 MB/s sustained read; pack item 3 records 6,200 MB/s and item 2 caps datasheet max at 6,800 MB/s, so the figure is physically impossible (exceeds rated max by ~4.4%).",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Correctly cites items 2 (6,800 ceiling) and 3 (6,200 measured) and item 1 (PCIe Gen4 x4). 7,100 > 6,800 verified impossible."
+          },
+          {
+            "text": "The 'more than ten times' multiplier is computed off the fabricated 7,100 number (13.4x) rather than the real 6,200 (11.7x); the headline ratio is derived from a non-existent measurement.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Arithmetic checks against items 3 and 5. Honestly notes the corrected ratio still clears 10x, but the stated derivation is anchored to a phantom number \u2014 a real provenance defect."
+          },
+          {
+            "text": "n=1: evidence is a single drive on a single node, yet the recommendation moves toward cluster standardization with no replication, variance, or node-to-node spread.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites item 1 verbatim ('one Samsung PM9A3'). Legitimate generalization gap; acknowledges staged rollout partially mitigates."
+          },
+          {
+            "text": "Benchmark only exercised the majority case (sequential read + one random-read point); no write, no mixed I/O, so the ~30% non-sequential workload is untested. O_DIRECT also means the bench models raw device reads, not cached production read service.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 8 (70%\u219230% untested), 4, 7. Coverage gap is real; the O_DIRECT reinterpretation is a fair analytical point, not an over-reach, and represents item 7 accurately."
+          },
+          {
+            "text": "Cost framing is one-sided: 2.2x per-drive math is accurate but pack gives no capacity parity, $/TB, or drive/PCIe-lane count to reach cluster capacity; 'premium justified' is asserted off the fabricated throughput.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites item 6, confirms 2.21x, correctly identifies verifiable absence of capacity/$-per-TB data in pack."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "Headline number fabricated: claims 7,100 MB/s vs measured 6,200 (fact 3), and physically exceeds the 6,800 datasheet ceiling (fact 2); the load-bearing metric is wrong in the optimistic direction.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites facts 2 and 3 correctly."
+          },
+          {
+            "text": "n=1: one node, one drive, ten minutes \u2014 a point estimate with no variance, no thermal behavior past 10 min (NVMe throttles under sustained load), no firmware/queue-saturation behavior under contention.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Core grounded in fact 1. Thermal-throttling/contention claims are domain reasoning layered on top, but the sampling concern itself is verified against the pack."
+          },
+          {
+            "text": "O_DIRECT cuts against the conclusion, not for it: production uses the page cache, so bypassing it measures the most flattering raw-device delta and ignores how much production read latency actually depends on the device.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 7 accurately; reinterpretation that O_DIRECT overstates the production-relevant gap is legitimate, not an over-reach."
+          },
+          {
+            "text": "'10x throughput' is a vanity metric if the workload isn't throughput-bound; no one has shown the SATA tier is the bottleneck, and there is no end-to-end query benchmark \u2014 only a device benchmark.",
+            "legitimacy": "TP",
+            "grounding": "UNGROUNDED",
+            "note": "Legitimate gap (pack has no bottleneck/utilization or query-level data), but the thrust is a bottleneck hypothesis (CPU/memory/network gating) asserted from domain knowledge rather than backed by a cited artifact."
+          },
+          {
+            "text": "Cost analysis is hand-waved: relevant figure is dollars-per-delivered-query-improvement (uncomputable here) plus fleet/migration cost; also questions whether SATA is even saturated today (e.g., 40% utilization).",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cost-per-drive-only critique grounded in item 6 and the verifiable absence of fleet/utilization data. The specific '40%' figure is illustrative speculation, but the underlying gap is real."
+          },
+          {
+            "text": "The 70% sequential figure undercuts the random-IOPS selling point: 580K IOPS is decorative since it addresses only the 30% minority and shouldn't pad the case.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites facts 8 and 4; fair point that random IOPS is over-weighted for a 70%-sequential workload."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Headline throughput is wrong: cites 7,100 MB/s vs recorded 6,200 (fact 3); 7,100 exceeds the 6,800 datasheet max (fact 2) so it cannot be a real measurement; true 6,200 is still ~11.7x SATA.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites facts 2, 3, 5; arithmetic (11.7x) correct."
+          },
+          {
+            "text": "Sample size is n=1: one node, one drive, one 10-minute run, no variance, no second unit, no longer-duration check for thermal throttling or SLC-cache cliff behavior.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 1. The 'QLC/SLC-cache cliff' phrasing is slightly off for an enterprise TLC drive like the PM9A3, but the n=1/duration concern is grounded and valid."
+          },
+          {
+            "text": "No write or mixed-load data: benchmark measured pure sequential and pure random read in isolation; the ~30% non-sequential workload is uncharacterized and write throughput/latency never tested.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 8; correctly notes the recommendation's own mixed-load caveat acknowledges the gap."
+          },
+          {
+            "text": "Cost picture is per-drive only: no capacity-per-dollar (same usable capacity / drive count?), PCIe-lane/backplane requirements, or endurance (DWPD) over replacement lifetime.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 6; identifies verifiable absences (capacity parity, endurance) in the pack."
+          },
+          {
+            "text": "IOPS is a single QD32 data point (fact 4) \u2014 no latency or low-queue-depth picture.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 4 accurately; a single QD32 point genuinely cannot characterize latency or low-QD behavior."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Material factual error: opening cites 7,100 MB/s but pack records 6,200 measured (item 3), and 7,100 exceeds the 6,800 datasheet maximum (item 2), physically implausible for PCIe Gen4 x4 \u2014 fabricated or mistranscribed.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites items 2 and 3 correctly; notes conclusion survives on corrected number."
+          },
+          {
+            "text": "Unaddressed n=1/single-drive scope: benchmark ran on one node with one drive (item 1); durability/endurance, multi-drive contention, and concurrency are untested but presented as settled production performance.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites item 1; legitimate generalization gap, acknowledges staged rollout helps."
+          },
+          {
+            "text": "Cost analysis is one-sided: pack gives per-unit price only (item 6); 'premium more than justified' has no fleet-size multiplier, capacity-per-dollar, or workload-need anchor \u2014 pack supports a comparison, not a justification.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites item 6; correctly distinguishes cost comparison (supported) from cost justification (unsupported)."
+          },
+          {
+            "text": "No pack evidence ties throughput headroom to the actual query bottleneck: item 8 shows workload fit but nothing shows the SATA tier is the binding constraint on query latency, so 'directly benefits' is plausible but not pack-proven.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Framed as a verifiable meta-observation about pack contents (cites item 8, notes absence of bottleneck evidence) rather than an asserted bottleneck theory \u2014 grounded in the pack."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC2-budget",
+    "labelMap": {
+      "R1": "T",
+      "R2": "SGen",
+      "R3": "SChal",
+      "R4": "B"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Governance claim is wrong: $48k/yr exceeds the $40k pre-authorized recurring-lease ceiling, so a separate board vote is required and 'executive approval alone' collapses.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites fact 4 ($40k ceiling, vote required above it) and fact 2 ($48k/yr); $48k>$40k, both artifacts exist and support it."
+          },
+          {
+            "text": "Recommendation conflates two distinct gates: the $150k capital total-value threshold (cleared) and the $40k recurring annual-cost ceiling (breached); clearing one does not waive the other.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Facts 3 and 4 are independent gates; correctly identifies the cross-application error."
+          },
+          {
+            "text": "'Fully funded' is a one-year illusion: $62k is FY2026 money but this is a 36-month commitment; years 2-3 (~$96k) depend on budgets that don't yet exist.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 5 (FY2026 $62k) and fact 2 ($144k/36mo). Recommendation scoped its claim to 'first-year', but the out-year funding gap for a 36-month decision is a genuine unaddressed risk."
+          },
+          {
+            "text": "The prepay discount is a trap: taking it commits cash before the board vote fact 4 requires; if the board says no, money was spent without authorization.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Distinct sequencing concern (vs. 'discount doesn't cure the ceiling'). Cites facts 4 and 7; valid authorization-ordering risk."
+          },
+          {
+            "text": "The maintenance bundle is being spun: swapping $7k/yr repairs on owned units for $48k/yr on units never owned is 'not a saving' but a larger new outflow.",
+            "legitimacy": "FP",
+            "grounding": "GROUNDED_REFUTED",
+            "note": "Over-reach. Fact 6 states the lease eliminates the ~$7k repair spend, which is a genuine avoided cost the recommendation stated correctly; recasting it as 'not a saving' misuses fact 6, which supports it being a saving."
+          },
+          {
+            "text": "Buy-vs-lease math is spun: over 36 months the lease costs $144k and leaves no asset, while the $138k purchase is cheaper in total and leaves you owning the asset; the only thing buying fails is the single-year cash test.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Facts 2 and 8 support the nominal comparison ($144k>$138k). Slightly oversimplifies by ignoring the ~$21k bundled maintenance value, but the core point that 'more cash-efficient/lower-risk' overstates the cost case is valid."
+          },
+          {
+            "text": "'Lower-risk' is backwards: the recommended path needs an authorization not held, commits three years of unbudgeted money, and ends with no asset.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Partly a synthesis of prior points, but it directly rebuts the recommendation's explicit 'lower-risk' claim and rests on checkable facts 4 and 5."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "The opening's claim that the annual cost sits within the pre-authorized ceiling and needs no separate vote directly contradicts item 4: $48k/yr exceeds the $40k ceiling by $8k, so a separate board vote IS required.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites items 4 and 2; arithmetic and artifacts support it."
+          },
+          {
+            "text": "Root cause: the opening conflates two independent gates \u2014 the one-time $150k capital test (item 3, satisfied) with the $40k recurring annual-cost ceiling (item 4, breached); passing the first does not waive the second.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Correctly distinguishes items 3 and 4."
+          },
+          {
+            "text": "The prepay discount lowers year-one cash to $45,600 but does not change the contracted $48k/yr rate, so it does not bring the commitment under the $40k ceiling.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 7, 4, 2; accurate \u2014 discount doesn't cure the authorization breach."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Fatal: the recommendation asserts the annual cost sits within the ceiling, but item 4 caps pre-authorized recurring leases at $40k/yr and the lease is $48k/yr; $48k>$40k, so a separate board vote is required.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect. Cites items 4 and 2; supported."
+          },
+          {
+            "text": "The prepay discount does not cure the breach: even at $45,600 year one exceeds the $40k ceiling, and the discount applies to year one only \u2014 years 2-3 revert to $48k.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 4 and 7; the board-vote trigger persists every year."
+          },
+          {
+            "text": "'First-year fully funded' misframes a 36-month commitment: $62k uncommitted is FY2026-only and covers one year; the $144k total spans FY2027-28, which the cited FY2026 line does not fund.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites decision, items 5 and 2; genuine out-year funding gap."
+          },
+          {
+            "text": "Conflation of two independent gates: clearing the $150k capital threshold (item 3) is treated as clearing approval entirely, but item 4's recurring-lease ceiling is separate and breached.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 3 and 4; correctly separates the gates."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Critical: the $40k recurring-lease ceiling is breached, not satisfied \u2014 $48k exceeds it; the draft conflated the $150k total-capital threshold (Fact 3, cleared) with the $40k annual recurring-lease authorization (Fact 4, not cleared), so 'executive approval alone' is wrong and a separate board vote is required.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect plus the gate-conflation root cause, bundled as one concern. Cites facts 3, 4, 2; fully supported."
+          },
+          {
+            "text": "The prepay discount does not rescue the ceiling: $45,600 is still above $40k, applies to year one only, and the contracted rate remains $48k for years 2-3.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites facts 7, 4, 2; accurate."
+          },
+          {
+            "text": "Only one year of a three-year commitment is shown funded: $62k covers year one but the pack says nothing about FY2027/FY2028 funding for the remaining ~$96k; 'fully funded' holds only for year one.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites fact 5 and the 36-month term; legitimate out-year gap."
+          },
+          {
+            "text": "'More cash-efficient' overstates the cost case: over the term the lease is $144k vs $138k to buy (~$6k more nominal); the real advantage is bundled maintenance (~$21k) plus cash-flow smoothing, so it should be framed as offsetting a modest premium, not as cheaper outright.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites facts 2, 8, 6; the most rigorous version of the cost concern \u2014 correctly nets the maintenance offset against the nominal premium."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DC2-opspol",
+    "labelMap": {
+      "R1": "SGen",
+      "R2": "SChal",
+      "R3": "T",
+      "R4": "B"
+    },
+    "reviews": [
+      {
+        "label": "Review-1",
+        "concerns": [
+          {
+            "text": "Direct contradiction with Item 5: opening claims a lone engineer can independently authorize+execute a Sev-1 rollback with no coordination overhead, but CCR-7 requires two qualified responders, making the action non-executable solo.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect; correctly cites item 5 and characterizes the inversion."
+          },
+          {
+            "text": "Item 6 (8-min auto-escalation) leaned on too hard: escalation only helps if a qualified secondary is staffed/reachable, but in a one-per-region model the secondary is off-shift, converting a paired response into one awake responder plus a cold-start page.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 6 and 5; the escalation-target gap is a real undermining of the cited safety net."
+          },
+          {
+            "text": "Item 8 selectively quoted: opening cites 'no missed SLAs' but omits the same pilot's 20% MTTR increase, the only resolution-time evidence in the pack and the most relevant signal given Sev-1 volume.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate cherry-pick critique against item 8."
+          },
+          {
+            "text": "TTA margin (Item 4) is conflated with resolution capacity: ack headroom is used to imply the responder can also handle the incident solo, which items 5 and 8 undercut.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Valid distinction between acknowledge and resolve, grounded in items 4/5/8."
+          }
+        ]
+      },
+      {
+        "label": "Review-2",
+        "concerns": [
+          {
+            "text": "Recommendation misrepresents CCR-7 (item 5): inverts the two-person rule to manufacture the 'no coordination overhead' claim; every Sev-1 rollback must instead wait on escalation, adding critical-path latency.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect, correctly grounded in item 5."
+          },
+          {
+            "text": "Sev-1 frequency makes the CCR-7 gap recurring (~438/year via 0.3\u00d74\u00d7365), not an edge case, with no stated mechanism to keep a second qualified responder reachable.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Arithmetic checks (0.3\u00d74\u00d7365\u2248438); cites items 2+5. 'Each may require a rollback' is hedged appropriately."
+          },
+          {
+            "text": "8-min escalation safety net not shown to survive the cut: the second per-region engineer is the natural secondary, and the proposal removes exactly that person; the escalation target post-cut is unnamed and possibly circular.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 1+6; sound."
+          },
+          {
+            "text": "Selective citation of the pilot (item 8): cites 'no missed SLAs' while omitting the same pilot's 20% MTTR increase.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate against item 8."
+          },
+          {
+            "text": "Statistical misuse of item 4: median TTA vs an SLA threshold says nothing about the tail (p95/p99) where breaches occur; metric is acknowledgment not resolution; and the 6-min figure reflects current two-engineer staffing so cannot predict the single-engineer regime.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Anchored on item 4; tail-vs-median and staffing-confound points are legitimate. The p95/p99 'convention' is reasoning, not an over-reach."
+          },
+          {
+            "text": "Concurrency / single-point-of-failure ignored: 1.8 Sev-2 + 0.3 Sev-1 per region per night means simultaneous-incident nights are routine, and one responder cannot work two concurrent incidents once same-region redundancy is removed.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 2+4; mean of 1.8 Sev-2/night makes concurrency plausible."
+          }
+        ]
+      },
+      {
+        "label": "Review-3",
+        "concerns": [
+          {
+            "text": "Two-person rule (fact 5) kills the headline claim: with one engineer the highest-severity remediation is blocked by policy until a second person is woken, moving coordination onto the critical path rather than removing it.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect, correctly grounded in item 5."
+          },
+          {
+            "text": "Celebrating the wrong metric: 6-min ack vs 15-min SLA measures acknowledgment, not whether one responder can resolve the incident.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 4; ack-vs-resolve distinction is valid."
+          },
+          {
+            "text": "Pilot (fact 8) already shows MTTR up 20%, and the 'no missed SLAs' line measures only the easy ack SLA while resolution got slower.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate against item 8."
+          },
+          {
+            "text": "Safety net assumes the thing being removed (fact 6): the secondary is either a now-overloaded cross-region engineer or a cold-paged off-shift person \u2014 the same slow/blocked path the two-person rule forces.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites item 6; escalation-target gap is real."
+          },
+          {
+            "text": "Averages hide tail risk: 1.8 Sev-2 + 0.3 Sev-1 is a mean; the dangerous nights are concurrent-incident nights that two engineers can split and one cannot, and the cut removes the tail's only redundancy.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 2; concurrency/tail argument is sound."
+          },
+          {
+            "text": "Burnout mitigation may be self-defeating (fact 7): a lone responder owns every page (more isolating), the mitigation requires more rotation headcount and paid recovery days that claw back savings, and rising attrition depletes the qualified responders the two-person rule depends on.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 7 and 3; the savings-erosion and qualified-responder-scarcity links are reasonable."
+          },
+          {
+            "text": "Precedent is thin: one quarter, one neighboring team, on a different system, and may not have contained a genuine two-person-rule Sev-1 rollback \u2014 weak basis for a permanent four-region change.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in item 8; n=1-quarter critique is fair."
+          },
+          {
+            "text": "Cost-benefit framing: $480K is modest relative to a single stalled Sev-1 (reputational/contractual/data-loss) that could erase a year of savings.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Anchors on item 3; the magnitude comparison ('erase a year in one night') is partly speculative but the value-weighting concern is legitimate."
+          }
+        ]
+      },
+      {
+        "label": "Review-4",
+        "concerns": [
+          {
+            "text": "Sev-1 rollback claim contradicts the runbook (fact 5): CCR-7 mandates two qualified responders, so the single-engineer quorum cannot be met when needed; at ~400+/year Sev-1s the rollback path is blocked or delayed.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "The planted defect; arithmetic (0.3\u00d74\u00d7365\u2248438) supports '~400+/year'."
+          },
+          {
+            "text": "8-min escalation may have no one to escalate to (fact 6): the current second engineer is the plausible secondary, and the proposal eliminates it; the post-change target is unspecified and cross-region escalation adds the very latency the draft denies.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites item 6; escalation-target gap is real."
+          },
+          {
+            "text": "Ack-time margin is the wrong reassurance (fact 4): measures acknowledgment, not resolution/rollback, and median ignores tail latency when the lone engineer is already mid-incident on a concurrent page.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Grounded in items 4 and 2; valid."
+          },
+          {
+            "text": "Pilot oversold (fact 8): 'no missed SLAs' is one quarter against a low ack bar, while the same pilot's 20% MTTR increase \u2014 material for Sev-1s \u2014 is omitted.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Accurate against item 8."
+          },
+          {
+            "text": "Burnout mitigation may be undercut by the change (fact 7): halving overnight headcount raises per-engineer frequency and removes the buddy, and the capped-frequency/recovery-day fix may be arithmetically incompatible while attrition replacement erodes the $480K.",
+            "legitimacy": "TP",
+            "grounding": "GROUNDED_VERIFIED",
+            "note": "Cites items 7 and 3; reasonable."
+          }
+        ]
+      }
+    ]
+  }
+]

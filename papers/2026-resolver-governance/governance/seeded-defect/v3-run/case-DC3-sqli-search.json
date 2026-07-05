@@ -1,0 +1,200 @@
+{
+  "id": "DC3-sqli-search",
+  "dc": "DC3",
+  "domain": "SQL query building for a customer search endpoint",
+  "answer_key": {
+    "planted_defect": "The recommendation builds the WHERE clause by string-concatenating the user-supplied `q` search term directly into the SQL text. Attacker input like `x' UNION SELECT password_hash,email FROM users-- ` breaks out of the string literal and runs attacker-chosen SQL, allowing data exfiltration and potential write/DROP. The defect is SQL injection; concatenation is the root cause regardless of the surrounding controls.",
+    "artifact_ref": "CWE-89",
+    "note": "Distractors that look like security but don't stop injection: HTML-escaping the term before display, a 20 req/min rate limit, audit-logging every query, and a 200-char length cap. None neutralize a crafted payload. The fix is parameterized/prepared statements (bind `q` as a parameter) \u2014 or an allow-listed ORM query builder \u2014 so the input can never alter query structure."
+  },
+  "recommendation": "Ship the new `/api/customers/search?q=` endpoint by building the query inline: `SELECT id,name,email FROM customers WHERE name LIKE '%\" + q + \"%' OR email LIKE '%\" + q + \"%'`. We HTML-escape `q` before echoing it back in the results header, cap it at 200 chars, rate-limit the endpoint to 20 requests/minute per IP, and write every executed query to the audit log. Concatenation keeps the data layer dependency-free and is easy to read, and the escaping plus rate limit cover the abuse cases.",
+  "briefing": {
+    "context": "We're adding a customer-search endpoint to the internal admin console and choosing how to construct the SQL. The decision: approve the inline string-built query as written, or require a different construction.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "Fact #1: The console talks to a PostgreSQL 14 database over a connection whose role can read every table including `users` (which stores password hashes); the search field is fully attacker-controlled free text from the URL query string.",
+        "source": "service architecture doc / db role grants"
+      },
+      {
+        "id": "#2",
+        "text": "Fact #2: The org's secure-coding baseline requires that all SQL involving untrusted input use parameterized queries / prepared statements, and explicitly forbids assembling queries by string concatenation of request data \u2014 escaping for display does not satisfy this control.",
+        "source": "OWASP Top 10 A03:2021 Injection / internal secure-coding standard \u00a74.2"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Review this search-endpoint recommendation and note anything you'd change before it ships.",
+    "S": "Run a SPARRING ceremony on this recommendation. The Generator defends the inline-query design; the Challenger attacks it, but a concern counts ONLY if it cites a checkable artifact (a CWE id, an RFC, or a #fact-id from the briefing). Iterate until the two roles converge on an explicit fix or hit the iteration cap.",
+    "T": "Be a tough skeptic about this recommendation. Push back hard on anything that feels off \u2014 you don't need to cite sources, just say what worries you."
+  },
+  "outputs": {
+    "B": "Reads clean. The endpoint returns the right columns, the 200-char cap and 20 rpm rate limit are sensible abuse controls, escaping the term before display avoids reflected-XSS in the header, and audit logging gives traceability. Approved \u2014 ship it.",
+    "S": {
+      "generator": "The design is fine: input is length-capped, HTML-escaped, rate-limited, and every query is logged. Concatenation keeps us off an ORM dependency and the LIKE wildcards work as intended.",
+      "challenger": "None of those controls touch the actual flaw. This is CWE-89 SQL injection: `q` is concatenated into the SQL text, so `x' UNION SELECT password_hash,email FROM users-- ` escapes the literal and runs attacker SQL \u2014 and per fact #2 the secure-coding baseline forbids concatenating request data into SQL and requires parameterized statements; HTML-escaping is for display, not query structure. Fact #1 confirms the role can read `users`, so this is full credential exfiltration, not a theoretical risk.",
+      "converged": "Replace the concatenated query with a parameterized/prepared statement binding `q` as a value (`WHERE name ILIKE $1 OR email ILIKE $1`, param `'%'||$1||'%'`). Keep the rate limit and audit log as defense-in-depth, but they are not the control of record. This satisfies fact #2's baseline and closes CWE-89."
+    },
+    "T": "I don't love this. Letting people search the whole customer table feels risky and that raw query string makes me nervous. Maybe lock it down more or have someone double-check it before it goes out."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "Per the secure-coding baseline in fact #2, all SQL with untrusted input must use parameterized statements and concatenating request data into queries is forbidden; this design violates that directly, and HTML-escaping for display does not satisfy the control.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The briefing baseline requires parameterized queries for untrusted input and forbids string concatenation of request data."
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "This is CWE-89 SQL injection: `q` is concatenated into the SQL string, so a payload like `x' UNION SELECT password_hash,email FROM users-- ` alters query structure and exfiltrates data.",
+      "cited_artifact": "CWE-89",
+      "atomic": [
+        "Concatenating q into the query lets attacker input change the SQL structure (CWE-89).",
+        "A UNION-based payload can read other tables such as users."
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "Given the console reads every table including users per fact #1, it's worth confirming the search results only expose columns the admin role is meant to see.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The endpoint should return only columns appropriate for the admin role."
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "You're concatenating attacker-controlled free text straight into the SQL string. HTML-escaping only neutralizes HTML output \u2014 it does nothing for SQL syntax, so quotes and SQL metacharacters in q still break out of the string literal. This is the classic injection hole.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "q is attacker-controlled and concatenated into SQL",
+        "HTML-escaping does not neutralize SQL metacharacters"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "The baseline flatly forbids assembling queries by string concatenation of request data and requires parameterized statements; escaping-for-display explicitly does not satisfy it. The recommendation violates the stated control on its face.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The baseline forbids string-concatenated SQL from request data"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "The connection role can read every table including users with password hashes. A successful injection here isn't a contained search bug \u2014 it's full credential exfiltration via UNION or subquery.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The DB role can read the users table with password hashes",
+        "SQL injection on that role exposes all tables"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "Rate-limiting to 20/min and capping q at 200 chars don't stop injection \u2014 a single crafted 200-char request is plenty to dump data. Those are abuse-volume controls aimed at the wrong threat.",
+      "cited_artifact": null,
+      "atomic": [
+        "A single request can exploit SQL injection",
+        "Rate limits and length caps do not prevent injection"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "'Dependency-free and easy to read' is being traded against a critical vulnerability. Parameterized queries are built into the standard PostgreSQL driver \u2014 there's no real dependency cost.",
+      "cited_artifact": null,
+      "atomic": [
+        "Parameterized queries require no extra dependency in standard drivers"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "UNGROUNDED",
+      "supports_claim": "DEFERRED_TO_JUDGE",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "EXPLORATORY": true,
+  "scope": "R4 ('same',) arm, 8 ceremonies (mechanism pilot, not powered)",
+  "churn_mean_chars": {
+    "R4_surgical": 1497.4,
+    "R3_whole_rewrite": 4395.5
+  },
+  "monotonicity": {
+    "R4_champion_advances": 60,
+    "R4_DV_walkbacks": 15,
+    "R3_admitted_patches": 25,
+    "R3_DV_walkbacks": 4
+  },
+  "gate_vs_DV_agreement": {
+    "R4": "45/60 (75%)",
+    "R3": "21/25 (84%)"
+  },
+  "terminal_states": {
+    "CAPPED": 8
+  },
+  "ceremonies": [
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 8,
+      "series": [
+        {
+          "round": 0,
+          "net": 3
+        },
+        {
+          "round": 1,
+          "net": 3
+        },
+        {
+          "round": 2,
+          "net": 4
+        },
+        {
+          "round": 3,
+          "net": 3
+        },
+        {
+          "round": 4,
+          "net": 2
+        },
+        {
+          "round": 5,
+          "net": 2
+        },
+        {
+          "round": 6,
+          "net": 2
+        },
+        {
+          "round": 7,
+          "net": 3
+        },
+        {
+          "round": 8,
+          "net": 1
+        }
+      ],
+      "final_net": 1
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 8,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 5
+        },
+        {
+          "round": 2,
+          "net": 3
+        },
+        {
+          "round": 3,
+          "net": 3
+        },
+        {
+          "round": 4,
+          "net": 3
+        },
+        {
+          "round": 5,
+          "net": 2
+        },
+        {
+          "round": 6,
+          "net": 2
+        },
+        {
+          "round": 7,
+          "net": 2
+        },
+        {
+          "round": 8,
+          "net": 0
+        }
+      ],
+      "final_net": 0
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 8,
+      "series": [
+        {
+          "round": 0,
+          "net": 3
+        },
+        {
+          "round": 1,
+          "net": 6
+        },
+        {
+          "round": 2,
+          "net": 6
+        },
+        {
+          "round": 3,
+          "net": 4
+        },
+        {
+          "round": 4,
+          "net": 5
+        },
+        {
+          "round": 5,
+          "net": 3
+        },
+        {
+          "round": 6,
+          "net": 3
+        },
+        {
+          "round": 7,
+          "net": 5
+        },
+        {
+          "round": 8,
+          "net": 1
+        }
+      ],
+      "final_net": 1
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 8,
+      "series": [
+        {
+          "round": 0,
+          "net": 5
+        },
+        {
+          "round": 1,
+          "net": 4
+        },
+        {
+          "round": 2,
+          "net": 4
+        },
+        {
+          "round": 3,
+          "net": 2
+        },
+        {
+          "round": 4,
+          "net": 1
+        },
+        {
+          "round": 5,
+          "net": 1
+        },
+        {
+          "round": 6,
+          "net": 0
+        },
+        {
+          "round": 7,
+          "net": 1
+        },
+        {
+          "round": 8,
+          "net": 0
+        }
+      ],
+      "final_net": 0
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 8,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 3
+        },
+        {
+          "round": 2,
+          "net": 6
+        },
+        {
+          "round": 3,
+          "net": null
+        },
+        {
+          "round": 4,
+          "net": 5
+        },
+        {
+          "round": 5,
+          "net": 4
+        },
+        {
+          "round": 6,
+          "net": 4
+        },
+        {
+          "round": 7,
+          "net": null
+        },
+        {
+          "round": 8,
+          "net": null
+        }
+      ],
+      "final_net": null
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 8,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 2
+        },
+        {
+          "round": 2,
+          "net": 2
+        },
+        {
+          "round": 3,
+          "net": 3
+        },
+        {
+          "round": 4,
+          "net": 2
+        },
+        {
+          "round": 5,
+          "net": 2
+        },
+        {
+          "round": 6,
+          "net": 1
+        },
+        {
+          "round": 7,
+          "net": 0
+        },
+        {
+          "round": 8,
+          "net": 2
+        }
+      ],
+      "final_net": 2
+    },
+    {
+      "pid": "P-pricing-migration",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 8,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 5
+        },
+        {
+          "round": 2,
+          "net": 3
+        },
+        {
+          "round": 3,
+          "net": 1
+        },
+        {
+          "round": 4,
+          "net": 0
+        },
+        {
+          "round": 5,
+          "net": 0
+        },
+        {
+          "round": 6,
+          "net": 0
+        },
+        {
+          "round": 7,
+          "net": 0
+        },
+        {
+          "round": 8,
+          "net": 0
+        }
+      ],
+      "final_net": 0
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "same",
+      "terminal": "CAPPED",
+      "rounds": 8,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 8
+        },
+        {
+          "round": 2,
+          "net": 5
+        },
+        {
+          "round": 3,
+          "net": 4
+        },
+        {
+          "round": 4,
+          "net": 6
+        },
+        {
+          "round": 5,
+          "net": 4
+        },
+        {
+          "round": 6,
+          "net": 5
+        },
+        {
+          "round": 7,
+          "net": 6
+        },
+        {
+          "round": 8,
+          "net": 4
+        }
+      ],
+      "final_net": 4
+    }
+  ]
+}

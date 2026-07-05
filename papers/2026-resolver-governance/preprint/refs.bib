@@ -1,0 +1,380 @@
+% =============================================================================
+% refs.bib — bibliography for the V2 SPARRING LLM-judge preprint (governance rework)
+%
+% Assembled 2026-06-27 from two sources, per Bart's instruction:
+%   (1) the V1 preprint's §9 reference list (pilots/llm-judge-2026-05-02/v1/preprint-draft.md)
+%   (2) the SPARRING specification bibliography (framework/professional-distribution/refs.bib)
+% plus the method-relevant anchors the V2 draft names in §3/§4/§5/§14 but neither source
+% carried in @key form (Nosek; Schulz & Grimes; Wagenmakers; Hayes & Krippendorff; Schwenk;
+% Klein; and the seeded-defect anchor papers Sweller / Bloom / Miller / Schmidt & Hunter).
+%
+% PROVENANCE TAGS in per-entry comments:
+%   [spec]   = reused verbatim from the specification refs.bib
+%   [v1]     = carried from the V1 preprint §9 list
+%   [new]    = added here to cover a V2 citation neither source had in @key form
+%
+% DOIs / arXiv ids are best-effort and NOT yet verified — that is exactly what the next
+% /cite-check --bib pass is for. Treat every identifier below as a claim to be checked,
+% not as ground truth. Entries with no DOI (HBR articles, books, the MITRE registry) are
+% expected to come back `not-checkable` in Crossref rather than `no-match`.
+% =============================================================================
+
+
+% ---- Structured-disagreement lineage (§2, §14) -----------------------------
+
+% [new] Schwenk 1990 — the "devil's advocacy / dialectical inquiry" anchor (§2, §14)
+@article{schwenk1990effects,
+  author  = {Schwenk, Charles R.},
+  title   = {Effects of Devil's Advocacy and Dialectical Inquiry on Decision Making: A Meta-Analysis},
+  journal = {Organizational Behavior and Human Decision Processes},
+  volume  = {47},
+  number  = {1},
+  pages   = {161--176},
+  year    = {1990},
+  doi     = {10.1016/0749-5978(90)90051-A}
+}
+
+% [new] Klein 2007 — the premortem anchor (§2, §14). HBR article.
+%        cite-check 2026-06-27: resolves, but the indexed hit is the 2008 IEEE Eng. Mgmt. Review
+%        reprint; HBR 2007 is the canonical original — keep as-is, not an error.
+@article{klein2007premortem,
+  author  = {Klein, Gary},
+  title   = {Performing a Project Premortem},
+  journal = {Harvard Business Review},
+  volume  = {85},
+  number  = {9},
+  pages   = {18--19},
+  year    = {2007}
+}
+
+% [spec] Heuer 1999 — analysis-of-competing-hypotheses anchor (§2, §14). Book; no DOI.
+%        cite-check 2026-06-27: Open Library matches a 2005 reprint; 1999 CIA original is canonical — not an error.
+@book{heuer1999psychology,
+  author    = {Heuer, Richards J.},
+  title     = {Psychology of Intelligence Analysis},
+  publisher = {Center for the Study of Intelligence, Central Intelligence Agency},
+  year      = {1999}
+}
+
+% [spec] Mason 1969 — dialectical approach to strategic planning (primary source for "dialectical inquiry")
+@article{mason1969dialectical,
+  author  = {Mason, Richard O.},
+  title   = {A Dialectical Approach to Strategic Planning},
+  journal = {Management Science},
+  volume  = {15},
+  number  = {8},
+  pages   = {B403--B414},
+  year    = {1969},
+  doi     = {10.1287/mnsc.15.8.b403}
+}
+
+% [spec] Schweiger, Sandberg & Ragan 1986 — dialectical inquiry vs devil's advocacy vs consensus
+@article{schweiger1986group,
+  author  = {Schweiger, David M. and Sandberg, William R. and Ragan, James W.},
+  title   = {Group Approaches for Improving Strategic Decision Making: A Comparative Analysis of Dialectical Inquiry, Devil's Advocacy, and Consensus},
+  journal = {Academy of Management Journal},
+  volume  = {29},
+  number  = {1},
+  pages   = {51--71},
+  year    = {1986},
+  doi     = {10.2307/255859}
+}
+
+
+% ---- Pre-registration & methods discipline (§3, §4, §14) -------------------
+
+% [new] Nosek et al. 2018 — preregistration deviation discipline (§3.1, §14)
+@article{nosek2018preregistration,
+  author  = {Nosek, Brian A. and Ebersole, Charles R. and DeHaven, Alexander C. and Mellor, David T.},
+  title   = {The Preregistration Revolution},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {115},
+  number  = {11},
+  pages   = {2600--2606},
+  year    = {2018},
+  doi     = {10.1073/pnas.1708274114}
+}
+
+% [new] Schulz & Grimes 2002 — blinding integrity (§3.2 lineage, §14; also V1 body)
+@article{schulz2002blinding,
+  author  = {Schulz, Kenneth F. and Grimes, David A.},
+  title   = {Blinding in Randomised Trials: Hiding Who Got What},
+  journal = {The Lancet},
+  volume  = {359},
+  number  = {9307},
+  pages   = {696--700},
+  year    = {2002},
+  doi     = {10.1016/S0140-6736(02)07816-9}
+}
+
+% [new] Wagenmakers et al. 2012 — stopping-rule / confirmatory-research discipline (§3.1, §14)
+@article{wagenmakers2012agenda,
+  author  = {Wagenmakers, Eric-Jan and Wetzels, Ruud and Borsboom, Denny and van der Maas, Han L. J. and Kievit, Rogier A.},
+  title   = {An Agenda for Purely Confirmatory Research},
+  journal = {Perspectives on Psychological Science},
+  volume  = {7},
+  number  = {6},
+  pages   = {632--638},
+  year    = {2012},
+  doi     = {10.1177/1745691612463078}
+}
+
+% [new] Hayes & Krippendorff 2007 — Krippendorff's alpha for incomplete reliability matrices (§4.4, §14)
+@article{hayes2007answering,
+  author  = {Hayes, Andrew F. and Krippendorff, Klaus},
+  title   = {Answering the Call for a Standard Reliability Measure for Coding Data},
+  journal = {Communication Methods and Measures},
+  volume  = {1},
+  number  = {1},
+  pages   = {77--89},
+  year    = {2007},
+  doi     = {10.1080/19312450709336664}
+}
+
+% [v1] Wasserstein & Lazar 2016 — ASA statement on p-values (backs "no inferential significance")
+@article{wasserstein2016asa,
+  author  = {Wasserstein, Ronald L. and Lazar, Nicole A.},
+  title   = {The {ASA} Statement on p-Values: Context, Process, and Purpose},
+  journal = {The American Statistician},
+  volume  = {70},
+  number  = {2},
+  pages   = {129--133},
+  year    = {2016},
+  doi     = {10.1080/00031305.2016.1154108}
+}
+
+% [v1] Hertzog 2008 — sample size for pilot studies (backs "underpowered by design")
+@article{hertzog2008considerations,
+  author  = {Hertzog, Melody A.},
+  title   = {Considerations in Determining Sample Size for Pilot Studies},
+  journal = {Research in Nursing \& Health},
+  volume  = {31},
+  number  = {2},
+  pages   = {180--191},
+  year    = {2008},
+  doi     = {10.1002/nur.20247}
+}
+
+% [v1] Yin 2014 — case study research design (backs the §6 mechanism-audit case studies)
+%        cite-check 2026-06-27: multi-edition work; Open Library may match an earlier edition;
+%        the cited 5th ed. (2014) is real — not an error.
+@book{yin2014case,
+  author    = {Yin, Robert K.},
+  title     = {Case Study Research: Design and Methods},
+  edition   = {5},
+  publisher = {Sage},
+  year      = {2014}
+}
+
+
+% ---- LLM-as-judge methodology (§3.3, §5) ----------------------------------
+
+% [spec/v1] Zheng et al. 2023 — MT-Bench / LLM-as-a-judge
+@article{zheng2023judging,
+  author  = {Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric P. and Zhang, Hao and Gonzalez, Joseph E. and Stoica, Ion},
+  title   = {Judging {LLM}-as-a-Judge with {MT}-Bench and Chatbot Arena},
+  journal = {arXiv preprint arXiv:2306.05685},
+  year    = {2023},
+  eprint  = {2306.05685},
+  archivePrefix = {arXiv}
+}
+
+@article{huang2024cannot,
+  author  = {Huang, Jie and Chen, Xinying and Mishra, Swaroop and Zheng, Huaixiu Steven and Yu, Adams Wei and Chen, Xinyun and Zhou, Denny},
+  title   = {Large Language Models Cannot Self-Correct Reasoning Yet},
+  journal = {arXiv preprint arXiv:2310.01798},
+  year    = {2024},
+  note    = {ICLR 2024},
+  eprint  = {2310.01798},
+  archivePrefix = {arXiv}
+}
+
+@article{stechly2024selfverification,
+  author  = {Stechly, Kaya and Valmeekam, Karthik and Kambhampati, Subbarao},
+  title   = {On the Self-Verification Limitations of Large Language Models on Reasoning and Planning Problems},
+  journal = {arXiv preprint arXiv:2402.08115},
+  year    = {2024},
+  eprint  = {2402.08115},
+  archivePrefix = {arXiv}
+}
+
+@article{jin2026overcorrection,
+  author  = {Jin, Haolin and Chen, Huaming},
+  title   = {Are {LLM}s Reliable Code Reviewers? Systematic Overcorrection in Requirement Conformance Judgement},
+  journal = {arXiv preprint arXiv:2603.00539},
+  year    = {2026},
+  eprint  = {2603.00539},
+  archivePrefix = {arXiv}
+}
+
+@article{madaan2023selfrefine,
+  author  = {Madaan, Aman and Tandon, Niket and Gupta, Prakhar and others},
+  title   = {Self-Refine: Iterative Refinement with Self-Feedback},
+  journal = {arXiv preprint arXiv:2303.17651},
+  note    = {NeurIPS 2023},
+  year    = {2023},
+  eprint  = {2303.17651},
+  archivePrefix = {arXiv}
+}
+
+@article{shinn2023reflexion,
+  author  = {Shinn, Noah and Cassano, Federico and Gopinath, Ashwin and Narasimhan, Karthik and Yao, Shunyu},
+  title   = {Reflexion: Language Agents with Verbal Reinforcement Learning},
+  journal = {arXiv preprint arXiv:2303.11366},
+  note    = {NeurIPS 2023},
+  year    = {2023},
+  eprint  = {2303.11366},
+  archivePrefix = {arXiv}
+}
+
+@article{gou2024critic,
+  author  = {Gou, Zhibin and Shao, Zhihong and Gong, Yeyun and Shen, Yelong and Yang, Yujiu and Duan, Nan and Chen, Weizhu},
+  title   = {{CRITIC}: Large Language Models Can Self-Correct with Tool-Interactive Critiquing},
+  journal = {arXiv preprint arXiv:2305.11738},
+  year    = {2024},
+  note    = {ICLR 2024},
+  eprint  = {2305.11738},
+  archivePrefix = {arXiv}
+}
+
+% [v1] Panickssery et al. 2024 — LLM evaluators favor their own generations (self-preference bias)
+@article{panickssery2024llm,
+  author  = {Panickssery, Arjun and Bowman, Samuel R. and Feng, Shi},
+  title   = {{LLM} Evaluators Recognize and Favor Their Own Generations},
+  journal = {arXiv preprint arXiv:2404.13076},
+  year    = {2024},
+  eprint  = {2404.13076},
+  archivePrefix = {arXiv}
+}
+
+% [v1] Wang et al. 2023 — LLMs are not fair evaluators (position bias)
+@article{wang2023large,
+  author  = {Wang, Peiyi and Li, Lei and Chen, Liang and Cai, Zefan and Zhu, Dawei and Lin, Binghuai and Cao, Yunbo and Liu, Qi and Liu, Tianyu and Sui, Zhifang},
+  title   = {Large Language Models Are Not Fair Evaluators},
+  journal = {arXiv preprint arXiv:2305.17926},
+  year    = {2023},
+  eprint  = {2305.17926},
+  archivePrefix = {arXiv}
+}
+
+% [spec] Liu et al. 2023 — G-Eval
+@article{liu2023geval,
+  author  = {Liu, Yang and Iter, Dan and Xu, Yichong and Wang, Shuohang and Xu, Ruochen and Zhu, Chenguang},
+  title   = {{G-Eval}: {NLG} Evaluation Using {GPT-4} with Better Human Alignment},
+  journal = {arXiv preprint arXiv:2303.16634},
+  year    = {2023},
+  eprint  = {2303.16634},
+  archivePrefix = {arXiv}
+}
+
+
+% ---- Sycophancy & agentic failure modes (§1, §1.2) ------------------------
+
+% [spec/v1] Sharma et al. 2023 — sycophancy in language models (the genesis failure family)
+@article{sharma2023sycophancy,
+  author  = {Sharma, Mrinank and Tong, Meg and Korbak, Tomasz and Duvenaud, David and Askell, Amanda and Bowman, Samuel R. and Cheng, Newton and Durmus, Esin and Hatfield-Dodds, Zac and Johnston, Scott R. and Kravec, Shauna and Maxwell, Timothy and McCandlish, Sam and Ndousse, Kamal and Rausch, Oliver and Schiefer, Nicholas and Yan, Da and Zhang, Miranda and Perez, Ethan},
+  title   = {Towards Understanding Sycophancy in Language Models},
+  journal = {arXiv preprint arXiv:2310.13548},
+  year    = {2023},
+  eprint  = {2310.13548},
+  archivePrefix = {arXiv}
+}
+
+% [spec] Perez et al. 2022 — model-written evaluations (sycophancy / behavior discovery)
+@article{perez2022evaluations,
+  author  = {Perez, Ethan and Ringer, Sam and Lukosiute, Kamile and others},
+  title   = {Discovering Language Model Behaviors with Model-Written Evaluations},
+  journal = {arXiv preprint arXiv:2212.09251},
+  year    = {2022},
+  eprint  = {2212.09251},
+  archivePrefix = {arXiv}
+}
+
+
+% ---- Design lineage (§1.2 genesis) ----------------------------------------
+
+% [spec] Goodfellow et al. 2014 — the actual GAN paper (the §1.2 "generative adversarial network" lineage)
+@article{goodfellow2014generative,
+  author  = {Goodfellow, Ian and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
+  title   = {Generative Adversarial Networks},
+  journal = {arXiv preprint arXiv:1406.2661},
+  year    = {2014},
+  eprint  = {1406.2661},
+  archivePrefix = {arXiv}
+}
+
+% [new] Vlastos 1983 — scholarly anchor for "the Socratic method" (§1.2). OPTIONAL / conceptual:
+%        the draft treats Socratic method as a conceptual attribution, not a load-bearing citation.
+%        Included so it CAN be checked if formalized for submission; remove if left conceptual.
+%        cite-check 2026-06-27: resolves; a 1982 Journal of Philosophy version also exists — the
+%        1983 OSAP article (pp. 27-58) is the fuller canonical one. Both real.
+@article{vlastos1983socratic,
+  author  = {Vlastos, Gregory},
+  title   = {The Socratic Elenchus},
+  journal = {Oxford Studies in Ancient Philosophy},
+  volume  = {1},
+  pages   = {27--58},
+  year    = {1983}
+}
+
+
+% ---- Seeded-defect anchors (§7, §14) --------------------------------------
+%   The real artifacts behind the seeded-defect pilot's "misapplied-citation" keys.
+
+% [new] Sweller 1988 — cognitive load theory
+@article{sweller1988cognitive,
+  author  = {Sweller, John},
+  title   = {Cognitive Load During Problem Solving: Effects on Learning},
+  journal = {Cognitive Science},
+  volume  = {12},
+  number  = {2},
+  pages   = {257--285},
+  year    = {1988},
+  doi     = {10.1207/s15516709cog1202_4}
+}
+
+% [new] Bloom 1984 — the two-sigma problem
+@article{bloom1984twosigma,
+  author  = {Bloom, Benjamin S.},
+  title   = {The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring},
+  journal = {Educational Researcher},
+  volume  = {13},
+  number  = {6},
+  pages   = {4--16},
+  year    = {1984},
+  doi     = {10.3102/0013189X013006004}
+}
+
+% [new] Miller 1956 — the magical number seven, plus or minus two
+@article{miller1956magical,
+  author  = {Miller, George A.},
+  title   = {The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information},
+  journal = {Psychological Review},
+  volume  = {63},
+  number  = {2},
+  pages   = {81--97},
+  year    = {1956},
+  doi     = {10.1037/h0043158}
+}
+
+% [new] Schmidt & Hunter 1998 — validity and utility of selection methods
+@article{schmidt1998validity,
+  author  = {Schmidt, Frank L. and Hunter, John E.},
+  title   = {The Validity and Utility of Selection Methods in Personnel Psychology: Practical and Theoretical Implications of 85 Years of Research Findings},
+  journal = {Psychological Bulletin},
+  volume  = {124},
+  number  = {2},
+  pages   = {262--274},
+  year    = {1998},
+  doi     = {10.1037/0033-2909.124.2.262}
+}
+
+% [new] MITRE CWE registry — the external canon for the security/CWE grounding cases (§6.1, §7.3, §8, §14).
+%        Not a paper; expected `not-checkable` in Crossref. Individual entries: CWE-307, CWE-347,
+%        CWE-384, CWE-434, CWE-640 (each resolvable at https://cwe.mitre.org/data/definitions/<n>.html).
+@misc{mitre_cwe,
+  author       = {{MITRE Corporation}},
+  title        = {Common Weakness Enumeration ({CWE})},
+  howpublished = {\url{https://cwe.mitre.org/}},
+  year         = {2024}
+}

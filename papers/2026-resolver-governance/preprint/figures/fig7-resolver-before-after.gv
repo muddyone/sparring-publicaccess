@@ -1,0 +1,74 @@
+// fig7-resolver-before-after.gv — Graphviz redesign trial (2026-07-03), alongside the hand-authored
+// (and separately hand-fixed) fig7-resolver-before-after.svg, not a replacement. Same content
+// verbatim; the point of the trial is automatic, collision-free edge routing.
+digraph fig7 {
+  rankdir=TB;
+  bgcolor="#ffffff";
+  splines=spline;
+  nodesep=0.45;
+  ranksep=0.9;
+  fontname="TeX Gyre Pagella";
+  label=<<font point-size="15"><b>The test that reshaped the Resolver: iterate-to-agreement out, one grounded pass in</b></font>>;
+  labelloc=t;
+  margin=0.3;
+
+  node [shape=box, style="rounded,filled", fillcolor="#eef3f4", color="#46707d", penwidth=1.5,
+        fontname="TeX Gyre Pagella", fontcolor="#1a1a1a", margin="0.18,0.12"];
+  edge [color="#46707d", penwidth=1.4, arrowsize=0.8, fontname="TeX Gyre Pagella"];
+
+  // ---------------- BEFORE row ----------------
+  proposal [label=<<b>proposal in</b>>];
+  revise   [label=<<b>challenge &#8644; revise</b><br/><font point-size="11">N rounds &middot; until both agree</font>>];
+  gate     [label=<<b>both-must-agree gate</b><br/><font point-size="11">proposer can't close alone</font>>];
+  answer   [label=<<b>answer</b><br/><font point-size="11">(single part)</font>>];
+
+  { rank=same; proposal; revise; gate; answer; }
+  proposal -> revise -> gate -> answer;
+  revise -> revise [label="&#215;N", color="#46707d"];
+
+  before_lbl [shape=plaintext, style="", fontcolor="#6b6b6b",
+              label=<<font point-size="10"><b>BEFORE &middot; ITERATE-TO-AGREEMENT (AS FIRST BUILT)</b></font>>];
+  { rank=same; before_lbl; }
+  before_lbl -> proposal [style=invis];
+
+  // ---------------- retired-gate terminator ----------------
+  dropx [shape=plaintext, style="", fontcolor="#8a2f2f", label=<<font point-size="16">&#10006;</font>>];
+  gate -> dropx [color="#8a2f2f", penwidth=1.3,
+                 label=<<font color="#8a2f2f"><i>gate retired as a<br/>default stage</i><br/><font point-size="10">(optional sign-off only)</font></font>>];
+
+  // ---------------- AFTER row ----------------
+  s1 [label=<<b>S1 &middot; One grounded pass</b><br/><font point-size="11">run once, then stop</font><br/><font point-size="9" color="#2f5560">(+ verifier &sect;8)</font>>, penwidth=1.8];
+  s2 [label=<<b>S2 &middot; Definitiveness gate</b><br/><font point-size="11" color="#9a6a1f"><i>exploratory &#8594; &sect;12</i></font>>, style="rounded,dashed", fillcolor="#ffffff"];
+  s3 [label=<<b>S3 &middot; The answer</b><br/><font point-size="11">the deliverable</font>>, fillcolor="#f7ede0", color="#b5772e", penwidth=1.6];
+  s4 [label=<<b>S4 &middot; Trust rider</b><br/><font point-size="11" color="#9a6a1f"><i>exploratory &#8594; &sect;12</i></font>>, style="rounded,dashed", fillcolor="#ffffff"];
+  s5 [label=<<b>S5 &middot; Anchored correction</b><br/><font point-size="11" color="#9a6a1f"><i>exploratory &#8594; &sect;12</i></font>>, style="rounded,dashed", fillcolor="#ffffff"];
+
+  { rank=same; s1; s2; s3; s4; s5; }
+  s1 -> s2 [style=invis]; s2 -> s3 [style=invis]; s3 -> s4 [style=invis]; s4 -> s5 [style=invis];
+
+  after_lbl [shape=plaintext, style="", fontcolor="#6b6b6b",
+             label=<<font point-size="10"><b>AFTER &middot; THE ACCOUNTABILITY PASS</b></font>>];
+  dropx -> after_lbl [style=invis];
+  after_lbl -> s1 [style=invis];
+
+  // ---------------- transition edges ----------------
+  revise -> s1 [color="#8a8a8a", penwidth=1.4,
+                label=<<font color="#8a8a8a"><i>collapses to one pass<br/>pre-registered null (n = 8)<br/>&sect;6.4 / Fig 5</i></font>>];
+  gate -> s4 [color="#46707d",
+              xlabel=<<font color="#46707d"><i>its one job &#8594;<br/>report disagreement</i></font>>];
+  answer -> s3 [color="#46707d",
+                xlabel=<<font color="#46707d"><i>carried, unchanged</i></font>>];
+
+  // ---------------- footer: order / legend / caveat ----------------
+  order [shape=plaintext, style="", label=<<font point-size="10">operating order: S1 &#8594; S5 &#8594; S2 &#8594; S3 + S4</font>>];
+  { rank=same; order; }
+  s1 -> order [style=invis];
+
+  legend [shape=plaintext, style="", label=<<font point-size="9" color="#555555">solid = measured (S1) &middot; dashed = exploratory (&sect;12) &middot; gold = the deliverable &middot; &#10006; = retired stage &middot; grey = the null that drove the change</font>>];
+  { rank=same; legend; }
+  order -> legend [style=invis];
+
+  caveat [shape=plaintext, style="", label=<<font point-size="9.5" color="#8a2f2f"><i>S1 is pre-registered and measured (directional, n = 8); S2/S4/S5 are exploratory, confirmatory test pending (&sect;12). A design-evolution schematic &mdash; not an effect size.</i></font>>];
+  { rank=same; caveat; }
+  legend -> caveat [style=invis];
+}

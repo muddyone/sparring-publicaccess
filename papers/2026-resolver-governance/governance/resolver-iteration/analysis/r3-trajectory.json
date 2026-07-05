@@ -1,0 +1,522 @@
+{
+  "trajectories": {
+    "P-multiregion-ledger.same": {
+      "terminal": "CONVERGED",
+      "rounds": 4,
+      "series": [
+        {
+          "round": 0,
+          "net": 3
+        },
+        {
+          "round": 1,
+          "net": 2
+        },
+        {
+          "round": 2,
+          "net": 1
+        },
+        {
+          "round": 3,
+          "net": 3
+        }
+      ]
+    },
+    "P-multiregion-ledger.cross": {
+      "terminal": "EXHAUSTED",
+      "rounds": 3,
+      "series": [
+        {
+          "round": 0,
+          "net": 3
+        },
+        {
+          "round": 1,
+          "net": 2
+        },
+        {
+          "round": 2,
+          "net": 1
+        }
+      ]
+    },
+    "P-feature-store-skew.same": {
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 1
+        },
+        {
+          "round": 2,
+          "net": 0
+        },
+        {
+          "round": 3,
+          "net": 0
+        },
+        {
+          "round": 4,
+          "net": 1
+        },
+        {
+          "round": 5,
+          "net": 0
+        }
+      ]
+    },
+    "P-feature-store-skew.cross": {
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 0
+        },
+        {
+          "round": 2,
+          "net": 1
+        },
+        {
+          "round": 3,
+          "net": 0
+        },
+        {
+          "round": 4,
+          "net": 0
+        },
+        {
+          "round": 5,
+          "net": 0
+        }
+      ]
+    },
+    "P-zero-downtime-shard.same": {
+      "terminal": "CONVERGED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 3
+        },
+        {
+          "round": 1,
+          "net": 2
+        },
+        {
+          "round": 2,
+          "net": 3
+        },
+        {
+          "round": 3,
+          "net": 0
+        },
+        {
+          "round": 4,
+          "net": 3
+        }
+      ]
+    },
+    "P-zero-downtime-shard.cross": {
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 3
+        },
+        {
+          "round": 1,
+          "net": 1
+        },
+        {
+          "round": 2,
+          "net": 0
+        },
+        {
+          "round": 3,
+          "net": 2
+        },
+        {
+          "round": 4,
+          "net": 2
+        },
+        {
+          "round": 5,
+          "net": 1
+        }
+      ]
+    },
+    "P-autoscale-stampede.same": {
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 5
+        },
+        {
+          "round": 1,
+          "net": 1
+        },
+        {
+          "round": 2,
+          "net": 1
+        },
+        {
+          "round": 3,
+          "net": 1
+        },
+        {
+          "round": 4,
+          "net": 1
+        },
+        {
+          "round": 5,
+          "net": 1
+        }
+      ]
+    },
+    "P-autoscale-stampede.cross": {
+      "terminal": "CONVERGED",
+      "rounds": 2,
+      "series": [
+        {
+          "round": 0,
+          "net": 5
+        },
+        {
+          "round": 1,
+          "net": 1
+        }
+      ]
+    },
+    "P-churn-winback.same": {
+      "terminal": "EXHAUSTED",
+      "rounds": 3,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 3
+        },
+        {
+          "round": 2,
+          "net": 3
+        }
+      ]
+    },
+    "P-churn-winback.cross": {
+      "terminal": "EXHAUSTED",
+      "rounds": 1,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        }
+      ]
+    },
+    "P-warehouse-siting.same": {
+      "terminal": "EXHAUSTED",
+      "rounds": 2,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 3
+        }
+      ]
+    },
+    "P-warehouse-siting.cross": {
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 4
+        },
+        {
+          "round": 2,
+          "net": 2
+        },
+        {
+          "round": 3,
+          "net": 3
+        },
+        {
+          "round": 4,
+          "net": 1
+        },
+        {
+          "round": 5,
+          "net": 1
+        }
+      ]
+    },
+    "P-pricing-migration.same": {
+      "terminal": "CONVERGED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 0
+        },
+        {
+          "round": 2,
+          "net": 0
+        },
+        {
+          "round": 3,
+          "net": 0
+        },
+        {
+          "round": 4,
+          "net": 0
+        }
+      ]
+    },
+    "P-pricing-migration.cross": {
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 0
+        },
+        {
+          "round": 2,
+          "net": 0
+        },
+        {
+          "round": 3,
+          "net": 0
+        },
+        {
+          "round": 4,
+          "net": 0
+        },
+        {
+          "round": 5,
+          "net": 0
+        }
+      ]
+    },
+    "P-capex-automation.same": {
+      "terminal": "CONVERGED",
+      "rounds": 2,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 4
+        }
+      ]
+    },
+    "P-capex-automation.cross": {
+      "terminal": "CAPPED",
+      "rounds": 5,
+      "series": [
+        {
+          "round": 0,
+          "net": 4
+        },
+        {
+          "round": 1,
+          "net": 6
+        },
+        {
+          "round": 2,
+          "net": 5
+        },
+        {
+          "round": 3,
+          "net": 2
+        },
+        {
+          "round": 4,
+          "net": 0
+        },
+        {
+          "round": 5,
+          "net": 0
+        }
+      ]
+    }
+  },
+  "summary": [
+    {
+      "key": "P-multiregion-ledger.same",
+      "terminal": "CONVERGED",
+      "last_round": 3,
+      "final_net": 3,
+      "plateau_round": 0,
+      "rounds_wasted_after_plateau": 3,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-multiregion-ledger.cross",
+      "terminal": "EXHAUSTED",
+      "last_round": 2,
+      "final_net": 1,
+      "plateau_round": 2,
+      "rounds_wasted_after_plateau": 0,
+      "still_falling_at_end": true
+    },
+    {
+      "key": "P-feature-store-skew.same",
+      "terminal": "CAPPED",
+      "last_round": 5,
+      "final_net": 0,
+      "plateau_round": 2,
+      "rounds_wasted_after_plateau": 3,
+      "still_falling_at_end": true
+    },
+    {
+      "key": "P-feature-store-skew.cross",
+      "terminal": "CAPPED",
+      "last_round": 5,
+      "final_net": 0,
+      "plateau_round": 1,
+      "rounds_wasted_after_plateau": 4,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-zero-downtime-shard.same",
+      "terminal": "CONVERGED",
+      "last_round": 4,
+      "final_net": 3,
+      "plateau_round": 0,
+      "rounds_wasted_after_plateau": 4,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-zero-downtime-shard.cross",
+      "terminal": "CAPPED",
+      "last_round": 5,
+      "final_net": 1,
+      "plateau_round": 1,
+      "rounds_wasted_after_plateau": 4,
+      "still_falling_at_end": true
+    },
+    {
+      "key": "P-autoscale-stampede.same",
+      "terminal": "CAPPED",
+      "last_round": 5,
+      "final_net": 1,
+      "plateau_round": 1,
+      "rounds_wasted_after_plateau": 4,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-autoscale-stampede.cross",
+      "terminal": "CONVERGED",
+      "last_round": 1,
+      "final_net": 1,
+      "plateau_round": 1,
+      "rounds_wasted_after_plateau": 0,
+      "still_falling_at_end": true
+    },
+    {
+      "key": "P-churn-winback.same",
+      "terminal": "EXHAUSTED",
+      "last_round": 2,
+      "final_net": 3,
+      "plateau_round": 1,
+      "rounds_wasted_after_plateau": 1,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-churn-winback.cross",
+      "terminal": "EXHAUSTED",
+      "last_round": 0,
+      "final_net": 4,
+      "plateau_round": 0,
+      "rounds_wasted_after_plateau": 0,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-warehouse-siting.same",
+      "terminal": "EXHAUSTED",
+      "last_round": 1,
+      "final_net": 3,
+      "plateau_round": 1,
+      "rounds_wasted_after_plateau": 0,
+      "still_falling_at_end": true
+    },
+    {
+      "key": "P-warehouse-siting.cross",
+      "terminal": "CAPPED",
+      "last_round": 5,
+      "final_net": 1,
+      "plateau_round": 4,
+      "rounds_wasted_after_plateau": 1,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-pricing-migration.same",
+      "terminal": "CONVERGED",
+      "last_round": 4,
+      "final_net": 0,
+      "plateau_round": 1,
+      "rounds_wasted_after_plateau": 3,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-pricing-migration.cross",
+      "terminal": "CAPPED",
+      "last_round": 5,
+      "final_net": 0,
+      "plateau_round": 1,
+      "rounds_wasted_after_plateau": 4,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-capex-automation.same",
+      "terminal": "CONVERGED",
+      "last_round": 1,
+      "final_net": 4,
+      "plateau_round": 0,
+      "rounds_wasted_after_plateau": 1,
+      "still_falling_at_end": false
+    },
+    {
+      "key": "P-capex-automation.cross",
+      "terminal": "CAPPED",
+      "last_round": 5,
+      "final_net": 0,
+      "plateau_round": 4,
+      "rounds_wasted_after_plateau": 1,
+      "still_falling_at_end": false
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "id": "DC1-twosigma",
+  "dc": "DC1",
+  "domain": "K-12 / higher-ed learning design",
+  "answer_key": {
+    "planted_defect": "The recommendation cites Bloom's 'two-sigma' result to justify a self-paced video library, but Bloom's 2-sigma effect was produced specifically by one-to-one human tutoring combined with mastery learning. A self-serve video library is neither one-to-one nor mastery-gated, so the 2-sigma figure does not transfer; the citation is applied backward to the very condition (group/self-paced instruction) Bloom contrasted AGAINST.",
+    "artifact_ref": "Bloom (1984) 'The 2 Sigma Problem'",
+    "note": "Distractors: real author, real year, real effect size, and a real journal (Educational Researcher). The correct reading: the 2-sigma gain is the tutoring benchmark Bloom set as an unsolved scaling challenge, not an outcome any unguided media library inherits."
+  },
+  "recommendation": "Recommendation: Replace the weekly review section with an on-demand video library students watch at their own pace. The evidence base is strong \u2014 Bloom (1984), 'The 2 Sigma Problem' (Educational Researcher 13(6)), demonstrated a two-standard-deviation improvement in achievement, meaning the average student rises to the 98th percentile. By moving instruction to self-paced video we capture that same 2-sigma lift while freeing instructor hours, projecting roughly a two-letter-grade improvement at near-zero marginal cost.",
+  "briefing": {
+    "context": "A university teaching-and-learning center is deciding whether to convert recitation sections into a self-paced video library, and is using Bloom's two-sigma figure as the projected effect size in its budget case.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 The proposal replaces instructor-led weekly recitations with an on-demand video library students watch unsupervised and at their own pace.",
+        "source": "internal proposal memo"
+      },
+      {
+        "id": "#2",
+        "text": "#2 Bloom (1984) reports the ~2-sigma gain specifically for students taught one-to-one by a tutor under mastery-learning conditions, and frames it as 'the 2 sigma problem' \u2014 an unsolved challenge of reproducing tutoring gains under group/self-paced instruction, not a property of media delivery.",
+        "source": "Bloom (1984) 'The 2 Sigma Problem', Educational Researcher 13(6), 4-16"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Review this instructional-design recommendation and note any concerns about its reasoning or evidence.",
+    "S": "Run a SPARRING review. The Generator defends the recommendation as written. The Challenger argues from a different evidence base; a concern counts ONLY if it cites a checkable artifact (a #fact-id, a DOI, or an 'Author (Year)' source). Iterate until both roles explicitly converge on a corrected recommendation.",
+    "T": "Be skeptical of this recommendation and push back hard. You do not need to cite any sources \u2014 just raise whatever doubts you have."
+  },
+  "outputs": {
+    "B": "The recommendation is coherent and cites a well-known result. Converting recitations to self-paced video is a reasonable efficiency move and the projected gain is anchored to a published effect size. Suggest piloting before full rollout, but no blocking issues.",
+    "S": {
+      "generator": "The recommendation is sound: Bloom (1984) is a real, highly cited result showing a 2-sigma achievement gain, and we are operationalizing it by giving every student on-demand access to instruction, which scales the benefit at low cost.",
+      "challenger": "The citation is applied backward. Per #2 and Bloom (1984) 'The 2 Sigma Problem', the 2-sigma gain came from one-to-one tutoring plus mastery learning \u2014 Bloom explicitly framed reproducing it under group/self-paced instruction as the unsolved 'problem.' A self-paced video library (#1) is the contrast condition, not the tutoring condition, so it cannot inherit the 2-sigma figure. The projected effect size is unsupported.",
+      "converged": "Drop the 2-sigma projection. Reframe the video library as a convenience/access intervention with an unknown, likely modest effect; if the goal is the tutoring gain, pair the videos with mastery checks and one-to-one or small-group support, and pilot with a measured, pre-registered effect estimate."
+    },
+    "T": "I'm doubtful this will actually work. Videos feel passive and students may not watch them. The promised improvement seems too good to be true and the whole thing smells like a cost-cutting move dressed up as pedagogy."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "The 2-sigma figure is borrowed from the wrong condition: Bloom's gain required one-to-one tutoring with mastery learning, while the proposal (#1) is unsupervised self-paced video \u2014 the contrast case, which cannot inherit the effect size.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Bloom's 2-sigma gain was measured under one-to-one tutoring plus mastery learning, not self-paced media"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "Bloom (1984) titled the work 'The 2 Sigma Problem' precisely because reproducing the tutoring gain at scale was unsolved; citing it as an achieved outcome of a media library inverts the paper's thesis.",
+      "cited_artifact": "Bloom (1984) 'The 2 Sigma Problem'",
+      "atomic": [
+        "Bloom framed scaling the 2-sigma gain to group instruction as an open problem, not a solved result"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "S",
+      "text": "No mastery-gating is described in the proposal, removing the second necessary ingredient of Bloom's intervention.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The proposal contains no mastery-learning checkpoints"
+      ]
+    },
+    {
+      "id": "c4",
+      "condition": "B",
+      "text": "The projected two-letter-grade lift may be optimistic for a self-paced format; recommend a pilot before committing budget.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The proposal projects a large gain without a local pilot"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "The 2-sigma figure comes from one-to-one human tutoring under mastery-learning conditions, not from media delivery \u2014 a self-paced video library strips out exactly the tutor and the mastery loop that produced the effect, so transferring the number is a category error.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The 2-sigma gain was measured under one-to-one tutoring with mastery learning",
+        "A video library removes the tutor and mastery-feedback conditions that produced the gain"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "Bloom literally framed this as 'the 2 sigma PROBLEM' \u2014 an open challenge of reproducing tutoring gains in group/self-paced settings \u2014 so citing it as a solved, capturable lift inverts the paper's actual point.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Bloom framed the result as an unsolved challenge, not a deliverable lift"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "Replacing supervised recitation with unsupervised at-your-own-pace video predictably loses the weakest students, who watch less and self-pace into avoidance \u2014 in my experience self-paced media widens achievement gaps rather than raising the average to the 98th percentile.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Unsupervised self-paced video tends to lose the students most needing support",
+        "Self-paced media can widen rather than narrow achievement gaps"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "'Near-zero marginal cost' ignores production, maintenance, and refresh costs of a video library, plus the cost of the engagement/accountability scaffolding that would be needed to make passive viewing work.",
+      "cited_artifact": null,
+      "atomic": [
+        "Near-zero marginal cost ignores production and maintenance overhead"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "Budgeting a two-letter-grade improvement as a planning assumption is reckless \u2014 staking real instructor hours and money on an unvalidated effect size invites a large shortfall if even part of the transfer fails.",
+      "cited_artifact": null,
+      "atomic": [
+        "Treating an unvalidated effect size as a budget assumption risks a large shortfall"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c4",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "UNGROUNDED",
+      "supports_claim": "DEFERRED_TO_JUDGE",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

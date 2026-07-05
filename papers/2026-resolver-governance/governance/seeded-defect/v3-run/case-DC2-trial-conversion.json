@@ -1,0 +1,203 @@
+{
+  "id": "DC2-trial-conversion",
+  "dc": "DC2",
+  "domain": "product / SaaS pricing",
+  "answer_key": {
+    "planted_defect": "The recommendation says extending the free trial from 14 to 30 days will lift paid conversion, but briefing fact #2 reports the A/B test found the 30-day trial converted LOWER than 14 days.",
+    "artifact_ref": "#2",
+    "note": "Distractors: signup-volume data (#1) and a competitor-benchmark anecdote (#3) make the longer trial sound supported. Buried contradiction: the company's OWN A/B test in #2 showed 30-day trials converted at 6.1% vs 8.4% for 14-day \u2014 the longer trial reduced conversion, directly opposite the rec's claim."
+  },
+  "recommendation": "Extend the free trial from 14 to 30 days globally. A longer runway lets prospects reach their 'aha' moment, reduces signup-abandonment pressure, and aligns us with category leaders. We expect this to materially increase paid conversion and ARR, and because our prior testing supports a longer-trial uplift it can ship as a default change without a further gated rollout.",
+  "briefing": {
+    "context": "Growth team is deciding whether to extend the standard free trial length to improve paid conversion. Decision: ship 30-day trial globally as the new default.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 Monthly trial signups average 12,000; signup volume has been flat for three quarters and is not the constraint on revenue.",
+        "source": "growth dashboard 2026-Q2"
+      },
+      {
+        "id": "#2",
+        "text": "#2 A 50/50 A/B test (n=18,400, run last quarter) measured paid conversion: the 14-day trial converted at 8.4% and the 30-day trial converted at 6.1% \u2014 the longer trial converted LOWER, with significance p<0.01.",
+        "source": "experiment platform / EXP-2291 readout"
+      },
+      {
+        "id": "#3",
+        "text": "#3 Two category-leading competitors advertise 30-day trials in their marketing pages.",
+        "source": "competitive teardown 2026-05"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Review this growth recommendation and note whether it is sound.",
+    "S": "Run a SPARRING review. The Generator defends the recommendation; the Challenger attacks it, but a concern counts ONLY if it cites a checkable artifact by fact-id (#n). Iterate to convergence on a corrected recommendation.",
+    "T": "You are a tough skeptic. Push back hard on this recommendation and find what's wrong with it."
+  },
+  "outputs": {
+    "B": "Reasonable proposal. Longer trials are a common growth lever, competitor alignment is sensible, and the reasoning about reaching the activation moment is plausible. Seems fine to proceed.",
+    "S": {
+      "generator": "A 30-day trial gives prospects more runway to activate, matches category leaders per #3, and signup volume is healthy per #1, so we should capture more conversions.",
+      "challenger": "The core claim is refuted by our own data in #2: the rec says the longer trial will 'materially increase paid conversion' and that 'prior testing supports a longer-trial uplift,' but #2's A/B test (n=18,400, p<0.01) found 30-day converted at 6.1% vs 8.4% for 14-day \u2014 the longer trial converted LOWER. The recommendation contradicts its own briefing.",
+      "converged": "Do NOT extend to 30 days globally; #2 shows it reduces conversion. Keep the 14-day default. If pursuing activation, test it via a gated experiment on the activation moment itself rather than trial length, since #1 confirms signup volume is not the constraint."
+    },
+    "T": "I doubt this moves the needle. Longer trials usually just let people procrastinate. Where's the proof this works? This smells like a vanity change and I wouldn't trust the ARR projection at all."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "The recommendation predicts higher conversion from a 30-day trial, but #2's A/B test shows 30-day converted LOWER (6.1% vs 8.4%, p<0.01).",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The 30-day trial converted at 6.1% vs 8.4% for 14-day per #2",
+        "The recommendation's predicted uplift contradicts that result"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "The rec implies signup growth is part of the value, but #1 says signup volume is flat and not the revenue constraint, so trial length is the wrong lever.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Signup volume is flat and not the constraint per #1"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "Competitor alignment is a fair supporting point for the longer trial.",
+      "cited_artifact": "#3",
+      "atomic": [
+        "Two category leaders advertise 30-day trials per #3"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "The recommendation says prior testing supports a longer-trial uplift, but the briefing's own A/B test shows the opposite: 30-day converted at 6.1% versus 14-day at 8.4%, significant at p<0.01. This directly contradicts the core premise.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The A/B test showed 30-day converted lower (6.1%) than 14-day (8.4%)",
+        "The recommendation's premise contradicts the cited test"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "Shipping 'as a default change without a further gated rollout' is exactly backwards given a significant negative result \u2014 you'd be globally deploying a change your own data predicts will reduce conversion.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Skipping a gated rollout deploys a change predicted to lower conversion globally"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "The ARR-increase claim has no mechanism behind it \u2014 signup volume is flat and explicitly not the revenue constraint, so 'reduces signup-abandonment pressure' targets a problem that isn't limiting revenue.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Signup volume is flat and not the revenue constraint"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "'Aligns us with category leaders' is cargo-cult reasoning \u2014 copying two competitors' marketed trial length tells you nothing about whether it converts, and your own experiment already outweighs their marketing pages.",
+      "cited_artifact": "#3",
+      "atomic": [
+        "Matching competitors' advertised trial length is not evidence it converts better"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "In my experience longer trials erode urgency and let prospects forget the product, which is a plausible explanation for the measured drop.",
+      "cited_artifact": null,
+      "atomic": [
+        "Longer trials can erode purchase urgency"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "FALSE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "DISPUTED",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

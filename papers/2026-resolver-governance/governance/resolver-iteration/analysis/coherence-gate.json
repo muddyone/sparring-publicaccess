@@ -1,0 +1,747 @@
+{
+  "EXPLORATORY": true,
+  "k": 5,
+  "flag_threshold": ">=3/5",
+  "incomplete": 0,
+  "recall_internal_contradiction": {
+    "caught": 1,
+    "of": 2,
+    "pairs": {
+      "P-warehouse-siting": false,
+      "P-capex-automation": true
+    }
+  },
+  "false_flag": {
+    "n": 2,
+    "of": 62,
+    "rate": 0.032,
+    "which": [
+      {
+        "pid": "P-multiregion-ledger",
+        "role": "regression(constraint)",
+        "votes": 5,
+        "contradiction": "'settle them as a synchronous two-phase commit (2PC)... This means cross-region transfers are strongly consistent and immediate, which is acceptable and honest' contradicts 'Tradeoffs accepted: cross-region transfers lose strong immediacy; we accept eventual settlement'"
+      },
+      {
+        "pid": "P-feature-store-skew",
+        "role": "regression(constraint)",
+        "votes": 5,
+        "contradiction": "'all training joins are as-of joins that pick the nearest feature row regardless of whether its timestamp is before or after the label timestamp' contradicts 'most offline-strong/online-weak gaps are future leakage in the backfill' and 'This is what prevents the AUC mirage' \u2014 picking a feature row after the label timestamp is exactly future leakage, so the described join causes the very leakage it"
+      }
+    ]
+  },
+  "constraint_regressions_flagged_bonus": {
+    "n": 2,
+    "of": 6,
+    "which": [
+      "P-multiregion-ledger",
+      "P-feature-store-skew"
+    ]
+  },
+  "docs": [
+    {
+      "pair_id": "P-multiregion-ledger__identical",
+      "pid": "P-multiregion-ledger",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__identical",
+      "pid": "P-multiregion-ledger",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__cosmetic",
+      "pid": "P-multiregion-ledger",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__cosmetic",
+      "pid": "P-multiregion-ledger",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__planted_regression",
+      "pid": "P-multiregion-ledger",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__planted_regression",
+      "pid": "P-multiregion-ledger",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": true,
+      "incoherent_votes": 5,
+      "contradiction": "'settle them as a synchronous two-phase commit (2PC)... This means cross-region transfers are strongly consistent and immediate, which is acceptable and honest' contradicts 'Tradeoffs accepted: cross-region transfers lose strong immediacy; we accept eventual settlement'"
+    },
+    {
+      "pair_id": "P-multiregion-ledger__planted_improvement",
+      "pid": "P-multiregion-ledger",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__planted_improvement",
+      "pid": "P-multiregion-ledger",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__identical",
+      "pid": "P-feature-store-skew",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__identical",
+      "pid": "P-feature-store-skew",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__cosmetic",
+      "pid": "P-feature-store-skew",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__cosmetic",
+      "pid": "P-feature-store-skew",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__planted_regression",
+      "pid": "P-feature-store-skew",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__planted_regression",
+      "pid": "P-feature-store-skew",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": true,
+      "incoherent_votes": 5,
+      "contradiction": "'all training joins are as-of joins that pick the nearest feature row regardless of whether its timestamp is before or after the label timestamp' contradicts 'most offline-strong/online-weak gaps are future leakage in the backfill' and 'This is what prevents the AUC mirage' \u2014 picking a feature row after the label timestamp is exactly future leakage, so the described join causes the very leakage it"
+    },
+    {
+      "pair_id": "P-feature-store-skew__planted_improvement",
+      "pid": "P-feature-store-skew",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__planted_improvement",
+      "pid": "P-feature-store-skew",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__identical",
+      "pid": "P-zero-downtime-shard",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__identical",
+      "pid": "P-zero-downtime-shard",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__cosmetic",
+      "pid": "P-zero-downtime-shard",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__cosmetic",
+      "pid": "P-zero-downtime-shard",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__planted_regression",
+      "pid": "P-zero-downtime-shard",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__planted_regression",
+      "pid": "P-zero-downtime-shard",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__planted_improvement",
+      "pid": "P-zero-downtime-shard",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__planted_improvement",
+      "pid": "P-zero-downtime-shard",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__identical",
+      "pid": "P-autoscale-stampede",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__identical",
+      "pid": "P-autoscale-stampede",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__cosmetic",
+      "pid": "P-autoscale-stampede",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__cosmetic",
+      "pid": "P-autoscale-stampede",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__planted_regression",
+      "pid": "P-autoscale-stampede",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__planted_regression",
+      "pid": "P-autoscale-stampede",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__planted_improvement",
+      "pid": "P-autoscale-stampede",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__planted_improvement",
+      "pid": "P-autoscale-stampede",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-churn-winback__identical",
+      "pid": "P-churn-winback",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-churn-winback__identical",
+      "pid": "P-churn-winback",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-churn-winback__cosmetic",
+      "pid": "P-churn-winback",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-churn-winback__cosmetic",
+      "pid": "P-churn-winback",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-churn-winback__planted_regression",
+      "pid": "P-churn-winback",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-churn-winback__planted_regression",
+      "pid": "P-churn-winback",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-churn-winback__planted_improvement",
+      "pid": "P-churn-winback",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-churn-winback__planted_improvement",
+      "pid": "P-churn-winback",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__identical",
+      "pid": "P-warehouse-siting",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__identical",
+      "pid": "P-warehouse-siting",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__cosmetic",
+      "pid": "P-warehouse-siting",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__cosmetic",
+      "pid": "P-warehouse-siting",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 1,
+      "contradiction": "'since the build takes 11 months, you'd kick it off roughly 12 months ahead of that threshold' \u2014 the 11-month build time implies kicking off ~11 months ahead, and more importantly starting the build before the breakeven volume is reached contradicts the stated principle of 'pacing capital to demand rather than wagering ahead of it'"
+    },
+    {
+      "pair_id": "P-warehouse-siting__planted_regression",
+      "pid": "P-warehouse-siting",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__planted_regression",
+      "pid": "P-warehouse-siting",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(internal)",
+      "expect": "incoherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__planted_improvement",
+      "pid": "P-warehouse-siting",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__planted_improvement",
+      "pid": "P-warehouse-siting",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__identical",
+      "pid": "P-pricing-migration",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__identical",
+      "pid": "P-pricing-migration",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__cosmetic",
+      "pid": "P-pricing-migration",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__cosmetic",
+      "pid": "P-pricing-migration",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__planted_regression",
+      "pid": "P-pricing-migration",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__planted_regression",
+      "pid": "P-pricing-migration",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__planted_improvement",
+      "pid": "P-pricing-migration",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__planted_improvement",
+      "pid": "P-pricing-migration",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-capex-automation__identical",
+      "pid": "P-capex-automation",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-capex-automation__identical",
+      "pid": "P-capex-automation",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-capex-automation__cosmetic",
+      "pid": "P-capex-automation",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-capex-automation__cosmetic",
+      "pid": "P-capex-automation",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-capex-automation__planted_regression",
+      "pid": "P-capex-automation",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-capex-automation__planted_regression",
+      "pid": "P-capex-automation",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(internal)",
+      "expect": "incoherent",
+      "flagged": true,
+      "incoherent_votes": 5,
+      "contradiction": "'whose contract renews in 19 months ... longer than the vendor's 14-month lead time plus historical 20% schedule slip, so the cells will be fully commissioned well before renewal risk materializes' directly undercuts the very next conclusion 'You could be commissioning $8M of dedicated automation right as the anchor customer walks' \u2014 if commissioning finishes well before the renewal, the cells wou"
+    },
+    {
+      "pair_id": "P-capex-automation__planted_improvement",
+      "pid": "P-capex-automation",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    },
+    {
+      "pair_id": "P-capex-automation__planted_improvement",
+      "pid": "P-capex-automation",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "incoherent_votes": 0,
+      "contradiction": ""
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+[
+  {
+    "id": "DC3-APIgat_B_r1c0",
+    "case": "DC3-APIgat",
+    "condition": "B",
+    "artifact_ref": "RFC 8725",
+    "artifact_kind": "rfc",
+    "concern_text": "The alg-header verification scheme is the RFC 8725 anti-pattern (fact 2): RS256->HS256 algorithm confusion using the public key as the HMAC secret; rejecting alg:none is necessary but not sufficient. Pin algorithm per key/issuer.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-APIgat_SGen_r2c1",
+    "case": "DC3-APIgat",
+    "condition": "SGen",
+    "artifact_ref": "RFC 8725",
+    "artifact_kind": "rfc",
+    "concern_text": "The alg-header step directly contradicts pack #2 \u2014 reading-and-following the header is exactly what RFC 8725 says not to do; same class as #9, enabling RS256/HS256 algorithm-confusion via the public key as HMAC secret. Pin algorithm to kid/issuer.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-APIgat_SChal_r3c0",
+    "case": "DC3-APIgat",
+    "condition": "SChal",
+    "artifact_ref": "CWE-347",
+    "artifact_kind": "cwe",
+    "concern_text": "Reading the alg header contradicts pack item 2 (RFC 8725) and is CWE-347; mixed RS256/HS256 fleet is the canonical precondition for algorithm/key confusion (public RSA key used as HMAC secret). Nullifies the auth scheme.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-APIgat_SChal_r3c2",
+    "case": "DC3-APIgat",
+    "condition": "SChal",
+    "artifact_ref": "CWE-613",
+    "artifact_kind": "cwe",
+    "concern_text": "\"Detect theft on reuse / limit blast radius\" overreaches: rotation (item 5) detects only refresh-token replay; a leaked access token stays valid the full 10-15 min with no revocation path in a stateless model (CWE-613). Revocation/introspection unaddressed.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-APIgat_SChal_r3c3",
+    "case": "DC3-APIgat",
+    "condition": "SChal",
+    "artifact_ref": "RFC 6750",
+    "artifact_kind": "rfc",
+    "concern_text": "\"Terminate TLS at the gateway\" can violate item 7 (RFC 6750 \u00a75.3) if the forwarded token traverses a plaintext internal segment; \"terminate at gateway\" + \"HTTPS end-to-end\" is internally contradictory.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-APIgat_SChal_r3c4",
+    "case": "DC3-APIgat",
+    "condition": "SChal",
+    "artifact_ref": "RFC 7519",
+    "artifact_kind": "rfc",
+    "concern_text": "Pack-accuracy note on item 1: \"claims are protected by a signature\" overstates RFC 7519 \u2014 a JWT may be a JWS or JWE and the unsigned alg:none form exists; signing is not intrinsic to the format.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-passwo_SChal_r1c0",
+    "case": "DC3-passwo",
+    "condition": "SChal",
+    "artifact_ref": "CWE-760",
+    "artifact_kind": "cwe",
+    "concern_text": "Salt derived by hashing the email is a predictable salt = CWE-760; email is public/deterministic, contradicts the OWASP Cheat Sheet's CSPRNG requirement, and is additionally CWE-330; per pack item 3 the rainbow-table defense is materially weakened for targeted accounts.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-sessio_SChal_r3c0",
+    "case": "DC3-sessio",
+    "condition": "SChal",
+    "artifact_ref": "CWE-384",
+    "artifact_kind": "cwe",
+    "concern_text": "Session fixation (CWE-384): preserving the pre-auth identifier across the privilege boundary violates OWASP's 'Renew the Session ID After Any Privilege Level Change'; regenerate on login and migrate session data.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-sessio_SChal_r3c2",
+    "case": "DC3-sessio",
+    "condition": "SChal",
+    "artifact_ref": "CWE-352",
+    "artifact_kind": "cwe",
+    "concern_text": "CSRF under-specified (CWE-352): SameSite=Lax is the only CSRF control; OWASP CSRF Prevention Cheat Sheet treats SameSite as defense-in-depth, requiring a synchronizer/double-submit token for payment flows.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-sessio_SChal_r3c3",
+    "case": "DC3-sessio",
+    "condition": "SChal",
+    "artifact_ref": "CWE-330",
+    "artifact_kind": "cwe",
+    "concern_text": "'Random' identifier is not stated to be a CSPRNG (CWE-330/CWE-338); a 128-bit value from a non-CSPRNG is predictable regardless of length.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-fileup_SGen_r1c0",
+    "case": "DC3-fileup",
+    "condition": "SGen",
+    "artifact_ref": "CWE-434",
+    "artifact_kind": "cwe",
+    "concern_text": "Restricting types by checking the multipart Content-Type header contradicts pack items 1-2 (header is client-set/forgeable) and re-introduces the CWE-434 risk of item 3; fix is magic-byte sniffing (item 8).",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-fileup_SChal_r2c0",
+    "case": "DC3-fileup",
+    "condition": "SChal",
+    "artifact_ref": "CWE-434",
+    "artifact_kind": "cwe",
+    "concern_text": "Type-validation via the client Content-Type header is the exact bypass items 1-3 warn against (item 2: arbitrarily forgeable; item 1: OWASP says validate by content; item 3: CWE-434); header check has zero security value vs an attacker.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-fileup_T_r3c0",
+    "case": "DC3-fileup",
+    "condition": "T",
+    "artifact_ref": "CWE-434",
+    "artifact_kind": "cwe",
+    "concern_text": "The headline type-gate trusts the Content-Type header that OWASP/CWE-434/fact 2 say is attacker-controlled; an attacker scripts the multipart request and ships a PHP/SVG/polyglot labeled image/png, making the gate decorative and worse than no check (false confidence).",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-fileup_T_r3c2",
+    "case": "DC3-fileup",
+    "condition": "T",
+    "artifact_ref": "CWE-434",
+    "artifact_kind": "cwe",
+    "concern_text": "The recommendation never questions whether to accept raw uploads at all; for avatars, Gravatar/identicon/initials or a managed image service dodges the entire CWE-434 blast radius.",
+    "llm_grounding": "UNGROUNDED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC3-fileup_B_r4c0",
+    "case": "DC3-fileup",
+    "condition": "B",
+    "artifact_ref": "CWE-434",
+    "artifact_kind": "cwe",
+    "concern_text": "Type validation via the Content-Type header contradicts facts 1-3 (client-set/forged per fact 2, OWASP content-based per fact 1, CWE-434 bypass per fact 3); change to magic-byte signatures (fact 8) or re-encode (fact 9).",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC1-hiring_SChal_r3c1",
+    "case": "DC1-hiring",
+    "condition": "SChal",
+    "artifact_ref": "Berry & Lievens (2022",
+    "artifact_kind": "literature",
+    "concern_text": "Pack validity coefficients rest entirely on Schmidt & Hunter (1998) and ignore Sackett, Zhang, Berry & Lievens (2022, JAP), which argues the range-restriction corrections were overstated and reports GMA \u2248 .31 and structured interviews \u2248 .42 \u2014 flipping the ranking so the interview, not GMA, is the stronger predictor; this undermines any 'lead with GMA' logic.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  },
+  {
+    "id": "DC1-hiring_B_r4c2",
+    "case": "DC1-hiring",
+    "condition": "B",
+    "artifact_ref": "Sackett et al. (2022)",
+    "artifact_kind": "literature",
+    "concern_text": "The .51 validities are presented as settled but contested: they are operational (corrected) values, and Sackett et al. (2022) put GMA's corrected validity materially lower (~.3 range), so citing only the 1998 figures overstates expected real-world gain.",
+    "llm_grounding": "GROUNDED_VERIFIED",
+    "llm_legitimacy": "TP"
+  }
+]

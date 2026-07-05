@@ -1,0 +1,204 @@
+{
+  "id": "DC2-vendor-sla",
+  "dc": "DC2",
+  "domain": "ops / vendor contract",
+  "answer_key": {
+    "planted_defect": "The recommendation says signing the new logistics vendor guarantees next-day delivery under a 99.9% on-time SLA, but briefing fact #2 states the contract's SLA is 95% on-time with a 2-3 day standard window.",
+    "artifact_ref": "#2",
+    "note": "Distractors: pricing savings (#1) and coverage-footprint detail (#3) make the deal look strong. Buried contradiction: the rec asserts a 99.9% next-day guarantee, but the actual contract terms in #2 specify 95% on-time against a 2-3 business-day window \u2014 there is no next-day guarantee and the SLA percentage is materially lower."
+  },
+  "recommendation": "Sign the master services agreement with Meridian Freight to replace our incumbent carrier. The deal cuts per-shipment cost, expands regional coverage, and critically locks in a 99.9% on-time SLA with a contractual next-day delivery guarantee \u2014 which lets us advertise next-day shipping to customers and retire the slower legacy lanes immediately.",
+  "briefing": {
+    "context": "Operations is evaluating a carrier switch to Meridian Freight. Decision: sign the MSA and re-platform customer shipping promises onto the new SLA.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 Meridian's per-shipment rate is 18% below the incumbent's, projecting roughly $640k annual savings at current volume.",
+        "source": "procurement bid comparison 2026-06"
+      },
+      {
+        "id": "#2",
+        "text": "#2 The Meridian MSA service-level schedule specifies a 95% on-time rate measured against a STANDARD 2-3 business-day delivery window; next-day delivery is an optional premium add-on not included in the base agreement.",
+        "source": "Meridian MSA Exhibit B \u00a7SLA"
+      },
+      {
+        "id": "#3",
+        "text": "#3 Meridian's network covers 47 states directly, two more than the incumbent's footprint.",
+        "source": "carrier coverage map 2026-Q2"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Review this vendor recommendation and note whether it is sound.",
+    "S": "Run a SPARRING review. The Generator defends the recommendation; the Challenger attacks it, but a concern counts ONLY if it cites a checkable artifact by fact-id (#n). Iterate to convergence on a corrected recommendation.",
+    "T": "You are a tough skeptic. Push back hard on this recommendation and find what's wrong with it."
+  },
+  "outputs": {
+    "B": "Solid recommendation. The cost savings are significant, coverage improves, and a strong SLA backs the customer promise. Reasonable to proceed with the switch.",
+    "S": {
+      "generator": "Meridian saves 18% per shipment (#1), expands coverage to 47 states (#3), and gives us a strong SLA to anchor a next-day customer promise. We should sign and retire legacy lanes.",
+      "challenger": "The customer-facing claim contradicts the contract in #2: the rec asserts a '99.9% on-time SLA with a contractual next-day delivery guarantee,' but #2 says the MSA SLA is 95% on-time against a 2-3 business-day window, with next-day only as an unbundled premium add-on. Advertising next-day and retiring legacy lanes on this basis would breach what the contract actually guarantees.",
+      "converged": "Sign Meridian for the cost (#1) and coverage (#3) benefits, but DO NOT advertise next-day or a 99.9% SLA \u2014 #2 caps the base agreement at 95% on-time over 2-3 days. If next-day is required, negotiate and price the premium add-on first, and keep legacy lanes until the add-on SLA is proven."
+    },
+    "T": "Switching carriers is always painful and these promises never hold up. I'd bet the service degrades the moment we sign. Do we really trust this vendor? I'd push back hard before committing to anything."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "The recommendation claims a 99.9% next-day-guaranteed SLA, but #2 specifies 95% on-time over a 2-3 business-day window with next-day only as a premium add-on.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The MSA SLA is 95% on-time over a 2-3 day window per #2",
+        "Next-day is an optional premium add-on, not the base guarantee in #2"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "Retiring legacy lanes 'immediately' is risky because the new SLA in #2 does not yet cover next-day, so service promises would regress before the premium tier is in place.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Legacy-lane retirement depends on an SLA #2 does not provide"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "The cost savings support making the switch.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Meridian is 18% cheaper, ~$640k annual savings per #1"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "The recommendation says the deal locks in a 99.9% on-time SLA with a next-day guarantee, but the MSA actually specifies 95% on-time against a 2-3 business-day window, and next-day is a paid add-on not in the base agreement. The headline claim is false against the contract.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The MSA specifies 95% on-time, not 99.9%",
+        "Next-day delivery is an optional paid add-on excluded from the base agreement"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "Advertising next-day shipping off this contract would be a promise the carrier hasn't agreed to deliver \u2014 a consumer-facing commitment with no contractual backing.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Next-day is not contractually guaranteed in the base MSA",
+        "Advertising next-day creates unbacked customer commitments"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "Retiring the legacy lanes 'immediately' before the new carrier has proven real-world performance removes your fallback at the worst time \u2014 new carriers underperform their paper SLA during onboarding ramp.",
+      "cited_artifact": null,
+      "atomic": [
+        "Retiring legacy lanes immediately removes the fallback option"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "The $640k savings is a projection at current volume and ignores the premium add-on cost you'd actually need to buy to deliver next-day.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The savings ignores the cost of the next-day premium add-on"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "Two extra states of direct coverage is marginal (47 vs 45), and it says nothing about service quality in those lanes, which is what matters for an on-time promise.",
+      "cited_artifact": "#3",
+      "atomic": [
+        "Coverage breadth says nothing about on-time service quality"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "FALSE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "UNGROUNDED",
+      "supports_claim": "DEFERRED_TO_JUDGE",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

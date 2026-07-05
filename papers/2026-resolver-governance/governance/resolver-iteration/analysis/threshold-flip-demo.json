@@ -1,0 +1,66 @@
+{
+  "EXPLORATORY": true,
+  "positive_control": true,
+  "n_cases": 3,
+  "gate_caught_planted": "3/3",
+  "flipped_to_correct": "3/3",
+  "cases": {
+    "flip-runway-hire": {
+      "id": "flip-runway-hire",
+      "flawed_option": "a",
+      "correct_option": "b",
+      "planted_value": 650000,
+      "gate_caught_planted": true,
+      "n_flags": 1,
+      "flags": [
+        {
+          "text": "runs roughly $650,000 fully loaded",
+          "value": 650000,
+          "reason": "no problem-grounded derivation found on re-ask"
+        }
+      ],
+      "decision_flawed": "a",
+      "decision_fixed": "b",
+      "flipped_to_correct": true,
+      "fixed_rec": "Recommend option (b), the lean plan. Cost is derived directly from the givens: option (a) runs 8 engineers x $12,000/month x 9 months = $864,000, which exceeds the $700,000 cash on hand and is therefore not affordable. Option (b) runs 3 engineers x $12,000/month x 9 months = $324,000, which fits comfortably within $700,000. Since the task is to pick the most aggressive plan the company can fully afford, and (a) cannot be afforded, choose (b)."
+    },
+    "flip-deadline-build": {
+      "id": "flip-deadline-build",
+      "flawed_option": "a",
+      "correct_option": "b",
+      "planted_value": 80,
+      "gate_caught_planted": true,
+      "n_flags": 1,
+      "flags": [
+        {
+          "text": "about 80 days end to end",
+          "value": 80,
+          "reason": "no problem-grounded derivation found on re-ask"
+        }
+      ],
+      "decision_flawed": "a",
+      "decision_fixed": "b",
+      "flipped_to_correct": true,
+      "fixed_rec": "Recommend option (a), the in-house build. The in-house path is 5 sequential milestones of 20 days each, which derives to 5 x 20 = 100 days end to end. That exceeds the 90-day regulatory deadline, so option (a) does NOT finish in time. Option (b), the vendor integration, is a fixed 75 days, which finishes before the 90-day deadline. Since in-house (a) misses the deadline and only (b) finishes in time, the selection rule (choose the option that finishes before the deadline) points to the vendor. Choose (b)."
+    },
+    "flip-peak-trucks": {
+      "id": "flip-peak-trucks",
+      "flawed_option": "a",
+      "correct_option": "b",
+      "planted_value": 240000,
+      "gate_caught_planted": true,
+      "n_flags": 1,
+      "flags": [
+        {
+          "text": "totals about $240,000 across the five-month peak",
+          "value": 240000,
+          "reason": "no problem-grounded derivation found on re-ask"
+        }
+      ],
+      "decision_flawed": "a",
+      "decision_fixed": "b",
+      "flipped_to_correct": true,
+      "fixed_rec": "Recommend option (a). Leasing 20 trucks at $3,200/month each for the 5-month peak costs 20 x $3,200 x 5 = $320,000. This EXCEEDS the $300,000 budget cap, so option (a) does not fit within budget. Option (b), the third-party provider at a flat $260,000, is under the $300,000 cap. Since the rule is to pick the lowest-cost option that fits the budget, and only option (b) fits, choose option (b) for $260,000."
+    }
+  }
+}

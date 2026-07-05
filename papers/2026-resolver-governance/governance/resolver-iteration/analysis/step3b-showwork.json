@@ -1,0 +1,1603 @@
+{
+  "EXPLORATORY": true,
+  "source": "step2",
+  "n_problems": 12,
+  "totals": {
+    "derivations": 48,
+    "UNCONFIRMED": 31,
+    "GROUNDED": 11,
+    "WEAK": 6
+  },
+  "coverage": {
+    "audit_claims_total": 44,
+    "covered_by_genuine_derivation": 28,
+    "covered_and_text_grounded": 8,
+    "coverage_pct": 63.6,
+    "grounded_pct": 18.2,
+    "note": "covered = a cross-vendor-matched producer derivation that is input-grounded, non-trivial and self-consistent; text-grounded also matches a number in the prose."
+  },
+  "genuine_derivation_rate": "42/48",
+  "text_grounded_rate": "11/48",
+  "faithful_catches": {
+    "worksheet_arithmetic_slips": 0,
+    "weak_or_vacuous": 6,
+    "uncheckable": 0,
+    "note": "worksheet slips are the extraction-free catch: producer expr != producer's own stated result. Zero here means the finals' load-bearing arithmetic is internally sound."
+  },
+  "self_extraction_noise": {
+    "genuine_derivations_whose_self_reported_prose_number_is_wrong": 26,
+    "of_genuine": 42,
+    "note": "asking the producer to ALSO self-report 'what the prose asserts' re-introduces the Step-3 extraction bottleneck: this many sound derivations carry a wrong self-report. The verdict deliberately does NOT gate on that field."
+  },
+  "head_to_head_vs_audit": [
+    {
+      "pid": "P-nat-gen-04",
+      "audit_desc": "Price increase to $11/mo represents +18% ARPU over $9/mo base",
+      "audit_expr": "(11 - 9) / 9 * 100",
+      "audit_computed": 22.2222,
+      "audit_asserted": 18,
+      "producer_status": "GROUNDED",
+      "producer_expr": "monthly_price * months * (1 - discount)",
+      "producer_inputs": {
+        "monthly_price": 9,
+        "months": 12,
+        "discount": 0.12
+      },
+      "producer_computed": 95.04,
+      "producer_asserted_in_prose": 95,
+      "extraction_artifact_confirmed": true
+    },
+    {
+      "pid": "P-nat-gen-05",
+      "audit_desc": "Cost advantage of (c) over (a), ~$650k/month",
+      "audit_expr": "6000 * 310 - (1800 * 92 + 700 * 265)",
+      "audit_computed": 1508900.0,
+      "audit_asserted": 650000,
+      "producer_status": "UNCONFIRMED",
+      "producer_expr": "a_tons * a_price - (silage_tons * silage_price + soy_tons * soy_price)",
+      "producer_inputs": {
+        "a_tons": 6000,
+        "a_price": 310,
+        "silage_tons": 1800,
+        "silage_price": 92,
+        "soy_tons": 700,
+        "soy_price": 265
+      },
+      "producer_computed": 1508900.0,
+      "producer_asserted_in_prose": 650000,
+      "extraction_artifact_confirmed": false
+    }
+  ],
+  "per_problem": [
+    {
+      "pid": "P-nat-anchor-fedramp",
+      "domain": "SaaS compliance / go-to-market",
+      "n_der": 4,
+      "grounded": 2,
+      "unconfirmed": 2,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 5,
+      "covered": 4,
+      "cov_grounded": 2
+    },
+    {
+      "pid": "P-nat-anchor-radiology",
+      "domain": "healthcare operations",
+      "n_der": 5,
+      "grounded": 0,
+      "unconfirmed": 5,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 6,
+      "covered": 3,
+      "cov_grounded": 0
+    },
+    {
+      "pid": "P-nat-anchor-storage",
+      "domain": "energy / utility planning",
+      "n_der": 4,
+      "grounded": 1,
+      "unconfirmed": 3,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 4,
+      "covered": 3,
+      "cov_grounded": 0
+    },
+    {
+      "pid": "P-nat-gen-01",
+      "domain": "public-sector policy / municipal budgeting",
+      "n_der": 3,
+      "grounded": 0,
+      "unconfirmed": 3,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 5,
+      "covered": 2,
+      "cov_grounded": 0
+    },
+    {
+      "pid": "P-nat-gen-02",
+      "domain": "industrial manufacturing / plant operations",
+      "n_der": 2,
+      "grounded": 0,
+      "unconfirmed": 1,
+      "worksheet_err": 0,
+      "weak": 1,
+      "uncheckable": 0,
+      "audit_claims": 2,
+      "covered": 1,
+      "cov_grounded": 0
+    },
+    {
+      "pid": "P-nat-gen-03",
+      "domain": "retail & e-commerce fulfillment",
+      "n_der": 5,
+      "grounded": 1,
+      "unconfirmed": 4,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 4,
+      "covered": 4,
+      "cov_grounded": 1
+    },
+    {
+      "pid": "P-nat-gen-04",
+      "domain": "digital media / subscription business",
+      "n_der": 7,
+      "grounded": 2,
+      "unconfirmed": 0,
+      "worksheet_err": 0,
+      "weak": 5,
+      "uncheckable": 0,
+      "audit_claims": 3,
+      "covered": 1,
+      "cov_grounded": 1
+    },
+    {
+      "pid": "P-nat-gen-05",
+      "domain": "agriculture & food supply chain",
+      "n_der": 6,
+      "grounded": 0,
+      "unconfirmed": 6,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 4,
+      "covered": 4,
+      "cov_grounded": 0
+    },
+    {
+      "pid": "P-nat-gen-06",
+      "domain": "higher education administration",
+      "n_der": 4,
+      "grounded": 3,
+      "unconfirmed": 1,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 6,
+      "covered": 3,
+      "cov_grounded": 3
+    },
+    {
+      "pid": "P-nat-gen-07",
+      "domain": "urban transportation / mobility",
+      "n_der": 2,
+      "grounded": 0,
+      "unconfirmed": 2,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 3,
+      "covered": 2,
+      "cov_grounded": 0
+    },
+    {
+      "pid": "P-nat-gen-08",
+      "domain": "clinical trial / biotech development",
+      "n_der": 3,
+      "grounded": 2,
+      "unconfirmed": 1,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 1,
+      "covered": 1,
+      "cov_grounded": 1
+    },
+    {
+      "pid": "P-nat-gen-09",
+      "domain": "commercial insurance / risk underwriting",
+      "n_der": 3,
+      "grounded": 0,
+      "unconfirmed": 3,
+      "worksheet_err": 0,
+      "weak": 0,
+      "uncheckable": 0,
+      "audit_claims": 1,
+      "covered": 0,
+      "cov_grounded": 0
+    }
+  ],
+  "detail": {
+    "P-nat-anchor-fedramp": {
+      "pid": "P-nat-anchor-fedramp",
+      "n_derivations": 4,
+      "n_audit_claims": 5,
+      "n_covered": 4,
+      "n_grounded": 2,
+      "derivations": [
+        {
+          "desc": "Option (b) time-to-live must land inside the 12-month agency deadline; the ~4 month go-live plus diligence sprint provides the slack that makes (b) viable within the clock, whereas (a)'s timeline does not fit.",
+          "expr": "deadline_months - b_live_months - diligence_days/days_per_month",
+          "inputs": {
+            "deadline_months": 12,
+            "b_live_months": 4,
+            "diligence_days": 45,
+            "days_per_month": 30
+          },
+          "computed": 6.5,
+          "result_claimed": 6.5,
+          "asserted_in_prose": 12,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Runway constraint disqualifying (a): the company has 14 months of runway but (a) takes 12-18 months and diverts capital, so its timeline exceeds runway, versus the 12-month deadline it must meet.",
+          "expr": "runway_months - (a_min_months + a_max_months)/2",
+          "inputs": {
+            "runway_months": 14,
+            "a_min_months": 12,
+            "a_max_months": 18
+          },
+          "computed": -1.0,
+          "result_claimed": -1.0,
+          "asserted_in_prose": 14,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "Net revenue retained under (b) after the 25% revenue share, which must be gross-margin-positive; drives the unit-economics gate.",
+          "expr": "deal_value * (1 - rev_share)",
+          "inputs": {
+            "deal_value": 4.2,
+            "rev_share": 0.25
+          },
+          "computed": 3.15,
+          "result_claimed": 3.15,
+          "asserted_in_prose": 25,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": false,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "Cost of (a) as a fraction of the annual deal value, illustrating why building directly is prohibitive relative to the runway-constrained revenue it would fund.",
+          "expr": "((a_cost_low + a_cost_high)/2) / deal_value",
+          "inputs": {
+            "a_cost_low": 1.8,
+            "a_cost_high": 2.5,
+            "deal_value": 4.2
+          },
+          "computed": 0.5119,
+          "result_claimed": 0.5119047619047619,
+          "asserted_in_prose": 2.5,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 0,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 2,
+          "b_index": 0,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 3,
+          "b_index": 1,
+          "b_status": "GROUNDED",
+          "covered": true,
+          "grounded": true
+        },
+        {
+          "a_index": 4,
+          "b_index": 2,
+          "b_status": "GROUNDED",
+          "covered": true,
+          "grounded": true
+        }
+      ]
+    },
+    "P-nat-anchor-radiology": {
+      "pid": "P-nat-anchor-radiology",
+      "n_derivations": 5,
+      "n_audit_claims": 6,
+      "n_covered": 3,
+      "n_grounded": 0,
+      "derivations": [
+        {
+          "desc": "Corrected FTE requirement for sustainable 24/7/365 overnight-only coverage; load-bearing because the recommendation explicitly rejects the 3-FTE figure and raises the feasibility bar based on a higher FTE count. Nights per year divided by realistic annual night-shifts per FTE after leave/CME/gaps (assumption: ~55 nights/FTE/yr sustainable).",
+          "expr": "nights_per_year / sustainable_nights_per_fte",
+          "inputs": {
+            "nights_per_year": 365,
+            "sustainable_nights_per_fte": 55
+          },
+          "computed": 6.6364,
+          "result_claimed": 6.636363636363637,
+          "asserted_in_prose": 6,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Annual cost of the incumbent flat 22% renewal, a baseline the decision rule compares against carve-out cost.",
+          "expr": "rate * studies * (1 + increase)",
+          "inputs": {
+            "rate": 38,
+            "studies": 9000,
+            "increase": 0.22
+          },
+          "computed": 417240.0,
+          "result_claimed": 417240.0,
+          "asserted_in_prose": 22,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Annual cost of premium 20-min SLA tier (+31%), one of the options weighed in the fallback decision rule.",
+          "expr": "rate * studies * (1 + premium)",
+          "inputs": {
+            "rate": 38,
+            "studies": 9000,
+            "premium": 0.31
+          },
+          "computed": 448020.0,
+          "result_claimed": 448020.0,
+          "asserted_in_prose": 31,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Stroke/trauma carve-out volume that (c) brings into dedicated-capacity fast lane; load-bearing because carve-out cost/feasibility depends on this subset size.",
+          "expr": "studies * acuity_fraction",
+          "inputs": {
+            "studies": 9000,
+            "acuity_fraction": 0.15
+          },
+          "computed": 1350.0,
+          "result_claimed": 1350.0,
+          "asserted_in_prose": 15,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Full in-house cost at corrected 6-7+ FTE, the cost bar that the recommendation says routes the fallback toward a vendor carve-out rather than DIY in-house.",
+          "expr": "fte * cost_per_fte",
+          "inputs": {
+            "fte": 6,
+            "cost_per_fte": 520000
+          },
+          "computed": 3120000.0,
+          "result_claimed": 3120000,
+          "asserted_in_prose": 6,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 2,
+          "b_index": 1,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 3,
+          "b_index": 2,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 4,
+          "b_index": 3,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 5,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-anchor-storage": {
+      "pid": "P-nat-anchor-storage",
+      "n_derivations": 4,
+      "n_audit_claims": 4,
+      "n_covered": 3,
+      "n_grounded": 0,
+      "derivations": [
+        {
+          "desc": "Battery net capex after 30% federal ITC \u2014 load-bearing for the budget floor and for anchoring on the battery despite high capex",
+          "expr": "capex * (1 - itc)",
+          "inputs": {
+            "capex": 58,
+            "itc": 0.3
+          },
+          "computed": 40.6,
+          "result_claimed": 40.6,
+          "asserted_in_prose": 53,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "DR firm low-end MW at enforceable realized-curtailment fraction \u2014 used to justify crediting DR only at its low end (~17-19 MW)",
+          "expr": "target * low_frac",
+          "inputs": {
+            "target": 35,
+            "low_frac": 0.55
+          },
+          "computed": 19.25,
+          "result_claimed": 19.25,
+          "asserted_in_prose": 19,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "DR firm lower-bound MW after opt-out erosion below the 55% floor \u2014 supports the ~17 MW end of the credited range",
+          "expr": "target * eroded_frac",
+          "inputs": {
+            "target": 35,
+            "eroded_frac": 0.49
+          },
+          "computed": 17.15,
+          "result_claimed": 17.15,
+          "asserted_in_prose": 17,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "Battery capacity degradation over the year-3 need horizon \u2014 affects whether 40 MW nameplate still meets the accredited need",
+          "expr": "nameplate * (1 - degrade) ** years",
+          "inputs": {
+            "nameplate": 40,
+            "degrade": 0.025,
+            "years": 3
+          },
+          "computed": 37.0744,
+          "result_claimed": 37.076875,
+          "asserted_in_prose": 40,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 1,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": 0,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 2,
+          "b_index": 3,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 3,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-gen-01": {
+      "pid": "P-nat-gen-01",
+      "n_derivations": 3,
+      "n_audit_claims": 5,
+      "n_covered": 2,
+      "n_grounded": 0,
+      "derivations": [
+        {
+          "desc": "Reserve gap in percentage points that must be closed to meet the 12% policy floor; the decision rests on this being a binding additive requirement on top of the gap.",
+          "expr": "policy - current",
+          "inputs": {
+            "policy": 12.0,
+            "current": 10.4
+          },
+          "computed": 1.6,
+          "result_claimed": 1.6,
+          "asserted_in_prose": 12.0,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Dollar size of the reserve shortfall the supplemental increment must cover, estimated as ~1.6 points of expenditures; used to justify that no enumerated package closes gap+reserve alone and a supplemental is needed.",
+          "expr": "gap_points / 100 * expenditures_est",
+          "inputs": {
+            "gap_points": 1.6,
+            "expenditures_est": 172.0
+          },
+          "computed": 2.752,
+          "result_claimed": 2.752,
+          "asserted_in_prose": 3.0,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Margin of Option (a) over the required gap, showing how much cushion (a) has if the ambulance fee is haircut; supports the claim that fleet deferral can backfill.",
+          "expr": "a_total - gap",
+          "inputs": {
+            "a_total": 9.4,
+            "gap": 9.2
+          },
+          "computed": 0.2,
+          "result_claimed": 0.20000000000000107,
+          "asserted_in_prose": 9.4,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": 1,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 2,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 3,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 4,
+          "b_index": 2,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-gen-02": {
+      "pid": "P-nat-gen-02",
+      "n_derivations": 2,
+      "n_audit_claims": 2,
+      "n_covered": 1,
+      "n_grounded": 0,
+      "derivations": [
+        {
+          "desc": "Total cost of an unexpected trip (lost margin plus disposal), which the seal-kit expedite decision is weighed against as insurance",
+          "expr": "lost_margin + disposal",
+          "inputs": {
+            "lost_margin": 420000,
+            "disposal": 60000
+          },
+          "computed": 480000.0,
+          "result_claimed": 480000,
+          "asserted_in_prose": 480000,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Cost of the expedited seal kit, compared against the trip cost to justify ordering it as insurance regardless of scope",
+          "expr": "kit_cost",
+          "inputs": {
+            "kit_cost": 22000
+          },
+          "computed": 22000.0,
+          "result_claimed": 22000,
+          "asserted_in_prose": 22000,
+          "input_grounded": true,
+          "nontrivial": false,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "WEAK"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 0,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-gen-03": {
+      "pid": "P-nat-gen-03",
+      "n_derivations": 5,
+      "n_audit_claims": 4,
+      "n_covered": 4,
+      "n_grounded": 1,
+      "derivations": [
+        {
+          "desc": "Option (c) total direct cost: incremental per-order fees on 40% of forecast volume over the peak period plus onboarding, used to show (c) exceeds the $120K budget cap",
+          "expr": "offload_frac * daily_orders * days * per_order_fee + onboarding",
+          "inputs": {
+            "offload_frac": 0.4,
+            "daily_orders": 3500,
+            "days": 36,
+            "per_order_fee": 1.8,
+            "onboarding": 35000
+          },
+          "computed": 125720.0,
+          "result_claimed": 125660.0,
+          "asserted_in_prose": 125700,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Incremental per-order fee portion of (c) alone, to establish the ~$90.7K component",
+          "expr": "offload_frac * daily_orders * days * per_order_fee",
+          "inputs": {
+            "offload_frac": 0.4,
+            "daily_orders": 3500,
+            "days": 36,
+            "per_order_fee": 1.8
+          },
+          "computed": 90720.0,
+          "result_claimed": 90720.0,
+          "asserted_in_prose": 90700,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "In-house residual volume (c) leaves the pack line to handle (60% of forecast), which determines whether the binding SLA constraint is still exposed under (c)",
+          "expr": "in_house_frac * daily_orders",
+          "inputs": {
+            "in_house_frac": 0.6,
+            "daily_orders": 3500
+          },
+          "computed": 2100.0,
+          "result_claimed": 2100.0,
+          "asserted_in_prose": 2100,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "Option (b) labor cost, full 30-temp configuration over 8 weeks at 16 hrs/temp weekly, plus training/agency fees \u2014 establishes (b) stays in budget",
+          "expr": "temps * rate * hrs_per_week * weeks + training",
+          "inputs": {
+            "temps": 30,
+            "rate": 24,
+            "hrs_per_week": 16,
+            "weeks": 8,
+            "training": 12000
+          },
+          "computed": 104160.0,
+          "result_claimed": 104160.0,
+          "asserted_in_prose": 104200,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Option (b) reduced labor config (24 temps + OT), used as the fallback cost when weekday capacity is sufficient",
+          "expr": "temps * rate * hrs_per_week * weeks + training",
+          "inputs": {
+            "temps": 24,
+            "rate": 24,
+            "hrs_per_week": 16,
+            "weeks": 8,
+            "training": 12000
+          },
+          "computed": 85728.0,
+          "result_claimed": 85680.0,
+          "asserted_in_prose": 85700,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 1,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": 0,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 2,
+          "b_index": 2,
+          "b_status": "GROUNDED",
+          "covered": true,
+          "grounded": true
+        },
+        {
+          "a_index": 3,
+          "b_index": 3,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-gen-06": {
+      "pid": "P-nat-gen-06",
+      "n_derivations": 4,
+      "n_audit_claims": 6,
+      "n_covered": 3,
+      "n_grounded": 3,
+      "derivations": [
+        {
+          "desc": "Net tuition revenue after enrollment-decline haircut; determines how much of the $4.2M gap the tuition lever verifiably covers",
+          "expr": "gross_net - decline_haircut",
+          "inputs": {
+            "gross_net": 3.9,
+            "decline_haircut": 1.4
+          },
+          "computed": 2.5,
+          "result_claimed": 2.5,
+          "asserted_in_prose": 2.5,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "Residual gap remaining after verified-conservative tuition net, which must be closed by vacant-staff eliminations",
+          "expr": "gap - tuition_net",
+          "inputs": {
+            "gap": 4.2,
+            "tuition_net": 2.5
+          },
+          "computed": 1.7,
+          "result_claimed": 1.7,
+          "asserted_in_prose": 1.7,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "Advising caseload increase under option (a) that threatens retention target",
+          "expr": "raised - current",
+          "inputs": {
+            "current": 310,
+            "raised": 420
+          },
+          "computed": 110.0,
+          "result_claimed": 110,
+          "asserted_in_prose": 420,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Retention gap that must be closed to avoid performance-funding penalty; drives prioritizing retention protection",
+          "expr": "target - current",
+          "inputs": {
+            "target": 78,
+            "current": 74
+          },
+          "computed": 4.0,
+          "result_claimed": 4,
+          "asserted_in_prose": 78,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "GROUNDED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 0,
+          "b_status": "GROUNDED",
+          "covered": true,
+          "grounded": true
+        },
+        {
+          "a_index": 1,
+          "b_index": 1,
+          "b_status": "GROUNDED",
+          "covered": true,
+          "grounded": true
+        },
+        {
+          "a_index": 2,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 3,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 4,
+          "b_index": 3,
+          "b_status": "GROUNDED",
+          "covered": true,
+          "grounded": true
+        },
+        {
+          "a_index": 5,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-gen-05": {
+      "pid": "P-nat-gen-05",
+      "n_derivations": 6,
+      "n_audit_claims": 4,
+      "n_covered": 4,
+      "n_grounded": 0,
+      "derivations": [
+        {
+          "desc": "Baseline current forage cost per month under existing contract (6,000 tons at $245/ton), used as the reference point for comparing option costs.",
+          "expr": "tons * price",
+          "inputs": {
+            "tons": 6000,
+            "price": 245
+          },
+          "computed": 1470000.0,
+          "result_claimed": 1470000,
+          "asserted_in_prose": 650000,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Option (a) cost per month: take-or-pay for 6,000 tons at $310/ton. This is the fallback option cost.",
+          "expr": "tons * price",
+          "inputs": {
+            "tons": 6000,
+            "price": 310
+          },
+          "computed": 1860000.0,
+          "result_claimed": 1860000,
+          "asserted_in_prose": 650000,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Option (c) forage cost per month: 1,800 tons corn silage at $92/ton plus 700 tons soy hull pellets at $265/ton. This is the cost basis for the recommended option.",
+          "expr": "silage_tons * silage_price + soy_tons * soy_price",
+          "inputs": {
+            "silage_tons": 1800,
+            "silage_price": 92,
+            "soy_tons": 700,
+            "soy_price": 265
+          },
+          "computed": 351100.0,
+          "result_claimed": 351100,
+          "asserted_in_prose": 650000,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Monthly cost advantage of option (c) versus option (a): the ~$650k/month savings figure that drives the decision to prefer (c).",
+          "expr": "a_tons * a_price - (silage_tons * silage_price + soy_tons * soy_price)",
+          "inputs": {
+            "a_tons": 6000,
+            "a_price": 310,
+            "silage_tons": 1800,
+            "silage_price": 92,
+            "soy_tons": 700,
+            "soy_price": 265
+          },
+          "computed": 1508900.0,
+          "result_claimed": 1508900,
+          "asserted_in_prose": 650000,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "The nominal price-tier delta cost of option (c): 15% of 2.5M gallons downgraded at $0.12/gallon less, the quality-tail cost the Challenger claims understates the true risk.",
+          "expr": "production_gal * downgrade_pct * delta_per_gal",
+          "inputs": {
+            "production_gal": 2500000,
+            "downgrade_pct": 0.15,
+            "delta_per_gal": 0.12
+          },
+          "computed": 45000.0,
+          "result_claimed": 45000,
+          "asserted_in_prose": 45000,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Penalty exposure on fixed retail contracts if milk output drops: $0.18/gallon on 1.2M gallons/month, part of the tail-risk quantification for grade-linked contracts.",
+          "expr": "fixed_gal * penalty_per_gal",
+          "inputs": {
+            "fixed_gal": 1200000,
+            "penalty_per_gal": 0.18
+          },
+          "computed": 216000.0,
+          "result_claimed": 216000,
+          "asserted_in_prose": 1200000,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 1,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": 2,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 2,
+          "b_index": 3,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 3,
+          "b_index": 4,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-gen-04": {
+      "pid": "P-nat-gen-04",
+      "n_derivations": 7,
+      "n_audit_claims": 3,
+      "n_covered": 1,
+      "n_grounded": 1,
+      "derivations": [
+        {
+          "desc": "Annual plan pulls forward 12 months of cash per subscriber at the discounted annual price, which is the core cash-improvement mechanism that makes (b) win in its cell",
+          "expr": "annual_price",
+          "inputs": {
+            "annual_price": 90
+          },
+          "computed": 90.0,
+          "result_claimed": 90,
+          "asserted_in_prose": 90,
+          "input_grounded": true,
+          "nontrivial": false,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "WEAK"
+        },
+        {
+          "desc": "Discounted annual price implied by the recommended alternative discount range (10-15%) applied to 12 months at $9/mo, showing the safeguard's suggested pricing rather than the stated 20% discount",
+          "expr": "monthly_price * months * (1 - discount)",
+          "inputs": {
+            "monthly_price": 9,
+            "months": 12,
+            "discount": 0.12
+          },
+          "computed": 95.04,
+          "result_claimed": 95.04,
+          "asserted_in_prose": 95,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "Option (a) new monthly price that raises collected ARPU without creating deferred-revenue liability; load-bearing for the (a) routing",
+          "expr": "current_price * (1 + arpu_uplift)",
+          "inputs": {
+            "current_price": 9,
+            "arpu_uplift": 0.18
+          },
+          "computed": 10.62,
+          "result_claimed": 10.62,
+          "asserted_in_prose": 11,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "The prior price-increase cancellation spike used to model (a)'s downside risk",
+          "expr": "prior_spike",
+          "inputs": {
+            "prior_spike": 6
+          },
+          "computed": 6.0,
+          "result_claimed": 6,
+          "asserted_in_prose": 6,
+          "input_grounded": true,
+          "nontrivial": false,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "WEAK"
+        },
+        {
+          "desc": "Forecast churn under (a) used to model the downside of the fallback option",
+          "expr": "forecast_churn",
+          "inputs": {
+            "forecast_churn": 5.5
+          },
+          "computed": 5.5,
+          "result_claimed": 5.5,
+          "asserted_in_prose": 5.5,
+          "input_grounded": true,
+          "nontrivial": false,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "WEAK"
+        },
+        {
+          "desc": "Conversion-drop revert threshold for (b)'s conversion guard, taken from the stated 8% friction figure",
+          "expr": "conversion_drop",
+          "inputs": {
+            "conversion_drop": 8
+          },
+          "computed": 8.0,
+          "result_claimed": 8,
+          "asserted_in_prose": 8,
+          "input_grounded": true,
+          "nontrivial": false,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "WEAK"
+        },
+        {
+          "desc": "Contractor cost that makes (c) inferior on headcount/cash grounds",
+          "expr": "contractor_cost",
+          "inputs": {
+            "contractor_cost": 4000
+          },
+          "computed": 4000.0,
+          "result_claimed": 4000,
+          "asserted_in_prose": 4000,
+          "input_grounded": true,
+          "nontrivial": false,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "WEAK"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 0,
+          "b_status": "WEAK",
+          "covered": false,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": 2,
+          "b_status": "GROUNDED",
+          "covered": true,
+          "grounded": true
+        },
+        {
+          "a_index": 2,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-gen-08": {
+      "pid": "P-nat-gen-08",
+      "n_derivations": 3,
+      "n_audit_claims": 1,
+      "n_covered": 1,
+      "n_grounded": 1,
+      "derivations": [
+        {
+          "desc": "Gross runway in months before any trial-specific spend, used to show (b) cannot be launched and operated on cash and that the fallback must switch to (c)",
+          "expr": "cash / burn",
+          "inputs": {
+            "cash": 38,
+            "burn": 4.5
+          },
+          "computed": 8.4444,
+          "result_claimed": 8.444444444444445,
+          "asserted_in_prose": 8.4,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "GROUNDED"
+        },
+        {
+          "desc": "Gap between (b)'s cost and available cash, showing (b) cannot be funded without incremental capital that by assumption does not exist",
+          "expr": "cost_b - cash",
+          "inputs": {
+            "cost_b": 55,
+            "cash": 38
+          },
+          "computed": 17.0,
+          "result_claimed": 17,
+          "asserted_in_prose": 55,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Whether (c)'s cost fits within available cash, making it the only executable/survivable path under the binding constraint",
+          "expr": "cash - cost_c",
+          "inputs": {
+            "cash": 38,
+            "cost_c": 18
+          },
+          "computed": 20.0,
+          "result_claimed": 20,
+          "asserted_in_prose": 18,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": true,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "GROUNDED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 0,
+          "b_status": "GROUNDED",
+          "covered": true,
+          "grounded": true
+        }
+      ]
+    },
+    "P-nat-gen-07": {
+      "pid": "P-nat-gen-07",
+      "n_derivations": 2,
+      "n_audit_claims": 3,
+      "n_covered": 2,
+      "n_grounded": 0,
+      "derivations": [
+        {
+          "desc": "OTP improvement required from baseline to target \u2014 the binding KPI the recommendation says only package (a) can structurally meet",
+          "expr": "target - baseline",
+          "inputs": {
+            "target": 78,
+            "baseline": 62
+          },
+          "computed": 16.0,
+          "result_claimed": 16,
+          "asserted_in_prose": 78,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Total pilot budget cap that scope must be locked to, combining capex and ops for package (a)",
+          "expr": "capex + ops",
+          "inputs": {
+            "capex": 2.8,
+            "ops": 0.6
+          },
+          "computed": 3.4,
+          "result_claimed": 3.4,
+          "asserted_in_prose": 3.2,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": 1,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 1,
+          "b_index": 0,
+          "b_status": "UNCONFIRMED",
+          "covered": true,
+          "grounded": false
+        },
+        {
+          "a_index": 2,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        }
+      ]
+    },
+    "P-nat-gen-09": {
+      "pid": "P-nat-gen-09",
+      "n_derivations": 3,
+      "n_audit_claims": 1,
+      "n_covered": 0,
+      "n_grounded": 0,
+      "derivations": [
+        {
+          "desc": "Time buffer between the treaty bind-decision cutoff and the effective date, establishing the window available to resolve subjectivities before inception",
+          "expr": "days_to_inception - cutoff_before_inception",
+          "inputs": {
+            "days_to_inception": 21,
+            "cutoff_before_inception": 10
+          },
+          "computed": 11.0,
+          "result_claimed": 11,
+          "asserted_in_prose": 10,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": false,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Rate-on-limit for option (a), the hazard-priced choice, used to justify pricing adequacy versus (b)",
+          "expr": "premium_a / limit_a",
+          "inputs": {
+            "premium_a": 3200000,
+            "limit_a": 10000000
+          },
+          "computed": 0.32,
+          "result_claimed": 0.32,
+          "asserted_in_prose": 0.32,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        },
+        {
+          "desc": "Rate-on-limit for option (b), shown to be materially lower than (a) despite full limit and a live dominant peril, supporting the claim that (b) is underpriced",
+          "expr": "premium_b / limit_b",
+          "inputs": {
+            "premium_b": 2600000,
+            "limit_b": 12500000
+          },
+          "computed": 0.208,
+          "result_claimed": 0.208,
+          "asserted_in_prose": 0.208,
+          "input_grounded": true,
+          "nontrivial": true,
+          "self_consistent": true,
+          "result_in_prose": false,
+          "snippet_present": true,
+          "self_report_matches_computed": true,
+          "eval_error": null,
+          "status": "UNCONFIRMED"
+        }
+      ],
+      "coverage_detail": [
+        {
+          "a_index": 0,
+          "b_index": -1,
+          "b_status": null,
+          "covered": false,
+          "grounded": false
+        }
+      ]
+    }
+  }
+}

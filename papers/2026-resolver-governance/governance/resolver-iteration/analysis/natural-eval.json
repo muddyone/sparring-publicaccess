@@ -1,0 +1,433 @@
+{
+  "EXPLORATORY": true,
+  "n": 12,
+  "k": 3,
+  "cap": 2,
+  "ruler_verdict_distribution": {
+    "B_BETTER": 11,
+    "EQUIVALENT": 1
+  },
+  "gate_fire_rate": "0/12",
+  "ruler_vs_panel_agreement": {
+    "claude(circular)": "4/12",
+    "gpt(independent)": "4/12"
+  },
+  "rows": [
+    {
+      "id": "P-nat-anchor-fedramp",
+      "domain": "SaaS compliance / go-to-market",
+      "source": "anchor(authored)",
+      "ruler": "B_BETTER",
+      "panel_claude": "B_BETTER",
+      "panel_gpt": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": true,
+      "agree_gpt": true
+    },
+    {
+      "id": "P-nat-anchor-radiology",
+      "domain": "healthcare operations",
+      "source": "anchor(authored)",
+      "ruler": "B_BETTER",
+      "panel_claude": "EQUIVALENT",
+      "panel_gpt": "EQUIVALENT",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": false,
+      "agree_gpt": false
+    },
+    {
+      "id": "P-nat-anchor-storage",
+      "domain": "energy / utility planning",
+      "source": "anchor(authored)",
+      "ruler": "B_BETTER",
+      "panel_claude": "B_BETTER",
+      "panel_gpt": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": true,
+      "agree_gpt": true
+    },
+    {
+      "id": "P-nat-gen-01",
+      "domain": "public-sector policy / municipal budgeting",
+      "source": "generated(gpt)",
+      "ruler": "B_BETTER",
+      "panel_claude": "A_BETTER",
+      "panel_gpt": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": false,
+      "agree_gpt": true
+    },
+    {
+      "id": "P-nat-gen-02",
+      "domain": "industrial manufacturing / plant operations",
+      "source": "generated(gpt)",
+      "ruler": "B_BETTER",
+      "panel_claude": "B_BETTER",
+      "panel_gpt": "EQUIVALENT",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": true,
+      "agree_gpt": false
+    },
+    {
+      "id": "P-nat-gen-03",
+      "domain": "retail & e-commerce fulfillment",
+      "source": "generated(gpt)",
+      "ruler": "B_BETTER",
+      "panel_claude": "EQUIVALENT",
+      "panel_gpt": "A_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": false,
+      "agree_gpt": false
+    },
+    {
+      "id": "P-nat-gen-04",
+      "domain": "digital media / subscription business",
+      "source": "generated(gpt)",
+      "ruler": "B_BETTER",
+      "panel_claude": "EQUIVALENT",
+      "panel_gpt": "EQUIVALENT",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": false,
+      "agree_gpt": false
+    },
+    {
+      "id": "P-nat-gen-05",
+      "domain": "agriculture & food supply chain",
+      "source": "generated(gpt)",
+      "ruler": "B_BETTER",
+      "panel_claude": "B_BETTER",
+      "panel_gpt": "EQUIVALENT",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": true,
+      "agree_gpt": false
+    },
+    {
+      "id": "P-nat-gen-06",
+      "domain": "higher education administration",
+      "source": "generated(gpt)",
+      "ruler": "EQUIVALENT",
+      "panel_claude": "A_BETTER",
+      "panel_gpt": "EQUIVALENT",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "KEEP_R0_equivalent",
+      "agree_claude": false,
+      "agree_gpt": true
+    },
+    {
+      "id": "P-nat-gen-07",
+      "domain": "urban transportation / mobility",
+      "source": "generated(gpt)",
+      "ruler": "B_BETTER",
+      "panel_claude": "EQUIVALENT",
+      "panel_gpt": "A_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": false,
+      "agree_gpt": false
+    },
+    {
+      "id": "P-nat-gen-08",
+      "domain": "clinical trial / biotech development",
+      "source": "generated(gpt)",
+      "ruler": "B_BETTER",
+      "panel_claude": "EQUIVALENT",
+      "panel_gpt": "A_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": false,
+      "agree_gpt": false
+    },
+    {
+      "id": "P-nat-gen-09",
+      "domain": "commercial insurance / risk underwriting",
+      "source": "generated(gpt)",
+      "ruler": "B_BETTER",
+      "panel_claude": "EQUIVALENT",
+      "panel_gpt": "A_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "agree_claude": false,
+      "agree_gpt": false
+    }
+  ],
+  "arch_detail": {
+    "P-nat-gen-04": {
+      "id": "P-nat-gen-04",
+      "domain": "digital media / subscription business",
+      "source": "generated(gpt)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-gen-03": {
+      "id": "P-nat-gen-03",
+      "domain": "retail & e-commerce fulfillment",
+      "source": "generated(gpt)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-gen-01": {
+      "id": "P-nat-gen-01",
+      "domain": "public-sector policy / municipal budgeting",
+      "source": "generated(gpt)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-gen-02": {
+      "id": "P-nat-gen-02",
+      "domain": "industrial manufacturing / plant operations",
+      "source": "generated(gpt)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-gen-05": {
+      "id": "P-nat-gen-05",
+      "domain": "agriculture & food supply chain",
+      "source": "generated(gpt)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-anchor-fedramp": {
+      "id": "P-nat-anchor-fedramp",
+      "domain": "SaaS compliance / go-to-market",
+      "source": "anchor(authored)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-anchor-radiology": {
+      "id": "P-nat-anchor-radiology",
+      "domain": "healthcare operations",
+      "source": "anchor(authored)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-anchor-storage": {
+      "id": "P-nat-anchor-storage",
+      "domain": "energy / utility planning",
+      "source": "anchor(authored)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-gen-06": {
+      "id": "P-nat-gen-06",
+      "domain": "higher education administration",
+      "source": "generated(gpt)",
+      "ruler_initial": "EQUIVALENT",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "KEEP_R0_equivalent",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "EQUIVALENT"
+        }
+      ]
+    },
+    "P-nat-gen-07": {
+      "id": "P-nat-gen-07",
+      "domain": "urban transportation / mobility",
+      "source": "generated(gpt)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-gen-08": {
+      "id": "P-nat-gen-08",
+      "domain": "clinical trial / biotech development",
+      "source": "generated(gpt)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    },
+    "P-nat-gen-09": {
+      "id": "P-nat-gen-09",
+      "domain": "commercial insurance / risk underwriting",
+      "source": "generated(gpt)",
+      "ruler_initial": "B_BETTER",
+      "gate_fired": false,
+      "rewrites": 0,
+      "outcome": "ACCEPT_R1",
+      "trajectory": [
+        {
+          "stage": "pairwise",
+          "iter": 0,
+          "verdict": "B_BETTER"
+        },
+        {
+          "stage": "gate",
+          "iter": 0,
+          "flagged": false,
+          "contradiction": ""
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": "DC3-EXAMPLE",
+  "dc": "DC3",
+  "domain": "API gateway / auth",
+  "answer_key": {
+    "planted_defect": "The recommendation tells the gateway to read each token's `alg` header and verify with whatever algorithm the token declares. Trusting the attacker-controllable `alg` header enables a JWT algorithm-confusion attack (RS256->HS256, signing with the public key as the HMAC secret). Verifiers must pin the expected algorithm(s) per key.",
+    "artifact_ref": "CWE-347",
+    "note": "Distractors (short-lived tokens, refresh rotation) make the design look secure. Seeded anchor = a known TRUE_POSITIVE."
+  },
+
+  "recommendation": "EXAMPLE (illustrative, not a real v3 case). Recommendation: 'The gateway should accept JWTs signed with either RS256 or HS256 to support our mixed fleet. Read the token's `alg` header and verify with the corresponding algorithm. Use 15-minute access tokens with refresh-token rotation for safety.'",
+
+  "briefing": {
+    "context": "EXAMPLE briefing. A platform team is standardizing JWT verification at an API gateway that fronts a mixed fleet (some services issue RS256, some HS256). The decision: how should the gateway choose the verification algorithm?",
+    "facts": [
+      { "id": "F1", "text": "The fleet contains services issuing both RS256 (asymmetric) and HS256 (symmetric) tokens.", "source": "briefing context" },
+      { "id": "F2", "text": "RFC 8725 (JWT BCP) §3.1 warns that verifiers MUST NOT trust the `alg` header to select the verification algorithm; they must pin expected algorithms per key/issuer.", "source": "RFC 8725" }
+    ]
+  },
+
+  "prompts": {
+    "B": "EXAMPLE prompt B (neutral pass): 'Review the following recommendation against the briefing and list any concerns.'",
+    "S": "EXAMPLE prompt S (SPARRING): 'Generator: defend the recommendation. Challenger (different evidence base): attack it; a concern counts only if it cites a checkable artifact (a briefing fact-id F#, a CWE, an RFC, a DOI). Iterate to convergence.'",
+    "T": "EXAMPLE prompt T (placebo): 'Be skeptical and push back on the recommendation. (No grounding/artifact discipline.)'"
+  },
+
+  "outputs": {
+    "B": "EXAMPLE output B: 'The 15-minute token lifetime is reasonable. One concern: selecting the algorithm from the token header is unsafe.'",
+    "S": {
+      "generator": "EXAMPLE: 'Header-driven algorithm selection is flexible and supports the mixed fleet (F1).'",
+      "challenger": "EXAMPLE: 'Trusting the `alg` header is the RFC 8725 anti-pattern (F2); it enables RS256->HS256 confusion (CWE-347). Pin algorithms per key.'",
+      "converged": "EXAMPLE converged critique: 'Reject header-driven algorithm selection; pin expected algorithms per key/issuer per RFC 8725 (F2). Refresh rotation is fine.'"
+    },
+    "T": "EXAMPLE output T: 'I would not trust this design; the algorithm handling feels risky and the token lifetime might be too short.'"
+  },
+
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "Selecting the verification algorithm from the token's `alg` header is the RFC 8725 anti-pattern (F2) and enables RS256->HS256 algorithm confusion (CWE-347); pin algorithms per key.",
+      "cited_artifact": "F2",
+      "atomic": [
+        "Selecting the verification algorithm from the token `alg` header violates RFC 8725 (F2).",
+        "Header-driven algorithm selection enables RS256->HS256 confusion (CWE-347)."
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "The mixed RS256/HS256 fleet (F1) is the stated constraint driving the design.",
+      "cited_artifact": "F1",
+      "atomic": ["The fleet issues both RS256 and HS256 tokens (F1)."]
+    },
+    {
+      "id": "c3",
+      "condition": "T",
+      "text": "The token lifetime might be too short and cause usability problems.",
+      "cited_artifact": null,
+      "atomic": ["A 15-minute access-token lifetime may be too short for usability."]
+    }
+  ],
+
+  "codings": [
+    { "concern_id": "c1", "coder": "claude-opus", "substrate": "anthropic", "ts": "2026-06-28T00:00:00Z", "legitimacy": "TRUE_POSITIVE", "grounding": "GROUNDED_VERIFIED" },
+    { "concern_id": "c1", "coder": "gpt", "substrate": "openai", "ts": "2026-06-28T00:00:00Z", "legitimacy": "TRUE_POSITIVE", "grounding": "GROUNDED_VERIFIED" },
+    { "concern_id": "c2", "coder": "claude-opus", "substrate": "anthropic", "ts": "2026-06-28T00:00:00Z", "legitimacy": "FALSE_POSITIVE", "grounding": "GROUNDED_VERIFIED" },
+    { "concern_id": "c3", "coder": "claude-opus", "substrate": "anthropic", "ts": "2026-06-28T00:00:00Z", "legitimacy": "FALSE_POSITIVE", "grounding": "UNGROUNDED" }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "EXPLORATORY": true,
+  "k": 5,
+  "instrument": {
+    "sensitivity_B_present": "8/8",
+    "specificity_A_absent": "8/8"
+  },
+  "delivered_output_flaw_free": "8/8",
+  "rows": [
+    {
+      "pid": "P-multiregion-ledger",
+      "loop_outcome": "REJECT",
+      "rewrites": 0,
+      "delivered": "A",
+      "flaw_in_A": false,
+      "A_votes": 0,
+      "flaw_in_B": true,
+      "B_votes": 5,
+      "flaw_in_Bprime": null,
+      "delivered_flaw_present": false,
+      "delivered_evidence": ""
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "loop_outcome": "REJECT",
+      "rewrites": 1,
+      "delivered": "A",
+      "flaw_in_A": false,
+      "A_votes": 0,
+      "flaw_in_B": true,
+      "B_votes": 5,
+      "flaw_in_Bprime": false,
+      "delivered_flaw_present": false,
+      "delivered_evidence": ""
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "loop_outcome": "REJECT",
+      "rewrites": 0,
+      "delivered": "A",
+      "flaw_in_A": false,
+      "A_votes": 0,
+      "flaw_in_B": true,
+      "B_votes": 5,
+      "flaw_in_Bprime": null,
+      "delivered_flaw_present": false,
+      "delivered_evidence": ""
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "loop_outcome": "REJECT",
+      "rewrites": 0,
+      "delivered": "A",
+      "flaw_in_A": false,
+      "A_votes": 0,
+      "flaw_in_B": true,
+      "B_votes": 5,
+      "flaw_in_Bprime": null,
+      "delivered_flaw_present": false,
+      "delivered_evidence": ""
+    },
+    {
+      "pid": "P-churn-winback",
+      "loop_outcome": "REJECT",
+      "rewrites": 0,
+      "delivered": "A",
+      "flaw_in_A": false,
+      "A_votes": 0,
+      "flaw_in_B": true,
+      "B_votes": 5,
+      "flaw_in_Bprime": null,
+      "delivered_flaw_present": false,
+      "delivered_evidence": ""
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "loop_outcome": "REJECT",
+      "rewrites": 0,
+      "delivered": "A",
+      "flaw_in_A": false,
+      "A_votes": 0,
+      "flaw_in_B": true,
+      "B_votes": 5,
+      "flaw_in_Bprime": null,
+      "delivered_flaw_present": false,
+      "delivered_evidence": ""
+    },
+    {
+      "pid": "P-pricing-migration",
+      "loop_outcome": "REJECT",
+      "rewrites": 0,
+      "delivered": "A",
+      "flaw_in_A": false,
+      "A_votes": 0,
+      "flaw_in_B": true,
+      "B_votes": 5,
+      "flaw_in_Bprime": null,
+      "delivered_flaw_present": false,
+      "delivered_evidence": ""
+    },
+    {
+      "pid": "P-capex-automation",
+      "loop_outcome": "ACCEPT",
+      "rewrites": 1,
+      "delivered": "B'",
+      "flaw_in_A": false,
+      "A_votes": 0,
+      "flaw_in_B": true,
+      "B_votes": 5,
+      "flaw_in_Bprime": false,
+      "delivered_flaw_present": false,
+      "delivered_evidence": ""
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[
+ {
+  "id": "DC3-upload_c1",
+  "artifact_ref": "#2",
+  "concern_text": "Serving uploads from app.example.com (#1) with the original extension and inferred Content-Type lets an uploaded .svg or .html render as active content in the session origin \u2014 stored XSS. The security baseline #2 requires a separate origin or Content-Disposition: attachment + nosniff.",
+  "pack_text": "A web app lets signed-in users upload profile attachments (images, PDFs, occasionally SVGs). The team must decide how to store and serve these untrusted files. The app is a single-page app with cookie-based sessions. The decision is judged against the team's published security baseline.\n#1: The app is served from https://app.example.com and uses cookie-based sessions scoped to that origin; any active content (HTML/JS/SVG) loaded from that origin runs with access to the session.\n#2: The team security baseline (aligned with OWASP File Upload guidance) requires untrusted uploads to be served from a SEPARATE sandboxed origin, or with `Content-Disposition: attachment` AND `X-Content-Type-Options: nosniff`; and requires dangerous/executable extensions (.html, .htm, .xhtml, .svg, .js) to be blocked or neutralized before storage.\n#3: Uploads are surfaced as direct links in the app UI; clicking one navigates the browser to the file URL in the same tab.",
+  "artifact_type": "pack"
+ },
+ {
+  "id": "DC3-upload_c2",
+  "artifact_ref": "CWE-434",
+  "concern_text": "Dangerous/executable extensions are never blocked, so the gateway accepts and serves arbitrary file types \u2014 CWE-434, unrestricted upload of file with dangerous type.",
+  "pack_text": "A web app lets signed-in users upload profile attachments (images, PDFs, occasionally SVGs). The team must decide how to store and serve these untrusted files. The app is a single-page app with cookie-based sessions. The decision is judged against the team's published security baseline.\n#1: The app is served from https://app.example.com and uses cookie-based sessions scoped to that origin; any active content (HTML/JS/SVG) loaded from that origin runs with access to the session.\n#2: The team security baseline (aligned with OWASP File Upload guidance) requires untrusted uploads to be served from a SEPARATE sandboxed origin, or with `Content-Disposition: attachment` AND `X-Content-Type-Options: nosniff`; and requires dangerous/executable extensions (.html, .htm, .xhtml, .svg, .js) to be blocked or neutralized before storage.\n#3: Uploads are surfaced as direct links in the app UI; clicking one navigates the browser to the file URL in the same tab.",
+  "artifact_type": "cwe"
+ },
+ {
+  "id": "DC3-upload_c3",
+  "artifact_ref": "#1",
+  "concern_text": "Serving user uploads from the app's own domain could let the browser render some file types in-app.",
+  "pack_text": "A web app lets signed-in users upload profile attachments (images, PDFs, occasionally SVGs). The team must decide how to store and serve these untrusted files. The app is a single-page app with cookie-based sessions. The decision is judged against the team's published security baseline.\n#1: The app is served from https://app.example.com and uses cookie-based sessions scoped to that origin; any active content (HTML/JS/SVG) loaded from that origin runs with access to the session.\n#2: The team security baseline (aligned with OWASP File Upload guidance) requires untrusted uploads to be served from a SEPARATE sandboxed origin, or with `Content-Disposition: attachment` AND `X-Content-Type-Options: nosniff`; and requires dangerous/executable extensions (.html, .htm, .xhtml, .svg, .js) to be blocked or neutralized before storage.\n#3: Uploads are surfaced as direct links in the app UI; clicking one navigates the browser to the file URL in the same tab.",
+  "artifact_type": "pack"
+ },
+ {
+  "id": "DC3-upload_c4",
+  "artifact_ref": "",
+  "concern_text": "Uploading files is always risky and this feels under-secured; I'd want more validation.",
+  "pack_text": "A web app lets signed-in users upload profile attachments (images, PDFs, occasionally SVGs). The team must decide how to store and serve these untrusted files. The app is a single-page app with cookie-based sessions. The decision is judged against the team's published security baseline.\n#1: The app is served from https://app.example.com and uses cookie-based sessions scoped to that origin; any active content (HTML/JS/SVG) loaded from that origin runs with access to the session.\n#2: The team security baseline (aligned with OWASP File Upload guidance) requires untrusted uploads to be served from a SEPARATE sandboxed origin, or with `Content-Disposition: attachment` AND `X-Content-Type-Options: nosniff`; and requires dangerous/executable extensions (.html, .htm, .xhtml, .svg, .js) to be blocked or neutralized before storage.\n#3: Uploads are surfaced as direct links in the app UI; clicking one navigates the browser to the file URL in the same tab.",
+  "artifact_type": "none"
+ }
+]

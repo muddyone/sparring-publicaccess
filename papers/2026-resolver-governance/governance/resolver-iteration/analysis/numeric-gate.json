@@ -1,0 +1,758 @@
+{
+  "EXPLORATORY": true,
+  "k": 5,
+  "flag_threshold": ">=3/5",
+  "incomplete": 0,
+  "recall_internal_contradiction": {
+    "P-warehouse-siting": true,
+    "P-capex-automation": false
+  },
+  "false_flag": {
+    "n": 7,
+    "of": 56,
+    "rate": 0.125,
+    "which": [
+      {
+        "pid": "P-warehouse-siting",
+        "role": "original",
+        "votes": 4
+      },
+      {
+        "pid": "P-warehouse-siting",
+        "role": "revision(identical)",
+        "votes": 5
+      },
+      {
+        "pid": "P-warehouse-siting",
+        "role": "original",
+        "votes": 5
+      },
+      {
+        "pid": "P-warehouse-siting",
+        "role": "original",
+        "votes": 5
+      },
+      {
+        "pid": "P-warehouse-siting",
+        "role": "original",
+        "votes": 5
+      },
+      {
+        "pid": "P-warehouse-siting",
+        "role": "revision(planted_improvement)",
+        "votes": 4
+      },
+      {
+        "pid": "P-capex-automation",
+        "role": "revision(cosmetic)",
+        "votes": 5
+      }
+    ]
+  },
+  "docs": [
+    {
+      "pair_id": "P-multiregion-ledger__identical",
+      "pid": "P-multiregion-ledger",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__identical",
+      "pid": "P-multiregion-ledger",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__cosmetic",
+      "pid": "P-multiregion-ledger",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__cosmetic",
+      "pid": "P-multiregion-ledger",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__planted_regression",
+      "pid": "P-multiregion-ledger",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__planted_regression",
+      "pid": "P-multiregion-ledger",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": true,
+      "bad_votes": 5,
+      "defect": "Cross-region transfers are described in two contradictory ways: as 'synchronous two-phase commit... strongly consistent and immediate, which is acceptable and honest,' but in 'Tradeoffs accepted' they 'lose strong immediacy; we accept eventual settlement.' Immediate/synchronous 2PC and eventual settlement are mutually exclusive descriptions of the same path, so the document's own characterization "
+    },
+    {
+      "pair_id": "P-multiregion-ledger__planted_improvement",
+      "pid": "P-multiregion-ledger",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-multiregion-ledger__planted_improvement",
+      "pid": "P-multiregion-ledger",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__identical",
+      "pid": "P-feature-store-skew",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__identical",
+      "pid": "P-feature-store-skew",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__cosmetic",
+      "pid": "P-feature-store-skew",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__cosmetic",
+      "pid": "P-feature-store-skew",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__planted_regression",
+      "pid": "P-feature-store-skew",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__planted_regression",
+      "pid": "P-feature-store-skew",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__planted_improvement",
+      "pid": "P-feature-store-skew",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-feature-store-skew__planted_improvement",
+      "pid": "P-feature-store-skew",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__identical",
+      "pid": "P-zero-downtime-shard",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__identical",
+      "pid": "P-zero-downtime-shard",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__cosmetic",
+      "pid": "P-zero-downtime-shard",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__cosmetic",
+      "pid": "P-zero-downtime-shard",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__planted_regression",
+      "pid": "P-zero-downtime-shard",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__planted_regression",
+      "pid": "P-zero-downtime-shard",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__planted_improvement",
+      "pid": "P-zero-downtime-shard",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-zero-downtime-shard__planted_improvement",
+      "pid": "P-zero-downtime-shard",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__identical",
+      "pid": "P-autoscale-stampede",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__identical",
+      "pid": "P-autoscale-stampede",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__cosmetic",
+      "pid": "P-autoscale-stampede",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__cosmetic",
+      "pid": "P-autoscale-stampede",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__planted_regression",
+      "pid": "P-autoscale-stampede",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__planted_regression",
+      "pid": "P-autoscale-stampede",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__planted_improvement",
+      "pid": "P-autoscale-stampede",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-autoscale-stampede__planted_improvement",
+      "pid": "P-autoscale-stampede",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-churn-winback__identical",
+      "pid": "P-churn-winback",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-churn-winback__identical",
+      "pid": "P-churn-winback",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-churn-winback__cosmetic",
+      "pid": "P-churn-winback",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-churn-winback__cosmetic",
+      "pid": "P-churn-winback",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-churn-winback__planted_regression",
+      "pid": "P-churn-winback",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-churn-winback__planted_regression",
+      "pid": "P-churn-winback",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-churn-winback__planted_improvement",
+      "pid": "P-churn-winback",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-churn-winback__planted_improvement",
+      "pid": "P-churn-winback",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__identical",
+      "pid": "P-warehouse-siting",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": true,
+      "bad_votes": 4,
+      "defect": "Trigger (2) says to green-light Atlanta when volume reaches the breakeven threshold, but then says 'given the 11-month build, you start it ~12 months before that threshold.' Starting 12 months before the threshold means starting before volume justifies it, contradicting the stated goal to 'sequence capital to demand instead of betting ahead of it.' To have the DC operational (11-month build) exact"
+    },
+    {
+      "pair_id": "P-warehouse-siting__identical",
+      "pid": "P-warehouse-siting",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": true,
+      "bad_votes": 5,
+      "defect": "Trigger (2) says green-light Atlanta when the threshold is reached, but then says 'given the 11-month build, you start it ~12 months before that threshold.' If you green-light at the threshold, the 11-month build finishes ~11 months AFTER the threshold, not 12 months before it. To start 12 months before the threshold you'd have to commit ~12 months early, contradicting 'when Southeast/Texas volume"
+    },
+    {
+      "pair_id": "P-warehouse-siting__cosmetic",
+      "pid": "P-warehouse-siting",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": true,
+      "bad_votes": 5,
+      "defect": "Trigger (2) says to start the build ~12 months before the threshold given an 11-month build, but to be operational AT the threshold you start 11 months before, not 12. More importantly, the text says you start '~12 months before that threshold' \u2014 i.e., 1 month earlier than needed (11-month build) \u2014 which would make the second node operational ~1 month before demand hits the breakeven, contradictin"
+    },
+    {
+      "pair_id": "P-warehouse-siting__cosmetic",
+      "pid": "P-warehouse-siting",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-warehouse-siting__planted_regression",
+      "pid": "P-warehouse-siting",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": true,
+      "bad_votes": 5,
+      "defect": "Trigger (2) says start the build ~12 months before the threshold given an 11-month build, but to be operational AT the threshold you start 11 months before it, not 12. More critically, starting 12 months before the volume reaches the threshold means the DC is operational ~1 month before the threshold is hit \u2014 i.e., ahead of demand \u2014 which contradicts the stated goal of sequencing 'capital to deman"
+    },
+    {
+      "pair_id": "P-warehouse-siting__planted_regression",
+      "pid": "P-warehouse-siting",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(internal)",
+      "expect": "incoherent",
+      "flagged": true,
+      "bad_votes": 5,
+      "defect": "Trigger (2) says green-light Atlanta when the threshold is reached, but also says 'given the 11-month build, you start it ~3 months before that threshold.' Starting 3 months before with an 11-month build means the DC arrives 11 - 3 = 8 months after the threshold, not at it. To be operational at the threshold you must start 11 months before, not 3."
+    },
+    {
+      "pair_id": "P-warehouse-siting__planted_improvement",
+      "pid": "P-warehouse-siting",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": true,
+      "bad_votes": 5,
+      "defect": "Trigger says green-light Atlanta when volume reaches the threshold, but 'given the 11-month build, you start it ~12 months before that threshold.' Starting at the threshold and starting 12 months before it are contradictory; with an 11-month build, starting when volume hits the threshold means the DC is operational 11 months after the threshold, not before it."
+    },
+    {
+      "pair_id": "P-warehouse-siting__planted_improvement",
+      "pid": "P-warehouse-siting",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": true,
+      "bad_votes": 4,
+      "defect": "The text says the Atlanta build takes 11 months to operational, but the trigger plan says 'you start it ~12 months before that threshold.' Starting 12 months before with an 11-month build means it goes live ~1 month before the threshold \u2014 actually consistent timing-wise. However, the deeper issue: to have the node live AT the threshold you need to start 11 months prior, and they say start 12 month"
+    },
+    {
+      "pair_id": "P-pricing-migration__identical",
+      "pid": "P-pricing-migration",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__identical",
+      "pid": "P-pricing-migration",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__cosmetic",
+      "pid": "P-pricing-migration",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__cosmetic",
+      "pid": "P-pricing-migration",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__planted_regression",
+      "pid": "P-pricing-migration",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__planted_regression",
+      "pid": "P-pricing-migration",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(constraint)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__planted_improvement",
+      "pid": "P-pricing-migration",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-pricing-migration__planted_improvement",
+      "pid": "P-pricing-migration",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-capex-automation__identical",
+      "pid": "P-capex-automation",
+      "type": "identical",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-capex-automation__identical",
+      "pid": "P-capex-automation",
+      "type": "identical",
+      "side": "B",
+      "role": "revision(identical)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    },
+    {
+      "pair_id": "P-capex-automation__cosmetic",
+      "pid": "P-capex-automation",
+      "type": "cosmetic",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 1,
+      "defect": "Text claims the 19-month contract renewal is 'shorter than the vendor's 14-month lead time plus historical 20% schedule slip.' But 14 months \u00d7 1.20 = 16.8 months, and 16.8 < 19. So the renewal window (19 months) is actually LONGER than the worst-case lead time (16.8 months), contradicting the stated claim that you'd be 'commissioning $8M of dedicated automation right as the anchor customer walks.'"
+    },
+    {
+      "pair_id": "P-capex-automation__cosmetic",
+      "pid": "P-capex-automation",
+      "type": "cosmetic",
+      "side": "B",
+      "role": "revision(cosmetic)",
+      "expect": "coherent",
+      "flagged": true,
+      "bad_votes": 5,
+      "defect": "Text says the 19-month renewal window is 'shorter than the vendor's 14-month lead time once you layer on the historical 20% schedule overrun.' But 14 months \u00d7 1.20 overrun = 16.8 months, which is shorter than 19 months, not longer. The automation would be online at ~16.8 months, about 2.2 months before the 19-month renewal \u2014 contradicting the claim of arriving 'right as the anchor customer departs"
+    },
+    {
+      "pair_id": "P-capex-automation__planted_regression",
+      "pid": "P-capex-automation",
+      "type": "planted_regression",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 1,
+      "defect": "Text claims the 19-month renewal is 'shorter than the vendor's 14-month lead time plus historical 20% schedule slip.' But 14 months \u00d7 1.20 = 16.8 months, which is LESS than 19 months. So the renewal (19) is actually LONGER than the slipped lead time (16.8), contradicting the stated comparison used to argue you'd be commissioning automation 'right as the anchor customer walks.'"
+    },
+    {
+      "pair_id": "P-capex-automation__planted_regression",
+      "pid": "P-capex-automation",
+      "type": "planted_regression",
+      "side": "B",
+      "role": "regression(internal)",
+      "expect": "incoherent",
+      "flagged": false,
+      "bad_votes": 1,
+      "defect": "Internal contradiction on the (a) timeline. The text computes commissioning time as 14-month lead + 20% slip = 16.8 months, and the renewal is at 19 months, so it states the cells 'will be fully commissioned well before renewal risk materializes' (16.8 < 19). But it then asserts the opposite to argue against (a): 'You could be commissioning $8M of dedicated automation right as the anchor customer "
+    },
+    {
+      "pair_id": "P-capex-automation__planted_improvement",
+      "pid": "P-capex-automation",
+      "type": "planted_improvement",
+      "side": "A",
+      "role": "original",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 1,
+      "defect": "Text says the 19-month renewal is 'shorter than the vendor's 14-month lead time plus historical 20% schedule slip.' But 14 months + 20% slip = 14 \u00d7 1.2 = 16.8 months, and 19 > 16.8, so the renewal window is actually LONGER than the slip-adjusted lead time, not shorter. The stated numbers contradict the 'commissioning right as the anchor customer walks' claim used against option (a)."
+    },
+    {
+      "pair_id": "P-capex-automation__planted_improvement",
+      "pid": "P-capex-automation",
+      "type": "planted_improvement",
+      "side": "B",
+      "role": "revision(planted_improvement)",
+      "expect": "coherent",
+      "flagged": false,
+      "bad_votes": 0,
+      "defect": ""
+    }
+  ]
+}

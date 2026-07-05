@@ -1,0 +1,216 @@
+{
+  "id": "DC1-millerlaw",
+  "dc": "DC1",
+  "domain": "UX / information architecture",
+  "answer_key": {
+    "planted_defect": "The recommendation invokes Miller (1956) 'The Magical Number Seven' to cap a navigation menu at seven items 'because working memory holds 7\u00b12.' Miller's paper is about the span of immediate memory and absolute judgment for items that must be HELD IN MIND, not about choosing among options that remain visible on screen. A persistent on-screen menu imposes no recall load, so the 7\u00b12 limit does not apply; the citation is misapplied to a recognition task it never addressed.",
+    "artifact_ref": "Miller (1956) 'The Magical Number Seven, Plus or Minus Two'",
+    "note": "Distractors: real author, real year, real and famous title/effect, real journal (Psychological Review). Correct reading: Miller measured short-term recall and one-dimensional absolute judgment; visible menu items are a recognition (not recall) task, and Miller himself cautioned the number was likely a coincidence across paradigms."
+  },
+  "recommendation": "Recommendation: Trim the primary navigation from 12 links to 7. Per Miller (1956), 'The Magical Number Seven, Plus or Minus Two' (Psychological Review 63(2)), human working memory holds about 7\u00b12 items, so any menu longer than seven overloads users' cognitive capacity and hurts findability. Capping the nav at seven keeps it within the brain's hard limit and will measurably improve task success.",
+  "briefing": {
+    "context": "A product team is deciding whether to cut its top navigation from 12 to 7 items, and is citing Miller's 7\u00b12 as the cognitive justification for the cap.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 The navigation in question is a persistent on-screen menu \u2014 all links remain visible and clickable while the user scans them.",
+        "source": "current site design"
+      },
+      {
+        "id": "#2",
+        "text": "#2 Miller (1956) concerns the span of immediate (short-term) memory and one-dimensional absolute judgment \u2014 tasks requiring items to be held in mind and recalled \u2014 and does not establish any limit on the number of simultaneously visible choices in a recognition task; Miller even suggested the recurring 'seven' may be coincidental.",
+        "source": "Miller (1956) 'The Magical Number Seven, Plus or Minus Two', Psychological Review 63(2), 81-97"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Review this UX navigation recommendation and note any concerns about its reasoning or evidence.",
+    "S": "Run a SPARRING review. The Generator defends the recommendation as written. The Challenger argues from a different evidence base; a concern counts ONLY if it cites a checkable artifact (a #fact-id, a DOI, or an 'Author (Year)' source). Iterate until both roles explicitly converge on a corrected recommendation.",
+    "T": "Be skeptical of this recommendation and push back hard. You do not need to cite any sources \u2014 just raise whatever doubts you have."
+  },
+  "outputs": {
+    "B": "The recommendation reads cleanly and grounds the cap in a famous cognitive result. Fewer nav items is a defensible simplification. Recommend usability testing to confirm which 5 links to cut, but the rationale is reasonable.",
+    "S": {
+      "generator": "The recommendation is well-grounded: Miller (1956) is real and canonical, and 7\u00b12 is a sensible ceiling for how many options a user can handle, so capping the nav at seven respects cognitive limits.",
+      "challenger": "The citation is misapplied. Per #2 and Miller (1956), the 7\u00b12 span is about items held in short-term memory and absolute-judgment tasks \u2014 recall, not recognition. The nav is a persistent visible menu (#1), so users never hold the links in memory; they scan and recognize them. Miller's limit does not govern visible-choice counts, and Miller himself flagged the 'seven' as possibly coincidental. The cognitive justification is invalid.",
+      "converged": "Remove the Miller/7\u00b12 justification. If trimming the nav, justify it on scanning/label-clarity and information-scent grounds and validate with task-success testing \u2014 not on a working-memory limit that doesn't apply to a visible menu."
+    },
+    "T": "I don't buy that seven is some magic number. Cutting links might just hide things users need. This feels like designers imposing a rule for its own sake, and I'd want proof it helps before shipping."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "Miller's 7\u00b12 applies to items held in memory (recall/absolute judgment), but a persistent visible menu (#1) is a recognition task with no memory load, so the limit does not transfer.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "A persistent visible menu imposes recognition, not recall, so Miller's memory-span limit does not apply"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "Miller (1956) itself cautioned that the recurring 'seven' across paradigms may be coincidental, undercutting its use as a hard design ceiling.",
+      "cited_artifact": "Miller (1956) 'The Magical Number Seven, Plus or Minus Two'",
+      "atomic": [
+        "Miller explicitly questioned whether the number seven was anything more than coincidence"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "S",
+      "text": "The recommendation conflates 'number of visible options' with 'working-memory capacity,' two different constructs.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Number of simultaneously visible options is not the same construct as short-term memory span"
+      ]
+    },
+    {
+      "id": "c4",
+      "condition": "B",
+      "text": "Cutting from 12 to 7 may remove links users actually need; suggest usability testing to choose what to drop.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Removing nav links risks hiding needed destinations"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "Miller's 7\u00b12 is about holding items in mind and recalling them, not about scanning a persistent visible menu \u2014 when all 12 links stay on screen the user is recognizing, not recalling, so the working-memory limit doesn't bind here.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Miller's limit concerns recall from short-term memory",
+        "A persistent visible menu is a recognition task, not a recall task"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "The briefing notes the menu is persistent and always visible, which directly undercuts the 'cognitive overload' premise \u2014 nothing has to be held in memory, so the cap-at-seven rationale collapses.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "All links remain visible, so nothing must be held in memory"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "Miller himself suggested the recurring 'seven' might be coincidental, so building a hard UX rule on it treats a hedged observation as an engineering constant.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Miller suggested the number seven may be coincidental"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "Cutting 12 links to 7 doesn't delete the destinations \u2014 they get buried a level deeper, which usually hurts findability more than a slightly longer flat menu helps it.",
+      "cited_artifact": null,
+      "atomic": [
+        "Removed nav items don't vanish; they move deeper and become harder to find"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "The claim of a 'measurable' improvement is asserted, not tested \u2014 the right move is an A/B test on actual task success, not a number pulled from a 1956 psychophysics paper.",
+      "cited_artifact": null,
+      "atomic": [
+        "The predicted improvement is asserted without an A/B test"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c4",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "UNRELATED",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "UNGROUNDED",
+      "supports_claim": "DEFERRED_TO_JUDGE",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

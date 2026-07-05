@@ -1,0 +1,613 @@
+{
+  "EXPLORATORY": true,
+  "source": "step2",
+  "n_problems": 12,
+  "totals": {
+    "claims": 44,
+    "verified": 42,
+    "mismatch": 2,
+    "uncheckable": 0
+  },
+  "checkable_coverage": "44/44",
+  "caught_errors": 2,
+  "per_problem": [
+    {
+      "pid": "P-nat-anchor-fedramp",
+      "domain": "SaaS compliance / go-to-market",
+      "n": 5,
+      "verified": 5,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-anchor-radiology",
+      "domain": "healthcare operations",
+      "n": 6,
+      "verified": 6,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-anchor-storage",
+      "domain": "energy / utility planning",
+      "n": 4,
+      "verified": 4,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-gen-01",
+      "domain": "public-sector policy / municipal budgeting",
+      "n": 5,
+      "verified": 5,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-gen-02",
+      "domain": "industrial manufacturing / plant operations",
+      "n": 2,
+      "verified": 2,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-gen-03",
+      "domain": "retail & e-commerce fulfillment",
+      "n": 4,
+      "verified": 4,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-gen-04",
+      "domain": "digital media / subscription business",
+      "n": 3,
+      "verified": 2,
+      "mismatch": 1,
+      "uncheckable": 0,
+      "mismatches": [
+        {
+          "desc": "Price increase to $11/mo represents +18% ARPU over $9/mo base",
+          "stated_numbers": "$9/mo current, $11/mo new, +18% ARPU",
+          "python_expr": "(11 - 9) / 9 * 100",
+          "asserted_value": 18,
+          "status": "MISMATCH",
+          "computed": 22.2222,
+          "asserted": 18
+        }
+      ]
+    },
+    {
+      "pid": "P-nat-gen-05",
+      "domain": "agriculture & food supply chain",
+      "n": 4,
+      "verified": 3,
+      "mismatch": 1,
+      "uncheckable": 0,
+      "mismatches": [
+        {
+          "desc": "Cost advantage of (c) over (a), ~$650k/month",
+          "stated_numbers": "(a) 6000*310=1,860,000; (c) 1800*92+700*265=350,500",
+          "python_expr": "6000 * 310 - (1800 * 92 + 700 * 265)",
+          "asserted_value": 650000,
+          "status": "MISMATCH",
+          "computed": 1508900.0,
+          "asserted": 650000
+        }
+      ]
+    },
+    {
+      "pid": "P-nat-gen-06",
+      "domain": "higher education administration",
+      "n": 6,
+      "verified": 6,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-gen-07",
+      "domain": "urban transportation / mobility",
+      "n": 3,
+      "verified": 3,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-gen-08",
+      "domain": "clinical trial / biotech development",
+      "n": 1,
+      "verified": 1,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    },
+    {
+      "pid": "P-nat-gen-09",
+      "domain": "commercial insurance / risk underwriting",
+      "n": 1,
+      "verified": 1,
+      "mismatch": 0,
+      "uncheckable": 0,
+      "mismatches": []
+    }
+  ],
+  "detail": {
+    "P-nat-gen-02": {
+      "pid": "P-nat-gen-02",
+      "n_claims": 2,
+      "results": [
+        {
+          "desc": "Total cost of an unexpected trip (lost margin plus disposal)",
+          "stated_numbers": "$420,000 lost margin, $60,000 disposal",
+          "python_expr": "420000 + 60000",
+          "asserted_value": 480000,
+          "status": "VERIFIED",
+          "computed": 480000.0,
+          "asserted": 480000
+        },
+        {
+          "desc": "Vibration margin remaining to alarm limit",
+          "stated_numbers": "current 6.8 mm/s, alarm limit 7.1 mm/s",
+          "python_expr": "7.1 - 6.8",
+          "asserted_value": 0.3,
+          "status": "VERIFIED",
+          "computed": 0.3,
+          "asserted": 0.3
+        }
+      ]
+    },
+    "P-nat-anchor-storage": {
+      "pid": "P-nat-anchor-storage",
+      "n_claims": 4,
+      "results": [
+        {
+          "desc": "DR firmness low-end derived from target curtailable load and historical realized fraction",
+          "stated_numbers": "35 MW target, 55-70% realized, low-end ~17-19 MW",
+          "python_expr": "35 * 0.55",
+          "asserted_value": 19.25,
+          "status": "VERIFIED",
+          "computed": 19.25,
+          "asserted": 19.25
+        },
+        {
+          "desc": "Battery ITC after 30% federal tax credit reduces net capex",
+          "stated_numbers": "$58M capex, 30% tax credit",
+          "python_expr": "58 * (1 - 0.30)",
+          "asserted_value": 40.6,
+          "status": "VERIFIED",
+          "computed": 40.6,
+          "asserted": 40.6
+        },
+        {
+          "desc": "Battery power sizing versus year-3 shortfall",
+          "stated_numbers": "40 MW battery, 45 MW shortfall",
+          "python_expr": "45 - 40",
+          "asserted_value": 5,
+          "status": "VERIFIED",
+          "computed": 5.0,
+          "asserted": 5
+        },
+        {
+          "desc": "Battery discharge duration covers the afternoon peak",
+          "stated_numbers": "160 MWh, 40 MW, ~90 minute peak",
+          "python_expr": "160 / 40 * 60",
+          "asserted_value": 240,
+          "status": "VERIFIED",
+          "computed": 240.0,
+          "asserted": 240
+        }
+      ]
+    },
+    "P-nat-gen-04": {
+      "pid": "P-nat-gen-04",
+      "n_claims": 3,
+      "results": [
+        {
+          "desc": "Annual plan pulls forward 12 months of cash per subscriber at $90/yr",
+          "stated_numbers": "$90/yr annual plan, 12 months",
+          "python_expr": "90",
+          "asserted_value": 90,
+          "status": "VERIFIED",
+          "computed": 90.0,
+          "asserted": 90
+        },
+        {
+          "desc": "Price increase to $11/mo represents +18% ARPU over $9/mo base",
+          "stated_numbers": "$9/mo current, $11/mo new, +18% ARPU",
+          "python_expr": "(11 - 9) / 9 * 100",
+          "asserted_value": 18,
+          "status": "MISMATCH",
+          "computed": 22.2222,
+          "asserted": 18
+        },
+        {
+          "desc": "Annual plan 20% discount off $9/mo monthly (12 months = $108) yields the $90 forecast",
+          "stated_numbers": "$9/mo, 12 months, 20% discount",
+          "python_expr": "9 * 12 * (1 - 0.20)",
+          "asserted_value": 90,
+          "status": "VERIFIED",
+          "computed": 86.4,
+          "asserted": 90
+        }
+      ]
+    },
+    "P-nat-gen-05": {
+      "pid": "P-nat-gen-05",
+      "n_claims": 4,
+      "results": [
+        {
+          "desc": "Monthly cost of option (a) take-or-pay at increased price",
+          "stated_numbers": "6000 tons/month, $310/ton",
+          "python_expr": "6000 * 310",
+          "asserted_value": 1860000,
+          "status": "VERIFIED",
+          "computed": 1860000.0,
+          "asserted": 1860000
+        },
+        {
+          "desc": "Monthly cost of option (c) forage: corn silage plus soy hull pellets",
+          "stated_numbers": "1800 tons at $92/ton, 700 tons at $265/ton",
+          "python_expr": "1800 * 92 + 700 * 265",
+          "asserted_value": 350500,
+          "status": "VERIFIED",
+          "computed": 351100.0,
+          "asserted": 350500
+        },
+        {
+          "desc": "Cost advantage of (c) over (a), ~$650k/month",
+          "stated_numbers": "(a) 6000*310=1,860,000; (c) 1800*92+700*265=350,500",
+          "python_expr": "6000 * 310 - (1800 * 92 + 700 * 265)",
+          "asserted_value": 650000,
+          "status": "MISMATCH",
+          "computed": 1508900.0,
+          "asserted": 650000
+        },
+        {
+          "desc": "Price-tier delta from downgrading 15% of milk at $0.12/gallon less, ~$45k/month",
+          "stated_numbers": "15% of 2.5M gallons/month, $0.12/gallon",
+          "python_expr": "0.15 * 2500000 * 0.12",
+          "asserted_value": 45000,
+          "status": "VERIFIED",
+          "computed": 45000.0,
+          "asserted": 45000
+        }
+      ]
+    },
+    "P-nat-anchor-fedramp": {
+      "pid": "P-nat-anchor-fedramp",
+      "n_claims": 5,
+      "results": [
+        {
+          "desc": "Option (b) go-live time fits inside the agency's 12-month FedRAMP deadline",
+          "stated_numbers": "live in ~4 months; 12-month clock",
+          "python_expr": "12 - 4",
+          "asserted_value": 8,
+          "status": "VERIFIED",
+          "computed": 8.0,
+          "asserted": 8
+        },
+        {
+          "desc": "Runway remaining after Option (b) go-live",
+          "stated_numbers": "14 months runway; live in ~4 months",
+          "python_expr": "14 - 4",
+          "asserted_value": 10,
+          "status": "VERIFIED",
+          "computed": 10.0,
+          "asserted": 10
+        },
+        {
+          "desc": "Option (a) worst-case timeline exceeds agency's 12-month deadline",
+          "stated_numbers": "12-18 months typical; 12-month deadline",
+          "python_expr": "18 - 12",
+          "asserted_value": 6,
+          "status": "VERIFIED",
+          "computed": 6.0,
+          "asserted": 6
+        },
+        {
+          "desc": "Option (a) high-end cost vs runway concern (runway not directly monetized, but timeline exceeds 14-month runway)",
+          "stated_numbers": "12-18 months typical; 14 months runway",
+          "python_expr": "18 - 14",
+          "asserted_value": 4,
+          "status": "VERIFIED",
+          "computed": 4.0,
+          "asserted": 4
+        },
+        {
+          "desc": "Revenue retained to company under partner revenue share of 25% on $4.2M/yr",
+          "stated_numbers": "$4.2M/yr; ~25% share",
+          "python_expr": "4.2 * (1 - 0.25)",
+          "asserted_value": 3.15,
+          "status": "VERIFIED",
+          "computed": 3.15,
+          "asserted": 3.15
+        }
+      ]
+    },
+    "P-nat-gen-03": {
+      "pid": "P-nat-gen-03",
+      "n_claims": 4,
+      "results": [
+        {
+          "desc": "Option (c) incremental per-order fees over the peak period (40% of volume, 36 days, $1.80/order)",
+          "stated_numbers": "0.4, 3,500, 36, $1.80",
+          "python_expr": "0.4 * 3500 * 36 * 1.80",
+          "asserted_value": 90720,
+          "status": "VERIFIED",
+          "computed": 90720.0,
+          "asserted": 90720
+        },
+        {
+          "desc": "Option (c) total direct cost: incremental fees plus onboarding",
+          "stated_numbers": "$90.7K fees, $35K onboarding",
+          "python_expr": "0.4 * 3500 * 36 * 1.80 + 35000",
+          "asserted_value": 125700,
+          "status": "VERIFIED",
+          "computed": 125720.0,
+          "asserted": 125700
+        },
+        {
+          "desc": "In-house volume the line must still handle under (c) (60% of 3,500)",
+          "stated_numbers": "3,500, 60%",
+          "python_expr": "0.6 * 3500",
+          "asserted_value": 2100,
+          "status": "VERIFIED",
+          "computed": 2100.0,
+          "asserted": 2100
+        },
+        {
+          "desc": "Option (b) labor cost for 30 temps at $24/hr, 16 hrs/config, 8 weeks",
+          "stated_numbers": "30 temps, $24/hr, 16 hrs, 8 weeks",
+          "python_expr": "30 * 24 * 16 * 8",
+          "asserted_value": 92160,
+          "status": "VERIFIED",
+          "computed": 92160.0,
+          "asserted": 92160
+        }
+      ]
+    },
+    "P-nat-gen-08": {
+      "pid": "P-nat-gen-08",
+      "n_claims": 1,
+      "results": [
+        {
+          "desc": "Gross cash runway in months before trial start-up costs",
+          "stated_numbers": "$38M cash, $4.5M/month burn",
+          "python_expr": "38 / 4.5",
+          "asserted_value": 8.4,
+          "status": "VERIFIED",
+          "computed": 8.4444,
+          "asserted": 8.4
+        }
+      ]
+    },
+    "P-nat-gen-01": {
+      "pid": "P-nat-gen-01",
+      "n_claims": 5,
+      "results": [
+        {
+          "desc": "Option (a) total gap closure sums its three enumerated levers",
+          "stated_numbers": "FTE cuts implied portion, defer $3.0M fleet, +$1.1M ambulance fees; total claimed $9.4M",
+          "python_expr": "9.4 - 3.0 - 1.1",
+          "asserted_value": 5.3,
+          "status": "VERIFIED",
+          "computed": 5.3,
+          "asserted": 5.3
+        },
+        {
+          "desc": "Reserve shortfall from policy: current 10.4% vs required 12% of expenditures",
+          "stated_numbers": "12% required, 10.4% projected",
+          "python_expr": "12.0 - 10.4",
+          "asserted_value": 1.6,
+          "status": "VERIFIED",
+          "computed": 1.6,
+          "asserted": 1.6
+        },
+        {
+          "desc": "Option (b) total gap closure sums its three levers",
+          "stated_numbers": "parking +$2.2M, franchise +$2.0M, 3% cuts +$5.1M; total claimed $9.3M",
+          "python_expr": "2.2 + 2.0 + 5.1",
+          "asserted_value": 9.3,
+          "status": "VERIFIED",
+          "computed": 9.3,
+          "asserted": 9.3
+        },
+        {
+          "desc": "Option (c) total gap closure sums its three levers",
+          "stated_numbers": "wage freeze +$6.0M, vacant positions +$1.0M, road resurfacing +$2.2M; total claimed $9.2M",
+          "python_expr": "6.0 + 1.0 + 2.2",
+          "asserted_value": 9.2,
+          "status": "VERIFIED",
+          "computed": 9.2,
+          "asserted": 9.2
+        },
+        {
+          "desc": "Option (a) closes $9.4M against a $9.2M gap (surplus)",
+          "stated_numbers": "$9.4M closure, $9.2M gap",
+          "python_expr": "9.4 - 9.2",
+          "asserted_value": 0.2,
+          "status": "VERIFIED",
+          "computed": 0.2,
+          "asserted": 0.2
+        }
+      ]
+    },
+    "P-nat-anchor-radiology": {
+      "pid": "P-nat-anchor-radiology",
+      "n_claims": 6,
+      "results": [
+        {
+          "desc": "Naive 3-FTE in-house annual cost",
+          "stated_numbers": "3 radiologists at ~$520k each",
+          "python_expr": "3 * 520000",
+          "asserted_value": 1560000,
+          "status": "VERIFIED",
+          "computed": 1560000.0,
+          "asserted": 1560000
+        },
+        {
+          "desc": "Current annual overnight teleradiology cost",
+          "stated_numbers": "$38/study, ~9,000 studies/year",
+          "python_expr": "38 * 9000",
+          "asserted_value": 342000,
+          "status": "VERIFIED",
+          "computed": 342000.0,
+          "asserted": 342000
+        },
+        {
+          "desc": "Renewal cost at proposed 22% rate increase",
+          "stated_numbers": "$38/study, 22% increase, 9,000 studies/year",
+          "python_expr": "38 * 1.22 * 9000",
+          "asserted_value": 417240,
+          "status": "VERIFIED",
+          "computed": 417240.0,
+          "asserted": 417240
+        },
+        {
+          "desc": "Premium 20-min SLA tier annual cost (+31% on rate)",
+          "stated_numbers": "$38/study, +31%, 9,000 studies/year",
+          "python_expr": "38 * 1.31 * 9000",
+          "asserted_value": 448020,
+          "status": "VERIFIED",
+          "computed": 448020.0,
+          "asserted": 448020
+        },
+        {
+          "desc": "Stroke/trauma subset volume carved out in-house",
+          "stated_numbers": "~15% of ~9,000 studies",
+          "python_expr": "0.15 * 9000",
+          "asserted_value": 1350,
+          "status": "VERIFIED",
+          "computed": 1350.0,
+          "asserted": 1350
+        },
+        {
+          "desc": "Turnaround overshoot vs SLA",
+          "stated_numbers": "41-minute median vs 30-minute SLA",
+          "python_expr": "41 - 30",
+          "asserted_value": 11,
+          "status": "VERIFIED",
+          "computed": 11.0,
+          "asserted": 11
+        }
+      ]
+    },
+    "P-nat-gen-09": {
+      "pid": "P-nat-gen-09",
+      "n_claims": 1,
+      "results": [
+        {
+          "desc": "Threshold gate resolution time comfortably inside the 10-day treaty cutoff",
+          "stated_numbers": "3-5 business days resolution, 10-day cutoff",
+          "python_expr": "10 - 5",
+          "asserted_value": 5,
+          "status": "VERIFIED",
+          "computed": 5.0,
+          "asserted": 5
+        }
+      ]
+    },
+    "P-nat-gen-07": {
+      "pid": "P-nat-gen-07",
+      "n_claims": 3,
+      "results": [
+        {
+          "desc": "Total budget for package (a) capex + ops fits within cap",
+          "stated_numbers": "$2.8M capex + $0.6M ops, cap $3.2M",
+          "python_expr": "2.8 + 0.6",
+          "asserted_value": 3.4,
+          "status": "VERIFIED",
+          "computed": 3.4,
+          "asserted": 3.4
+        },
+        {
+          "desc": "OTP improvement target from 62% to >=78%",
+          "stated_numbers": "62%, 78%",
+          "python_expr": "78 - 62",
+          "asserted_value": 16,
+          "status": "VERIFIED",
+          "computed": 16.0,
+          "asserted": 16
+        },
+        {
+          "desc": "OTP recovery contingency hours vs union cap",
+          "stated_numbers": "3,000hr contingency, 10,000 hours/year cap",
+          "python_expr": "10000 - 3000",
+          "asserted_value": 7000,
+          "status": "VERIFIED",
+          "computed": 7000.0,
+          "asserted": 7000
+        }
+      ]
+    },
+    "P-nat-gen-06": {
+      "pid": "P-nat-gen-06",
+      "n_claims": 6,
+      "results": [
+        {
+          "desc": "Net tuition/fee revenue after enrollment-decline haircut",
+          "stated_numbers": "gross +$3.9M, -$1.4M enrollment haircut",
+          "python_expr": "3.9 - 1.4",
+          "asserted_value": 2.5,
+          "status": "VERIFIED",
+          "computed": 2.5,
+          "asserted": 2.5
+        },
+        {
+          "desc": "Residual gap to close after tuition net",
+          "stated_numbers": "$4.2M gap, ~$2.5M tuition net",
+          "python_expr": "4.2 - 2.5",
+          "asserted_value": 1.7,
+          "status": "VERIFIED",
+          "computed": 1.7,
+          "asserted": 1.7
+        },
+        {
+          "desc": "Option (b) gross net revenue after added aid",
+          "stated_numbers": "+$3.9M net after $0.6M added aid",
+          "python_expr": "3.9",
+          "asserted_value": 3.9,
+          "status": "VERIFIED",
+          "computed": 3.9,
+          "asserted": 3.9
+        },
+        {
+          "desc": "Option (b) enrollment decline in students from 1.5% of 11,800",
+          "stated_numbers": "1.5% decline, \u2248175 students",
+          "python_expr": "0.015 * 11800",
+          "asserted_value": 175,
+          "status": "VERIFIED",
+          "computed": 177.0,
+          "asserted": 175
+        },
+        {
+          "desc": "Retention gap needed to avoid penalty",
+          "stated_numbers": "74% current, 78% target",
+          "python_expr": "78 - 74",
+          "asserted_value": 4,
+          "status": "VERIFIED",
+          "computed": 4.0,
+          "asserted": 4
+        },
+        {
+          "desc": "Option (a) savings vs gap",
+          "stated_numbers": "saves $4.4M, gap $4.2M",
+          "python_expr": "4.4 - 4.2",
+          "asserted_value": 0.2,
+          "status": "VERIFIED",
+          "computed": 0.2,
+          "asserted": 0.2
+        }
+      ]
+    }
+  }
+}

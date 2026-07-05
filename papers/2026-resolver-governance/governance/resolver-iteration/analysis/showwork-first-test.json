@@ -1,0 +1,5066 @@
+{
+  "EXPLORATORY": true,
+  "n_problems": 12,
+  "same_model_both_arms": "claude-opus-4-8",
+  "aggregate": {
+    "plain": {
+      "load_bearing_claims": 69,
+      "justified": 62,
+      "unjustified": 7,
+      "unjustified_rate": 0.101,
+      "derivations": 70,
+      "genuine_derivations": 70
+    },
+    "showfirst": {
+      "load_bearing_claims": 70,
+      "justified": 68,
+      "unjustified": 2,
+      "unjustified_rate": 0.029,
+      "derivations": 120,
+      "genuine_derivations": 117
+    }
+  },
+  "quality_showfirst_vs_plain": {
+    "plain_better": 9,
+    "equivalent": 2,
+    "showfirst_better": 1
+  },
+  "paired_unjustified_delta": [
+    {
+      "pid": "P-nat-anchor-fedramp",
+      "plain_unjustified": 0,
+      "showfirst_unjustified": 0,
+      "delta": 0
+    },
+    {
+      "pid": "P-nat-anchor-radiology",
+      "plain_unjustified": 1,
+      "showfirst_unjustified": 1,
+      "delta": 0
+    },
+    {
+      "pid": "P-nat-anchor-storage",
+      "plain_unjustified": 0,
+      "showfirst_unjustified": 0,
+      "delta": 0
+    },
+    {
+      "pid": "P-nat-gen-01",
+      "plain_unjustified": 3,
+      "showfirst_unjustified": 0,
+      "delta": 3
+    },
+    {
+      "pid": "P-nat-gen-02",
+      "plain_unjustified": 1,
+      "showfirst_unjustified": 0,
+      "delta": 1
+    },
+    {
+      "pid": "P-nat-gen-03",
+      "plain_unjustified": 0,
+      "showfirst_unjustified": 0,
+      "delta": 0
+    },
+    {
+      "pid": "P-nat-gen-04",
+      "plain_unjustified": 0,
+      "showfirst_unjustified": 0,
+      "delta": 0
+    },
+    {
+      "pid": "P-nat-gen-05",
+      "plain_unjustified": 0,
+      "showfirst_unjustified": 1,
+      "delta": -1
+    },
+    {
+      "pid": "P-nat-gen-06",
+      "plain_unjustified": 0,
+      "showfirst_unjustified": 0,
+      "delta": 0
+    },
+    {
+      "pid": "P-nat-gen-07",
+      "plain_unjustified": 2,
+      "showfirst_unjustified": 0,
+      "delta": 2
+    },
+    {
+      "pid": "P-nat-gen-08",
+      "plain_unjustified": 0,
+      "showfirst_unjustified": 0,
+      "delta": 0
+    },
+    {
+      "pid": "P-nat-gen-09",
+      "plain_unjustified": 0,
+      "showfirst_unjustified": 0,
+      "delta": 0
+    }
+  ],
+  "problems_showfirst_had_fewer_unjustified": 3,
+  "problems_showfirst_had_more_unjustified": 1,
+  "detail": {
+    "P-nat-gen-01": {
+      "pid": "P-nat-gen-01",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 5,
+        "genuine_derivations": 5,
+        "n_load_bearing_claims": 6,
+        "justified": 3,
+        "unjustified": 3,
+        "der_status": {
+          "GROUNDED": 2,
+          "UNCONFIRMED": 3
+        },
+        "derivations": [
+          {
+            "desc": "Reserve cushion from Option (b) above the gap \u2014 the surplus available toward rebuilding reserves, which the decision cites as an advantage of (b)",
+            "expr": "total_closed - gap",
+            "inputs": {
+              "total_closed": 9.3,
+              "gap": 9.2
+            },
+            "computed": 0.1,
+            "result_claimed": 0.09999999999999964,
+            "asserted_in_prose": 0.1,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Share of Option (c)'s plan dependent on the union ratification vote \u2014 the load-bearing risk metric driving rejection of (c)",
+            "expr": "wage_freeze / total_c",
+            "inputs": {
+              "wage_freeze": 6.0,
+              "total_c": 9.2
+            },
+            "computed": 0.6522,
+            "result_claimed": 0.6521739130434783,
+            "asserted_in_prose": 65,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Days between the June 1 ratification deadline and the June 10 balanced-budget deadline \u2014 the runway argument for why (c)'s dependency is fatal",
+            "expr": "deadline - ratify_date",
+            "inputs": {
+              "deadline": 10,
+              "ratify_date": 1
+            },
+            "computed": 9.0,
+            "result_claimed": 9,
+            "asserted_in_prose": 9,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Controllable portion of Option (b) locked in even if both revenue items slip \u2014 the resilience anchor for adopting (b)",
+            "expr": "internal_cut / gap",
+            "inputs": {
+              "internal_cut": 5.1,
+              "gap": 9.2
+            },
+            "computed": 0.5543,
+            "result_claimed": 0.5543478260869565,
+            "asserted_in_prose": 5.1,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Combined recurring new revenue from paid parking plus franchise fee in Option (b) \u2014 structural revenue that improves out-year baseline",
+            "expr": "parking + franchise",
+            "inputs": {
+              "parking": 2.2,
+              "franchise": 2.0
+            },
+            "computed": 4.2,
+            "result_claimed": 4.2,
+            "asserted_in_prose": 4.2,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Option (b) total gap closure from its three components",
+            "stated_numbers": "paid parking +$2.2M, franchise fee +$2.0M, 3% cuts +$5.1M",
+            "python_expr": "2.2 + 2.0 + 5.1",
+            "asserted_value": 9.3
+          },
+          {
+            "desc": "Option (b) cushion above the $9.2M gap",
+            "stated_numbers": "closes $9.3M, gap $9.2M",
+            "python_expr": "9.3 - 9.2",
+            "asserted_value": 0.1
+          },
+          {
+            "desc": "Share of Option (c) plan dependent on union ratification",
+            "stated_numbers": "$6.0M of $9.2M plan",
+            "python_expr": "6.0 / 9.2",
+            "asserted_value": 0.65
+          },
+          {
+            "desc": "Days between union ratification deadline (June 1) and balanced-budget deadline (June 10)",
+            "stated_numbers": "ratified by June 1, deadline June 10",
+            "python_expr": "10 - 1",
+            "asserted_value": 9
+          },
+          {
+            "desc": "Option (a) total gap closure from its components",
+            "stated_numbers": "eliminate 42 FTE, defer $3.0M fleet, ambulance fees +$1.1M; closes $9.4M",
+            "python_expr": "3.0 + 1.1",
+            "asserted_value": 9.4
+          },
+          {
+            "desc": "Option (c) total gap closure from its components",
+            "stated_numbers": "wage freeze +$6.0M, 18 vacancies +$1.0M, road resurfacing -$2.2M",
+            "python_expr": "6.0 + 1.0 + 2.2",
+            "asserted_value": 9.2
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 10,
+        "genuine_derivations": 9,
+        "n_load_bearing_claims": 4,
+        "justified": 4,
+        "unjustified": 0,
+        "der_status": {
+          "WEAK": 1,
+          "GROUNDED": 3,
+          "UNCONFIRMED": 6
+        },
+        "derivations": [
+          {
+            "desc": "Total gap to close for FY2027",
+            "expr": "gap",
+            "inputs": {
+              "gap": 9.2
+            },
+            "computed": 9.2,
+            "result_claimed": 9.2,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": false,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": false,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "WEAK"
+          },
+          {
+            "desc": "Option (b) total closure",
+            "expr": "parking + franchise + atb",
+            "inputs": {
+              "parking": 2.2,
+              "franchise": 2.0,
+              "atb": 5.1
+            },
+            "computed": 9.3,
+            "result_claimed": 9.3,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": false,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Margin of Option (b) over the required gap",
+            "expr": "closure_b - gap",
+            "inputs": {
+              "closure_b": 9.3,
+              "gap": 9.2
+            },
+            "computed": 0.1,
+            "result_claimed": 0.09999999999999964,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Fragile parking + franchise share of Option (b) package",
+            "expr": "(parking + franchise) / closure_b",
+            "inputs": {
+              "parking": 2.2,
+              "franchise": 2.0,
+              "closure_b": 9.3
+            },
+            "computed": 0.4516,
+            "result_claimed": 0.45161290322580644,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Wage-freeze share of Option (c) package (single-point ratification risk)",
+            "expr": "wage_freeze / closure_c",
+            "inputs": {
+              "wage_freeze": 6.0,
+              "closure_c": 9.2
+            },
+            "computed": 0.6522,
+            "result_claimed": 0.6521739130434783,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) total closure for comparison",
+            "expr": "wage_freeze + vacant + resurfacing",
+            "inputs": {
+              "wage_freeze": 6.0,
+              "vacant": 1.0,
+              "resurfacing": 2.2
+            },
+            "computed": 9.2,
+            "result_claimed": 9.2,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Option (a) total closure for comparison",
+            "expr": "personnel + fleet_defer + ambulance",
+            "inputs": {
+              "personnel": 5.3,
+              "fleet_defer": 3.0,
+              "ambulance": 1.1
+            },
+            "computed": 9.4,
+            "result_claimed": 9.4,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Implied FY2027 expenditure base from reserve policy (12% floor derived from shortfall)",
+            "expr": "gap / reserve_gap_pct",
+            "inputs": {
+              "reserve_gap_pct": 0.016,
+              "gap": 9.2
+            },
+            "computed": 575.0,
+            "result_claimed": 575.0,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Reserve percentage after closing gap with Option (b) surplus applied to reserves",
+            "expr": "current_pct + closure_b / exp_base",
+            "inputs": {
+              "current_pct": 0.104,
+              "closure_b": 9.3,
+              "exp_base": 575.0
+            },
+            "computed": 0.1202,
+            "result_claimed": 0.12017391304347826,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Reliable ATB backbone as share of Option (b)",
+            "expr": "atb / closure_b",
+            "inputs": {
+              "atb": 5.1,
+              "closure_b": 9.3
+            },
+            "computed": 0.5484,
+            "result_claimed": 0.5483870967741935,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Option (b) total gap closed from its three measures",
+            "stated_numbers": "parking +$2.2M, franchise fee +$2.0M, ATB cuts +$5.1M; claimed $9.3M",
+            "python_expr": "2.2 + 2.0 + 5.1",
+            "asserted_value": 9.3
+          },
+          {
+            "desc": "Option (b) margin over the $9.2M target",
+            "stated_numbers": "closes $9.3M, target $9.2M",
+            "python_expr": "9.3 - 9.2",
+            "asserted_value": 0.1
+          },
+          {
+            "desc": "Parking + franchise fee share of the (b) package",
+            "stated_numbers": "$2.2M + $2.0M of $9.3M package; claimed ~45%",
+            "python_expr": "(2.2 + 2.0) / 9.3 * 100",
+            "asserted_value": 45
+          },
+          {
+            "desc": "Option (c) wage freeze share of package",
+            "stated_numbers": "$6.0M of $9.2M; claimed 65%",
+            "python_expr": "6.0 / 9.2 * 100",
+            "asserted_value": 65
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    },
+    "P-nat-anchor-fedramp": {
+      "pid": "P-nat-anchor-fedramp",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 5,
+        "genuine_derivations": 5,
+        "n_load_bearing_claims": 2,
+        "justified": 2,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 3,
+          "UNCONFIRMED": 2
+        },
+        "derivations": [
+          {
+            "desc": "Net annual revenue to the company after the reseller partner's revenue share; this is the key figure justifying that Option (b) is still highly accretive despite ceding margin.",
+            "expr": "deal * (1 - share)",
+            "inputs": {
+              "deal": 4.2,
+              "share": 0.25
+            },
+            "computed": 3.15,
+            "result_claimed": 3.15,
+            "asserted_in_prose": 3.15,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Engineers diverted to compliance as a share of total engineering headcount, supporting the claim that Option (a) consumes a material share of capacity while the roadmap is behind.",
+            "expr": "diverted / total",
+            "inputs": {
+              "diverted": 6,
+              "total": 140
+            },
+            "computed": 0.0429,
+            "result_claimed": 0.04285714285714286,
+            "asserted_in_prose": 6,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Gap between typical direct-FedRAMP completion time and available runway, load-bearing for the conclusion that Option (a) completes beyond runway and misses the agency's window.",
+            "expr": "fedramp_max - runway",
+            "inputs": {
+              "fedramp_max": 18,
+              "runway": 14
+            },
+            "computed": 4.0,
+            "result_claimed": 4,
+            "asserted_in_prose": 18,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Gap between direct-FedRAMP typical timeline and the agency's required 12-month window, supporting that hitting the deadline via Option (a) is unlikely.",
+            "expr": "fedramp_typical - agency_window",
+            "inputs": {
+              "fedramp_typical": 18,
+              "agency_window": 12
+            },
+            "computed": 6.0,
+            "result_claimed": 6,
+            "asserted_in_prose": 12,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Runway extension threshold for triggering Phase 2 direct FedRAMP; the decision to defer rests on runway being extendable past this point after a raise.",
+            "expr": "trigger - current_runway",
+            "inputs": {
+              "current_runway": 14,
+              "trigger": 24
+            },
+            "computed": 10.0,
+            "result_claimed": 10,
+            "asserted_in_prose": 24,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Net annual revenue after 25% revenue share on the $4.2M/yr deal",
+            "stated_numbers": "$4.2M/yr deal, ~25% revenue share",
+            "python_expr": "4.2 * (1 - 0.25)",
+            "asserted_value": 3.15
+          },
+          {
+            "desc": "Engineers diverted as share of total headcount",
+            "stated_numbers": "6 engineers, ~140 engineers",
+            "python_expr": "6 / 140",
+            "asserted_value": 0.04285714285714286
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 8,
+        "genuine_derivations": 8,
+        "n_load_bearing_claims": 5,
+        "justified": 5,
+        "unjustified": 0,
+        "der_status": {
+          "UNCONFIRMED": 6,
+          "GROUNDED": 2
+        },
+        "derivations": [
+          {
+            "desc": "Cash cost of direct FedRAMP build (midpoint of estimate range)",
+            "expr": "(low + high) / 2",
+            "inputs": {
+              "low": 1800000,
+              "high": 2500000
+            },
+            "computed": 2150000.0,
+            "result_claimed": 2150000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Affordable one-time spend within runway: assume company can commit ~1/8 of monthly burn to a project, at implied ~$1M/mo burn over 14 months runway",
+            "expr": "monthly_burn * runway_months * affordable_fraction",
+            "inputs": {
+              "monthly_burn": 1000000,
+              "runway_months": 14,
+              "affordable_fraction": 0.125
+            },
+            "computed": 1750000.0,
+            "result_claimed": 1750000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Midpoint timeline for direct build",
+            "expr": "(low_months + high_months) / 2",
+            "inputs": {
+              "low_months": 12,
+              "high_months": 18
+            },
+            "computed": 15.0,
+            "result_claimed": 15,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Share of engineering headcount diverted by direct build",
+            "expr": "diverted_engineers / total_headcount",
+            "inputs": {
+              "diverted_engineers": 6,
+              "total_headcount": 140
+            },
+            "computed": 0.0429,
+            "result_claimed": 0.042857142857142864,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Net annual revenue after partner revenue share",
+            "expr": "deal_value * (1 - rev_share)",
+            "inputs": {
+              "deal_value": 4200000,
+              "rev_share": 0.25
+            },
+            "computed": 3150000.0,
+            "result_claimed": 3150000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Estimated annual partner integration/support cost (assumption: ~5% of gross deal for integration and ongoing enablement)",
+            "expr": "deal_value * integration_rate",
+            "inputs": {
+              "deal_value": 4200000,
+              "integration_rate": 0.038
+            },
+            "computed": 159600.0,
+            "result_claimed": 159600,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Return multiple of net resale revenue over integration cost",
+            "expr": "net_revenue / integration_cost",
+            "inputs": {
+              "net_revenue": 3150000,
+              "integration_cost": 159600
+            },
+            "computed": 19.7368,
+            "result_claimed": 19.736842105263158,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Time margin of resale go-live inside agency deadline",
+            "expr": "deadline_months - resale_live_months",
+            "inputs": {
+              "deadline_months": 12,
+              "resale_live_months": 4
+            },
+            "computed": 8.0,
+            "result_claimed": 8,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Direct build cash cost midpoint",
+            "stated_numbers": "$1.8M-2.5M",
+            "python_expr": "(1.8 + 2.5) / 2",
+            "asserted_value": 2.15
+          },
+          {
+            "desc": "Timeline midpoint for direct build",
+            "stated_numbers": "12-18 months",
+            "python_expr": "(12 + 18) / 2",
+            "asserted_value": 15
+          },
+          {
+            "desc": "Fraction of headcount diverted by direct build",
+            "stated_numbers": "6 engineers, 140 people",
+            "python_expr": "6 / 140 * 100",
+            "asserted_value": 4.3
+          },
+          {
+            "desc": "Net annual revenue after 25% revenue share on reseller path",
+            "stated_numbers": "$4.2M/yr, 25% revenue share",
+            "python_expr": "4.2 * (1 - 0.25)",
+            "asserted_value": 3.15
+          },
+          {
+            "desc": "Ratio of net reseller revenue to partner-integration cost",
+            "stated_numbers": "$3.15M/yr net, $160K/yr cost",
+            "python_expr": "3.15 / 0.160",
+            "asserted_value": 20
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "equivalent"
+    },
+    "P-nat-gen-04": {
+      "pid": "P-nat-gen-04",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 3,
+        "genuine_derivations": 3,
+        "n_load_bearing_claims": 2,
+        "justified": 2,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 2,
+          "UNCONFIRMED": 1
+        },
+        "derivations": [
+          {
+            "desc": "Monthly recurring subscription revenue, the base the decision is measured against and the size of the cash pool option (b) pulls forward",
+            "expr": "subs * price",
+            "inputs": {
+              "subs": 9400,
+              "price": 9
+            },
+            "computed": 84600.0,
+            "result_claimed": 84600,
+            "asserted_in_prose": 84600,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Effective annual LTV per subscriber (ARPU times average tenure), compared against the $90 annual price to justify that annual plan is not underpriced relative to what a subscriber is worth",
+            "expr": "price * tenure_months",
+            "inputs": {
+              "price": 9,
+              "tenure_months": 11
+            },
+            "computed": 99.0,
+            "result_claimed": 99,
+            "asserted_in_prose": 90,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Approximate subscription base referenced in the option (a) analysis, used to argue the +18% ARPU nets little against elevated churn",
+            "expr": "subs * price",
+            "inputs": {
+              "subs": 9400,
+              "price": 9
+            },
+            "computed": 84600.0,
+            "result_claimed": 84600,
+            "asserted_in_prose": 85000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Monthly recurring subscription revenue",
+            "stated_numbers": "9,400 subscribers \u00d7 $9/mo",
+            "python_expr": "9400 * 9",
+            "asserted_value": 84600
+          },
+          {
+            "desc": "Annual price ($90/yr) vs annual LTV implied by tenure exceeding it",
+            "stated_numbers": "$9/mo \u00d7 11 months tenure vs $90/yr plan",
+            "python_expr": "9 * 11",
+            "asserted_value": 99
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 13,
+        "genuine_derivations": 13,
+        "n_load_bearing_claims": 5,
+        "justified": 5,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 6,
+          "UNCONFIRMED": 7
+        },
+        "derivations": [
+          {
+            "desc": "Current monthly subscription revenue",
+            "expr": "subs * price",
+            "inputs": {
+              "subs": 9400,
+              "price": 9
+            },
+            "computed": 84600.0,
+            "result_claimed": 84600,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Current total monthly revenue (subs + ads)",
+            "expr": "sub_rev + ad_rev",
+            "inputs": {
+              "sub_rev": 84600,
+              "ad_rev": 28000
+            },
+            "computed": 112600.0,
+            "result_claimed": 112600,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Implied cost base assuming breakeven target requires closing runway-implied gap; derived from cash runway consumed over 6 months plus current revenue",
+            "expr": "total_rev + runway / months",
+            "inputs": {
+              "runway": 180000,
+              "months": 6,
+              "total_rev": 112600
+            },
+            "computed": 142600.0,
+            "result_claimed": 142600,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "More conservative implied cost base using monthly burn to hit breakeven in 6 months (gap of ~16,760/mo)",
+            "expr": "total_rev + gap",
+            "inputs": {
+              "total_rev": 112600,
+              "gap": 16760
+            },
+            "computed": 129360.0,
+            "result_claimed": 129360,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Monthly gap to breakeven implied by the recommendation",
+            "expr": "cost_base - total_rev",
+            "inputs": {
+              "cost_base": 129360,
+              "total_rev": 112600
+            },
+            "computed": 16760.0,
+            "result_claimed": 16760,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "New ARPU after +18% uplift from price increase",
+            "expr": "price * (1 + uplift)",
+            "inputs": {
+              "price": 9,
+              "uplift": 0.18
+            },
+            "computed": 10.62,
+            "result_claimed": 10.62,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Subscribers lost to elevated churn over 3 months (5.5% vs 4.2% baseline = 1.3% extra/mo)",
+            "expr": "subs * extra_churn * months",
+            "inputs": {
+              "subs": 9400,
+              "extra_churn": 0.013,
+              "months": 3
+            },
+            "computed": 366.6,
+            "result_claimed": 366.6,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Cumulative extra churned subs including compounding and the notice-period spike (rounded estimate)",
+            "expr": "subs * (extra_churn * months + spike)",
+            "inputs": {
+              "subs": 9400,
+              "extra_churn": 0.013,
+              "months": 3,
+              "spike": 0.017
+            },
+            "computed": 526.4,
+            "result_claimed": 526.4,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Steady-state subscription revenue after price increase and churn settling (assume ~9,000 retained subs at $10.62)",
+            "expr": "retained_subs * new_arpu",
+            "inputs": {
+              "retained_subs": 9000,
+              "new_arpu": 10.62
+            },
+            "computed": 95580.0,
+            "result_claimed": 95580,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Net steady-state subscription revenue uplift vs current",
+            "expr": "new_sub_rev - old_sub_rev",
+            "inputs": {
+              "new_sub_rev": 95580,
+              "old_sub_rev": 84600
+            },
+            "computed": 10980.0,
+            "result_claimed": 10980,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Upper-bound uplift if churn recovers and subs hold near 9,300 at new ARPU",
+            "expr": "retained_subs * new_arpu - old_sub_rev",
+            "inputs": {
+              "retained_subs": 9300,
+              "new_arpu": 10.62,
+              "old_sub_rev": 84600
+            },
+            "computed": 14166.0,
+            "result_claimed": 14166,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Option (c) added fixed cost from ad ops contractor over the 6-month window",
+            "expr": "contractor * months",
+            "inputs": {
+              "contractor": 4000,
+              "months": 6
+            },
+            "computed": 24000.0,
+            "result_claimed": 24000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Ad revenue projected 6 months out at 10% QoQ decline (two quarters)",
+            "expr": "ad_rev * (1 - qoq) ** 2",
+            "inputs": {
+              "ad_rev": 28000,
+              "qoq": 0.1
+            },
+            "computed": 22680.0,
+            "result_claimed": 22680.0,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Current subscription revenue per month",
+            "stated_numbers": "9,400 subscribers at $9/mo",
+            "python_expr": "9400 * 9",
+            "asserted_value": 84600
+          },
+          {
+            "desc": "Total current revenue (subscription + ad)",
+            "stated_numbers": "$84,600 subscription + $28,000 ad",
+            "python_expr": "9400 * 9 + 28000",
+            "asserted_value": 112600
+          },
+          {
+            "desc": "Implied cost base derived from gap to breakeven",
+            "stated_numbers": "total revenue ~$112,600, gap ~$16,760",
+            "python_expr": "112600 + 16760",
+            "asserted_value": 129360
+          },
+          {
+            "desc": "Subscription revenue lift from +18% ARPU",
+            "stated_numbers": "subscription revenue $84,600, +18% ARPU",
+            "python_expr": "84600 * 0.18",
+            "asserted_value": 14900
+          },
+          {
+            "desc": "Extra subs lost from churn bump 4.2% to 5.5% for 3 months",
+            "stated_numbers": "9,400 subs, churn increases from 4.2% to 5.5% for 3 months",
+            "python_expr": "9400 * (0.055 - 0.042) * 3",
+            "asserted_value": 660
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    },
+    "P-nat-anchor-radiology": {
+      "pid": "P-nat-anchor-radiology",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 8,
+        "genuine_derivations": 8,
+        "n_load_bearing_claims": 8,
+        "justified": 7,
+        "unjustified": 1,
+        "der_status": {
+          "UNCONFIRMED": 5,
+          "GROUNDED": 3
+        },
+        "derivations": [
+          {
+            "desc": "Current annual overnight teleradiology spend \u2014 the baseline against which all options are compared",
+            "expr": "studies * rate",
+            "inputs": {
+              "studies": 9000,
+              "rate": 38
+            },
+            "computed": 342000.0,
+            "result_claimed": 342000,
+            "asserted_in_prose": 342000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Full in-house annual cost of 3 nocturnist FTEs \u2014 the cost of Option (a)",
+            "expr": "fte * loaded",
+            "inputs": {
+              "fte": 3,
+              "loaded": 520000
+            },
+            "computed": 1560000.0,
+            "result_claimed": 1560000,
+            "asserted_in_prose": 1560000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Cost ratio of full in-house vs. current spend \u2014 justifies rejecting Option (a) as disproportionate",
+            "expr": "inhouse / current",
+            "inputs": {
+              "inhouse": 1560000,
+              "current": 342000
+            },
+            "computed": 4.5614,
+            "result_claimed": 4.56140350877193,
+            "asserted_in_prose": 4.5,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Effective nightly coverage from 3 FTEs after PTO/sick/holidays \u2014 shows 3 FTEs cannot staff 365 nights",
+            "expr": "fte * availability",
+            "inputs": {
+              "fte": 3,
+              "availability": 0.8
+            },
+            "computed": 2.4,
+            "result_claimed": 2.4,
+            "asserted_in_prose": 2.4,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": false,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Option (b) annual cost with the 20-minute premium tier (+31% on rate) \u2014 cost of buying a tighter SLA from incumbent",
+            "expr": "current * (1 + premium)",
+            "inputs": {
+              "current": 342000,
+              "premium": 0.31
+            },
+            "computed": 448020.0,
+            "result_claimed": 448020,
+            "asserted_in_prose": 448000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Stat-subset annual study volume (15% of overnight volume) \u2014 sizes the in-house/stat portion of the hybrid",
+            "expr": "studies * share",
+            "inputs": {
+              "studies": 9000,
+              "share": 0.15
+            },
+            "computed": 1350.0,
+            "result_claimed": 1350,
+            "asserted_in_prose": 1350,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "SLA gap: median turnaround exceeds the 30-min SLA, motivating the fix on acute cases",
+            "expr": "median - sla",
+            "inputs": {
+              "median": 41,
+              "sla": 30
+            },
+            "computed": 11.0,
+            "result_claimed": 11,
+            "asserted_in_prose": 11,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Rejected renewal cost under proposed 22% increase \u2014 the pricing pressure driving the reevaluation",
+            "expr": "current * (1 + increase)",
+            "inputs": {
+              "current": 342000,
+              "increase": 0.22
+            },
+            "computed": 417240.0,
+            "result_claimed": 417240,
+            "asserted_in_prose": 342000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Stroke/trauma stat subset annual volume (15% of 9,000)",
+            "stated_numbers": "9,000 studies/year, 15%",
+            "python_expr": "9000 * 0.15",
+            "asserted_value": 1350
+          },
+          {
+            "desc": "Full in-house cost of 3 nocturnist FTEs",
+            "stated_numbers": "3 FTEs, $520k each",
+            "python_expr": "3 * 520000",
+            "asserted_value": 1560000
+          },
+          {
+            "desc": "Current annual overnight spend",
+            "stated_numbers": "9,000 studies \u00d7 $38",
+            "python_expr": "9000 * 38",
+            "asserted_value": 342000
+          },
+          {
+            "desc": "In-house cost as multiple of current spend",
+            "stated_numbers": "$1.56M in-house vs $342k current",
+            "python_expr": "1560000 / 342000",
+            "asserted_value": 4.5
+          },
+          {
+            "desc": "Nightly coverage from 3 FTEs across 365 nights",
+            "stated_numbers": "3 FTEs, ~2.4 nightly coverage",
+            "python_expr": "3 * (365*8/(365*24))*3",
+            "asserted_value": 3.0
+          },
+          {
+            "desc": "Option (b) premium-tier annual spend (+31% on current rate)",
+            "stated_numbers": "$342k base, +31%",
+            "python_expr": "9000 * 38 * 1.31",
+            "asserted_value": 448000
+          },
+          {
+            "desc": "Routine reads retained (~85% of volume)",
+            "stated_numbers": "15% insourced, remainder outsourced",
+            "python_expr": "1 - 0.15",
+            "asserted_value": 0.85
+          },
+          {
+            "desc": "Proposed vendor renewal rate after 22% increase",
+            "stated_numbers": "$38/study, +22%",
+            "python_expr": "38 * 1.22",
+            "asserted_value": 46.36
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 16,
+        "genuine_derivations": 15,
+        "n_load_bearing_claims": 7,
+        "justified": 6,
+        "unjustified": 1,
+        "der_status": {
+          "UNCONFIRMED": 14,
+          "WEAK": 1,
+          "GROUNDED": 1
+        },
+        "derivations": [
+          {
+            "desc": "Current annual overnight spend",
+            "expr": "rate * studies",
+            "inputs": {
+              "rate": 38,
+              "studies": 9000
+            },
+            "computed": 342000.0,
+            "result_claimed": 342000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) premium per-study rate: base +22% then +31% tier",
+            "expr": "rate * (1 + base_inc) * (1 + premium)",
+            "inputs": {
+              "rate": 38,
+              "base_inc": 0.22,
+              "premium": 0.31
+            },
+            "computed": 60.7316,
+            "result_claimed": 60.74,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) total annual cost at premium tier",
+            "expr": "rate * (1 + base_inc) * (1 + premium) * studies",
+            "inputs": {
+              "rate": 38,
+              "base_inc": 0.22,
+              "premium": 0.31,
+              "studies": 9000
+            },
+            "computed": 546584.4,
+            "result_claimed": 546660,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Effective blended increase over current spend for (b)",
+            "expr": "(1 + base_inc) * (1 + premium) - 1",
+            "inputs": {
+              "base_inc": 0.22,
+              "premium": 0.31
+            },
+            "computed": 0.5982,
+            "result_claimed": 0.5982,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Nights per year needing coverage",
+            "expr": "days",
+            "inputs": {
+              "days": 365
+            },
+            "computed": 365.0,
+            "result_claimed": 365,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": false,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "WEAK"
+          },
+          {
+            "desc": "Shift-hours to cover per year for the 8-hour overnight window",
+            "expr": "days * hours",
+            "inputs": {
+              "days": 365,
+              "hours": 8
+            },
+            "computed": 2920.0,
+            "result_claimed": 2920,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Sustainable annual shifts per nocturnist FTE (~15 shifts/mo)",
+            "expr": "shifts_per_month * months",
+            "inputs": {
+              "shifts_per_month": 15,
+              "months": 12
+            },
+            "computed": 180.0,
+            "result_claimed": 180,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Total sustainable shifts from 3 FTEs",
+            "expr": "shifts_per_month * months * ftes",
+            "inputs": {
+              "shifts_per_month": 15,
+              "months": 12,
+              "ftes": 3
+            },
+            "computed": 540.0,
+            "result_claimed": 540,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Coverage gap: nights unstaffed by 3 FTEs at sustainable load",
+            "expr": "days - shifts_per_month * months * ftes",
+            "inputs": {
+              "days": 365,
+              "shifts_per_month": 15,
+              "months": 12,
+              "ftes": 3
+            },
+            "computed": -175.0,
+            "result_claimed": -175,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Full in-house loaded cost for 3 nocturnists (Option a)",
+            "expr": "loaded * ftes",
+            "inputs": {
+              "loaded": 520000,
+              "ftes": 3
+            },
+            "computed": 1560000.0,
+            "result_claimed": 1560000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Multiple of current spend represented by Option (a)",
+            "expr": "loaded * ftes / (rate * studies)",
+            "inputs": {
+              "loaded": 520000,
+              "ftes": 3,
+              "rate": 38,
+              "studies": 9000
+            },
+            "computed": 4.5614,
+            "result_claimed": 4.5614,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Stroke/trauma subset volume at 15%",
+            "expr": "studies * subset",
+            "inputs": {
+              "studies": 9000,
+              "subset": 0.15
+            },
+            "computed": 1350.0,
+            "result_claimed": 1350,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Routine outsourced volume (85%) at base 22% renewal rate",
+            "expr": "rate * (1 + base_inc) * studies * (1 - subset)",
+            "inputs": {
+              "rate": 38,
+              "base_inc": 0.22,
+              "studies": 9000,
+              "subset": 0.15
+            },
+            "computed": 354654.0,
+            "result_claimed": 354807,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) in-house component: 1 nocturnist + locums pool for the 15% subset (assumption: 1 FTE at loaded rate + ~$130k locums)",
+            "expr": "loaded + locums",
+            "inputs": {
+              "loaded": 520000,
+              "locums": 130000
+            },
+            "computed": 650000.0,
+            "result_claimed": 650000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Routine-only outsourced cost basis used in the ~$286k figure (85% volume at current rate, pre-increase reference)",
+            "expr": "rate * studies * (1 - subset)",
+            "inputs": {
+              "rate": 38,
+              "studies": 9000,
+              "subset": 0.15
+            },
+            "computed": 290700.0,
+            "result_claimed": 290700,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) total annual cost: routine renewal (85% at +22%) plus in-house subset path",
+            "expr": "rate * (1 + base_inc) * studies * (1 - subset) + loaded + locums",
+            "inputs": {
+              "rate": 38,
+              "base_inc": 0.22,
+              "studies": 9000,
+              "subset": 0.15,
+              "loaded": 520000,
+              "locums": 130000
+            },
+            "computed": 1004654.0,
+            "result_claimed": 1004807,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Night-shifts per year that must be covered",
+            "stated_numbers": "365 nights, 8-hour shifts (11pm-7am)",
+            "python_expr": "365 * 8",
+            "asserted_value": 2920
+          },
+          {
+            "desc": "Night-shifts 3 FTEs supply at a sane workload",
+            "stated_numbers": "3 FTEs, ~657 shifts implied",
+            "python_expr": "657",
+            "asserted_value": 657
+          },
+          {
+            "desc": "Full in-house loaded cost for 3 nocturnists",
+            "stated_numbers": "3 radiologists at ~$520k each",
+            "python_expr": "3 * 520000",
+            "asserted_value": 1560000
+          },
+          {
+            "desc": "Option (b) blended cost with 22% base plus 31% premium",
+            "stated_numbers": "$38/study, 9,000 studies, +22% base, +31% premium",
+            "python_expr": "38 * 9000 * 1.22 * 1.31",
+            "asserted_value": 1130000
+          },
+          {
+            "desc": "Option (b) blended percent increase over current spend",
+            "stated_numbers": "+22% base, +31% premium",
+            "python_expr": "(1.22 * 1.31 - 1) * 100",
+            "asserted_value": 53
+          },
+          {
+            "desc": "Option (c) routine 85% renewal cost at base 22% increase",
+            "stated_numbers": "$38/study, 9,000 studies, 85% routine, +22%",
+            "python_expr": "38 * 9000 * 0.85 * 1.22",
+            "asserted_value": 286000
+          },
+          {
+            "desc": "Option (c) total cost (in-house subset + routine renewal)",
+            "stated_numbers": "~$650k in-house, ~$286k routine",
+            "python_expr": "650000 + 286000",
+            "asserted_value": 936000
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    },
+    "P-nat-gen-02": {
+      "pid": "P-nat-gen-02",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 5,
+        "genuine_derivations": 5,
+        "n_load_bearing_claims": 6,
+        "justified": 5,
+        "unjustified": 1,
+        "der_status": {
+          "GROUNDED": 3,
+          "UNCONFIRMED": 2
+        },
+        "derivations": [
+          {
+            "desc": "Total cost of an unplanned trip, which the recommendation weighs against the planned intervention to reject option (a)",
+            "expr": "lost_margin + disposal",
+            "inputs": {
+              "lost_margin": 420000,
+              "disposal": 60000
+            },
+            "computed": 480000.0,
+            "result_claimed": 480000,
+            "asserted_in_prose": 480000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Vibration rate of rise per day, used to establish that alarm is imminent and option (a) is unsafe",
+            "expr": "(end - start) / days",
+            "inputs": {
+              "start": 3.2,
+              "end": 6.8,
+              "days": 10
+            },
+            "computed": 0.36,
+            "result_claimed": 0.36,
+            "asserted_in_prose": 0.36,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Margin remaining to alarm limit, showing how close current vibration is to alarm to justify urgency",
+            "expr": "alarm - current",
+            "inputs": {
+              "alarm": 7.1,
+              "current": 6.8
+            },
+            "computed": 0.3,
+            "result_claimed": 0.3,
+            "asserted_in_prose": 0.3,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Days remaining until vibration reaches alarm at current slope, supporting the ~1 day estimate that rejects option (a)",
+            "expr": "(alarm - current) / slope",
+            "inputs": {
+              "alarm": 7.1,
+              "current": 6.8,
+              "slope": 0.36
+            },
+            "computed": 0.8333,
+            "result_claimed": 0.8333333333333334,
+            "asserted_in_prose": 1,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Iron ratio versus normal, evidence supporting bearing-wear diagnosis that favors bearing-only replacement (b)",
+            "expr": "iron / normal",
+            "inputs": {
+              "iron": 95,
+              "normal": 25
+            },
+            "computed": 3.8,
+            "result_claimed": 3.8,
+            "asserted_in_prose": 4,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Total unplanned trip cost (lost margin plus disposal)",
+            "stated_numbers": "$420,000 lost margin, $60,000 disposal",
+            "python_expr": "420000 + 60000",
+            "asserted_value": 480000
+          },
+          {
+            "desc": "Vibration rise over the 10-day period",
+            "stated_numbers": "3.2 to 6.8 mm/s",
+            "python_expr": "6.8 - 3.2",
+            "asserted_value": 3.6
+          },
+          {
+            "desc": "Vibration slope per day",
+            "stated_numbers": "3.2 to 6.8 mm/s over 10 days",
+            "python_expr": "(6.8 - 3.2) / 10",
+            "asserted_value": 0.36
+          },
+          {
+            "desc": "Margin below alarm limit for current vibration",
+            "stated_numbers": "6.8 mm/s current, 7.1 mm/s alarm",
+            "python_expr": "7.1 - 6.8",
+            "asserted_value": 0.3
+          },
+          {
+            "desc": "Days until vibration reaches alarm at current slope",
+            "stated_numbers": "7.1 alarm, 6.8 current, slope 0.36 mm/s/day",
+            "python_expr": "(7.1 - 6.8) / 0.36",
+            "asserted_value": 1
+          },
+          {
+            "desc": "Iron level as multiple of normal",
+            "stated_numbers": "95 ppm vs normal 25 ppm",
+            "python_expr": "95 / 25",
+            "asserted_value": 4
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 7,
+        "genuine_derivations": 6,
+        "n_load_bearing_claims": 4,
+        "justified": 4,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 4,
+          "UNCONFIRMED": 2,
+          "WEAK": 1
+        },
+        "derivations": [
+          {
+            "desc": "Vibration rise rate over the 10-day trend",
+            "expr": "(v_end - v_start) / days",
+            "inputs": {
+              "v_end": 6.8,
+              "v_start": 3.2,
+              "days": 10
+            },
+            "computed": 0.36,
+            "result_claimed": 0.36,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Days of headroom from current reading to alarm limit at current rate",
+            "expr": "(alarm - v_now) / rate",
+            "inputs": {
+              "alarm": 7.1,
+              "v_now": 6.8,
+              "rate": 0.36
+            },
+            "computed": 0.8333,
+            "result_claimed": 0.8333333333333334,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Total expected loss from an unplanned trip if running to campaign",
+            "expr": "lost_margin + disposal",
+            "inputs": {
+              "lost_margin": 420000,
+              "disposal": 60000
+            },
+            "computed": 480000.0,
+            "result_claimed": 480000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Iron contamination level confirming bearing wear",
+            "expr": "iron_now - iron_normal",
+            "inputs": {
+              "iron_now": 95,
+              "iron_normal": 25
+            },
+            "computed": 70.0,
+            "result_claimed": 70,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Extra cost of Option c versus bearings-only (expedited seal kit)",
+            "expr": "seal_kit",
+            "inputs": {
+              "seal_kit": 22000
+            },
+            "computed": 22000.0,
+            "result_claimed": 22000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": false,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "WEAK"
+          },
+          {
+            "desc": "Maximum campaign penalty exposure if full shortfall occurs",
+            "expr": "tonnes * penalty_per_tonne",
+            "inputs": {
+              "tonnes": 4000,
+              "penalty_per_tonne": 150
+            },
+            "computed": 600000.0,
+            "result_claimed": 600000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Seal kit lead time versus available window timing (feasibility check)",
+            "expr": "lead_hours - window_hours",
+            "inputs": {
+              "lead_hours": 36,
+              "window_hours": 10
+            },
+            "computed": 26.0,
+            "result_claimed": 26,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Vibration trend rate per day",
+            "stated_numbers": "risen from 3.2 to 6.8 mm/s over 10 days",
+            "python_expr": "(6.8 - 3.2) / 10",
+            "asserted_value": 0.36
+          },
+          {
+            "desc": "Headroom in days to alarm limit from current vibration at trend rate",
+            "stated_numbers": "6.8 mm/s current, 7.1 mm/s alarm, 0.36 mm/s per day",
+            "python_expr": "(7.1 - 6.8) / ((6.8 - 3.2) / 10)",
+            "asserted_value": 0.83
+          },
+          {
+            "desc": "Expected loss of unplanned trip",
+            "stated_numbers": "$420,000 lost margin plus $60,000 disposal",
+            "python_expr": "420000 + 60000",
+            "asserted_value": 480000
+          },
+          {
+            "desc": "Maximum penalty exposure for full campaign shortfall",
+            "stated_numbers": "4,000 tonnes at $150/tonne penalty",
+            "python_expr": "4000 * 150",
+            "asserted_value": 600000
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    },
+    "P-nat-anchor-storage": {
+      "pid": "P-nat-anchor-storage",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 8,
+        "genuine_derivations": 8,
+        "n_load_bearing_claims": 8,
+        "justified": 8,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 7,
+          "UNCONFIRMED": 1
+        },
+        "derivations": [
+          {
+            "desc": "Battery discharge duration at full output, to verify it exceeds the 90-minute peak need with margin",
+            "expr": "energy_mwh / power_mw",
+            "inputs": {
+              "energy_mwh": 160,
+              "power_mw": 40
+            },
+            "computed": 4.0,
+            "result_claimed": 4.0,
+            "asserted_in_prose": 4,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Battery effective power at year 5 after degradation, to confirm it still meaningfully covers the shortfall",
+            "expr": "power_mw * (1 - degrade_rate * years)",
+            "inputs": {
+              "power_mw": 40,
+              "degrade_rate": 0.025,
+              "years": 5
+            },
+            "computed": 35.0,
+            "result_claimed": 35.0,
+            "asserted_in_prose": 36,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Effective battery capex after 30% federal tax credit, the decisive cost comparison against the peaker",
+            "expr": "capex * (1 - credit_rate)",
+            "inputs": {
+              "capex": 58,
+              "credit_rate": 0.3
+            },
+            "computed": 40.6,
+            "result_claimed": 40.6,
+            "asserted_in_prose": 41,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Value of the tax credit that is forfeited if not committed before expiry",
+            "expr": "capex * credit_rate",
+            "inputs": {
+              "capex": 58,
+              "credit_rate": 0.3
+            },
+            "computed": 17.4,
+            "result_claimed": 17.4,
+            "asserted_in_prose": 17,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Residual capacity gap left by the 40 MW battery against the 45 MW shortfall, motivating the DR pairing",
+            "expr": "shortfall - battery_mw",
+            "inputs": {
+              "shortfall": 45,
+              "battery_mw": 40
+            },
+            "computed": 5.0,
+            "result_claimed": 5,
+            "asserted_in_prose": 5,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Firm DR contribution at the pessimistic 55% realization rate on 35 MW enrolled, to show the gap is covered",
+            "expr": "enrolled_mw * realization",
+            "inputs": {
+              "enrolled_mw": 35,
+              "realization": 0.55
+            },
+            "computed": 19.25,
+            "result_claimed": 19.25,
+            "asserted_in_prose": 19,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Total package capex (net battery cost plus DR standup) to compare cash outlay against the peaker",
+            "expr": "battery_net + dr_cost",
+            "inputs": {
+              "battery_net": 41,
+              "dr_cost": 12
+            },
+            "computed": 53.0,
+            "result_claimed": 53,
+            "asserted_in_prose": 53,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Combined firm capacity of battery (year-5 degraded) plus pessimistic DR versus shortfall, confirming reserve margin",
+            "expr": "battery_mw + dr_firm - shortfall",
+            "inputs": {
+              "battery_mw": 36,
+              "dr_firm": 19,
+              "shortfall": 45
+            },
+            "computed": 10.0,
+            "result_claimed": 10,
+            "asserted_in_prose": 45,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Battery discharge duration at full output",
+            "stated_numbers": "160 MWh capacity, 40 MW output",
+            "python_expr": "160 / 40",
+            "asserted_value": 4
+          },
+          {
+            "desc": "Battery output at year 5 after degradation",
+            "stated_numbers": "40 MW, 2.5%/yr degradation over 5 years",
+            "python_expr": "40 * (1 - 0.025 * 5)",
+            "asserted_value": 36
+          },
+          {
+            "desc": "Effective battery capex after 30% tax credit",
+            "stated_numbers": "$58M capex, 30% federal tax credit",
+            "python_expr": "58 * (1 - 0.30)",
+            "asserted_value": 41
+          },
+          {
+            "desc": "Value forfeited by not capturing tax credit",
+            "stated_numbers": "$58M capex, 30% tax credit",
+            "python_expr": "58 * 0.30",
+            "asserted_value": 17
+          },
+          {
+            "desc": "Residual gap after 40 MW battery against 45 MW shortfall",
+            "stated_numbers": "45 MW shortfall, 40 MW battery",
+            "python_expr": "45 - 40",
+            "asserted_value": 5
+          },
+          {
+            "desc": "Firm DR contribution at pessimistic realization",
+            "stated_numbers": "35 MW enrolled, 55% realization",
+            "python_expr": "35 * 0.55",
+            "asserted_value": 19
+          },
+          {
+            "desc": "Total package capex (net of tax credit)",
+            "stated_numbers": "$41M net battery, $12M DR",
+            "python_expr": "41 + 12",
+            "asserted_value": 53
+          },
+          {
+            "desc": "Combined firm capacity battery plus DR vs shortfall",
+            "stated_numbers": "40 MW battery, 19 MW DR firm, 45 MW shortfall",
+            "python_expr": "40 + 35 * 0.55",
+            "asserted_value": 59.25
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 9,
+        "genuine_derivations": 9,
+        "n_load_bearing_claims": 9,
+        "justified": 9,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 6,
+          "UNCONFIRMED": 3
+        },
+        "derivations": [
+          {
+            "desc": "Net battery capex after 30% federal tax credit",
+            "expr": "capex * (1 - credit_rate)",
+            "inputs": {
+              "capex": 58,
+              "credit_rate": 0.3
+            },
+            "computed": 40.6,
+            "result_claimed": 40.6,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Value of the tax credit (savings from acting inside the 2-year window)",
+            "expr": "capex * credit_rate",
+            "inputs": {
+              "capex": 58,
+              "credit_rate": 0.3
+            },
+            "computed": 17.4,
+            "result_claimed": 17.4,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Battery discharge duration at rated 40 MW",
+            "expr": "energy_mwh / power_mw * 60",
+            "inputs": {
+              "energy_mwh": 160,
+              "power_mw": 40
+            },
+            "computed": 240.0,
+            "result_claimed": 240,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Battery usable power after 5 years of 2.5%/yr degradation",
+            "expr": "power_mw * (1 - degrade_rate) ** years",
+            "inputs": {
+              "power_mw": 40,
+              "degrade_rate": 0.025,
+              "years": 5
+            },
+            "computed": 35.2438,
+            "result_claimed": 35.297,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Firm DR capacity at conservative 60% realization",
+            "expr": "enrolled_mw * realization",
+            "inputs": {
+              "enrolled_mw": 35,
+              "realization": 0.6
+            },
+            "computed": 21.0,
+            "result_claimed": 21.0,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Combined dependable capacity: degraded battery + firm DR",
+            "expr": "battery_mw + dr_mw",
+            "inputs": {
+              "battery_mw": 35.297,
+              "dr_mw": 21.0
+            },
+            "computed": 56.297,
+            "result_claimed": 56.297,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Reserve margin of combined capacity over the shortfall",
+            "expr": "(combined_mw - shortfall_mw) / shortfall_mw",
+            "inputs": {
+              "combined_mw": 56.297,
+              "shortfall_mw": 45
+            },
+            "computed": 0.251,
+            "result_claimed": 0.2510444444,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Total net upfront spend for battery plus DR",
+            "expr": "battery_net + dr_capex",
+            "inputs": {
+              "battery_net": 40.6,
+              "dr_capex": 12
+            },
+            "computed": 52.6,
+            "result_claimed": 52.6,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Interconnect queue in years vs 3-year deadline",
+            "expr": "queue_months / 12",
+            "inputs": {
+              "queue_months": 14
+            },
+            "computed": 1.1667,
+            "result_claimed": 1.1666666667,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Battery net capex after 30% federal tax credit",
+            "stated_numbers": "$58M capex, 30% tax credit",
+            "python_expr": "58 * (1 - 0.30)",
+            "asserted_value": 40.6
+          },
+          {
+            "desc": "Value of tax credit (savings from acting now vs later)",
+            "stated_numbers": "$58M capex, 30% tax credit",
+            "python_expr": "58 * 0.30",
+            "asserted_value": 17.4
+          },
+          {
+            "desc": "Battery capacity after 5 years of degradation at 2.5%/yr",
+            "stated_numbers": "40 MW, 2.5%/yr, 5 years",
+            "python_expr": "40 * (1 - 0.025) ** 5",
+            "asserted_value": 35.3
+          },
+          {
+            "desc": "Battery discharge duration at 40 MW from 160 MWh",
+            "stated_numbers": "160 MWh, 40 MW, ~90 minute peak",
+            "python_expr": "160 / 40 * 60",
+            "asserted_value": 90
+          },
+          {
+            "desc": "DR firm capacity at 60% realization of 35 MW",
+            "stated_numbers": "35 MW enrollment, 60% realization",
+            "python_expr": "35 * 0.60",
+            "asserted_value": 21
+          },
+          {
+            "desc": "Combined dependable capacity (degraded battery + DR firm)",
+            "stated_numbers": "35.3 MW battery, 21 MW DR",
+            "python_expr": "40 * (1 - 0.025) ** 5 + 35 * 0.60",
+            "asserted_value": 56.3
+          },
+          {
+            "desc": "Reserve margin of combined capacity over 45 MW shortfall",
+            "stated_numbers": "56.3 MW combined, 45 MW shortfall",
+            "python_expr": "(56.3 - 45) / 45 * 100",
+            "asserted_value": 25
+          },
+          {
+            "desc": "Total upfront net spend (battery net + DR)",
+            "stated_numbers": "$40.6M net battery, $12M DR",
+            "python_expr": "58 * (1 - 0.30) + 12",
+            "asserted_value": 52.6
+          },
+          {
+            "desc": "Interconnect queue fits inside 3-year deadline",
+            "stated_numbers": "14-month queue, 3-year deadline (36 months)",
+            "python_expr": "3 * 12 - 14",
+            "asserted_value": 22
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    },
+    "P-nat-gen-03": {
+      "pid": "P-nat-gen-03",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 10,
+        "genuine_derivations": 10,
+        "n_load_bearing_claims": 10,
+        "justified": 10,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 10
+        },
+        "derivations": [
+          {
+            "desc": "In-house practical throughput ceiling: determines whether current capacity can meet peak demand and how much relief is needed",
+            "expr": "stations * shifts * productive_hours * min_per_hour / cycle_min",
+            "inputs": {
+              "stations": 24,
+              "shifts": 2,
+              "productive_hours": 7.5,
+              "min_per_hour": 60,
+              "cycle_min": 6.5
+            },
+            "computed": 3323.0769,
+            "result_claimed": 3323.076923076923,
+            "asserted_in_prose": 3320,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Shortfall of peak demand over in-house ceiling: shows the gap is modest, justifying not needing a full overhaul",
+            "expr": "peak_demand - ceiling",
+            "inputs": {
+              "peak_demand": 3500,
+              "ceiling": 3320
+            },
+            "computed": 180.0,
+            "result_claimed": 180,
+            "asserted_in_prose": 180,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Volume offloaded to consolidator: 40% of peak demand removed from building",
+            "expr": "peak_demand * offload_pct",
+            "inputs": {
+              "peak_demand": 3500,
+              "offload_pct": 0.4
+            },
+            "computed": 1400.0,
+            "result_claimed": 1400,
+            "asserted_in_prose": 1400,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Remaining in-house load after offload: shows it falls under the throughput ceiling",
+            "expr": "peak_demand - offloaded",
+            "inputs": {
+              "peak_demand": 3500,
+              "offloaded": 1400
+            },
+            "computed": 2100.0,
+            "result_claimed": 2100,
+            "asserted_in_prose": 2100,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Total cost of option (c) through Dec 20: onboarding plus per-order fee on offloaded volume over peak days",
+            "expr": "onboarding + per_order_fee * offloaded_per_day * peak_days",
+            "inputs": {
+              "onboarding": 35000,
+              "per_order_fee": 1.8,
+              "offloaded_per_day": 1400,
+              "peak_days": 35
+            },
+            "computed": 123200.0,
+            "result_claimed": 123200.0,
+            "asserted_in_prose": 123200,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Per-order fee cost component of option (c)",
+            "expr": "per_order_fee * offloaded_per_day * peak_days",
+            "inputs": {
+              "per_order_fee": 1.8,
+              "offloaded_per_day": 1400,
+              "peak_days": 35
+            },
+            "computed": 88200.0,
+            "result_claimed": 88200.0,
+            "asserted_in_prose": 88200,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Penalty exposure avoided if 5% of orders would miss SLA without help: the credit that makes (c) net-affordable",
+            "expr": "miss_pct * peak_demand * peak_days * penalty_per_order",
+            "inputs": {
+              "miss_pct": 0.05,
+              "peak_demand": 3500,
+              "peak_days": 35,
+              "penalty_per_order": 10
+            },
+            "computed": 61250.0,
+            "result_claimed": 61250.0,
+            "asserted_in_prose": 61000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Late order count basis for penalty avoidance",
+            "expr": "miss_pct * peak_demand * peak_days",
+            "inputs": {
+              "miss_pct": 0.05,
+              "peak_demand": 3500,
+              "peak_days": 35
+            },
+            "computed": 6125.0,
+            "result_claimed": 6125.0,
+            "asserted_in_prose": 6125,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Total cost of option (b) temp labor: used to reject (b) as near-budget",
+            "expr": "temps * rate * hours_per_week * weeks + fees",
+            "inputs": {
+              "temps": 30,
+              "rate": 24,
+              "hours_per_week": 16,
+              "weeks": 8,
+              "fees": 12000
+            },
+            "computed": 104160.0,
+            "result_claimed": 104160.0,
+            "asserted_in_prose": 104000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Added returns cost from error rate increase in option (b): part of rejecting (b)",
+            "expr": "error_delta * peak_demand * peak_days * return_cost",
+            "inputs": {
+              "error_delta": 0.008,
+              "peak_demand": 3500,
+              "peak_days": 35,
+              "return_cost": 9
+            },
+            "computed": 8820.0,
+            "result_claimed": 8820.0,
+            "asserted_in_prose": 8800,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Practical in-house throughput per day",
+            "stated_numbers": "24 stations, 2 shifts, 7.5 productive hours, 60 min/hr, 6.5 min/order",
+            "python_expr": "24 * 2 * 7.5 * 60 / 6.5",
+            "asserted_value": 3320
+          },
+          {
+            "desc": "Amount peak demand exceeds throughput",
+            "stated_numbers": "3,500/day demand, 3,320/day throughput",
+            "python_expr": "3500 - 3320",
+            "asserted_value": 180
+          },
+          {
+            "desc": "Volume removed by 40% pre-positioning",
+            "stated_numbers": "40% of 3,500/day",
+            "python_expr": "0.40 * 3500",
+            "asserted_value": 1400
+          },
+          {
+            "desc": "Remaining in-house load after offloading 40%",
+            "stated_numbers": "3,500/day minus 1,400/day",
+            "python_expr": "3500 - 1400",
+            "asserted_value": 2100
+          },
+          {
+            "desc": "Option (c) per-order fee cost over peak",
+            "stated_numbers": "$1.80/order, 1,400 orders/day, 35 peak days",
+            "python_expr": "1.80 * 1400 * 35",
+            "asserted_value": 88200
+          },
+          {
+            "desc": "Option (c) gross cost through Dec 20",
+            "stated_numbers": "$35,000 onboarding + $88,200 per-order fees",
+            "python_expr": "35000 + 1.80 * 1400 * 35",
+            "asserted_value": 123200
+          },
+          {
+            "desc": "Late orders if missing 5% of 3,500/day for 35 days",
+            "stated_numbers": "5% of 3,500/day, 35 days",
+            "python_expr": "0.05 * 3500 * 35",
+            "asserted_value": 6125
+          },
+          {
+            "desc": "Penalties avoided at $10/late order",
+            "stated_numbers": "6,125 late orders, $10/order (chargeback $4 + expedite $6)",
+            "python_expr": "0.05 * 3500 * 35 * (4 + 6)",
+            "asserted_value": 61000
+          },
+          {
+            "desc": "Option (b) temp labor + fees cost",
+            "stated_numbers": "30 temps, $24/hr, 16 hrs/wk, 8 weeks, $12,000 fees",
+            "python_expr": "30 * 24 * 16 * 8 + 12000",
+            "asserted_value": 104000
+          },
+          {
+            "desc": "Option (b) added returns cost from error rate jump",
+            "stated_numbers": "error rate from 0.6% to 1.4% (0.8% jump), 3,500/day, 35 days, $9/return",
+            "python_expr": "0.008 * 3500 * 35 * 9",
+            "asserted_value": 8800
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 12,
+        "genuine_derivations": 12,
+        "n_load_bearing_claims": 8,
+        "justified": 8,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 4,
+          "UNCONFIRMED": 8
+        },
+        "derivations": [
+          {
+            "desc": "Baseline associate-hours needed per day at peak volume",
+            "expr": "peak_orders * cycle_min / min_per_hr",
+            "inputs": {
+              "peak_orders": 3500,
+              "cycle_min": 6.5,
+              "min_per_hr": 60
+            },
+            "computed": 379.1667,
+            "result_claimed": 379.17,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Nominal daily associate-hours available (58 associates, 2 shifts, 8 hrs)",
+            "expr": "associates * shifts * hrs_per_shift",
+            "inputs": {
+              "associates": 58,
+              "shifts": 2,
+              "hrs_per_shift": 8
+            },
+            "computed": 928.0,
+            "result_claimed": 928,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Baseline daily order capacity at 6.5 min/order",
+            "expr": "avail_hours * min_per_hr / cycle_min",
+            "inputs": {
+              "avail_hours": 928,
+              "min_per_hr": 60,
+              "cycle_min": 6.5
+            },
+            "computed": 8566.1538,
+            "result_claimed": 8566.15,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Effective baseline capacity assuming ~50% station utilization ceiling (24 stations bottleneck)",
+            "expr": "stations * shift_hours * min_per_hr / cycle_min",
+            "inputs": {
+              "stations": 24,
+              "shift_hours": 16,
+              "min_per_hr": 60,
+              "cycle_min": 6.5
+            },
+            "computed": 3544.6154,
+            "result_claimed": 3544.6,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Post-retrofit cycle time after 25% reduction",
+            "expr": "cycle_min * (1 - reduction)",
+            "inputs": {
+              "cycle_min": 6.5,
+              "reduction": 0.25
+            },
+            "computed": 4.875,
+            "result_claimed": 4.875,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Post-retrofit peak station-bound daily capacity",
+            "expr": "stations * shift_hours * min_per_hr / post_cycle",
+            "inputs": {
+              "stations": 24,
+              "shift_hours": 16,
+              "min_per_hr": 60,
+              "post_cycle": 4.875
+            },
+            "computed": 4726.1538,
+            "result_claimed": 4726.15,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Surge buffer of post-retrofit capacity over peak demand",
+            "expr": "(post_capacity - peak_orders) / peak_orders",
+            "inputs": {
+              "post_capacity": 4726.15,
+              "peak_orders": 3500
+            },
+            "computed": 0.3503,
+            "result_claimed": 0.35,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) temp labor cost: 30 temps, $24/hr, 8 hrs, weekend days (2/wk) over 8 weeks",
+            "expr": "temps * rate * hrs * days_per_wk * weeks",
+            "inputs": {
+              "temps": 30,
+              "rate": 24,
+              "hrs": 8,
+              "days_per_wk": 2,
+              "weeks": 8
+            },
+            "computed": 92160.0,
+            "result_claimed": 92160,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) incremental returns cost from error rate jump 0.6% to 1.4% over peak weekend volume",
+            "expr": "peak_orders * err_delta * return_cost * days_per_wk * weeks",
+            "inputs": {
+              "peak_orders": 3500,
+              "err_delta": 0.008,
+              "return_cost": 9,
+              "days_per_wk": 2,
+              "weeks": 8
+            },
+            "computed": 4032.0,
+            "result_claimed": 4032,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) variable per-order fee across 40% of peak volume over 36-day peak period",
+            "expr": "peak_orders * share * per_order_fee * days",
+            "inputs": {
+              "peak_orders": 3500,
+              "share": 0.4,
+              "per_order_fee": 1.8,
+              "days": 36
+            },
+            "computed": 90720.0,
+            "result_claimed": 90720,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) total cost including onboarding",
+            "expr": "onboarding + variable_fees",
+            "inputs": {
+              "onboarding": 35000,
+              "variable_fees": 90720
+            },
+            "computed": 125720.0,
+            "result_claimed": 125720,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (a) fits within budget",
+            "expr": "budget - retrofit_cost",
+            "inputs": {
+              "budget": 120000,
+              "retrofit_cost": 110000
+            },
+            "computed": 10000.0,
+            "result_claimed": 10000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Associate-hours/day needed at peak volume and baseline cycle time",
+            "stated_numbers": "3,500 orders/day, 6.5 min/order",
+            "python_expr": "3500 * 6.5 / 60",
+            "asserted_value": 379.2
+          },
+          {
+            "desc": "Nominal associate-hours/day from 58 associates on 2 eight-hour shifts",
+            "stated_numbers": "58 associates, 2 shifts, 8 hours",
+            "python_expr": "58 * 2 * 8",
+            "asserted_value": 928
+          },
+          {
+            "desc": "Baseline daily capacity in orders",
+            "stated_numbers": "928 hours/day, 6.5 min/order",
+            "python_expr": "928 * 60 / 6.5",
+            "asserted_value": 4265
+          },
+          {
+            "desc": "Reduced cycle time after 25% cut",
+            "stated_numbers": "6.5 min, 25% reduction",
+            "python_expr": "6.5 * (1 - 0.25)",
+            "asserted_value": 4.875
+          },
+          {
+            "desc": "Peak capacity after cycle-time reduction",
+            "stated_numbers": "928 hours/day, 4.875 min/order",
+            "python_expr": "928 * 60 / 4.875",
+            "asserted_value": 5686
+          },
+          {
+            "desc": "Surge buffer of option (a) capacity over needed 3,500",
+            "stated_numbers": "5,686 capacity, 3,500 needed",
+            "python_expr": "(5686 - 3500) / 3500 * 100",
+            "asserted_value": 62
+          },
+          {
+            "desc": "Option (b) temp labor cost",
+            "stated_numbers": "30 temps, $24/hr, 8 hrs, weekend (2 days/wk), 8 weeks",
+            "python_expr": "30 * 24 * 8 * 2 * 8",
+            "asserted_value": 57600
+          },
+          {
+            "desc": "Option (c) variable per-order fees across 40% of peak volume over Nov 15-Dec 20 (36 days)",
+            "stated_numbers": "$1.80/order, 40%, 3,500/day, 36 days",
+            "python_expr": "1.80 * 0.40 * 3500 * 36",
+            "asserted_value": 75600
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    },
+    "P-nat-gen-07": {
+      "pid": "P-nat-gen-07",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 2,
+        "genuine_derivations": 2,
+        "n_load_bearing_claims": 4,
+        "justified": 2,
+        "unjustified": 2,
+        "der_status": {
+          "GROUNDED": 2
+        },
+        "derivations": [
+          {
+            "desc": "Total cost of package (a) combining capex and ops, which determines whether it fits the budget cap and drives the value-engineering requirement",
+            "expr": "capex + ops",
+            "inputs": {
+              "capex": 2.8,
+              "ops": 0.6
+            },
+            "computed": 3.4,
+            "result_claimed": 3.4,
+            "asserted_in_prose": 3.4,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Budget overage of package (a) versus the cap, which is identified as the one material risk requiring mitigation",
+            "expr": "capex + ops - cap",
+            "inputs": {
+              "capex": 2.8,
+              "ops": 0.6,
+              "cap": 3.2
+            },
+            "computed": 0.2,
+            "result_claimed": 0.2,
+            "asserted_in_prose": 0.2,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Total cost of package (a) capex + ops",
+            "stated_numbers": "$2.8M capex + $0.6M ops",
+            "python_expr": "2.8 + 0.6",
+            "asserted_value": 3.4
+          },
+          {
+            "desc": "Budget overage of package (a) versus $3.2M cap",
+            "stated_numbers": "$3.4M total, $3.2M cap",
+            "python_expr": "(2.8 + 0.6) - 3.2",
+            "asserted_value": 0.2
+          },
+          {
+            "desc": "Required curbside complaint cap increase (15% over baseline 220/month)",
+            "stated_numbers": "15% cap, baseline 220/month",
+            "python_expr": "220 * 0.15",
+            "asserted_value": 33
+          },
+          {
+            "desc": "Required OTP improvement in percentage points (62% to 78%)",
+            "stated_numbers": "62% to 78%",
+            "python_expr": "78 - 62",
+            "asserted_value": 16
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 9,
+        "genuine_derivations": 9,
+        "n_load_bearing_claims": 4,
+        "justified": 4,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 3,
+          "UNCONFIRMED": 6
+        },
+        "derivations": [
+          {
+            "desc": "Option (a) total cost (capex + ops)",
+            "expr": "capex_a + ops_a",
+            "inputs": {
+              "capex_a": 2.8,
+              "ops_a": 0.6
+            },
+            "computed": 3.4,
+            "result_claimed": 3.4,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Budget overrun of option (a) vs cap",
+            "expr": "total_a - cap",
+            "inputs": {
+              "total_a": 3.4,
+              "cap": 3.2
+            },
+            "computed": 0.2,
+            "result_claimed": 0.2,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) total cost",
+            "expr": "setup_b + ops_b",
+            "inputs": {
+              "setup_b": 1.1,
+              "ops_b": 0.9
+            },
+            "computed": 2.0,
+            "result_claimed": 2.0,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Budget headroom under (b)",
+            "expr": "cap - total_b",
+            "inputs": {
+              "cap": 3.2,
+              "total_b": 2.0
+            },
+            "computed": 1.2,
+            "result_claimed": 1.2,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Option (c) total cost",
+            "expr": "capex_c + ops_c",
+            "inputs": {
+              "capex_c": 2.0,
+              "ops_c": 0.7
+            },
+            "computed": 2.7,
+            "result_claimed": 2.7,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Bus on-time improvement required (percentage points)",
+            "expr": "target_otp - baseline_otp",
+            "inputs": {
+              "target_otp": 78,
+              "baseline_otp": 62
+            },
+            "computed": 16.0,
+            "result_claimed": 16,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": false,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Low-end vs required travel-time reduction gap",
+            "expr": "required_reduction - low_reduction",
+            "inputs": {
+              "low_reduction": 9,
+              "required_reduction": 12
+            },
+            "computed": 3.0,
+            "result_claimed": 3,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Peak trips affected per day given corridor volume and priced peak share (assume 55% of trips occur in peak windows)",
+            "expr": "corridor_trips * peak_share",
+            "inputs": {
+              "corridor_trips": 38000,
+              "peak_share": 0.55
+            },
+            "computed": 20900.0,
+            "result_claimed": 20900,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Expected peak traffic removed per day at high end of range",
+            "expr": "peak_trips * high_reduction_frac",
+            "inputs": {
+              "peak_trips": 20900,
+              "high_reduction_frac": 0.14
+            },
+            "computed": 2926.0,
+            "result_claimed": 2926,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Option (b) total cost (setup + ops)",
+            "stated_numbers": "$1.1M setup + $0.9M ops",
+            "python_expr": "1.1 + 0.9",
+            "asserted_value": 2.0
+          },
+          {
+            "desc": "Budget headroom after option (b)",
+            "stated_numbers": "$3.2M budget, $2.0M cost",
+            "python_expr": "3.2 - (1.1 + 0.9)",
+            "asserted_value": 1.2
+          },
+          {
+            "desc": "Option (a) total cost (capex + ops), busts $3.2M budget",
+            "stated_numbers": "$2.8M capex + $0.6M ops",
+            "python_expr": "2.8 + 0.6",
+            "asserted_value": 3.4
+          },
+          {
+            "desc": "Option (c) total cost (capex + ops)",
+            "stated_numbers": "$2.0M capex + $0.7M ops",
+            "python_expr": "2.0 + 0.7",
+            "asserted_value": 2.7
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    },
+    "P-nat-gen-06": {
+      "pid": "P-nat-gen-06",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 3,
+        "genuine_derivations": 3,
+        "n_load_bearing_claims": 2,
+        "justified": 2,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 1,
+          "UNCONFIRMED": 2
+        },
+        "derivations": [
+          {
+            "desc": "Budget cushion from option (a): savings minus the gap, load-bearing because the recommendation funds ring-fences from this cushion and cites reliable full closure",
+            "expr": "savings - gap",
+            "inputs": {
+              "savings": 4.4,
+              "gap": 4.2
+            },
+            "computed": 0.2,
+            "result_claimed": 0.20000000000000018,
+            "asserted_in_prose": 0.2,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Net revenue at risk under option (b): the enrollment-decline loss against the net tuition gain, showing the gap could be left partially open",
+            "expr": "net_gain - revenue_loss",
+            "inputs": {
+              "net_gain": 3.9,
+              "revenue_loss": 1.4
+            },
+            "computed": 2.5,
+            "result_claimed": 2.5,
+            "asserted_in_prose": 1.4,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Advising caseload increase driving the academic/retention risk that motivates the ring-fences",
+            "expr": "new_caseload - old_caseload",
+            "inputs": {
+              "new_caseload": 420,
+              "old_caseload": 310
+            },
+            "computed": 110.0,
+            "result_claimed": 110,
+            "asserted_in_prose": 420,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Option (a) savings cushion over the gap",
+            "stated_numbers": "$4.4M savings, $4.2M gap",
+            "python_expr": "4.4 - 4.2",
+            "asserted_value": 0.2
+          },
+          {
+            "desc": "Option (b) net revenue remaining after enrollment-decline erosion",
+            "stated_numbers": "$3.9M net, $1.4M erosion",
+            "python_expr": "3.9 - 1.4",
+            "asserted_value": 2.5
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 10,
+        "genuine_derivations": 10,
+        "n_load_bearing_claims": 7,
+        "justified": 7,
+        "unjustified": 0,
+        "der_status": {
+          "UNCONFIRMED": 10
+        },
+        "derivations": [
+          {
+            "desc": "FY27 budget gap from state cut",
+            "expr": "appropriation_cut_pct * state_appropriation",
+            "inputs": {
+              "appropriation_cut_pct": 0.07,
+              "state_appropriation": 60000000
+            },
+            "computed": 4200000.0,
+            "result_claimed": 4200000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Cushion of Option (a) over the gap",
+            "expr": "option_a_savings - gap",
+            "inputs": {
+              "option_a_savings": 4400000,
+              "gap": 4200000
+            },
+            "computed": 200000.0,
+            "result_claimed": 200000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) shortfall vs gap at expected net",
+            "expr": "option_b_net - gap",
+            "inputs": {
+              "option_b_net": 3900000,
+              "gap": 4200000
+            },
+            "computed": -300000.0,
+            "result_claimed": -300000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) worst-case net revenue after enrollment decline",
+            "expr": "option_b_net - enrollment_revenue_loss",
+            "inputs": {
+              "option_b_net": 3900000,
+              "enrollment_revenue_loss": 1400000
+            },
+            "computed": 2500000.0,
+            "result_claimed": 2500000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) worst-case hole vs gap",
+            "expr": "option_b_worst - gap",
+            "inputs": {
+              "option_b_worst": 2500000,
+              "gap": 4200000
+            },
+            "computed": -1700000.0,
+            "result_claimed": -1700000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) net after donor clawback",
+            "expr": "option_c_savings - donor_clawback",
+            "inputs": {
+              "option_c_savings": 4200000,
+              "donor_clawback": 500000
+            },
+            "computed": 3700000.0,
+            "result_claimed": 3700000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Advising caseload percentage increase",
+            "expr": "(new_caseload - old_caseload) / old_caseload",
+            "inputs": {
+              "new_caseload": 420,
+              "old_caseload": 310
+            },
+            "computed": 0.3548,
+            "result_claimed": 0.3548387096774194,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Retention gap to hit the funding threshold",
+            "expr": "target_retention - current_retention",
+            "inputs": {
+              "target_retention": 0.78,
+              "current_retention": 0.74
+            },
+            "computed": 0.04,
+            "result_claimed": 0.040000000000000036,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Net structural savings of (a) after ring-fencing advising and STEM sections",
+            "expr": "option_a_savings - ringfence",
+            "inputs": {
+              "option_a_savings": 4400000,
+              "ringfence": 700000
+            },
+            "computed": 3700000.0,
+            "result_claimed": 3700000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Net savings of (a) still covers the gap after ring-fence",
+            "expr": "net_a_after_ringfence + avoided_penalty - gap",
+            "inputs": {
+              "net_a_after_ringfence": 3700000,
+              "gap": 4200000,
+              "avoided_penalty": 1100000
+            },
+            "computed": 600000.0,
+            "result_claimed": 600000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Option (a) cushion above the gap",
+            "stated_numbers": "saves $4.4M, gap $4.2M",
+            "python_expr": "4.4 - 4.2",
+            "asserted_value": 0.2
+          },
+          {
+            "desc": "Option (b) shortfall vs gap at net revenue",
+            "stated_numbers": "net +$3.9M, gap $4.2M",
+            "python_expr": "3.9 - 4.2",
+            "asserted_value": -0.3
+          },
+          {
+            "desc": "Option (b) worst-case net revenue after enrollment decline",
+            "stated_numbers": "net +$3.9M, reduced by ~$1.4M",
+            "python_expr": "3.9 - 1.4",
+            "asserted_value": 2.5
+          },
+          {
+            "desc": "Option (b) worst-case hole vs gap",
+            "stated_numbers": "worst-case $2.5M, gap $4.2M",
+            "python_expr": "4.2 - (3.9 - 1.4)",
+            "asserted_value": 1.7
+          },
+          {
+            "desc": "Option (c) net after donor clawback",
+            "stated_numbers": "net savings $4.2M, clawback $500k",
+            "python_expr": "4.2 - 0.5",
+            "asserted_value": 3.7
+          },
+          {
+            "desc": "Advising caseload percentage increase",
+            "stated_numbers": "from 310 to 420 per advisor",
+            "python_expr": "(420 - 310) / 310 * 100",
+            "asserted_value": 35
+          },
+          {
+            "desc": "Option (a) net structural savings after ring-fencing advising/STEM",
+            "stated_numbers": "saves $4.4M, ring-fence $0.7M",
+            "python_expr": "4.4 - 0.7",
+            "asserted_value": 3.7
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "equivalent"
+    },
+    "P-nat-gen-08": {
+      "pid": "P-nat-gen-08",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 2,
+        "genuine_derivations": 2,
+        "n_load_bearing_claims": 2,
+        "justified": 2,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 1,
+          "UNCONFIRMED": 1
+        },
+        "derivations": [
+          {
+            "desc": "Runway in months of pure burn from cash on hand; establishes feasibility concern that gates which option is affordable",
+            "expr": "cash / burn",
+            "inputs": {
+              "cash": 38,
+              "burn": 4.5
+            },
+            "computed": 8.4444,
+            "result_claimed": 8.444444444444445,
+            "asserted_in_prose": 8.4,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Phase 2a rate of severe ALT elevations, framing the hepatotoxicity signal as manageable rather than program-killing",
+            "expr": "cases / active_n",
+            "inputs": {
+              "cases": 3,
+              "active_n": 48
+            },
+            "computed": 0.0625,
+            "result_claimed": 0.0625,
+            "asserted_in_prose": 6,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Runway in months from cash on hand at monthly burn",
+            "stated_numbers": "$38M cash, $4.5M/month burn",
+            "python_expr": "38 / 4.5",
+            "asserted_value": 8.4
+          },
+          {
+            "desc": "Phase 2a active-arm ALT >5x ULN rate",
+            "stated_numbers": "3/48 active patients",
+            "python_expr": "3 / 48 * 100",
+            "asserted_value": 6
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 7,
+        "genuine_derivations": 7,
+        "n_load_bearing_claims": 5,
+        "justified": 5,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 2,
+          "UNCONFIRMED": 5
+        },
+        "derivations": [
+          {
+            "desc": "Cash runway on existing burn",
+            "expr": "cash / burn",
+            "inputs": {
+              "cash": 38,
+              "burn": 4.5
+            },
+            "computed": 8.4444,
+            "result_claimed": 8.444444444444445,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Burn over option (a) 18-month readout",
+            "expr": "burn * months_a",
+            "inputs": {
+              "burn": 4.5,
+              "months_a": 18
+            },
+            "computed": 81.0,
+            "result_claimed": 81,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Financing gap for option (a): trial cost plus 18mo burn minus cash",
+            "expr": "cost_a + burn * months_a - cash",
+            "inputs": {
+              "cost_a": 32,
+              "burn": 4.5,
+              "months_a": 18,
+              "cash": 38
+            },
+            "computed": 75.0,
+            "result_claimed": 75,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Total spend exposure for option (b) before 30-month readout",
+            "expr": "burn * months_b",
+            "inputs": {
+              "burn": 4.5,
+              "months_b": 30
+            },
+            "computed": 135.0,
+            "result_claimed": 135,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "ALT>5x ULN incidence in active arm (hepatotoxicity liability being mitigated)",
+            "expr": "alt_events / active_n",
+            "inputs": {
+              "alt_events": 3,
+              "active_n": 48
+            },
+            "computed": 0.0625,
+            "result_claimed": 0.0625,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Incremental cost of adaptive (b) over powered 2b (a)",
+            "expr": "cost_b - cost_a",
+            "inputs": {
+              "cost_b": 55,
+              "cost_a": 32
+            },
+            "computed": 23.0,
+            "result_claimed": 23,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Correction: financing gap phrased as ~$46M uses cost plus a shorter runway buffer (trial + ~4 months buffer minus cash)",
+            "expr": "cost_a + burn * buffer_months - cash + 12",
+            "inputs": {
+              "cost_a": 32,
+              "burn": 4.5,
+              "buffer_months": 4,
+              "cash": 38
+            },
+            "computed": 24.0,
+            "result_claimed": 24,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Cash runway from existing cash at monthly burn",
+            "stated_numbers": "$38M cash, $4.5M/month burn",
+            "python_expr": "38 / 4.5",
+            "asserted_value": 8.4
+          },
+          {
+            "desc": "Burn over 30-month option (b) timeline",
+            "stated_numbers": "$4.5M/month burn, 30 months",
+            "python_expr": "4.5 * 30",
+            "asserted_value": 135
+          },
+          {
+            "desc": "Burn over 18-month option (a) timeline",
+            "stated_numbers": "$4.5M/month burn, 18 months",
+            "python_expr": "4.5 * 18",
+            "asserted_value": 50
+          },
+          {
+            "desc": "Funding gap after cash for option (a) trial plus runway",
+            "stated_numbers": "$32M trial cost, ~$50M burn, $38M cash",
+            "python_expr": "32 + 50 - 38",
+            "asserted_value": 46
+          },
+          {
+            "desc": "Phase 2a active patients with ALT elevation fraction",
+            "stated_numbers": "3/48 active patients had ALT >5x ULN",
+            "python_expr": "3 / 48",
+            "asserted_value": 0.0625
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "showfirst_better"
+    },
+    "P-nat-gen-05": {
+      "pid": "P-nat-gen-05",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 15,
+        "genuine_derivations": 15,
+        "n_load_bearing_claims": 15,
+        "justified": 15,
+        "unjustified": 0,
+        "der_status": {
+          "UNCONFIRMED": 14,
+          "GROUNDED": 1
+        },
+        "derivations": [
+          {
+            "desc": "Option (a) total monthly cost: 6,000 tons at $310/ton take-or-pay. Load-bearing because it establishes (a) as the most expensive option.",
+            "expr": "tons * price",
+            "inputs": {
+              "tons": 6000,
+              "price": 310
+            },
+            "computed": 1860000.0,
+            "result_claimed": 1860000,
+            "asserted_in_prose": 1860000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Baseline monthly forage cost: 6,000 tons at $245/ton. Used as the comparison anchor for all premiums.",
+            "expr": "tons * price",
+            "inputs": {
+              "tons": 6000,
+              "price": 245
+            },
+            "computed": 1470000.0,
+            "result_claimed": 1470000,
+            "asserted_in_prose": 1470000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (a) monthly premium over baseline. Directly drives the 'most expensive insurance policy' conclusion.",
+            "expr": "tons * (price_a - price_base)",
+            "inputs": {
+              "tons": 6000,
+              "price_a": 310,
+              "price_base": 245
+            },
+            "computed": 390000.0,
+            "result_claimed": 390000,
+            "asserted_in_prose": 390000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (a) premium over 90 days (3 months). Supports the total-cost framing of the take-or-pay trap.",
+            "expr": "tons * (price_a - price_base) * months",
+            "inputs": {
+              "tons": 6000,
+              "price_a": 310,
+              "price_base": 245,
+              "months": 3
+            },
+            "computed": 1170000.0,
+            "result_claimed": 1170000,
+            "asserted_in_prose": 1170000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) delivered per-ton cost: $295 forage + $38 freight. Establishes (b) as costlier per ton.",
+            "expr": "forage + freight",
+            "inputs": {
+              "forage": 295,
+              "freight": 38
+            },
+            "computed": 333.0,
+            "result_claimed": 333,
+            "asserted_in_prose": 333,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Option (b) total monthly cost: 2,500 tons at $333/ton delivered.",
+            "expr": "tons * (forage + freight)",
+            "inputs": {
+              "tons": 2500,
+              "forage": 295,
+              "freight": 38
+            },
+            "computed": 832500.0,
+            "result_claimed": 832500,
+            "asserted_in_prose": 832000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) expected monthly penalty exposure from 20% late-delivery chance causing 3% milk drop on 1.2M gal at $0.18/gal.",
+            "expr": "prob_late * milk_drop * gallons * penalty",
+            "inputs": {
+              "prob_late": 0.2,
+              "milk_drop": 0.03,
+              "gallons": 1200000,
+              "penalty": 0.18
+            },
+            "computed": 1296.0,
+            "result_claimed": 1296.0,
+            "asserted_in_prose": 1296,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) retained alfalfa cost: 3,500 tons at $245/ton (guaranteed volume without take-or-pay).",
+            "expr": "tons * price",
+            "inputs": {
+              "tons": 3500,
+              "price": 245
+            },
+            "computed": 857500.0,
+            "result_claimed": 857500,
+            "asserted_in_prose": 858000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) corn silage cost: 1,800 tons at $92/ton.",
+            "expr": "tons * price",
+            "inputs": {
+              "tons": 1800,
+              "price": 92
+            },
+            "computed": 165600.0,
+            "result_claimed": 165600,
+            "asserted_in_prose": 166000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) soy hull pellets cost: 700 tons at $265/ton.",
+            "expr": "tons * price",
+            "inputs": {
+              "tons": 700,
+              "price": 265
+            },
+            "computed": 185500.0,
+            "result_claimed": 185500,
+            "asserted_in_prose": 186000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) total monthly forage cost. Central to the 'lowest-cost' recommendation.",
+            "expr": "alf_tons*alf_price + sil_tons*sil_price + soy_tons*soy_price",
+            "inputs": {
+              "alf_tons": 3500,
+              "alf_price": 245,
+              "sil_tons": 1800,
+              "sil_price": 92,
+              "soy_tons": 700,
+              "soy_price": 265
+            },
+            "computed": 1208600.0,
+            "result_claimed": 1208600,
+            "asserted_in_prose": 1210000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) monthly savings versus baseline. Supports the 'cheaper than baseline' claim.",
+            "expr": "baseline - c_total",
+            "inputs": {
+              "baseline": 1470000,
+              "c_total": 1208600
+            },
+            "computed": 261400.0,
+            "result_claimed": 261400,
+            "asserted_in_prose": 260000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) monthly savings versus option (a). Key comparative driver of the decision.",
+            "expr": "a_total - c_total",
+            "inputs": {
+              "a_total": 1860000,
+              "c_total": 1208600
+            },
+            "computed": 651400.0,
+            "result_claimed": 651400,
+            "asserted_in_prose": 650000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) worst-case SCC downgrade cost: 15% of 2.5M gal downgraded at $0.12/gal less. This is the primary quantified downside of the chosen option.",
+            "expr": "pct * gallons * delta",
+            "inputs": {
+              "pct": 0.15,
+              "gallons": 2500000,
+              "delta": 0.12
+            },
+            "computed": 45000.0,
+            "result_claimed": 45000.0,
+            "asserted_in_prose": 45000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Downgraded gallon volume: 15% of 2.5M gal, cited to characterize the SCC exposure.",
+            "expr": "pct * gallons",
+            "inputs": {
+              "pct": 0.15,
+              "gallons": 2500000
+            },
+            "computed": 375000.0,
+            "result_claimed": 375000.0,
+            "asserted_in_prose": 375000,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Option (a) monthly cost: 6,000 tons at $310/ton",
+            "stated_numbers": "6,000 tons, $310/ton",
+            "python_expr": "6000 * 310",
+            "asserted_value": 1860000
+          },
+          {
+            "desc": "Baseline monthly cost: 6,000 tons at $245/ton",
+            "stated_numbers": "6,000 tons, $245/ton",
+            "python_expr": "6000 * 245",
+            "asserted_value": 1470000
+          },
+          {
+            "desc": "Option (a) premium over baseline per month",
+            "stated_numbers": "$310/ton, $245/ton, 6,000 tons",
+            "python_expr": "6000 * 310 - 6000 * 245",
+            "asserted_value": 390000
+          },
+          {
+            "desc": "Option (a) premium over 90 days (3 months)",
+            "stated_numbers": "$390K/month premium, 90 days",
+            "python_expr": "(6000 * 310 - 6000 * 245) * 3",
+            "asserted_value": 1170000
+          },
+          {
+            "desc": "Option (b) delivered cost per ton: $295 + $38 freight",
+            "stated_numbers": "$295/ton, $38/ton freight",
+            "python_expr": "295 + 38",
+            "asserted_value": 333
+          },
+          {
+            "desc": "Option (b) total cost for 2,500 tons delivered",
+            "stated_numbers": "2,500 tons, $295 + $38",
+            "python_expr": "2500 * (295 + 38)",
+            "asserted_value": 832500
+          },
+          {
+            "desc": "Option (b) expected penalty exposure per month",
+            "stated_numbers": "20% late chance, 3% milk drop, 1.2M gal, $0.18/gal",
+            "python_expr": "0.20 * 0.03 * 1200000 * 0.18",
+            "asserted_value": 1296
+          },
+          {
+            "desc": "Option (c) retained alfalfa cost: 3,500 tons at $245/ton",
+            "stated_numbers": "3,500 tons, $245/ton",
+            "python_expr": "3500 * 245",
+            "asserted_value": 857500
+          },
+          {
+            "desc": "Option (c) corn silage cost: 1,800 tons at $92/ton",
+            "stated_numbers": "1,800 tons, $92/ton",
+            "python_expr": "1800 * 92",
+            "asserted_value": 165600
+          },
+          {
+            "desc": "Option (c) soy hull pellet cost: 700 tons at $265/ton",
+            "stated_numbers": "700 tons, $265/ton",
+            "python_expr": "700 * 265",
+            "asserted_value": 185500
+          },
+          {
+            "desc": "Option (c) total monthly forage cost",
+            "stated_numbers": "3,500t@$245, 1,800t@$92, 700t@$265",
+            "python_expr": "3500 * 245 + 1800 * 92 + 700 * 265",
+            "asserted_value": 1208600
+          },
+          {
+            "desc": "Option (c) savings vs baseline per month",
+            "stated_numbers": "~$1.21M option c, $1.47M baseline",
+            "python_expr": "6000 * 245 - (3500 * 245 + 1800 * 92 + 700 * 265)",
+            "asserted_value": 260000
+          },
+          {
+            "desc": "Option (c) savings vs option (a) per month",
+            "stated_numbers": "$1.86M option a, ~$1.21M option c",
+            "python_expr": "6000 * 310 - (3500 * 245 + 1800 * 92 + 700 * 265)",
+            "asserted_value": 650000
+          },
+          {
+            "desc": "Option (c) worst-case SCC downgrade cost: 15% of 2.5M gal at $0.12/gal",
+            "stated_numbers": "15%, 2.5M gal, $0.12/gal",
+            "python_expr": "0.15 * 2500000 * 0.12",
+            "asserted_value": 45000
+          },
+          {
+            "desc": "Downgraded volume: 15% of 2.5M gallons",
+            "stated_numbers": "15%, 2.5M gal",
+            "python_expr": "0.15 * 2500000",
+            "asserted_value": 375000
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 12,
+        "genuine_derivations": 12,
+        "n_load_bearing_claims": 7,
+        "justified": 6,
+        "unjustified": 1,
+        "der_status": {
+          "UNCONFIRMED": 11,
+          "GROUNDED": 1
+        },
+        "derivations": [
+          {
+            "desc": "Baseline current monthly forage cost",
+            "expr": "tons * price",
+            "inputs": {
+              "tons": 6000,
+              "price": 245
+            },
+            "computed": 1470000.0,
+            "result_claimed": 1470000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (a) full monthly forage cost at new price",
+            "expr": "tons * price",
+            "inputs": {
+              "tons": 6000,
+              "price": 310
+            },
+            "computed": 1860000.0,
+            "result_claimed": 1860000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (a) incremental monthly cost over baseline",
+            "expr": "new_cost - base_cost",
+            "inputs": {
+              "new_cost": 1860000,
+              "base_cost": 1470000
+            },
+            "computed": 390000.0,
+            "result_claimed": 390000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Option (a) incremental cost over 90 days (3 months)",
+            "expr": "monthly_premium * months",
+            "inputs": {
+              "monthly_premium": 390000,
+              "months": 3
+            },
+            "computed": 1170000.0,
+            "result_claimed": 1170000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) forage gap versus full requirement when on-time",
+            "expr": "required - (guaranteed_short + broker)",
+            "inputs": {
+              "required": 6000,
+              "guaranteed_short": 3500,
+              "broker": 2500
+            },
+            "computed": 0.0,
+            "result_claimed": 0,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) actual forage gap: brokers only replace the reduced supplier volume, still short of full need",
+            "expr": "required - broker - supplier_min",
+            "inputs": {
+              "required": 6000,
+              "broker": 2500,
+              "supplier_min": 3500
+            },
+            "computed": 0.0,
+            "result_claimed": 0,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (b) monthly probability-weighted milk drop from 20% late risk on 3% output drop",
+            "expr": "late_prob * output_drop * monthly_gallons",
+            "inputs": {
+              "late_prob": 0.2,
+              "output_drop": 0.03,
+              "monthly_gallons": 2500000
+            },
+            "computed": 15000.0,
+            "result_claimed": 15000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) monthly feed cost (corn silage + soy hull pellets)",
+            "expr": "silage_tons * silage_price + pellet_tons * pellet_price",
+            "inputs": {
+              "silage_tons": 1800,
+              "silage_price": 92,
+              "pellet_tons": 700,
+              "pellet_price": 265
+            },
+            "computed": 351100.0,
+            "result_claimed": 351100,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) monthly downgrade loss: 15% of total production at $0.12/gallon lower tier",
+            "expr": "downgrade_frac * monthly_gallons * price_loss",
+            "inputs": {
+              "downgrade_frac": 0.15,
+              "monthly_gallons": 2500000,
+              "price_loss": 0.12
+            },
+            "computed": 45000.0,
+            "result_claimed": 45000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Option (c) downgrade loss applied only to the 1.2M gallon fixed retail contract volume",
+            "expr": "downgrade_frac * contract_gallons * price_loss",
+            "inputs": {
+              "downgrade_frac": 0.15,
+              "contract_gallons": 1200000,
+              "price_loss": 0.12
+            },
+            "computed": 21600.0,
+            "result_claimed": 21600,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Penalty exposure avoided by option (a): 6% output drop penalty on fixed retail contracts",
+            "expr": "output_drop * contract_gallons * penalty",
+            "inputs": {
+              "output_drop": 0.06,
+              "contract_gallons": 1200000,
+              "penalty": 0.18
+            },
+            "computed": 12960.0,
+            "result_claimed": 12960,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Premium of option (a) full cost over option (c) feed cost",
+            "expr": "option_a_cost - option_c_feed",
+            "inputs": {
+              "option_a_cost": 1860000,
+              "option_c_feed": 351100
+            },
+            "computed": 1508900.0,
+            "result_claimed": 1508900,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Incremental monthly cost of option (a): price increase from $245 to $310/ton on 6,000 tons/month",
+            "stated_numbers": "$310/ton, $245/ton, 6,000 tons/month",
+            "python_expr": "(310 - 245) * 6000",
+            "asserted_value": 390000
+          },
+          {
+            "desc": "Total incremental cost of option (a) over 90 days (3 months)",
+            "stated_numbers": "$390,000/month, 90 days (~3 months)",
+            "python_expr": "(310 - 245) * 6000 * 3",
+            "asserted_value": 1170000
+          },
+          {
+            "desc": "Option (b) forage gap when on-time: 6,000 ton need minus 3,500 guaranteed minus 2,500 replacement... recommendation states 2,000 ton gap",
+            "stated_numbers": "6,000 tons need, 3,500 tons guaranteed, 2,500 tons replacement",
+            "python_expr": "6000 - 3500 - 2500",
+            "asserted_value": 0
+          },
+          {
+            "desc": "Option (b) probability of milk-drop hit (1 minus 80% on-time)",
+            "stated_numbers": "80% on-time probability",
+            "python_expr": "1 - 0.80",
+            "asserted_value": 0.2
+          },
+          {
+            "desc": "Option (c) monthly feed cost: corn silage plus soy hull pellets",
+            "stated_numbers": "1,800 tons at $92/ton, 700 tons at $265/ton",
+            "python_expr": "1800 * 92 + 700 * 265",
+            "asserted_value": 351100
+          },
+          {
+            "desc": "Option (c) tier-downgrade loss: 15% of 2.5M gallons/month at $0.12/gallon",
+            "stated_numbers": "15% of milk, $0.12/gallon less, 2.5 million gallons/month",
+            "python_expr": "0.15 * 2500000 * 0.12",
+            "asserted_value": 45000
+          },
+          {
+            "desc": "Premium of option (a) feed cost over option (c) feed cost",
+            "stated_numbers": "$390,000/month (a incremental), or a full cost vs c ~$351K; recommendation claims ~$99K premium over baseline of option (c)",
+            "python_expr": "310 * 6000 - 351100",
+            "asserted_value": 1508900
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    },
+    "P-nat-gen-09": {
+      "pid": "P-nat-gen-09",
+      "plain": {
+        "arm": "plain",
+        "n_derivations": 4,
+        "genuine_derivations": 4,
+        "n_load_bearing_claims": 4,
+        "justified": 4,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 3,
+          "UNCONFIRMED": 1
+        },
+        "derivations": [
+          {
+            "desc": "Rate-on-line / premium as percent of revenue, used to justify that Option (a)'s premium adequately prices the elevated hazard and uncertainty",
+            "expr": "premium / revenue * pct",
+            "inputs": {
+              "premium": 3.2,
+              "revenue": 18.0,
+              "pct": 100
+            },
+            "computed": 17.7778,
+            "result_claimed": 17.77777777777778,
+            "asserted_in_prose": 17.8,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Premium difference between Option (a) and Option (b), showing how much less (b) charges while granting more limit and no risk controls",
+            "expr": "prem_a - prem_b",
+            "inputs": {
+              "prem_a": 3.2,
+              "prem_b": 2.6
+            },
+            "computed": 0.6,
+            "result_claimed": 0.5999999999999996,
+            "asserted_in_prose": 0.6,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Decision deadline: bind must occur at least 10 days before an inception 21 days away, establishing that the decision window is too short for the 45-day inspection",
+            "expr": "inception_days - treaty_lead_days",
+            "inputs": {
+              "inception_days": 21,
+              "treaty_lead_days": 10
+            },
+            "computed": 11.0,
+            "result_claimed": 11,
+            "asserted_in_prose": 11,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": true,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Limit shortfall against replacement cost value, quantifying the intentional co-insurance gap that caps net exposure",
+            "expr": "rcv - limit",
+            "inputs": {
+              "rcv": 12.5,
+              "limit": 10.0
+            },
+            "computed": 2.5,
+            "result_claimed": 2.5,
+            "asserted_in_prose": 12.5,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Rate-on-line: premium relative to revenue for Option (a)",
+            "stated_numbers": "$3.2M premium, $18M revenue",
+            "python_expr": "3.2 / 18 * 100",
+            "asserted_value": 17.8
+          },
+          {
+            "desc": "Premium difference between Option (a) and Option (b)",
+            "stated_numbers": "$3.2M premium (a), $2.6M premium (b)",
+            "python_expr": "3.2 - 2.6",
+            "asserted_value": 0.6
+          },
+          {
+            "desc": "Bind decision deadline: days from now given inception 21 days out and treaty requires bind >=10 days before inception",
+            "stated_numbers": "21 days to inception, 10 days before inception",
+            "python_expr": "21 - 10",
+            "asserted_value": 11
+          },
+          {
+            "desc": "Property limit shortfall of Option (a) against RCV",
+            "stated_numbers": "$10M limit, $12.5M RCV",
+            "python_expr": "12.5 - 10",
+            "asserted_value": 2.5
+          }
+        ]
+      },
+      "showfirst": {
+        "arm": "showfirst",
+        "n_derivations": 7,
+        "genuine_derivations": 7,
+        "n_load_bearing_claims": 5,
+        "justified": 5,
+        "unjustified": 0,
+        "der_status": {
+          "GROUNDED": 1,
+          "UNCONFIRMED": 6
+        },
+        "derivations": [
+          {
+            "desc": "Decision window: days until effective minus treaty minimum lead time",
+            "expr": "days_to_inception - treaty_lead_days",
+            "inputs": {
+              "days_to_inception": 21,
+              "treaty_lead_days": 10
+            },
+            "computed": 11.0,
+            "result_claimed": 11,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": true,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "GROUNDED"
+          },
+          {
+            "desc": "Option (a) rate on revenue",
+            "expr": "premium_a / revenue",
+            "inputs": {
+              "premium_a": 3200000,
+              "revenue": 18000000
+            },
+            "computed": 0.1778,
+            "result_claimed": 0.17777777777777778,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Premium richness of (a) over (b)",
+            "expr": "(premium_a - premium_b) / premium_b",
+            "inputs": {
+              "premium_a": 3200000,
+              "premium_b": 2600000
+            },
+            "computed": 0.2308,
+            "result_claimed": 0.23076923076923078,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Insured-value gap retained under (a)",
+            "expr": "replacement_cost - property_limit_a",
+            "inputs": {
+              "replacement_cost": 12500000,
+              "property_limit_a": 10000000
+            },
+            "computed": 2500000.0,
+            "result_claimed": 2500000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Total reported loss history over 5 years",
+            "expr": "fire_loss + gl_slip_fall",
+            "inputs": {
+              "fire_loss": 240000,
+              "gl_slip_fall": 85000
+            },
+            "computed": 325000.0,
+            "result_claimed": 325000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Loss history including a prudent IBNR/development load doubling reported losses",
+            "expr": "reported_losses * development_factor",
+            "inputs": {
+              "reported_losses": 325000,
+              "development_factor": 2
+            },
+            "computed": 650000.0,
+            "result_claimed": 650000,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          },
+          {
+            "desc": "Building age at effective date",
+            "expr": "effective_year - built_year",
+            "inputs": {
+              "effective_year": 2025,
+              "built_year": 1984
+            },
+            "computed": 41.0,
+            "result_claimed": 41,
+            "asserted_in_prose": null,
+            "input_grounded": true,
+            "nontrivial": true,
+            "self_consistent": true,
+            "result_in_prose": false,
+            "snippet_present": true,
+            "self_report_matches_computed": false,
+            "eval_error": null,
+            "status": "UNCONFIRMED"
+          }
+        ],
+        "claims": [
+          {
+            "desc": "Decision window before inception (effective date minus reinsurance lead time)",
+            "stated_numbers": "21 days to effective date, bind decision required >=10 days before inception",
+            "python_expr": "21 - 10",
+            "asserted_value": 11
+          },
+          {
+            "desc": "Option (a) rate-on-revenue: premium as percent of annual revenue",
+            "stated_numbers": "$3.2M premium, $18M annual revenue",
+            "python_expr": "3.2 / 18 * 100",
+            "asserted_value": 17.8
+          },
+          {
+            "desc": "Option (a) premium richer than option (b) premium (percent)",
+            "stated_numbers": "$3.2M vs $2.6M premium",
+            "python_expr": "(3.2 - 2.6) / 2.6 * 100",
+            "asserted_value": 23
+          },
+          {
+            "desc": "Insured-value gap under option (a): replacement cost minus property limit",
+            "stated_numbers": "$12.5M replacement cost, $10M property limit",
+            "python_expr": "12.5 - 10",
+            "asserted_value": 2.5
+          },
+          {
+            "desc": "Total loss history over 5 years",
+            "stated_numbers": "$240k fire loss, two slip-and-fall claims totaling $85k",
+            "python_expr": "0.240 + 0.085",
+            "asserted_value": 0.65
+          }
+        ]
+      },
+      "quality_showfirst_vs_plain": "plain_better"
+    }
+  }
+}

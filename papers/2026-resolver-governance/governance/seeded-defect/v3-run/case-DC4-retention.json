@@ -1,0 +1,200 @@
+{
+  "id": "DC4-retention",
+  "dc": "DC4",
+  "domain": "data retention / compliance",
+  "answer_key": {
+    "planted_defect": "The recommendation claims the deletion pipeline complies with the 30-day PII purge requirement (#2), but the nightly purge job only hard-deletes soft-deleted records after a 90-day grace window. 90 days > the 30-day maximum in #2, so PII persists up to 60 days too long. It overclaims compliance.",
+    "artifact_ref": "#2",
+    "note": "Distractors: the soft-delete plus nightly job sounds tidy and auditable, and the 90-day window is described as a safety buffer for accidental deletions. But #2 sets a hard 30-day ceiling for PII purge after account deletion; a 90-day grace window structurally exceeds it. The spec requires PII fully purged within 30 days."
+  },
+  "recommendation": "Implement account deletion as a soft-delete flag, with a nightly batch job that hard-deletes flagged records once they pass a 90-day grace window. The grace window protects against accidental deletions and the automated job guarantees cleanup, so this satisfies our 30-day PII purge compliance obligation.",
+  "briefing": {
+    "context": "A platform team is finalizing the account-deletion pipeline and must confirm it meets the data-retention compliance obligation before launch.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 The proposed pipeline marks deleted accounts with a soft-delete flag; a nightly batch job hard-deletes (purges) flagged records only after they have aged past a 90-day grace window intended to reverse accidental deletions.",
+        "source": "deletion-pipeline-design.md"
+      },
+      {
+        "id": "#2",
+        "text": "#2 The data-retention compliance policy requires that all customer PII be fully purged within 30 days of an account-deletion request; retention beyond 30 days is a reportable violation.",
+        "source": "data-retention-policy.md \u00a73"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Please review this account-deletion pipeline recommendation and flag anything notable before launch.",
+    "S": "Run a SPARRING review. Generator defends the recommendation and names the spec it claims to satisfy; Challenger attacks, but a concern counts only if it cites a checkable artifact by #fact-id. Iterate to convergence on a verdict and any fix.",
+    "T": "Act as a demanding skeptic. Challenge this recommendation and list your concerns."
+  },
+  "outputs": {
+    "B": "Reasonable approach. Soft-delete with an automated nightly purge is clean and auditable, the grace window is a sensible safeguard, and it aligns with the retention obligation. Good to launch.",
+    "S": {
+      "generator": "The soft-delete plus a nightly automated purge after a 90-day grace window guarantees flagged PII is cleaned up while protecting against accidental deletions, so it satisfies our 30-day PII purge compliance obligation.",
+      "challenger": "It fails #2. #2 requires PII fully purged within 30 days of deletion. Per #1 the purge only fires after a 90-day grace window, so PII is retained up to ~60 days beyond the ceiling \u2014 a reportable violation under #2. The compliance claim is false.",
+      "converged": "Drop the compliance claim. Shorten the grace window so the purge completes within the 30-day limit in #2 (e.g., a <=30-day window with the nightly job, or a 7-day reversal window plus purge), then verify the worst-case purge age against #2 before launch."
+    },
+    "T": "I'm skeptical. Batch jobs silently fail all the time and 'soft delete' usually means data lingers forever. This whole thing smells like a compliance landmine \u2014 I wouldn't ship it."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "The design fails spec #2: PII must be purged within 30 days, but #1's purge only runs after a 90-day grace window, retaining PII up to ~60 days too long.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "#2 caps PII retention at 30 days",
+        "The 90-day grace window in #1 exceeds it"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "Per #1 records are only hard-deleted after 90 days, so even a perfectly reliable nightly job cannot meet the 30-day ceiling.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Hard-delete only fires after 90 days per #1",
+        "A reliable job still misses the 30-day ceiling"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "An automated nightly purge with a safety grace window looks like a clean fit for the retention obligation.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Automated purge plus grace window looks compliant"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "The grace window directly contradicts the requirement: records are held 90 days before hard-delete (#1), but PII must be fully purged within 30 days (#2). The design guarantees a 60-day window of reportable violation on every deletion.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "90-day grace exceeds the 30-day purge requirement",
+        "Every deletion sits in violation for ~60 days"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "A soft-delete flag doesn't purge anything \u2014 the PII still sits in the live database, backups, and replicas, fully readable, for the entire grace window.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Soft-delete leaves PII present and readable",
+        "Flagging is not purging"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "'The automated job guarantees cleanup' guarantees the wrong deadline. A reliable nightly job that fires at day 90 reliably produces a compliance breach.",
+      "cited_artifact": null,
+      "atomic": [
+        "Automating the wrong deadline reliably produces a breach"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "In my experience nightly batch jobs silently fail, get paused during incidents, or fall behind \u2014 so even the day-90 purge isn't actually guaranteed, and there's no mention of monitoring or alerting.",
+      "cited_artifact": null,
+      "atomic": [
+        "Nightly batch jobs fail silently without monitoring"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "The accidental-deletion protection goal is legitimate but is being solved at the cost of the legal obligation. A 90-day undo and a 30-day purge are in direct conflict.",
+      "cited_artifact": null,
+      "atomic": [
+        "The 90-day undo goal conflicts with the 30-day legal obligation"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-B",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "FALSE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "REFUTES",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "REFUTES",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

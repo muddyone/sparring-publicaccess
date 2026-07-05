@@ -1,0 +1,426 @@
+{
+  "EXPLORATORY": true,
+  "k": 3,
+  "n": 12,
+  "cf_step_distribution": {
+    "R0->R1": {
+      "improved": 11,
+      "plateau": 1
+    },
+    "R1->R2": {
+      "plateau": 4,
+      "improved": 8
+    },
+    "R2->R3": {
+      "plateau": 3,
+      "improved": 9
+    },
+    "R1->R3": {
+      "plateau": 7,
+      "improved": 4,
+      "DEGRADED": 1
+    }
+  },
+  "decision_stable_by_R1": {
+    "baseline_lazy": "4/12",
+    "step2_convergence": "10/12"
+  },
+  "rows": [
+    {
+      "id": "P-nat-gen-05",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "plateau",
+        "R2->R3": "plateau",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "c",
+        "c",
+        "c",
+        "c"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        3,
+        2,
+        1
+      ],
+      "n_obj_by_round": [
+        3,
+        2,
+        1
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-gen-04",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "b",
+        "b",
+        "b",
+        "b"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        4,
+        0,
+        0
+      ],
+      "n_obj_by_round": [
+        4,
+        1,
+        1
+      ],
+      "accept_by_round": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-anchor-radiology",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "plateau",
+        "R2->R3": "improved",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "c",
+        "c",
+        "c",
+        "c"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        4,
+        0,
+        2
+      ],
+      "n_obj_by_round": [
+        4,
+        1,
+        2
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-gen-02",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "plateau",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "b",
+        "b",
+        "b",
+        "b"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        5,
+        0,
+        2
+      ],
+      "n_obj_by_round": [
+        5,
+        1,
+        2
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-anchor-fedramp",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "b",
+        "b",
+        "b",
+        "b"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        4,
+        1,
+        1
+      ],
+      "n_obj_by_round": [
+        4,
+        1,
+        1
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-gen-03",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "plateau",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "c",
+        "b",
+        "b",
+        "b"
+      ],
+      "flips": 1,
+      "stabilized_round": 1,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        4,
+        2,
+        1
+      ],
+      "n_obj_by_round": [
+        4,
+        2,
+        1
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-gen-01",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "b",
+        "b",
+        "a",
+        "a"
+      ],
+      "flips": 1,
+      "stabilized_round": 2,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        4,
+        3,
+        3
+      ],
+      "n_obj_by_round": [
+        4,
+        3,
+        3
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-anchor-storage",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        5,
+        1,
+        1
+      ],
+      "n_obj_by_round": [
+        5,
+        1,
+        1
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-gen-09",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "plateau",
+        "R2->R3": "plateau",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        4,
+        2,
+        0
+      ],
+      "n_obj_by_round": [
+        4,
+        2,
+        1
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-gen-06",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "DEGRADED"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "a",
+        "b"
+      ],
+      "flips": 1,
+      "stabilized_round": 3,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        4,
+        4,
+        2
+      ],
+      "n_obj_by_round": [
+        4,
+        4,
+        2
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-gen-08",
+      "cf_steps": {
+        "R0->R1": "plateau",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        3,
+        1,
+        1
+      ],
+      "n_obj_by_round": [
+        3,
+        1,
+        1
+      ],
+      "accept_by_round": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "P-nat-gen-07",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      "flips": 0,
+      "stabilized_round": 0,
+      "converged_round": null,
+      "decision_changing_by_round": [
+        0,
+        2,
+        1
+      ],
+      "n_obj_by_round": [
+        5,
+        2,
+        1
+      ],
+      "accept_by_round": [
+        false,
+        true,
+        true
+      ]
+    }
+  ]
+}

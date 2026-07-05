@@ -1,0 +1,861 @@
+{
+  "condition": "R3v2",
+  "events": [
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "same",
+      "round": 1,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 5,
+      "blockers": [
+        "Introduces asynchronous cross-region (within-jurisdiction) replication for regional failover with an explicit non-zero RPO (\u201cseconds\u201d). For a double-entry ledger, regulators/auditors may require zero data loss for committed transfers; losing committed ledger entries on regional destruction can be unacceptable or require compensating controls (e.g., synchronous replication to a second region). This risk was not explicitly introduced/accepted in CURRENT and could be decision-changing."
+      ]
+    },
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "same",
+      "round": 1,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 4,
+      "blockers": [
+        "Introduces cross-region synchronous replication to a failover region (e.g., us-east -> us-west, eu-central -> eu-west). This is effectively distributed consensus/2-region synchronous commit for each jurisdictional pair and is likely to violate the 400ms p99 requirement for in-region writes under normal conditions (especially for EU) and adds significant operational complexity for a 6-engineer team in 9 months. The candidate asserts it is not \u201cglobal consensus,\u201d but it still creates a synchronous cross-region dependency on the hot path.",
+        "The failover design is underspecified on how fencing/epoch tokens are implemented without a third, independent quorum/arbiter. If the primary region is partitioned (not fully dead) and the failover is promoted, split-brain risk exists unless there is a robust external witness/quorum service and careful failure-mode handling. This can be decision-changing for a ledger."
+      ]
+    },
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 3,
+      "blockers": [
+        "Introduces an \u201cEU-issued destination token\u201d scheme plus token->wallet mapping and related key management/rotation, authorization, and abuse/fraud considerations. This is non-trivial to design safely (prevent token enumeration/replay, ensure tokens can\u2019t be used to correlate identities cross-border) and adds material delivery/ops risk for a 6-engineer team in 9 months.",
+        "Effective-accounting-date stamped at initiation can create product/accounting edge cases (e.g., user initiates before cutoff but settles after; FX/fee calculations and reversals may need to be pinned to initiation date). Without a clear policy for reversals/refunds/chargebacks spanning EOD, auditors may challenge period assignment or require additional accrual logic.",
+        "Claim that settlement-in/out \u201cnet to zero across regions for the period\u201d is not implementable without sharing enough cross-region data to prove matching, or without a trusted global reconciliation process. Candidate relies on transfer-id matching but does not define how to ensure both sides have the same population at cut during partitions; this can yield disputed global totals and operational fire drills at close."
+      ]
+    },
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "cross",
+      "round": 2,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 0,
+      "new_flaw_cost": 3,
+      "blockers": [
+        "The revised residency model makes US settlement messages 'transient' and forbids US persistence of per-transfer EU-directed records, but US still must durably post its own source-debit/US-settlement-out leg and reconcile by transfer-id at EOD. If US holds the transfer-id and amount in its own durable local posting (required for reconciliation 'reconcile exactly by transfer-id'), that contradicts the claim that no per-transfer linkable token persists in US. The reconciliation requirement and the residency claim are in tension: you cannot both reconcile per-transfer-id at EOD against US-stored legs and not store a per-transfer identifier in US.",
+        "The candidate makes US-side cross-region settlement messages 'transient' and refuses to persist any per-transfer EU-directed record in US, but US must still durably track its own source-debit and US-settlement-out legs and reconcile them by transfer-id at EOD. If US only keeps aggregate settlement balances and treats per-transfer messages as transient, the EOD requirement that 'the two settlement accounts must reconcile exactly by transfer-id' becomes impossible from the US side without persisting transfer-ids in US \u2014 an internal contradiction between the residency model and the reconciliation model that was not present (or was less acute) in CURRENT, which explicitly persisted transfer-id/amount/token in US.",
+        "US side no longer durably persists per-transfer cross-region state (to avoid residency leakage), but still needs idempotency, retries, and reconciliation for messages/acks across 30+ minute partitions. Relying on purely transient processing risks lost/later-duplicated messages causing stuck RESERVED transfers, inability to deterministically complete/compensate, and operationally hard-to-debug inconsistencies unless an alternative durable, non-personal per-transfer state store is explicitly defined."
+      ]
+    },
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "cross",
+      "round": 2,
+      "attempt": 2,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "Introduces an EU-resident \u201ccross-region transfer store / hub\u201d fallback where US contributes only aggregate settlement totals. This materially changes the architecture and operational surface area (new service, new interfaces, new runbooks), and risks violating the 6-engineer/9-month feasibility constraint compared with CURRENT, where the fallback was mentioned but not integrated into the core correctness and EOD flows.",
+        "The \u201cgo/no-go gate\u201d framing for regulatory interpretation is clearer, but it still leaves the design unable to meet a strict reading of \u201cdestination credit must post during isolation.\u201d In practice this can stall the project late if regulators disagree, because the only remediations listed require relaxing residency or scoping product behavior\u2014neither is a technical mitigation inside the proposed architecture."
+      ]
+    },
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "cross",
+      "round": 3,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 4,
+      "blockers": [
+        "Introduces an EU-resident cross-region transfer hub/store as the default to avoid metadata residency leakage. This is additional critical infrastructure (cross-region messaging/aggregation, access controls, key management, ops) that increases delivery and operational risk for a 6-engineer team on a 9-month timeline, especially combined with dual intra-jurisdiction DR pairs (eu-central\u2194eu-west and us-east\u2194us-west).",
+        "Active/passive across two regions within each jurisdiction with \u201csynchronous\u201d replication is likely to violate the 400ms p99 for in-region commits in at least one direction (e.g., eu-central\u2194eu-west, us-east\u2194us-west) or be technically infeasible at required latencies; if implemented as async to meet latency, the failover will risk data loss or require more complex fencing/consistency mechanisms. The candidate does not specify RPO/RTO tradeoffs or fencing for split-brain prevention."
+      ]
+    },
+    {
+      "pid": "P-multiregion-ledger",
+      "arm": "cross",
+      "round": 3,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 4,
+      "blockers": []
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "same",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 2,
+      "blockers": [
+        "Introduces a requirement for propensity logging + randomized/exploration traffic and IPS/DR evaluation. This can materially impact UX/revenue, needs careful policy design, and is non-trivial to implement correctly (including stable propensity computation across ranking stages). If done poorly it can create its own offline/online mismatch and governance debates.",
+        "Shadow-logging new online-only features still requires deploying streaming computations into the online inference path (even if log-only). That can add latency/CPU/memory pressure and operational risk; without explicit guardrails (per-request compute budgets, circuit breakers) it could jeopardize the sub-50ms SLA.",
+        "GDPR mitigation by \u201cretrain/expire models within 30 days so deleted entities no longer influence served models\u201d may be insufficient for GDPR \u2018right to erasure\u2019 interpretations (model weights may still be considered derived personal data). Proper compliance may require more formal machine unlearning or strict limits on what is logged as PII, which the candidate doesn\u2019t guarantee.",
+        "Budget fallback suggests reducing point-in-time history depth / downsampling older history. This can break the stated requirement to reproduce exact feature values across years for audits or long-horizon training, creating a potential requirement conflict unless explicitly scoped to a shorter supported window."
+      ]
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "same",
+      "round": 2,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 2,
+      "blockers": []
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "same",
+      "round": 2,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 1,
+      "new_flaw_cost": 3,
+      "blockers": [
+        "The deterministic recomputation check (ii) assumes the original input event stream/window can be replayed in a sandbox to reproduce a past value, but this requires durably retaining the raw input events, which conflicts with the fixed 70%-consumed budget (no capacity line item is added for raw-event retention) and also widens the GDPR deletion surface (raw event logs holding PII are now a new path not enumerated in the five deletion paths).",
+        "Deterministic recomputation check for online-only features can be operationally expensive and brittle: accurately replaying identical input streams/windows (including late events, ordering, watermarking, state TTL, and exactly-once semantics) may be infeasible at scale within a fixed budget and could generate noisy mismatches unless the streaming job/environment is tightly controlled and version-pinned.",
+        "\"Log-at-the-read-point\" implies instrumentation at the model feature-read call site; if not carefully designed, this can add latency/throughput overhead or create failure-mode coupling (e.g., logging backpressure impacting serving) and requires strong guarantees that the logged bytes are post-serialization/pre-normalization exactly what the model consumes.",
+        "Byte-identical logging at read point may inadvertently increase GDPR scope/risk if it logs raw PII-bearing feature bytes or identifiers more broadly than the prior design anticipated; requires explicit redaction/minimization and retention controls to avoid expanding deletion workload."
+      ]
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 2,
+      "blockers": []
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "cross",
+      "round": 2,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 1,
+      "blockers": [
+        "To satisfy the new requirement to log propensities for ALL candidates considered (including non-served ones) plus per-stage propensities and \u201cconsidered candidate set for support tracking,\u201d the logging payload can balloon to retrieval-scale (often hundreds/thousands+ candidates per request). This materially threatens the fixed storage/compute budget and sub-50ms serving path unless additional constraints are specified (e.g., cap K, sketching/sufficient statistics, sampled candidate-set logging, or limiting to a controlled evaluation bucket). Current revision asserts columnar/compression/sampling but does not reconcile this higher-volume requirement with the earlier \u201cdon\u2019t log full vectors\u201d/budget guarantees."
+      ]
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "cross",
+      "round": 3,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 3,
+      "blockers": []
+    },
+    {
+      "pid": "P-feature-store-skew",
+      "arm": "cross",
+      "round": 3,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "same",
+      "round": 1,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 6,
+      "blockers": [
+        "CDC-only ingestion (app writes only to old DB) means the old 12TB MySQL remains the sole write target and continues to absorb 100% of the 80k events/sec write IOPS and lock contention throughout the entire migration \u2014 which is the original problem being solved. The write-bottleneck relief only arrives at the very end when writes are redirected, but the candidate never specifies when/how the app switches to writing directly to shards, nor how that final write-path cutover preserves zero-loss. The reversibility model ('old DB never stopped receiving writes') implicitly keeps the old DB as the write bottleneck indefinitely."
+      ]
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "same",
+      "round": 1,
+      "attempt": 2,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 3,
+      "blockers": []
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "same",
+      "round": 2,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "The candidate introduces a \u201cfail-closed\u201d default for ambiguous/unclassified queries. While it fixes silent-staleness risk, it can cause user-visible query failures during migration for any missed/late-rewritten query (including latent operational/reporting queries), which could be interpreted as downtime for some dashboards unless explicitly scoped and communicated/mitigated (feature flags, allowlists, staged enforcement)."
+      ]
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "same",
+      "round": 3,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "The added \u201cbinlog-position-fenced windows\u201d verification language is conceptually correct but still underspecified operationally: it doesn\u2019t define how to materialize a stable, comparable row set \u201cat position P\u201d on both source and shards (e.g., snapshot isolation/read views on MySQL, mapping rows to a binlog position, handling long-running transactions/GTID boundaries). Without a concrete method, teams may implement an approximate time-bucket checksum again, reintroducing the drift hole.",
+        "The new graduated vbucket-skew policy (\u201cany tenant whose vbucket exceeds threshold gets secondary-dimension sub-sharding\u201d) can significantly expand the scope of sub-sharding beyond the mega-tenant, increasing routing complexity and query-rewrite burden in ways that may exceed the stated \u201climited rewrites this quarter.\u201d This is a feasibility/timeline risk unless bounded by an explicit expectation of how many tenants will trigger it and a plan to operationalize it incrementally."
+      ]
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "same",
+      "round": 4,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 6,
+      "blockers": [
+        "Reverse CDC (shard->old DB) is introduced as a first-class requirement for reversibility after write-cutover, but the candidate does not address the likelihood that the old monolith\u2014already at/over write IOPS and lock limits\u2014may be unable to absorb near-real-time reverse-apply for cutover tenants while still handling remaining forward writes for other tenants. This can block write-cutover or make the proposed reversibility infeasible in practice.",
+        "Running forward CDC (old->shards) and reverse CDC (shards->old) concurrently creates bidirectional replication topology risks (feedback loops, reapplying mirrored writes, PK/unique conflicts, and differing auto-generated fields). The candidate mentions idempotency keyed by event_id for forward apply but does not extend an explicit loop-prevention/idempotency strategy to reverse CDC (e.g., origin tags, separate replication channels, or filtering), which is necessary to avoid corruption."
+      ]
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "same",
+      "round": 4,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 6,
+      "blockers": [
+        "Write-cutover introduces reverse CDC (shard->old) and a per-tenant bidirectional replication period. This materially increases operational complexity and load: it doubles change-apply paths, requires conflict-avoidance guarantees (e.g., strict per-tenant write exclusivity and no cross-DB writes), and adds replication traffic onto an already saturated old DB (apply writes + binlog + reads). The candidate notes the capacity risk but does not specify concrete mechanisms to prevent or resolve split-brain/dual-writer or to ensure reverse-CDC capture/apply feasibility at scale."
+      ]
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 1,
+      "new_flaw_cost": 7,
+      "blockers": [
+        "The candidate abandons synchronous dual-write for binlog-only replication, which means the new shards are inherently asynchronous and always lag the source. This trades the original 'both clusters live' model for an eventual-consistency model where read cutover requires gating on per-tenant lag. But the design never specifies the steady-state post-cutover write path: after all tenants read from shards, are writes STILL going only to the old 12TB DB (defeating the entire IOPS/lock-contention goal, since the bottleneck DB keeps taking 80k/s writes)? The migration's core motivation (relieving write IOPS on the monolith) is unaddressed \u2014 there is no described final transition where writes actually move off the old primary onto the shards.",
+        "Introduces hard dependency on MySQL binlog/GTID CDC as the sole replication mechanism at ~80k events/sec. Operational feasibility details are missing: sizing/throughput of CDC connectors, shard-applier parallelism/ordering per tenant, schema evolution handling, and failure modes (binlog retention, connector restarts, GTID holes). If not engineered, replication lag could routinely exceed the proposed bound, preventing read cutover or causing frequent read flaps."
+      ]
+    },
+    {
+      "pid": "P-zero-downtime-shard",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 6,
+      "blockers": [
+        "Introduces a two-phase architecture where writes stay on the monolith initially (CDC-only) and later switch per-tenant to write-direct-to-shard with \u201creverse CDC\u201d for reversibility. This is substantially more complex operationally (bidirectional CDC, loop-prevention, conflict resolution rules, and failback semantics) and is not fully specified; mistakes can create write amplification, replication loops, or silent divergence during the soak window."
+      ]
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "arm": "same",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "arm": "same",
+      "round": 2,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "Fixing the PgBouncer tier to a \"fixed instance count\" to preserve static aggregate connection accounting can create an operational scaling ceiling at the pooler layer itself (CPU/client-conn handling) during growth or atypical spikes; without a concrete mechanism to safely change N (coordination/rollout to re-partition pool_size across instances without briefly violating the Postgres cap), the design may be brittle in practice and could force manual intervention during incidents.",
+        "Driving reactive scale-out from pre-admission offered load/429 counts introduces a risk of over-scaling due to malicious/accidental traffic floods (or retry storms) since the signal is no longer bounded by what the system can actually serve; without mention of filtering to \"valid\" demand (e.g., per-user/IP caps, bot mitigation, distinguishing retries), costs could spike or scaling could oscillate.",
+        "Requiring each PgBouncer instance to provision max_client_conn for the \"full 10x edge fanout\" can be memory/file-descriptor expensive and may not be feasible on small instances; if not carefully engineered (ulimits, kernel tuning, backlog settings), this can shift failure modes to OS-level resource exhaustion on the poolers."
+      ]
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 2,
+      "blockers": [
+        "The candidate requires an always-ready buffer sized to absorb the FULL 60s 10x spike even when unscheduled. This can materially increase steady-state cost relative to CURRENT\u2019s vaguely-defined \u201csmall warm-pool,\u201d and it does not offer concrete cost-control alternatives (e.g., queueing via async workflows, partial feature disablement, CDN/edge caching, precomputed responses) if that buffer is financially unacceptable. Risk: recommendation may be infeasible under constraint (2) depending on the baseline/peak ratio and per-container cost."
+      ]
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "arm": "cross",
+      "round": 2,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 4,
+      "blockers": [
+        "Candidate introduces a new, potentially complex and environment-dependent mechanism (\u201cwarm-standby reserve \u2014 pods pre-scheduled on pre-provisioned/over-committed standby nodes\u2026 admitted to the LB in seconds\u201d). In many Kubernetes/cloud setups, getting from warm pods/nodes to LB-ready in seconds (including readiness gates, connection establishment, and safe rollout) may be non-trivial and could require substantial platform work (node pools, cluster autoscaler tuning, image pre-pull daemons, priority classes, descheduler behavior, etc.). The recommendation doesn\u2019t state operational prerequisites or failure modes (e.g., standby capacity being reclaimed, insufficient node headroom, pod scheduling delays), so feasibility risk is introduced versus the simpler \u201calways-hot fleet\u201d assumption in CURRENT.",
+        "Candidate weakens the original hard requirement \u201cabsorb a 10x spike in under 60 seconds without falling over\u201d by proposing an explicit fallback where the unscheduled buffer may only cover 3\u20134x instantly with scheduled pre-warm covering the rest, accepting degradation during a rare unscheduled full 10x. This may violate constraint (1) depending on interpretation (even if \u2018core reads\u2019 remain up). CURRENT asserted a design that always handles unscheduled 10x at t=0 (though with cost concerns); CANDIDATE makes correctness conditional on economics and allows not meeting the full 10x for all traffic classes."
+      ]
+    },
+    {
+      "pid": "P-autoscale-stampede",
+      "arm": "cross",
+      "round": 2,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 2,
+      "new_flaw_cost": 5,
+      "blockers": [
+        "Internally inconsistent capacity statement: candidate repeats that the \u201calways-ready capacity must be sized to absorb the FULL 60s spike at t=0\u201d and that \u201cthe floor never drops below \u2026 buffer that can independently absorb a 10x spike,\u201d but later says the buffer is NOT sized to full surge throughput and instead relies on admission control + standby. This ambiguity is decision-changing because it affects how much always-on capacity is actually required and could mislead implementation/sizing.",
+        "Relies on \u201cstandby capacity that starts in seconds\u201d (pause-container, pre-provisioned standby nodes, serverless/fast-start lane) without specifying a concrete, commonly-available mechanism for the assumed platform. Many container platforms still have 10s\u2013minutes-to-serve realities (LB registration, JIT/runtime warmup, connection warmup), and serverless may violate latency/cold-start assumptions or networking constraints. Feasibility risk could invalidate the cost fix if seconds-level activation isn\u2019t achievable in practice."
+      ]
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "same",
+      "round": 1,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 0,
+      "new_flaw_cost": 5,
+      "blockers": [
+        "The candidate now concedes (b) recovers only ~16% of churning revenue before further narrowing and may fail its own kill condition, with the fallback being 'reallocate to (a)' \u2014 the option it spent two paragraphs disqualifying on ARPU/refund/NRR grounds. This makes the recommendation logically unstable: if the pilot kills (b), the chosen successor is the option argued to hurt the very NRR target, and (c) is excluded only by lead time. The candidate never reconciles why a quantifiably-small intervention is still the best single Q3 bet versus simply running the cheap pilot while resourcing nothing major, or why (a) becomes acceptable on failure.",
+        "The candidate's kill condition reallocates to (a) if the pilot fails, but (a) was earlier disqualified for compressing ARPU and front-loading refund liability while NRR is the goal and CAC is up 22% \u2014 the fallback is to the option the recommendation argues actively hurts the board's NRR target, with no fresh justification for why (a) becomes acceptable when (b) fails.",
+        "The 2-3 week pilot is presented as resolving cannibalization and effective-recovery sizing inside the quarter, but a 2-3 week window cannot observe post-pause resume behavior or realized LTV; it can only measure immediate take-rate and short-term active-revenue deltas, so the gate may green-light or kill on incomplete signal regarding whether pausers actually re-engage.",
+        "The proposed 2\u20133 week pilot + potential kill/reallocate-to-(a) inside Q3 may be operationally unrealistic under the stated constraint that engineering can only fully resource one of the three this quarter; switching to (a) after a multi-week build/test risks leaving insufficient time to design, implement, and launch an annual-plan push at meaningful scale in the same quarter, turning the 'kill switch' into a plan that can't actually be executed on-timeline.",
+        "Adding cancel-reason gating (stated/inferred reason) as a prerequisite to showing pause can materially reduce eligible volume and bias results: many users may not provide an accurate reason, inference may be noisy, and UI prompting for a reason can itself change behavior. This can undercut both measured recovery and cannibalization estimates, making the pilot less decisive than implied.",
+        "Auto-resume + personalized re-onboarding still introduces non-trivial cross-surface work (billing state transitions, lifecycle messaging, and potential customer support load). The candidate claims 'cheap, reversible' but doesn\u2019t acknowledge potential edge cases (failed payments on resume, app-store subscription constraints, refunds/proration expectations), which could threaten Q3 feasibility or create churn/CSAT issues."
+      ]
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "same",
+      "round": 1,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 4,
+      "blockers": []
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "cross",
+      "round": 2,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 1,
+      "blockers": [
+        "The EV bound is numerically hand-wavy and potentially misleading: claiming break-even is \u201c>~2 incremental paid months\u201d is not derived from an explicit contribution-margin model (gross margin, refund/chargeback rate, payment-failure, support costs) and could be wrong by enough to change the go/no-go. While the revision correctly makes the EV check mandatory, the specific 2-month heuristic risks anchoring stakeholders to an unjustified threshold.",
+        "The pre-build validation asks for calibration using prior pause/winback cohorts; if such cohorts don\u2019t exist (or are not comparable due to product/seasonality changes), the plan can stall or devolve to a longer wait for \u201cfirst post-resume billing event,\u201d which may push decisioning into Q4 and undercut the premise that (b) is the single Q3 bet."
+      ]
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "cross",
+      "round": 3,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "The pre-committed default to (a) if (b) fails could create a decision bias toward shipping the annual discount even when it is margin-negative (ARPU compression, refund liability, discount leakage to likely-retained users) because 'ships fastest' and 'moves reported NRR' are prioritized over quantified incremental net revenue. Candidate says to model NRR for (a) vs (b) but still hard-defaults to (a) when the (b) gate is inconclusive; it does not add an equivalent EV/margin gate for (a).",
+        "The fallback logic for (c) is operationally muddled under the one-slot constraint: it says (c) is the fallback 'if\u2014and only if\u2014diagnostic indicates content fatigue' but also says it 'must be kick-started in parallel-eligible form' due to 9-week lead time. That implicitly requires parallel resourcing/commitment (or at least meaningful pre-production spend) despite the constraint that engineering can only fully resource one option, risking either violating the constraint or under-delivering a true (c) fallback."
+      ]
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "cross",
+      "round": 4,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 1,
+      "blockers": [
+        "Introduces a hard dependency on a separate \u201cparallel expansion lever\u201d (price increase / reduced discounting / add-on) while the original constraints say engineering can only fully resource one of the three this quarter. The candidate implies freed capacity from descoping (b) can be redirected, but if (b) needs the full slot (or non-engineering constraints block the lever), the plan may be infeasible and weakly aligned to the \u201csingle Q3 strategy\u201d brief."
+      ]
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "cross",
+      "round": 5,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 0,
+      "new_flaw_cost": 4,
+      "blockers": [
+        "The candidate makes the entire recommendation conditional on a Finance/accounting classification decision that the author does not control and cannot pre-confirm: if Finance won't score capped auto-resuming pauses as retained, 'the recommendation flips to (c).' This makes the deliverable a contingent fork rather than a committed single bet, partly re-introducing the multi-track concern the revision tried to close. However, this is arguably more honest than infeasible, so it is a moderate framing risk rather than a hard error.",
+        "The flip-to-(c) fallback is weakly justified: (c) requires 9-week lead time and is explicitly correlational/unhedged, yet it is named as the fallback purely because (a) compresses ARPU. If (b) is ruled out by NRR classification, neither remaining option mechanically delivers NRR>100% either (the candidate itself concedes no single option can), so the NRR-classification check does not actually discriminate in favor of (c) on the board-KPI dimension it is invoked to protect. The fallback logic is somewhat incoherent with the candidate's own framing that the board target is out of scope for all three.",
+        "The NRR-by-design fix assumes Finance can/will both cap pause length to fit the measurement window AND agree to score capped auto-resume pauses as retained; if the board measures NRR on recognized in-period revenue, even a 1-month pause that resumes within the window still shows $0 recognized revenue for the paused month(s), so the account can still register as contraction within the cohort window \u2014 the design may not fully eliminate the mechanical NRR drag it claims to resolve.",
+        "Introduces an explicit conditional strategy flip: if Finance won\u2019t classify pauses as retained, \u201cthe recommendation flips to (c).\u201d That violates the requirement to pick a single Q3 strategy among (a)/(b)/(c) and creates decision ambiguity/whiplash for resourcing and stakeholder alignment.",
+        "Assumes the team can \u201cnegotiate accounting treatment\u201d to score auto-resuming pauses as retained. NRR/GRR definitions are often fixed (recognized-revenue-based) and not negotiable in-quarter; if immutable, the recommendation effectively becomes blocked or forces a late pivot to (c).",
+        "Proposes \u201croute ... users to a different intervention (downgrade or targeted re-engagement nudge)\u201d which may require additional product/engineering work beyond the single cancel-flow build, risking scope creep under the one-team constraint (even if smaller than (a)/(c))."
+      ]
+    },
+    {
+      "pid": "P-churn-winback",
+      "arm": "cross",
+      "round": 5,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 0,
+      "new_flaw_cost": 3,
+      "blockers": [
+        "The NRR-classification mitigation option (2) \u2014 offering a 'discounted continued-access month rather than a $0 hold' so recognized revenue stays positive in-period \u2014 quietly converts the pause flow into a discount-retention tactic that contracts ARPU, partially recreating the margin-leakage defect the author criticizes in option (a), and it may not match the user's stated need to actually pause (situational cancellers wanting to stop paying), undermining the very save rate the EV relies on.",
+        "The candidate now openly concedes that NRR >100% cannot be delivered by any of the three Q3 options, which is honest but leaves the recommendation non-responsive to the board's explicit year-end NRR >100% target \u2014 it picks (b) while admitting (b) cannot meet the stated success constraint, without quantifying how much of the gap (b) closes versus the residual that needs the out-of-scope pricing decision.",
+        "Introduces a potentially infeasible/ill-defined requirement to \"design out\" NRR impact by ensuring paused months do not show $0 recognized revenue within the cohort window, via (1) timing pauses across billing boundaries to still recognize resumed paid period within-window, or (2) offering a \"discounted continued-access month\" instead of a $0 hold. This is effectively a pricing/billing/recognition change masquerading as cancel-flow UX, may require billing system and revenue recognition changes, and could be impossible depending on how cohorts/windows are defined (e.g., monthly cohort snapshots)."
+      ]
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "same",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 3,
+      "blockers": [
+        "Defaults to (b) when 'unreachable share dominates' but the 3PL is explicitly 'for Southeast fulfillment' and caps SKU breadth at 70%; it may not actually solve Texas or the specific lanes driving misses, creating a risk the proposed 'default' cannot address the concentrated problem areas."
+      ]
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "same",
+      "round": 2,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "Introduces a new \u201cGate-zero\u201d step that could lead to relaxing/adjusting the 2-day promise, which is outside the originally constrained option set (a/b/c). If leadership is not willing/able to change the promise (e.g., marketing/brand commitment), this adds a potentially non-actionable prerequisite and can stall the decision.",
+        "The recommendation remains explicitly conditional (choose (c) only if lane-level reachable AND recoverable share is majority; otherwise (b)), but still does not provide an execution-timebound path to a single decision under typical consulting expectations. It increases analytical gates (promise sensitivity + lane-level recoverability + SKU-cap coverage verification) without specifying a fast way to decide with partial data, risking analysis paralysis."
+      ]
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 2,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "The parallel-path trigger (\u201c~30% of SE/TX miss volume shows a physical transit-time floor\u201d) is arbitrary and may cause premature spend/commitment on Atlanta design/long-lead items without tying to CFO 3-year payback, contract exit clauses, or explicit \u2018reversible\u2019 vs \u2018irreversible\u2019 cost guardrails; could create a de facto capital start that\u2019s hard to unwind if later analysis contradicts the early signal.",
+        "Starting \u201csite/network design and long-lead procurement\u201d in parallel is operationally underspecified (what long-lead items, what dollar cap, what approvals), creating governance ambiguity and risk of scope creep; CURRENT avoided this by not initiating any DC work until a clearer decision point."
+      ]
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 3,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 0,
+      "blockers": []
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 4,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 0,
+      "blockers": []
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 5,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 0,
+      "blockers": []
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 6,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "The day-3 parallelization still initiates multiple workstreams (site search/LOIs, network design, WMS/IT scoping) without an explicit spend cap or governance cadence beyond \u201cname an owner and a dated decision point.\u201d In practice this can still create momentum/soft-commitment risk with the CFO if consulting/engineering hours expand, even if leases/MHE/hiring are gated. A hard dollar cap and explicit approval checkpoints would reduce this risk."
+      ]
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 7,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "Time-to-impact gate sets a default N \u2264 8 weeks and 'in effect within one quarter' without acknowledging that some viable service-design changes (e.g., pool distribution/crossdock standup, new scheduled linehaul, terminal process changes) may require >8 weeks yet still be the best overall path vs. (b) (SKU cap) and (a) (11 months). This could prematurely force escalation to 3PL or DC even when (c) is feasible and economically superior if given, say, 10\u201316 weeks."
+      ]
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 8,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "The new OPERATIONAL FEASIBILITY CHECK adds a \u201clive or pilot-lane measurement confirms delivered-in-2-day effect\u201d requirement but does not define the minimum pilot duration/sample size, success criteria, or how to avoid delaying action beyond the quarter time-to-impact gate. This ambiguity can create decision paralysis or allow cherry-picked pilots.",
+        "The contingency clause (\u201cif carrier misses start date or readiness fails\u2026 escalate immediately to (b) \u2026 and/or pulls forward (a)\u201d) can cause churny, lane-by-lane oscillation and fragmented execution (rapidly switching remedies) without specifying governance (who decides, cadence, thresholds) and without accounting for switching costs (3PL onboarding lead time, dual-routing complexity).",
+        "By explicitly including terminal-controlled constraints (appointment-slot availability, terminal dwell) in the operational readiness check, the plan implicitly requires visibility into carrier/terminal appointment capacity and dwell that may not be obtainable or enforceable contractually within the 3-week diagnostic window, risking a practical \u201ccan\u2019t prove readiness\u201d blocker even when improvements are achievable."
+      ]
+    },
+    {
+      "pid": "P-warehouse-siting",
+      "arm": "cross",
+      "round": 9,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "Calendar-risk gate can force an irreversible Atlanta commitment without meeting the CFO\u2019s stated 3-year payback constraint (it explicitly says it can fire without full payback certainty). That creates governance/approval risk and could lead to starting a capital project the CFO may reject or later halt, wasting sunk costs and organizational bandwidth."
+      ]
+    },
+    {
+      "pid": "P-pricing-migration",
+      "arm": "same",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 3,
+      "blockers": []
+    },
+    {
+      "pid": "P-pricing-migration",
+      "arm": "same",
+      "round": 2,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-pricing-migration",
+      "arm": "same",
+      "round": 2,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-pricing-migration",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 1,
+      "new_flaw_cost": 3,
+      "blockers": [
+        "The candidate adds a customer-set hard cap plus a 'no-surprise' guarantee where overage is either blocked or billed only with explicit admin consent. For the underpaying whales this directly reconflicts with the monetization goal: a heavy account can simply set a low cap or decline consent and continue consuming infrastructure without paying, recreating the original value-leakage problem. The plan doesn't reconcile the customer-controlled cap with enforced cost recovery for the top cohort (e.g., contractual minimums or cap floors tied to the committed tier).",
+        "Pre-launch scope/complexity increases materially (instrumentation for qualifying-activity detection, anti-gaming dedupe logic, real-time meter, alerts/caps, prepaid bundles, no-surprise guarantee) and may not fit \u201cbefore launch\u201d timelines; if delayed, the plan risks stalling the monetization fix and/or the raise narrative. This feasibility/timeline risk is higher than in CURRENT, which was lighter-weight (even if incomplete).",
+        "Monthly hard caps and a \u201cno-surprise\u201d guarantee can cap upside from whales and may reintroduce under-monetization unless caps are set/negotiated carefully; could also create edge-case disputes about \u201cblocked vs billed with consent\u201d operationally.",
+        "Proactive early-migration conversations for whales could conflict with existing contract terms or customer expectations if not positioned as optional value exchange; mishandled outreach could trigger trust issues/escalations even if not a formal contract breach."
+      ]
+    },
+    {
+      "pid": "P-pricing-migration",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 1,
+      "new_flaw_cost": 3,
+      "blockers": [
+        "The success metric for the top cohort is measured only on the 'renewed + opt-in subset,' which is self-selected. Whales who accept an early-migration value-exchange offer are likely those who benefit, biasing the run-rate signal upward and producing a false positive about cost recovery across the full top-8% cohort.",
+        "Introducing a new-logo choice (seat-only vs hybrid) and making seat-only the default can materially slow adoption of the new monetization model, reduce near-term learning/iteration speed on the meter, and create longer-term packaging complexity (two parallel SKUs, harder upgrades, more edge cases for support/billing), potentially delaying impact on the under-monetized cohort.",
+        "Creating a special \u201ctop cohort committed annual contract with tier-based minimum + annual true-ups\u201d adds contracting and operational complexity (tiering rules, legal/procurement negotiation, billing system support for commitments/true-ups). This could exceed a two-quarter implementation window if billing/CPQ/invoicing systems aren\u2019t already capable, risking timeline slip or manual-workarounds that cause billing errors.",
+        "The anti-gaming definition relies on distinguishing \u201chuman collaborator\u201d activity and filtering automation; in practice this can be hard to implement reliably (API usage, integrations, SSO/service accounts). False positives/negatives could trigger disputes and erode trust even with a written definition.",
+        "An \u201coptional early-migration value exchange\u201d for locked-up whales risks perceived inequity (other customers ask for the same concessions) and can reset discount expectations, potentially harming longer-term price integrity if not tightly governed.",
+        "Dual-crediting reps on seats and usage plus SPIFFs can create overpayment versus plan and gaming (e.g., pushing customers into hybrid unnecessarily to claim usage credit), and may require rapid finance/sales-ops recalibration to avoid comp budget blowouts."
+      ]
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "same",
+      "round": 1,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 1,
+      "new_flaw_cost": 4,
+      "blockers": [
+        "The candidate now allocates a single $8M pool across three competing uses simultaneously (debt paydown buffer, full single (a) cell, and a phased (b) build triggered by hiring) without quantifying whether $8M can actually cover all three. A full single automation cell with integration plus a covenant buffer plus a (b) build may exceed the budget, making the 'reserve capacity for (b)' commitment financially unfunded as stated.",
+        "The revision hedges its own recommendation into near-incoherence: it tells the reader to shift toward ordering more of (a) if renewal is likely, to order both (a) cells if the pilot premise fails, and to begin (b) if hiring succeeds \u2014 so the stated recommendation (c) collapses into 'do a bit of everything contingently,' weakening it as an actionable allocation decision the problem explicitly requested.",
+        "Internal capital-allocation ambiguity: it keeps (c) as the recommendation but also says 'order the automation' and 'reserve capacity' for (b) without specifying an actionable split (e.g., $X debt paydown, $Y pilot cell, $Z pre-work/LOI for custom). This can undermine feasibility/decision clarity for an $8M gate.",
+        "Potential overcommit risk disguised as optionality: suggesting 'ORDER the automation' while also holding open (b) can create overlapping commitments (purchase orders, deposits, engineering time) that effectively approach an all-in spend if triggers are met, conflicting with the stated de-risking intent unless explicitly capped/structured as cancellable options.",
+        "Relies on deferring 'irreversible labor cut' as the main mitigation, but stranded-capacity risk from dedicated automation remains if the anchor customer leaves; the candidate implies stageability reduces this but does not specify contractual protections (resale value, repurposability, cancellation terms) beyond 'verify with vendor.'"
+      ]
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "same",
+      "round": 1,
+      "attempt": 2,
+      "admit": false,
+      "over_budget": false,
+      "admit_votes": 1,
+      "new_flaw_cost": 3,
+      "blockers": [
+        "The candidate caveats that if integration economics are 'inherently two-cell-lumpy' the single cell should be judged 'on its own merits rather than a scalable pilot,' but never provides the standalone economics of one cell. If the pilot is not scalable, the recommendation effectively defaults to ~$5M for a single non-replicable cell with no defended business case, leaving the core allocation undetermined.",
+        "Assumes the automation vendor will agree to a meaningfully \u201ccancellable/expandable order\u201d with resale/repurposing protection on long-lead equipment. In practice, cancellation rights are often limited after engineering release or POs for custom components; relying on this to preserve optionality may be unrealistic and could collapse the core risk-mitigation logic.",
+        "The indicative split ($5M for one cell + integration) may be internally inconsistent with the original option economics (two cells for $8M). If integration/engineering is a large fixed cost, one cell may not be achievable at $5M or may deliver materially worse economics than implied; without a check on vendor pricing structure, the recommendation risks underbudgeting and/or overstating pilot representativeness."
+      ]
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 1,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 2,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 3,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 1,
+      "blockers": [
+        "The $1M custom tranche is still under-specified on feasibility: it assumes recruiting/retaining scarce process engineers is achievable with $1M and on a near-term timeline, but gives no concrete hiring plan (how many engineers, comp/bonus assumptions, expected time-to-fill) or commercial plan (how much qualified demand is actually available, quoting/PPAP/quality system capacity). This can turn into spend without revenue if hiring is slower than expected or demand is not immediately capturable."
+      ]
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 4,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "Introduces more rigid, time-boxed gating (6/12/18 months) without specifying what constitutes \u201cdefined threshold,\u201d \u201ccredible LOI,\u201d or \u201cnear covenants,\u201d which could create ambiguity or internal contention at decision points unless those metrics are explicitly set up-front in governance documents.",
+        "\u201cBoard-enforceable\u201d governance is asserted but not checked against the firm\u2019s actual ownership/board structure (owner-controlled closely held business may not have an independent board), which could reduce practical enforceability vs. stated intent."
+      ]
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 5,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 0,
+      "blockers": []
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 6,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 0,
+      "blockers": []
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 7,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "The newly introduced automation \"irrevocable commitment date\" is described as falling roughly at or before month ~2\u20135 from now to realize savings inside a 3\u20134 year exit window. That timing is not well-grounded: if the goal is savings before exit (not before the 19-month renewal), the commitment point could be materially later; if the goal is savings before renewal, it could be earlier. This ambiguity risks forcing an unnecessarily early go/no-go (foregoing potentially valuable transferable automation) or confusing stakeholders about what is actually being optimized (renewal protection vs exit-horizon EBITDA).",
+        "Resizing the Stage-1 custom tranche upward from the gated pool \"before launch\" improves realism, but it weakens the original simplicity/discipline of fixed initial tranches: in practice, management could expand Stage 1 materially (engineers, metrology/tooling) before any demonstrated bookings, effectively pulling forward risk and reducing deleveraging optionality. The candidate does not add a hard cap or explicit board approval threshold for this pre-launch resize."
+      ]
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 8,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 8,
+      "attempt": 2,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 0,
+      "blockers": []
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 9,
+      "attempt": 1,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 2,
+      "new_flaw_cost": 0,
+      "blockers": [
+        "Governance mechanism options may be operationally difficult or slow to implement (e.g., negotiating lender-controlled release/cash-sweep terms, adding an independent director/co-approver with real authority), potentially delaying execution of time-sensitive hiring/quoting actions; the plan does not specify an implementation timeline or who owns securing the mechanism before other gates trigger."
+      ]
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 10,
+      "attempt": 1,
+      "admit": false,
+      "over_budget": true,
+      "admit_votes": 3,
+      "new_flaw_cost": 1,
+      "blockers": []
+    },
+    {
+      "pid": "P-capex-automation",
+      "arm": "cross",
+      "round": 10,
+      "attempt": 2,
+      "admit": true,
+      "over_budget": false,
+      "admit_votes": 3,
+      "new_flaw_cost": 0,
+      "blockers": []
+    }
+  ],
+  "n_admit": 37,
+  "n_reject": 28,
+  "n_budget_blocked": 18,
+  "rejects_with_recorded_blocker": 28,
+  "every_reject_has_blocker": true
+}

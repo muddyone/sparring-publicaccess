@@ -1,0 +1,247 @@
+{
+  "EXPLORATORY": true,
+  "k": 3,
+  "n": 12,
+  "plain_step_distribution": {
+    "R0->R1": {
+      "improved": 12
+    },
+    "R1->R2": {
+      "improved": 11,
+      "plateau": 1
+    },
+    "R2->R3": {
+      "improved": 11,
+      "DEGRADED": 1
+    },
+    "R1->R3": {
+      "improved": 9,
+      "plateau": 2,
+      "DEGRADED": 1
+    }
+  },
+  "cf_step_distribution": {
+    "R0->R1": {
+      "improved": 12
+    },
+    "R1->R2": {
+      "DEGRADED": 1,
+      "plateau": 1,
+      "improved": 10
+    },
+    "R2->R3": {
+      "DEGRADED": 2,
+      "improved": 10
+    },
+    "R1->R3": {
+      "improved": 10,
+      "plateau": 2
+    }
+  },
+  "rows": [
+    {
+      "id": "P-nat-gen-05",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "DEGRADED",
+        "R2->R3": "DEGRADED",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "c",
+        "c",
+        "a",
+        "b"
+      ],
+      "flips": 2,
+      "stabilized_round": 3
+    },
+    {
+      "id": "P-nat-gen-02",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "plateau",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "b",
+        "b",
+        "c",
+        "c"
+      ],
+      "flips": 1,
+      "stabilized_round": 2
+    },
+    {
+      "id": "P-nat-gen-01",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "b",
+        "a",
+        "a",
+        "a"
+      ],
+      "flips": 1,
+      "stabilized_round": 1
+    },
+    {
+      "id": "P-nat-gen-03",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "flips": 2,
+      "stabilized_round": 2
+    },
+    {
+      "id": "P-nat-anchor-radiology",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "c",
+        "b",
+        "b",
+        "b"
+      ],
+      "flips": 1,
+      "stabilized_round": 1
+    },
+    {
+      "id": "P-nat-gen-04",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "DEGRADED",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "b",
+        "none",
+        "none",
+        "a"
+      ],
+      "flips": 2,
+      "stabilized_round": 3
+    },
+    {
+      "id": "P-nat-anchor-fedramp",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "b",
+        "b",
+        "b",
+        "b"
+      ],
+      "flips": 0,
+      "stabilized_round": 0
+    },
+    {
+      "id": "P-nat-anchor-storage",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "none",
+        "none"
+      ],
+      "flips": 1,
+      "stabilized_round": 2
+    },
+    {
+      "id": "P-nat-gen-06",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "b",
+        "c"
+      ],
+      "flips": 2,
+      "stabilized_round": 3
+    },
+    {
+      "id": "P-nat-gen-08",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "plateau"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "c",
+        "a"
+      ],
+      "flips": 2,
+      "stabilized_round": 3
+    },
+    {
+      "id": "P-nat-gen-09",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      "flips": 0,
+      "stabilized_round": 0
+    },
+    {
+      "id": "P-nat-gen-07",
+      "cf_steps": {
+        "R0->R1": "improved",
+        "R1->R2": "improved",
+        "R2->R3": "improved",
+        "R1->R3": "improved"
+      },
+      "decision_seq": [
+        "a",
+        "a",
+        "a",
+        "c"
+      ],
+      "flips": 1,
+      "stabilized_round": 3
+    }
+  ]
+}

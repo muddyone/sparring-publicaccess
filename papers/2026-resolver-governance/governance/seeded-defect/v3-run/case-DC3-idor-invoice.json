@@ -1,0 +1,200 @@
+{
+  "id": "DC3-idor-invoice",
+  "dc": "DC3",
+  "domain": "object access by id for an invoice-download endpoint",
+  "answer_key": {
+    "planted_defect": "The `/invoices/{id}` endpoint authenticates the caller (valid session required) but never checks that the requested invoice belongs to the caller's account. Because invoice ids are sequential integers, any logged-in user can enumerate `id` values and download other tenants' invoices. This is an authorization-bypass via a user-controlled key (insecure direct object reference): authentication is present but per-object authorization is missing.",
+    "artifact_ref": "CWE-639",
+    "note": "Distractors that masquerade as security but don't fix it: requiring a valid login (authentication != authorization), TLS on the endpoint, logging every download, and a per-user rate limit that only slows \u2014 not stops \u2014 enumeration. The fix is a per-object ownership check on every fetch (`WHERE id = :id AND account_id = :session.account_id`, returning 404/403 on mismatch); switching to unguessable UUIDs is hardening, not a substitute for the check."
+  },
+  "recommendation": "For the billing portal's `/api/invoices/{id}` download route, require a valid authenticated session and then return the invoice PDF for the requested `id`. Invoice ids are auto-increment integers, which keeps URLs short and makes support lookups easy. We serve it all over TLS, log every download with the user id and invoice id for the audit trail, and rate-limit downloads to 60/minute per user. Since you can't hit the endpoint without logging in, only legitimate users reach it \u2014 no extra per-record check needed.",
+  "briefing": {
+    "context": "We're finalizing access control on the multi-tenant billing portal's invoice-download endpoint. The decision: accept the 'authenticated session is sufficient' design, or require something more before it ships.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "Fact #1: The portal is multi-tenant \u2014 every authenticated user belongs to exactly one `account_id`, and invoices are owned by accounts; the `id` path parameter is a sequential auto-increment integer that any logged-in user can edit in the URL.",
+        "source": "billing service data model / portal architecture note"
+      },
+      {
+        "id": "#2",
+        "text": "Fact #2: The org's access-control baseline mandates that every request for an individual object enforce an ownership/authorization check binding the object to the authenticated principal \u2014 authentication alone is explicitly not sufficient, and resource ids must never be treated as access tokens.",
+        "source": "OWASP Top 10 A01:2021 Broken Access Control / internal access-control standard \u00a73.1"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Review this invoice-download endpoint recommendation and flag anything you'd change before it ships.",
+    "S": "Run a SPARRING ceremony on this recommendation. The Generator defends the 'authenticated session is enough' design; the Challenger attacks it, but a concern counts ONLY if it cites a checkable artifact (a CWE id, an RFC, or a #fact-id from the briefing). Iterate until the roles converge on an explicit fix or hit the iteration cap.",
+    "T": "Play a hard-nosed skeptic on this recommendation. Say whatever feels risky or wrong \u2014 no need to cite anything, just push back."
+  },
+  "outputs": {
+    "B": "Looks reasonable. The route is behind authentication, served over TLS, every download is audit-logged, and the 60/minute rate limit curbs scraping. Integer ids keep support workflows simple. Approved to ship.",
+    "S": {
+      "generator": "Access is gated by a valid session, traffic is TLS-protected, downloads are logged per user, and we rate-limit to 60/minute. You can't reach the endpoint without logging in, so the requester is always a legitimate user.",
+      "challenger": "Authentication isn't authorization. This is CWE-639, authorization bypass through a user-controlled key: per fact #1 the `id` is a sequential integer any logged-in user can edit, and invoices are owned by `account_id`. Without a per-object ownership check, user A enumerates ids and downloads user B's invoices. Fact #2's access-control baseline explicitly requires binding each object request to the authenticated principal and says ids must never act as access tokens \u2014 TLS, logging, and rate limits don't satisfy that; the rate limit only slows enumeration.",
+      "converged": "Add a per-object ownership check on every fetch: `SELECT ... WHERE id = :id AND account_id = :session.account_id`, returning 404 (not 403) on mismatch to avoid confirming existence. Keep TLS, audit logging, and the rate limit as defense-in-depth, and optionally move to UUID ids as hardening. This enforces fact #2's baseline and closes CWE-639."
+    },
+    "T": "Mmm, I'm uneasy. Letting people pull invoice PDFs by id seems like it could leak something, and the whole thing feels a bit too open. I'd want it buttoned up more before customers touch it."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "Per the access-control baseline in fact #2, every individual-object request must enforce an ownership check binding the object to the authenticated principal, and ids must not be treated as access tokens; this design relies on authentication alone and violates that.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The briefing baseline requires a per-object ownership check binding the object to the authenticated user.",
+        "Authentication alone is explicitly not sufficient under the baseline."
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "This is CWE-639, authorization bypass through a user-controlled key: with sequential integer ids and no ownership check, any logged-in user can enumerate and download other accounts' invoices.",
+      "cited_artifact": "CWE-639",
+      "atomic": [
+        "A logged-in user can edit the sequential id to access invoices they don't own (CWE-639).",
+        "No per-object authorization check is performed on the fetch."
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "Since invoices are owned by account_id per fact #1, it would be worth confirming the audit log captures both the requesting account and the invoice's owning account for traceability.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "The audit log should record the requesting account and the invoice's owning account."
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "The whole design rests on 'you can't hit the endpoint without logging in, so only legitimate users reach it.' That conflates authentication with authorization \u2014 being logged in says who you are, not which invoices you're allowed to see.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "Authentication identifies the user but does not authorize object access"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "Invoice ids are sequential auto-increment integers that any user can edit in the URL, and the briefing confirms it. Increment the number and walk every tenant's invoices.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Invoice ids are sequential integers editable in the URL",
+        "Sequential ids are trivially enumerable across tenants"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "The baseline mandates an ownership check binding each object to the authenticated principal and says authentication alone is explicitly not sufficient. The recommendation says 'no extra per-record check needed' \u2014 that directly contradicts the stated control.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The baseline requires a per-object ownership check",
+        "The recommendation omits any ownership check"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "This is multi-tenant \u2014 users belong to one account_id and invoices are owned by accounts. Without binding the requested id to the caller's account_id, nothing stops cross-tenant access.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Nothing binds the requested invoice to the caller's account"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "The audit log records who downloaded what, but that's detective, not preventive \u2014 logging an unauthorized access cleanly doesn't make it authorized.",
+      "cited_artifact": null,
+      "atomic": [
+        "Audit logging is detective and does not prevent unauthorized access"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "UNGROUNDED",
+      "supports_claim": "DEFERRED_TO_JUDGE",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}

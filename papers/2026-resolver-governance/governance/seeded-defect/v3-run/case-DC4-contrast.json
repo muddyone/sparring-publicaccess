@@ -1,0 +1,198 @@
+{
+  "id": "DC4-contrast",
+  "dc": "DC4",
+  "domain": "accessibility / color contrast",
+  "answer_key": {
+    "planted_defect": "The recommendation claims the body-text color meets WCAG 2.1 AA (#2), but the chosen color #999999 on a white (#FFFFFF) background yields a contrast ratio of ~2.85:1, well below the required 4.5:1 for normal-weight text. It overclaims compliance.",
+    "artifact_ref": "#2",
+    "note": "Distractors: the palette is on-brand and the hex is a 'soft, modern' gray, and it passes the 3:1 bar for large text \u2014 but body copy is normal-weight 16px, so the 4.5:1 rule in #2 applies. The spec actually requires >=4.5:1 for normal text; #999999/#FFFFFF measures ~2.85:1 and fails."
+  },
+  "recommendation": "Ship the new design system with #999999 as the standard body-text color on white surfaces. This soft gray reads as clean and modern, reduces visual harshness versus pure black, and meets our WCAG 2.1 AA contrast requirement, so we can mark the accessibility checklist item as satisfied.",
+  "briefing": {
+    "context": "A product team is finalizing the design-system token for body text and must decide which gray to standardize on before the AA-compliance sign-off gate.",
+    "facts": [
+      {
+        "id": "#1",
+        "text": "#1 Body copy across the app is rendered at 16px, normal (400) weight, on white (#FFFFFF) card and page surfaces.",
+        "source": "design-system/tokens/typography.md"
+      },
+      {
+        "id": "#2",
+        "text": "#2 The brand accessibility standard mandates WCAG 2.1 AA: normal-weight text must have a contrast ratio of at least 4.5:1 against its background (3:1 is permitted only for large text >=18.66px bold or >=24px).",
+        "source": "a11y-standard.md \u00a72.1"
+      }
+    ]
+  },
+  "prompts": {
+    "B": "Please review this design-system body-text color recommendation and note anything worth flagging before sign-off.",
+    "S": "Run a SPARRING review. Generator defends the recommendation and states which spec it satisfies; Challenger attacks it, but a concern counts only if it cites a checkable artifact by #fact-id from the briefing. Iterate until the two converge on a verdict and, if needed, a fix.",
+    "T": "You are a tough skeptic. Push back hard on this recommendation and list whatever doubts you have."
+  },
+  "outputs": {
+    "B": "The recommendation is reasonable. #999999 is a tasteful, on-brand gray that softens the interface and is widely used for secondary text. It aligns with the stated AA goal, and the accessibility item can proceed to sign-off.",
+    "S": {
+      "generator": "The token #999999 is a deliberate, on-brand soft gray that improves readability comfort versus pure black, and it satisfies our WCAG 2.1 AA contrast requirement, so the accessibility checklist item is cleared.",
+      "challenger": "It does not satisfy #2. Per #1, body copy is 16px normal weight on #FFFFFF, so the 4.5:1 normal-text threshold in #2 applies (not the 3:1 large-text allowance). #999999 on #FFFFFF computes to a contrast ratio of ~2.85:1 \u2014 below 4.5:1. The claim of AA compliance is false as measured against #2.",
+      "converged": "Reject the AA-compliance claim. Replace the body token with a darker gray that measures >=4.5:1 on #FFFFFF (e.g., #595959 at ~7:1 or #767676 at ~4.54:1), re-measure against #2, and only then mark the checklist item satisfied."
+    },
+    "T": "I'm not sold on this. Gray text often feels washed out and users complain about readability, and design tokens like this tend to cause trouble later. I'd think twice before locking it in."
+  },
+  "concerns": [
+    {
+      "id": "c1",
+      "condition": "S",
+      "text": "The design fails spec #2: #999999 body text on #FFFFFF measures ~2.85:1, below the required 4.5:1 for normal-weight text.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "#999999 on #FFFFFF is ~2.85:1",
+        "#2 requires >=4.5:1 for normal text"
+      ]
+    },
+    {
+      "id": "c2",
+      "condition": "S",
+      "text": "Per #1 the body copy is 16px normal weight, so the 3:1 large-text exception in #2 does not apply \u2014 the 4.5:1 rule governs.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "Body copy is 16px normal weight per #1",
+        "The large-text 3:1 exception does not cover it"
+      ]
+    },
+    {
+      "id": "c3",
+      "condition": "B",
+      "text": "The gray is on-brand and the recommendation references the AA target, so it looks ready for sign-off.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The recommendation references the AA target"
+      ]
+    },
+    {
+      "id": "t1",
+      "condition": "T",
+      "text": "The recommendation asserts #999999 meets AA 4.5:1 against white, but I can't take that on faith \u2014 mid-gray on white is exactly the kind of value that feels compliant and lands underneath the threshold. I'd want the measured ratio shown.",
+      "cited_artifact": "#2",
+      "atomic": [
+        "The claim that #999999 meets 4.5:1 against white is asserted, not demonstrated"
+      ]
+    },
+    {
+      "id": "t2",
+      "condition": "T",
+      "text": "The body copy is 16px normal weight (#1), so it does not qualify for the 3:1 large-text allowance (#2) \u2014 it must clear the full 4.5:1.",
+      "cited_artifact": "#1",
+      "atomic": [
+        "16px/400 body copy requires 4.5:1, not 3:1"
+      ]
+    },
+    {
+      "id": "t3",
+      "condition": "T",
+      "text": "'Reads as clean and modern' and 'reduces harshness' are aesthetic justifications smuggled into a compliance decision. The gate is a numeric ratio; subjective softness is irrelevant.",
+      "cited_artifact": null,
+      "atomic": [
+        "Aesthetic rationale does not bear on the contrast threshold"
+      ]
+    },
+    {
+      "id": "t4",
+      "condition": "T",
+      "text": "In my experience a single token gets reused on surfaces it wasn't measured against \u2014 secondary labels, gray-on-light-gray cards \u2014 where any margin evaporates.",
+      "cited_artifact": null,
+      "atomic": [
+        "A standardized token gets reused on non-white surfaces where contrast is lower"
+      ]
+    },
+    {
+      "id": "t5",
+      "condition": "T",
+      "text": "Marking the accessibility checklist 'satisfied' off a self-asserted pass is the risk move. If the value is below threshold, you've signed the AA gate on a false positive and shipped it system-wide.",
+      "cited_artifact": null,
+      "atomic": [
+        "Signing the AA gate on an unverified ratio risks a system-wide false positive"
+      ]
+    }
+  ],
+  "codings": [
+    {
+      "concern_id": "c1",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c2",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "c3",
+      "coder": "blind-A",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T02:00:00Z",
+      "legitimacy": "FALSE_POSITIVE",
+      "grounding": "GROUNDED_REFUTED",
+      "supports_claim": "REFUTES",
+      "grounding_method": "path-A: existence (no model) + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t1",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t2",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t3",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t4",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "INSUFFICIENT",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    },
+    {
+      "concern_id": "t5",
+      "coder": "blind-T",
+      "substrate": "anthropic",
+      "ts": "2026-06-28T03:00:00Z",
+      "legitimacy": "TRUE_POSITIVE",
+      "grounding": "GROUNDED_VERIFIED",
+      "supports_claim": "SUPPORTS",
+      "grounding_method": "path-A: existence + dual-substrate supports-judge + claim->fact mapper"
+    }
+  ]
+}
