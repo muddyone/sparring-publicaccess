@@ -9,6 +9,11 @@
 # machine-generated, consistently-formatted list. CSL is pandoc's built-in
 # Chicago author-date default (portable; no system-path dependency).
 bibliography: refs.bib
+# Rights/license, recorded here as the build's source of truth. The visible,
+# reader-facing notice lives in preprint-draft.md's front matter (page 1) — the
+# reliable channel, since pandoc does not embed `rights` into PDF/DOCX properties
+# by default. Content: CC BY 4.0; accompanying code: Apache-2.0 (repo LICENSE-CODE).
+rights: "© 2026 Barton Niedner. Text and figures licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Accompanying code: Apache-2.0. Author retains copyright."
 link-citations: true
 nocite: |
   @*
