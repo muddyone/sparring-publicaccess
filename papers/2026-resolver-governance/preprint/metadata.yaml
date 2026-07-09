@@ -34,4 +34,12 @@ geometry: margin=1in
 fontsize: 11pt
 colorlinks: true
 linkcolor: NavyBlue
+# Let long inline code (file paths, pilot ids) line-break at its hyphens/slashes
+# instead of overflowing the right margin. htt = enable \texttt breaking;
+# emergencystretch gives TeX slack to avoid overfull boxes elsewhere.
+header-includes: |
+  ```{=latex}
+  \usepackage[htt]{hyphenat}
+  \setlength{\emergencystretch}{2em}
+  ```
 ---
