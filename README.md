@@ -19,6 +19,9 @@ reader needs to check the papers' claims and reproduce their numbers.
     *Auditable adversarial review for AI-in-the-loop decisions* — an empirical
     report on SPARRING's **Resolver** (pre-registered null → governance by
     verifiable challenge).
+- **[`docs/spars/`](docs/spars/)** — verbatim records of SPARRING ceremonies run on
+  the framework's **own** claims, including the runs that did not converge and the
+  rounds where the framework's position lost.
 
 ## De-identification and exposure posture
 
