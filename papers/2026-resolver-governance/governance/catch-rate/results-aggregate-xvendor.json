@@ -1,0 +1,16 @@
+{
+ "_note": "Initial cross-vendor (GPT-gen / Claude-audit) confirmation pass. SUPERSEDED by results-2x2-grid.json (gptgen_claudeaudit) for the factorial comparison: same 31-flaw denominator (SELF identical, 74.2%), but the grid re-ran neutral (67.7%) and same-vendor challenger (83.9%) -- a 1-2 flaw run-to-run difference, not a contradiction. See the cross-vendor reconciliation note in results.md.",
+ "vendor": "GPT-5.2 actors / Claude audit+coding",
+ "n_flaws": 31,
+ "catch_rate": {
+  "SELF": 74.2,
+  "NEUTRAL": 64.5,
+  "CHAL": 77.4
+ },
+ "self_vs_chal": {
+  "both": 21,
+  "chal_only": 3,
+  "self_only": 2,
+  "neither": 5
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "n_flaws": 31,
+ "catch_rate": {
+  "SELF": 67.7,
+  "NEUTRAL": 54.8,
+  "CHAL": 87.1
+ },
+ "per_problem": {
+  "P-multiregion-ledger": {
+   "SELF": "2/3",
+   "NEUTRAL": "3/3",
+   "CHAL": "3/3"
+  },
+  "P-feature-store-skew": {
+   "SELF": "3/4",
+   "NEUTRAL": "1/4",
+   "CHAL": "4/4"
+  },
+  "P-zero-downtime-shard": {
+   "SELF": "3/3",
+   "NEUTRAL": "2/3",
+   "CHAL": "3/3"
+  },
+  "P-autoscale-stampede": {
+   "SELF": "4/5",
+   "NEUTRAL": "2/5",
+   "CHAL": "5/5"
+  },
+  "P-churn-winback": {
+   "SELF": "2/4",
+   "NEUTRAL": "1/4",
+   "CHAL": "2/4"
+  },
+  "P-warehouse-siting": {
+   "SELF": "3/4",
+   "NEUTRAL": "3/4",
+   "CHAL": "3/4"
+  },
+  "P-pricing-migration": {
+   "SELF": "2/4",
+   "NEUTRAL": "1/4",
+   "CHAL": "3/4"
+  },
+  "P-capex-automation": {
+   "SELF": "2/4",
+   "NEUTRAL": "4/4",
+   "CHAL": "4/4"
+  }
+ },
+ "union_any": 96.8,
+ "self_vs_chal": {
+  "both": 19,
+  "chal_only": 8,
+  "self_only": 2,
+  "neither": 2
+ }
+}

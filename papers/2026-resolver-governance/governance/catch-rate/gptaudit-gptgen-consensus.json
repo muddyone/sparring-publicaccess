@@ -1,0 +1,70 @@
+{
+"P-multiregion-ledger": [
+{"flaw":"Cross-region settlement/EOD messages (transfer IDs, timestamps, ledger proofs, per-customer balance lines) can be EU personal data, so replicating them to the US risks violating data-residency; no schema guarantees EU identifiers stay in-region.","auditors":3},
+{"flaw":"The service is not actually writable from both regions during a full outage: once prefunded settlement limits are exhausted (or the down region cannot credit its wallet), cross-region transfers are queued/rejected rather than completed.","auditors":2},
+{"flaw":"Two-leg posting over async messaging breaks the global debits=credits invariant during partitions — there are windows where one leg has posted and the other has not.","auditors":2},
+{"flaw":"The 'exactly-once via idempotency keys + outbox' claim is really at-least-once, and without an atomic posting-plus-emit outbox and proven consumer dedupe under failover it can cause duplicate or omitted settlement legs.","auditors":2},
+{"flaw":"Settlement-account/prefund limits are not enforced with strong local atomicity, allowing concurrent transfers to deplete the same collateral and drive negative settlement balances.","auditors":1},
+{"flaw":"Within-region 'repeatable read + explicit locking' in Postgres is not equivalent to SERIALIZABLE and can admit write-skew/double-spend anomalies.","auditors":1},
+{"flaw":"An EOD snapshot assembled from two independently produced regional trial balances is not a single globally consistent snapshot without a global cutoff/close protocol.","auditors":1},
+{"flaw":"The delivery estimate (bespoke cross-region settlement, exactly-once messaging, collateral management, reconciliation in 9 months with 6 engineers) is unsubstantiated and a likely schedule risk.","auditors":1}
+],
+"P-feature-store-skew": [
+{"flaw":"The budget constraint is not met: years of event logs plus Flink/Kafka streaming plus dual online stores (Redis + Cassandra/Scylla + Iceberg/Delta) is a major net-new infra/ops cost with no containment plan, despite budget ~70% consumed.","auditors":3},
+{"flaw":"GDPR deletion is not operationally credible: 'immutable except tombstones' plus compaction does not provably purge personal data from logs, lake, and online/derived stores within 30 days.","auditors":3},
+{"flaw":"Point-in-time correctness is not actually guaranteed — strict watermarking and event_time partitioning alone don't make multi-year backfills reproducible without defined late-event/correction handling and backfill determinism.","auditors":2},
+{"flaw":"The 'online-only features must have an offline replayable proxy/substitution' rule violates the identical-definitions requirement and still produces train/serve skew because the proxy doesn't match the true online computation.","auditors":2},
+{"flaw":"Deleting events for GDPR changes historical feature/label values, which conflicts with reproducing exact point-in-time features across years — the design cannot satisfy both simultaneously.","auditors":1},
+{"flaw":"Compiling one feature contract to Spark batch and Flink/Kafka streaming does not guarantee semantic equivalence (late-data, window-closure, null, dedupe), so skew can persist without a single engine or formal equivalence tests.","auditors":1},
+{"flaw":"Self-serve feature creation is contradicted by the design: compiling a DSL into batch and streaming jobs requires platform-owned CI/CD, schema-evolution controls, and oncall, so data scientists cannot add features without the platform team.","auditors":1}
+],
+"P-zero-downtime-shard": [
+{"flaw":"Gateway dual-write to old DB and new shard has no distributed-transaction/atomicity guarantee, so partial failures plus retries cause lost or duplicated events; an idempotent upsert keyed by event_id is insufficient (non-unique keys, non-idempotent updates, deletes).","auditors":3},
+{"flaw":"The 'instantly revert to the old DB' claim is unsafe once any writes are accepted on the new shards, because the old DB will lag/diverge unless every post-cutover write is replicated back in order, contradicting 'reversible at any point.'","auditors":3},
+{"flaw":"Replacing live cross-shard dashboard queries with incremental rollups is a query-semantics/freshness change that can break dashboards and is not shown to meet sub-2s within the limited-rewrite constraint.","auditors":3},
+{"flaw":"Sub-sharding the mega-tenant by time bucket or event_hash while the app still uses tenant_id forces intra-tenant fan-out for range scans/ordering/joins, breaking queries or violating sub-2s without transparent gateway rewriting.","auditors":3},
+{"flaw":"The backfill-versus-live-write race is under-specified: chunked PK copying of rows being concurrently updated needs a change-capture/high-watermark (binlog/consistent-snapshot) scheme to avoid silent drift.","auditors":1}
+],
+"P-autoscale-stampede": [
+{"flaw":"Predictive pre-warm relies on push notifications being reliably scheduled 45-60s ahead, so unscheduled, jittery, third-party, or multi-wave spikes miss the warm-up window and violate the absorb-10x-in-60s requirement, with no fallback.","auditors":3},
+{"flaw":"Reactive scaling on p95 latency / queue depth lags a 45s cold start and can form an overload feedback loop, so pods arrive too late in the first minute; no leading indicator or sized min-ready surge buffer is provided.","auditors":3},
+{"flaw":"Stale-while-revalidate lacks a concrete classification/enforcement rule, so it can serve stale data on write-sensitive 'read-like' endpoints (entitlements, balances, rate limits, inventory), creating correctness/security failures.","auditors":3},
+{"flaw":"Switching to PgBouncer transaction pooling can break apps relying on session state (temp tables, session variables, prepared statements, advisory locks), a real production failure mode left unaudited.","auditors":3},
+{"flaw":"Returning 429s without coordinated client-side backoff or server-side retry suppression can amplify load via retry storms during a surge.","auditors":1}
+],
+"P-churn-winback": [
+{"flaw":"Choosing pause may not meet NRR>100% because saved users have 60% lower 6-month LTV, and the plan never quantifies whether recovered volume offsets the lower monetization (may improve gross retention but depress NRR).","auditors":3},
+{"flaw":"A 6-8 week A/B on cancellation sessions cannot observe 30/60/90-day NRR within Q3 and, given delayed/interfering outcomes, is underpowered/misleading for the chosen primary KPI, risking a wrong ship decision.","auditors":3},
+{"flaw":"Defaulting the cancel CTA to pause, without guardrails, risks dark-pattern/regulatory problems plus refund/support burden and involuntary-churn spikes at unpause.","auditors":2},
+{"flaw":"The plan depends on a 'lighter tier' downgrade that may not exist, in which case the proposed save lever is not implementable within Q3.","auditors":1},
+{"flaw":"Targeted discounts for top-decile predicted LTV assume a working real-time LTV model at cancel, which may be infeasible within one quarter or cause mis-targeting.","auditors":1},
+{"flaw":"Targeted discounts/credits to high-LTV cohorts can create price-discrimination fairness/backlash and increased refunds/support load.","auditors":1}
+],
+"P-warehouse-siting": [
+{"flaw":"The recommendation asserts the 18% miss 'strongly suggests' a transportation/zone/cut-time problem without evidence; if the real driver is capacity or inventory availability, re-slotting and carrier renegotiation won't move the miss rate.","auditors":3},
+{"flaw":"Adding cross-docks/injection points (Atlanta/DFW/Houston/FL) effectively adds operational nodes and handling steps, contradicting the 'no new node' selection and threatening the cost-neutral criterion via damage/claims/cost.","auditors":2},
+{"flaw":"Renegotiating carriers for guaranteed/penalized linehaul departures may be commercially infeasible for bulky-furniture lanes at the shipper's volume/density, so the plan may be non-executable.","auditors":2},
+{"flaw":"Some SE/TX destinations are structurally unreachable in 2 days from Columbus for bulky freight regardless of cut time, so the KPI is unattainable without a forward node or nearer cross-dock inventory, which the plan omits.","auditors":2},
+{"flaw":"Targeting >=95% 2-day in 90-120 days may be operationally infeasible given the time to stand up scheduled linehaul plus cross-docks with SLAs in 3-4 months.","auditors":1},
+{"flaw":"Re-slotting mainly improves DC processing time, but no baseline shows DC cycle time is the binding constraint, risking effort on a non-binding bottleneck.","auditors":1},
+{"flaw":"Adjusting promised-delivery calendars/charges conflicts with meeting the existing 2-day promise — it effectively admits worse service and can reduce conversion/CSAT.","auditors":1}
+],
+"P-pricing-migration": [
+{"flaw":"The 'active projects' meter is ambiguous and gameable (archived, automated, API-created, subprojects) with no precise enforceable audited definition, inviting billing disputes/leakage and letting heavy accounts avoid paying more.","auditors":3},
+{"flaw":"Existing annual seat contracts (up to 11 months remaining) and grandfathering block shifting cost-heavy usage to the new model in time, so the two-quarter margin/success metrics are unachievable without contract amendments the plan doesn't specify.","auditors":3},
+{"flaw":"An annual cap (+15%) plus tiered packs may be insufficient to capture the top-8%/55% cost skew, so if the heaviest users grow consumption beyond the cap, gross margin still doesn't improve.","auditors":2},
+{"flaw":"Selling new pricing to all new deals immediately, while competitors are seat-based and finance wants predictability before a raise, can hurt win rate and forecasting without controlled packaging/price tests first.","auditors":2},
+{"flaw":"Revenue predictability is only partially addressed: tiered add-ons plus true-ups still introduce variability, with no quantified forecast/error-bound or minimum-commit mechanism.","auditors":1},
+{"flaw":"Success criteria depend on per-account infra-cost attribution and top-8% gross-margin gains within two quarters, which may be unmeasurable without a defined cost-allocation method.","auditors":1},
+{"flaw":"Offering seat-only locks as a save lever invites adverse selection, where savvy high-usage customers choose the lock, preventing monetization.","auditors":1}
+],
+"P-capex-automation": [
+{"flaw":"The interest-savings analysis is inadequately grounded — it ignores the full rate/debt terms (citing only the +250bps increment) and is small relative to an $8M decision, so the figure could be materially wrong or immaterial.","auditors":3},
+{"flaw":"The $3M 'modular automation pilot' feasibility is unsubstantiated: no basis it exists within the vendor's 14-month lead-time ecosystem or fits the envelope (smallest viable unit may approach full-cell cost).","auditors":2},
+{"flaw":"Given the 14-month lead and 20% overruns, and with no quantified EBITDA/payback, pilot benefits likely arrive near or after the renewal/sale decision, so it doesn't mitigate concentration risk in the intended window.","auditors":2},
+{"flaw":"The risk mitigation relies on enforceable fixed-price milestones and performance guarantees (and redeployable equipment) that molding-cell automation vendors may not offer given the 20%-over history.","auditors":2},
+{"flaw":"The pilot's labor/process-disruption impact on the line serving the 38% customer is unaddressed — even partial labor-assist forces process changes, downtime, and irreversible staffing shifts, with no mitigation plan.","auditors":2},
+{"flaw":"Paying down $5M may violate liquidity/working-capital needs (inventory, hiring engineers, concentration mitigation), with no minimum-cash analysis.","auditors":1},
+{"flaw":"Rejecting the flexible custom cell because it needs process engineers is inconsistent, since engineering scarcity would stall the proposed pilot too.","auditors":1}
+]
+}

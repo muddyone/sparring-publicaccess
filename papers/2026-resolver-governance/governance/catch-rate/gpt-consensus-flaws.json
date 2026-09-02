@@ -1,0 +1,66 @@
+{
+"P-multiregion-ledger": [
+{"flaw":"Prefunded settlement float sizing and replenishment are unspecified, so during a 30+ minute partition the float can be exhausted and cross-region transfers are rejected/queued, meaning the design does not truly accept cross-region writes during isolation.","auditors":3},
+{"flaw":"In-flight cross-region transfers have no reversal/timeout/compensation path: when the destination is unreachable or cannot apply the settlement message the sender is debited but the recipient credit is deferred indefinitely, stranding funds and breaking debits=credits.","auditors":3},
+{"flaw":"Single-region multi-AZ HA does not survive a full regional outage, so a us-east-1 (or EU) failure leaves that region's wallets unwritable, violating the writable-during-regional-outage requirement.","auditors":2},
+{"flaw":"Cross-region settlement/transfer messages must carry recipient/counterparty identifiers (GDPR personal data) into the opposite region, and with no tokenization specified this risks the data-residency violation the design claims to prevent.","auditors":2},
+{"flaw":"A globally-consistent end-of-day reconciliation snapshot cannot be produced when a partition straddles the EOD cutoff, leaving requirement 5 unaddressed.","auditors":1},
+{"flaw":"Managing the prefunded collateral float is an ongoing finance function left unstaffed in the 6-engineer/9-month plan.","auditors":1}
+],
+"P-feature-store-skew": [
+{"flaw":"Substantial net-new infrastructure (multi-year log, Iceberg/Delta views + spine, two online stores, a Flink streaming cluster) is added on a fixed budget already 70% consumed, with 'stays within budget' asserted and no capacity/cost analysis.","auditors":3},
+{"flaw":"Routing 'online-only' features through an offline replayable proxy reintroduces avoidable skew and mischaracterizes the window as non-replayable when it can be replayed as-of any timestamp from the retained log.","auditors":3},
+{"flaw":"Compiling one logical definition to two different engines (Spark batch vs Flink/Kafka streaming) does not guarantee value-identical features because the engines differ on windowing/watermark/late-data/null semantics, so train/serve skew can persist.","auditors":2},
+{"flaw":"GDPR 30-day erasure is not actually achieved: tombstones plus compaction do not physically delete a user across years of immutable log, Iceberg/Delta, and both online stores within 30 days.","auditors":2},
+{"flaw":"GDPR deletion conflicts with the exact point-in-time reproducibility requirement, since erasing a user's historical events makes past-timestamp backfills non-reproducible, and the conflict is left unresolved.","auditors":2},
+{"flaw":"Self-serve feature creation is overstated because any new online aggregate requires the platform team to deploy and operate Flink streaming operators.","auditors":1}
+],
+"P-zero-downtime-shard": [
+{"flaw":"App-level dual-write across two databases is not atomic and lacks 2PC/CDC, so partial-failure or ordering races silently drop or misorder events; idempotent upserts prevent duplicates but not missed writes, so 'no dropped events' is not guaranteed.","auditors":3},
+{"flaw":"Moving cross-tenant dashboards onto rollup tables requires rewriting those queries (Vitess cannot transparently redirect them), which conflicts with the limited-rewrite budget across thousands of SQL statements.","auditors":3},
+{"flaw":"Sub-sharding the 18% mega-tenant by (tenant_id, event_hash) turns that tenant's own intra-tenant aggregations into cross-shard scatter-gather and destroys time-range locality, jeopardizing sub-2s latency for the largest tenant.","auditors":3},
+{"flaw":"Dual-writing for the entire migration adds full write load (production writes plus backfill copy) to a source primary already at its write-IOPS and lock-contention ceiling, risking the saturation the migration is meant to relieve.","auditors":2},
+{"flaw":"Replacing live cross-tenant fan-out with a near-real-time rollup pipeline (named but not designed at ~80k events/sec) introduces eventual-consistency lag, can violate sub-2s freshness, and cannot serve ad-hoc cross-tenant queries.","auditors":2}
+],
+"P-autoscale-stampede": [
+{"flaw":"Pre-warming to only ~60-70% of peak leaves a 30-40% gap that reactive autoscaling cannot fill within 60s given the ~45s cold start, so the system remains overloaded for the first ~45s of the surge it must absorb.","auditors":3},
+{"flaw":"PgBouncer transaction-pooling is prescribed without flagging that it breaks session-scoped Postgres features (server-side prepared statements, advisory locks, session GUCs/temp tables), silently introducing correctness bugs.","auditors":3},
+{"flaw":"The predictive/pre-warm tier only covers notification-triggered (and accurately forecast) surges, so non-notification surges fall back entirely to the 45s-lagging reactive path and remain exposed to the original cascade.","auditors":2},
+{"flaw":"Edge 429 + Retry-After after a synchronized push invites a synchronized retry storm (a second thundering herd) because no jitter/backoff is specified.","auditors":1},
+{"flaw":"The shared Redis cache is hardened against stampede logic but not the 10x surge itself, remaining a SPOF with per-key locks adding round-trips and concentrating hot-key load.","auditors":1},
+{"flaw":"Pre-warming to 60-70% on every notification send can become near-continuous when sends are frequent, reproducing the sustained over-provisioning the cost constraint forbids.","auditors":1},
+{"flaw":"Relying on spot instances for surge capacity that must materialize within 60s is unreliable because spot may be unavailable or reclaimed exactly when the surge hits.","auditors":1}
+],
+"P-churn-winback": [
+{"flaw":"A pause zeroes revenue during the pause window and recovered users have 60% lower 6-month LTV, so it defers/depresses rather than lifts revenue; the 'fastest path / lowest ARPU damage' claim is asserted with no model.","auditors":3},
+{"flaw":"The 6-8 week measurement window is shorter than the offered pause durations, so pause-to-reactivation and realized 6-month LTV cannot be observed in-window and 'success' can be declared on deferred churn that later reverses.","auditors":3},
+{"flaw":"NRR>100% structurally requires net expansion, but a cancel-screen save flow has no expansion lever and reaches only ~3.1%/mo, so churn reduction alone cannot mathematically lift NRR above 100%.","auditors":2},
+{"flaw":"NRR cannot be read off an A/B run whose population is only cancellation sessions; it yields save-rate per cancel, not company-wide NRR — a population/metric mismatch.","auditors":2},
+{"flaw":"The CAC-up-22% / reacquisition-cost-avoided ROI argument is a non-sequitur because churned subscribers are mostly never reacquired, overstating the benefit.","auditors":1},
+{"flaw":"Offering pause broadly cannibalizes revenue from users who would have stayed or accepted a smaller concession, with no control for this down-conversion.","auditors":1},
+{"flaw":"Aggressively defaulting the cancel CTA to pause biases the pausing population toward lower-intent users, invalidating the historical 40%-recovery/60%-lower-LTV figures applied to it.","auditors":1}
+],
+"P-warehouse-siting": [
+{"flaw":"Option (c)'s re-slotting saves only 6-12 hours and renegotiation cannot shorten the multi-day Columbus->TX/FL linehaul, so its own >=95% target is physically unachievable for the most distant zones without a closer node — internally contradictory.","auditors":3},
+{"flaw":"The analysis under-weights the 25% YoY Southeast growth, which progressively worsens the Columbus-distance disadvantage so (c) won't durably hold >=95% as volume scales, strengthening the closer-node case.","auditors":3},
+{"flaw":"The >=95%-within-90-120-days timeline is unrealistic given that renegotiating carriers and onboarding new regional LTL/volume carriers typically takes more than a quarter.","auditors":2},
+{"flaw":"Atlanta is rejected on a 3-year payback asserted with no NPV modeled, despite a closer node being the direct structural fix.","auditors":1},
+{"flaw":"The 'cost to serve neutral to improved' claim is unsupported, since guaranteed scheduled linehaul and a second carrier commonly raise transport cost with no analysis showing it nets positive.","auditors":1},
+{"flaw":"A targeted 3PL-for-fast-movers hybrid is never considered, even though high-velocity SKUs likely fit within the 70% SKU cap used to reject the 3PL wholesale.","auditors":1}
+],
+"P-pricing-migration": [
+{"flaw":"Grandfathering annual terms up to 11 months with renewals migrating only from month 6 means almost none of the top-8% accounts move to the new model within two quarters, so the 2-quarter top-8% margin KPI cannot be observed.","auditors":3},
+{"flaw":"'Active projects' is adopted as the meter without validating that it tracks the consumption-driven infra cost driver, so accounts with many seats but few large projects won't be recaptured and the 55%-cost/30%-revenue gap may persist.","auditors":3},
+{"flaw":"SMB bill predictability is not actually delivered: the 10-project allowance/breakpoints aren't grounded in real SMB usage and SMBs still face tier-jump steps plus a metered overage backstop.","auditors":2},
+{"flaw":"The '<5% of SMBs exceed the allowance' guardrail is gameable and self-defeating — sizing the allowance high to meet it means the project meter extracts almost no incremental SMB revenue.","auditors":1},
+{"flaw":"The +15% annual overage cap added for predictability directly limits the ability to re-price the materially-underpriced top 8%, undercutting the migration's primary objective.","auditors":1},
+{"flaw":"The Seat-ARR + Project-Pack-ARR comp fix doesn't resolve rep resistance, since making large accounts pay more via projects with potentially fewer seats still erodes seat commission.","auditors":1}
+],
+"P-capex-automation": [
+{"flaw":"The interest-savings math is wrong: '~$25k/yr per $1M' credits only the 250bps increment, but repaying principal eliminates the entire floating rate (~7-9%), understating the benefit roughly 3x — a checkable error in the core justification.","auditors":3},
+{"flaw":"The $3M pilot is sited/timed on the same high-volume line tied to the 38% customer renewing in 19 months (same ~14-month lead plus overrun), reproducing the very renewal-cliff concentration risk used to reject full automation.","auditors":3},
+{"flaw":"Options (a) and (b) are rejected on a risk narrative without quantifying their returns (a's 35% labor cut, b's higher-margin segment) against a hurdle, so '(c) is best risk-adjusted' is asserted and the highest-return option may be left unfunded.","auditors":2},
+{"flaw":"For an EBITDA-multiple sale the $5M floating-debt paydown is EV-neutral (interest is below EBITDA), so 'de-risks the sale' conflates deleveraging with value creation and ignores the opportunity cost versus the automation return.","auditors":2},
+{"flaw":"The dominant risk is the 38% single-customer concentration, which option (b) directly diversifies while (c) does nothing to address, so the most relevant value is underweighted.","auditors":1}
+]
+}

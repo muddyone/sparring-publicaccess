@@ -1,0 +1,62 @@
+{
+"P-multiregion-ledger": [
+{"flaw":"Cross-region settlement forces the US region to hold/transmit an EU counterparty's account id and amount (GDPR personal data); treating it as non-personal violates data-residency constraint 4.","auditors":3},
+{"flaw":"Summing per-region EOD snapshots taken at independent HLC watermarks is not a globally consistent cut, so in-flight cross-region transfers are double-counted or dropped (and suspense cannot close while the link is down).","auditors":3},
+{"flaw":"During the 30+ min partition cross-region transfers cannot complete (sender debited to suspense, payee uncreditable), stranding regulated funds; the rec wrongly treats in-region writability as sufficient.","auditors":2},
+{"flaw":"The cross-region saga specifies no idempotency/dedup key, so a transfer-intent re-emitted after the partition heals can double-credit the destination.","auditors":1},
+{"flaw":"Saga compensation has no failure handling (no timeout/dead-letter/repair loop), so a failed reversal or partial credit strands customer funds in suspense indefinitely.","auditors":1},
+{"flaw":"Exactly-once outbox sagas, suspense accounting, signed-watermark snapshots and reconciliation are substantial distributed-systems work; feasibility is asserted, not demonstrated, for a 6-person team with no multi-region experience in 9 months.","auditors":1}
+],
+"P-feature-store-skew": [
+{"flaw":"Point-in-time backfill across years (constraint 2) is impossible for new online-only features because logs only exist from when logging was turned on, so logged-features-as-training-data cannot reproduce historical values.","auditors":3},
+{"flaw":"The GDPR 30-day deletion design omits the new feature-log Kafka topic and the materialized training vectors derived from it, which contain entity-keyed PII.","auditors":3},
+{"flaw":"'Codegen from one DSL means it cannot drift' is false — Flink and Spark differ in windowing/watermarking/late-data/numeric behavior; only a replay-equality test catches the skew.","auditors":2},
+{"flaw":"Logging the full served feature vector at serving QPS is a large net storage/compute increase against an already-70%-consumed budget, and the rec never shows it fits.","auditors":2},
+{"flaw":"Using only logged features for the candidates the live model served is selection bias with zero counterfactual coverage, leaving a new model that scores un-served candidates without training features.","auditors":1},
+{"flaw":"The train/serve consistency test checks value equality but not null/coverage skew (an online KV miss returns a default while offline has a real value), a leading cause of offline-strong/online-weak gaps.","auditors":1}
+],
+"P-zero-downtime-shard": [
+{"flaw":"App-level dual-write across old MySQL and the new shard is not atomic, so a crash/partial failure drops or duplicates events (violating constraint 1); idempotent keys only dedupe retries, and binlog/CDC is the actual no-loss mechanism while reconciliation only detects drift after the fact.","auditors":3},
+{"flaw":"Sub-sharding the 18% mega-tenant destroys its single-shard locality, turning its dashboards into cross-shard scatter-gather and putting the largest tenant's sub-2s SLA most at risk; isolating it also contradicts hash-to-vbucket routing and needs an undefined directory/override layer.","auditors":3},
+{"flaw":"ProxySQL tenant_id routing only works for queries carrying a tenant_id predicate; legacy queries without it, cross-tenant JOINs, global AUTO_INCREMENT dependencies, and admin/background/multi-tenant jobs break, so the rewrite budget is underestimated.","auditors":3},
+{"flaw":"The cross-tenant sub-2s aggregate store introduces ingestion lag and a consistency gap versus the sharded source that is never reconciled.","auditors":1},
+{"flaw":"Continuing to dual-write to the already-saturated old DB plus adding continuous reconciliation reads against it increases load on the failing system throughout the months-long migration.","auditors":1},
+{"flaw":"Reversibility is only argued for the read-flip phase; the irreversible write-authority cutover and its rollback are never described, so 'reversible at any point' is overclaimed.","auditors":1}
+],
+"P-autoscale-stampede": [
+{"flaw":"Single-flight does not prevent the fleet-wide DB stampede — across instances each repopulates the same cold key without a distributed lock, and a surge to many distinct cold keys isn't coalesced at all.","auditors":2},
+{"flaw":"A hard PgBouncer cap relocates the bottleneck to an unbounded pooler queue, so under 10x the latency cascade reappears as queueing unless the queue is explicitly bounded with fast-fail/edge limits.","auditors":2},
+{"flaw":"PgBouncer transaction mode breaks session-scoped features (prepared statements, advisory locks, session SETs/state), a compatibility risk asserted without verification.","auditors":2},
+{"flaw":"Routing core reads to replicas during a 10x surge introduces replication-lag staleness, conflicting with constraint 5's prohibition on dangerously stale reads on write-sensitive paths.","auditors":2},
+{"flaw":"With a 45s cold start, absorbing an unscheduled 10x-in-60s spike requires a warm pool near surge capacity, i.e. the sustained over-provisioning cost constraint 2 forbids — the worst case is unsolved.","auditors":2},
+{"flaw":"Fail-closed/load-shedding on write-sensitive endpoints conflicts with constraint 6 (core read paths must stay available) where those paths are core, and the conflict is unresolved.","auditors":1}
+],
+"P-churn-winback": [
+{"flaw":"A retention-only save/pause flow with no expansion lever cannot push NRR above 100% (the board target requires net expansion), so it commits to the target with a mechanism that structurally cannot reach it.","auditors":3},
+{"flaw":"The primary metric (incremental net revenue at 6 months) reads out after Q3 and after the year-end NRR deadline, so it cannot inform the decision within the window.","auditors":3},
+{"flaw":"The design exceeds the 'engineering can fully resource only one' constraint by bundling cancel-screen segmentation + a downgrade tier + a re-engagement nudge + a re-onboarding push.","auditors":2},
+{"flaw":"The pause flow risks negative near-term revenue and cannibalization (pausers pay $0, and full-price retainers get diverted into pausing), and the net effect is not established.","auditors":2},
+{"flaw":"The pause flow only intercepts at the cancel screen and does nothing about the upstream rise in churn from 2.4% to 3.1%.","auditors":1}
+],
+"P-warehouse-siting": [
+{"flaw":"The justification is logically inverted: linehaul-dominated freight means cost/time scale with distance, so a closer Southeast/Atlanta node shortens the dominant leg and argues FOR a second node, not against it.","auditors":3},
+{"flaw":"Re-slotting and carrier-zone renegotiation cannot shorten the physical Columbus-to-SE/TX linehaul transit, so option (c) structurally may not recover the 2-day promise if the miss is distance-driven.","auditors":3},
+{"flaw":"The diagnosis that the miss is 'carrier-zone/slotting before distance' is asserted without evidence and contradicts the misses clustering in the farthest regions.","auditors":3},
+{"flaw":"The trigger to start building 12 months before breakeven volume reintroduces the ahead-of-demand betting the rec criticizes, and forecasting a small-base 25%-YoY threshold 12 months out is highly uncertain (fires early or late, with unquantified lost-sales/brand cost).","auditors":2}
+],
+"P-pricing-migration": [
+{"flaw":"A single project allotment cannot cleanly separate SMBs from whales on a projects-per-seat continuum: project-heavy SMBs are over-charged (churn risk) while seat-heavy whales slip under the threshold.","auditors":3},
+{"flaw":"Billing whales on variable active-project usage makes the pitched incremental/growth revenue usage-variable, undercutting the predictability finance needs for the raise.","auditors":2},
+{"flaw":"The 'active projects' meter is gameable (customers archive/close/reopen projects) and the 'active' definition is ambiguous/dispute-prone, eroding the targeted whale revenue.","auditors":2},
+{"flaw":"Because migration is renewal-gated and annual seat contracts run up to 11 months, most whales aren't migrated within the two-quarter window, so the success metric is unobservable and leakage persists past the decision point.","auditors":2},
+{"flaw":"'Active projects' is never shown to track the actual infra cost driver (top 8% = 55% of cost); if cost is storage/compute/events rather than project count, metering projects won't recover it.","auditors":1},
+{"flaw":"The sequencing is internally inconsistent: 'launch the hybrid for new accounts immediately' conflicts with 'fix sales comp first,' a multi-month change.","auditors":1}
+],
+"P-capex-automation": [
+{"flaw":"The EV/EBITDA claim is wrong: debt paydown is computed below EBITDA so it doesn't change EBITDA (a buyer on EV/EBITDA sees it unchanged), whereas high-margin growth revenue is the multiple-accretive lever — the 'EBITDA-to-a-buyer story' is mis-stated.","auditors":3},
+{"flaw":"The rec names customer concentration as the binding risk but fails to reduce it — it rejects (b), the option that diversifies away from the 38% anchor, and its chosen pilot still depends on that anchor renewing, lowering dollars-at-risk but not concentration.","auditors":3},
+{"flaw":"A 'smaller pilot that scales without re-buying' may not exist: molding-automation cells have a minimum viable scale, so a half-scale pilot may be uneconomic and fail to validate cell economics.","auditors":2},
+{"flaw":"Splitting the $8M across debt paydown and a pilot risks doing neither at needle-moving scale (sub-scale on both).","auditors":2},
+{"flaw":"Calling debt paydown a 'guaranteed risk-free return equal to the borrowing rate' overstates it, since interest is tax-deductible so the real return is ~rate*(1-tax).","auditors":1}
+]
+}

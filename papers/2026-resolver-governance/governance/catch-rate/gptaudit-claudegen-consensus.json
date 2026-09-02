@@ -1,0 +1,61 @@
+{
+"P-multiregion-ledger": [
+{"flaw":"The 'only non-personal metadata replicates to the US' claim is likely false because a cross-region ledger/audit trail contains counterparty identifiers, amounts, and references that qualify as GDPR personal data, so the design can violate EU data-residency without a field-level classification plan.","auditors":3},
+{"flaw":"The end-of-day 'globally consistent snapshot' is not guaranteed, because summing per-region watermarks without a cross-region coordination protocol bounding in-flight cross-region transfers can yield an inconsistent/double-counted global cut during long partitions.","auditors":3},
+{"flaw":"During a 30+ minute partition cross-region transfers cannot complete (they queue), so the system is not actually writable from both regions for that class of writes as required.","auditors":2},
+{"flaw":"In a saga without atomic cross-region commit, the source debit can commit before the offsetting destination credit, so the global debits=credits invariant is temporarily broken unless the suspense account is globally atomic.","auditors":2},
+{"flaw":"The cross-region saga does not guarantee exactly-once crediting under retries/replay, so without explicit idempotency keys and destination-side uniqueness a partition/replay can double-credit.","auditors":1},
+{"flaw":"Cross-region transfers that queue until the link heals have no bounded settlement/confirmation time, so they can violate the p99 confirmation-latency requirement for cross-region payments.","auditors":1}
+],
+"P-feature-store-skew": [
+{"flaw":"GDPR deletion driven only by a PII flag and entity-id index is insufficient to meet 30 days for append-only/immutable inference logs and derived training sets across multiple keys/sinks, so deletions won't propagate without an explicit delete/compaction mechanism.","auditors":3},
+{"flaw":"Logging full served feature vectors at production QPS (plus streaming materializations and point-in-time offline tables) likely exceeds the fixed/70%-consumed budget, with no retention/sampling/compaction plan.","auditors":3},
+{"flaw":"Using logged served vectors as training data cannot satisfy backfill across years of history for periods before logging existed or for feature versions/entities never served.","auditors":2},
+{"flaw":"Logged serving vectors don't provide point-in-time correctness 'for free' unless they also capture feature-definition versions, entity resolution, and exact label-timestamp keying; without this they cause silent skew or label leakage.","auditors":2},
+{"flaw":"The 'DSL compiles to two executors' approach is a major lift that does not guarantee identical streaming/batch semantics (windowing, late data, null handling), so skew can persist while believed solved.","auditors":1},
+{"flaw":"Logging only features for impressions actually served introduces selection/feedback bias, so retraining on that data may fail to generalize to new policies or cold-start entities.","auditors":1}
+],
+"P-zero-downtime-shard": [
+{"flaw":"Dual-write 'idempotently keyed by event_id' does not guarantee no dropped/duplicated events without atomic write guarantees plus globally enforced event_id uniqueness across all ingest/retry paths, so divergence and duplicates remain possible.","auditors":3},
+{"flaw":"A sharding-aware proxy cannot route the thousands of raw SQL queries unchanged, because many omit tenant_id or derive it via joins/subqueries/admin views and will misroute or require extensive rewrites, exceeding the limited-rewrite constraint.","auditors":3},
+{"flaw":"The reversibility claim is overstated: flipping reads back does not restore correctness without stopping/reconciling new-shard writes and a precise rollback consistency boundary, since drift and derived-state divergence can make rollback unsafe.","auditors":3},
+{"flaw":"Cross-shard/cross-tenant sub-2s latency is hand-waved via precompute rollups without an exactly-once/consistent rollup mechanism during dual-write/backfill, so mismatched ordering/duplication can make rollups wrong during migration.","auditors":2},
+{"flaw":"Sub-sharding the mega-tenant by time bucket/event-type breaks the claimed single-shard tenant_id locality, introducing cross-subshard queries that complicate dashboards/ingestion and risk the sub-2s target.","auditors":1}
+],
+"P-autoscale-stampede": [
+{"flaw":"Pre-warming tied to the notification schedule doesn't cover unscheduled/partly-predictable spikes, and a small warm-pool is insufficient for a true 10x in under 60s given the 45s cold start, so the scaling requirement can still fail.","auditors":3},
+{"flaw":"Routing core reads to read replicas can serve dangerously stale data for read-after-write/write-sensitive endpoints due to replication lag, with no specification of which reads are safe or how to enforce consistency.","auditors":3},
+{"flaw":"Single-flight cache coalescing creates head-of-line blocking, turning a cache miss into a synchronized wait behind one slow/failing DB fetch and spiking tail latency unless there are per-endpoint timeouts/fallbacks/circuit-breaking.","auditors":3},
+{"flaw":"PgBouncer transaction-mode pooling breaks applications that depend on session state (prepared statements, temp tables, advisory locks, SET LOCAL), which the recommendation neither acknowledges nor constrains.","auditors":2},
+{"flaw":"Relying on the PgBouncer queue as 'natural backpressure' can convert overload into long tail latency and request pile-ups without a bounded queue length/timeouts and an explicit shed policy.","auditors":1}
+],
+"P-churn-winback": [
+{"flaw":"The claim that the pause flow 'protects NRR' is unsupported and likely false, since pausing defers/cuts billed revenue and recovered pausers have 60% lower 6-month LTV, so it may reduce rather than protect NRR; no quantitative model is provided.","auditors":3},
+{"flaw":"Adding additional interventions (a downgrade tier, targeted re-engagement) beyond the single pause strategy violates the constraint that only one initiative can be fully resourced, especially since the downgrade tier doesn't exist yet.","auditors":3},
+{"flaw":"Reaching NRR>100% structurally requires expansion revenue, which the pause flow does not provide, so it may not meet the board's NRR target.","auditors":2},
+{"flaw":"A 6-month primary success metric cannot be validated within Q3 decision windows and lacks leading indicators, delaying decisions and risking the year-end target.","auditors":2},
+{"flaw":"The pause option risks cannibalizing users who would otherwise have kept paying, worsening net revenue, with no eligibility design to keep high-intent retainers out.","auditors":1},
+{"flaw":"Auto-resume after 1-3 months may be perceived as a dark pattern and drive chargebacks/refunds, with no guardrails such as explicit consent or reminders.","auditors":1}
+],
+"P-warehouse-siting": [
+{"flaw":"The 18% two-day miss is assumed to be a carrier-zone/slotting problem without evidence; if the root cause is linehaul/transit-time distance to the SE/TX, re-slotting and zone renegotiation (option c) cannot fix it, making the decision wrong.","auditors":3},
+{"flaw":"Renegotiating 'carrier zones' is parcel-centric and likely the wrong lever for bulky-furniture LTL/white-glove, where performance is driven by terminal capacity, appointment scheduling, and final-mile partners that zone renegotiation doesn't address.","auditors":3},
+{"flaw":"The trigger for the future Atlanta DC lacks a concrete quantitative threshold incorporating the 11-month lead time, two-node inventory cost, and 25% YoY growth, risking a start too late to prevent ongoing SLA misses.","auditors":3},
+{"flaw":"Choosing (c) dismisses option (b)/selective 3PL outsourcing (using the 3PL for fast-movers within its 70% SKU cap) without consideration, potentially leaving no viable path to fix the concentrated regional miss.","auditors":1}
+],
+"P-pricing-migration": [
+{"flaw":"'Active projects' is left undefined and is gameable and poorly aligned with cost drivers (events, storage, automation runs, integrations), creating billing disputes, revenue leakage, and SMB-trust risk.","auditors":3},
+{"flaw":"Re-comping sales 'before rollout' is asserted but not designed and may be infeasible within the timeline (no quota-crediting/ramp/renewal/approval plan), making it a real execution blocker.","auditors":3},
+{"flaw":"The two-quarter success criteria are inadequate, since the renewal-gated rollout leaves whales mid-contract for up to 11 months with no control for seasonality/renewal timing, so not enough migrated top-8% revenue can be observed.","auditors":3},
+{"flaw":"Tuning the included allotment so the SMB majority sees no bill change may negate the revenue uplift or be mathematically impossible if whales fit under or game the allotment, with no enforcement or usage simulation.","auditors":2},
+{"flaw":"Launching the hybrid for all new accounts immediately risks channel conflict/deal friction against seat-based competitors during an upcoming raise, with no mitigation/experiment plan.","auditors":1}
+],
+"P-capex-automation": [
+{"flaw":"The plan doesn't specify how much of the $8M goes to debt paydown versus the pilot, so it is not decision-complete and cannot be verified to meaningfully reduce rate risk or test automation.","auditors":3},
+{"flaw":"Execution risk is underestimated: vendor installs run ~20% over budget/schedule with a 14-month lead and no contingency/acceptance criteria, so even a pilot can blow timelines/cash and arrive too late for the 19-month renewal, undermining the claimed optionality.","auditors":3},
+{"flaw":"The claim that debt paydown improves the 'EBITDA-to-a-buyer story' is technically wrong (debt paydown affects interest/leverage, not EBITDA) and could mislead an EBITDA-multiple-driven sale decision.","auditors":2},
+{"flaw":"Debt paydown is not a clean risk-free return equal to the borrowing rate if the debt carries prepayment penalties/covenants or if liquidity is needed for working capital.","auditors":1},
+{"flaw":"A smaller pilot on the high-volume line may remain stranded if the 38% customer leaves, with no plan to redeploy the equipment.","auditors":1},
+{"flaw":"The plan downplays the labor constraint — even a pilot that reduces direct labor risks layoffs/redeployment and future capacity shortfalls given labor is hard to rehire — and lacks a staffing strategy.","auditors":1}
+]
+}

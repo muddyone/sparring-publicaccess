@@ -1,0 +1,50 @@
+{
+ "P-multiregion-ledger": {
+  "A": "SELF",
+  "B": "CHAL_SAME",
+  "C": "CHAL_CROSS",
+  "D": "NEUTRAL"
+ },
+ "P-feature-store-skew": {
+  "A": "CHAL_SAME",
+  "B": "SELF",
+  "C": "NEUTRAL",
+  "D": "CHAL_CROSS"
+ },
+ "P-zero-downtime-shard": {
+  "A": "NEUTRAL",
+  "B": "SELF",
+  "C": "CHAL_CROSS",
+  "D": "CHAL_SAME"
+ },
+ "P-autoscale-stampede": {
+  "A": "NEUTRAL",
+  "B": "CHAL_CROSS",
+  "C": "SELF",
+  "D": "CHAL_SAME"
+ },
+ "P-churn-winback": {
+  "A": "CHAL_SAME",
+  "B": "SELF",
+  "C": "NEUTRAL",
+  "D": "CHAL_CROSS"
+ },
+ "P-warehouse-siting": {
+  "A": "CHAL_SAME",
+  "B": "NEUTRAL",
+  "C": "SELF",
+  "D": "CHAL_CROSS"
+ },
+ "P-pricing-migration": {
+  "A": "NEUTRAL",
+  "B": "CHAL_SAME",
+  "C": "CHAL_CROSS",
+  "D": "SELF"
+ },
+ "P-capex-automation": {
+  "A": "NEUTRAL",
+  "B": "CHAL_CROSS",
+  "C": "SELF",
+  "D": "CHAL_SAME"
+ }
+}
