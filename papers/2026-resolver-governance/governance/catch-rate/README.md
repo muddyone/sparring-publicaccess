@@ -60,6 +60,20 @@ run three times, agreeing with itself about what mattered — 2 of 3 to carry. T
 load-bearing weakness of the study, and no amount of published data repairs it. There is no
 significance test either: read the gaps as direction, not size.
 
+## A reproducibility gap, stated rather than left to be discovered
+
+**The exact condition prompts are not in this archive.** No harness script survived into the
+pilot directory, so the wording that distinguished SELF, NEUTRAL and CHAL is described in
+`pre-registration.md` §3 but not reproduced verbatim. Anyone re-running this would have to
+reconstruct the instructions from that description.
+
+That matters most for the NEUTRAL/CHAL contrast, because the obvious objection is that NEUTRAL was
+weakly instructed and the comparison therefore measures effort rather than framing. What the data
+can say: mean review length by condition, Claude arm — SELF 952, NEUTRAL 1061, CHAL 1174
+characters; GPT arm — SELF 2115, NEUTRAL 1870, CHAL 2117. The neutral reviewer produced *more*
+text than self-review in one arm and comparable text in the other. That is evidence of effort, not
+proof of prompt parity, and the distinction is left standing rather than smoothed over.
+
 ## Note on paths
 
 `pre-registration.md` refers to a sibling pilot at `../catch-rate-2026-06-28/` (Study A, the
