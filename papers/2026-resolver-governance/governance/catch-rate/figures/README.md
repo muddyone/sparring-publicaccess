@@ -39,3 +39,19 @@ python3 figures/catch-rate-2x2.py          # needs matplotlib; reads ../results-
 # then copy into the manuscript figures dir:
 cp figures/catch-rate-2x2.svg ../../llm-judge-2026-05-02/v2/figures/catch-rate-2x2.svg
 ```
+
+## catch-rate-grid-plain-language
+
+`catch-rate-grid-plain-language.png`, drawn by `catch-rate-grid-plain-language.html`.
+
+A plain-language rendering of the same generator × auditor × condition grid as
+`catch-rate-v3-xvendor.svg`, written for a working engineer rather than a reader of the paper.
+Every value is read directly from `../results-2x2-grid.json`; nothing is rounded differently or
+re-derived.
+
+It carries the **NEUTRAL** condition in a separate strip below the grid, because that condition is
+what separates "fresh eyes" from "an adversarial instruction" — and on Claude-written work it
+lands *below* self-review. A version of this figure that omits it invites the reader to credit the
+gain to non-authorship, which the data does not support.
+
+To re-render: open the HTML, set `document.documentElement.style.zoom = '2'`, screenshot full-page.

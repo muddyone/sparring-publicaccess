@@ -1,0 +1,259 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Catch-rate grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lora:ital,wght@1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Resource Forge brand tokens - sparring-web/docs/social/linkedin/graphics/theme.md */
+    --ground:         #fafaf4;   /* warm off-white, NOT pure white */
+    --burgundy:       #550202;   /* primary brand burgundy */
+    --burgundy-mid:   #a33b3b;   /* chart-only third step - see msg-1.dm-SEND.md */
+    --neutral:        #9c968c;   /* baseline series: the author checking itself */
+    --neutral-light:  #c4bdb1;   /* the neutral-reviewer control, shown in its own strip */
+    --text-primary:   #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-muted:     #6a6a6a;
+    --hairline:       #e0e0e0;
+    --track:          #ecebe3;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px;
+    background: var(--ground);
+    color: var(--text-primary);
+    font-family: Montserrat, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet { padding: 54px 66px 34px; }
+
+  .eyebrow {
+    font-size: 13.5px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--burgundy); margin: 0 0 16px;
+  }
+  h1 {
+    font-size: 36px; line-height: 1.2; letter-spacing: -0.012em;
+    font-weight: 700; margin: 0 0 18px; color: var(--text-primary);
+  }
+  .deck {
+    font-size: 17.5px; line-height: 1.55; font-weight: 400;
+    color: var(--text-secondary); margin: 0 0 24px; max-width: 985px;
+  }
+  .deck b { font-weight: 600; color: var(--text-primary); }
+
+  .legend {
+    display: flex; flex-direction: column; gap: 9px;
+    padding: 17px 0 18px;
+    border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+    margin-bottom: 28px;
+  }
+  .legend .item { display: flex; align-items: center; gap: 10px; font-size: 14.5px; }
+  .swatch { width: 13px; height: 13px; border-radius: 2px; flex: none; }
+  .legend .lab { font-weight: 600; color: var(--text-primary); }
+  .legend .sub { color: var(--text-muted); font-weight: 400; }
+
+  .facet { margin-bottom: 23px; }
+  .facet h2 {
+    font-size: 15px; font-weight: 700; margin: 0 0 12px; color: var(--text-primary);
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .facet h2 .panel { font-weight: 500; color: var(--text-muted); letter-spacing: 0.045em; }
+
+  .row { display: flex; align-items: center; height: 29px; }
+  .row + .row { margin-top: 2px; }
+  .rowlab {
+    width: 282px; flex: none; padding-right: 18px;
+    font-size: 14px; font-weight: 400; color: var(--text-secondary); text-align: right;
+  }
+  .track {
+    position: relative; flex: 1; height: 15px;
+    background: var(--track); border-radius: 2px;
+  }
+  .bar { position: absolute; left: 0; top: 0; height: 15px; border-radius: 2px; }
+  .val {
+    width: 60px; flex: none; padding-left: 16px;
+    font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+  }
+
+  .control {
+    margin-top: 26px; padding: 18px 22px 19px;
+    background: #f3f1e9; border-left: 3px solid var(--neutral-light);
+  }
+  .control h3 {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-primary); margin: 0 0 7px;
+  }
+  .control p {
+    font-size: 14.5px; line-height: 1.55; color: var(--text-secondary); margin: 0 0 13px;
+    max-width: 940px;
+  }
+  .control .row { height: 26px; }
+  .control .rowlab { width: 300px; font-size: 13.5px; }
+  .control .track { height: 13px; background: #e4e1d6; }
+  .control .bar { height: 13px; }
+  .control .val { font-size: 15px; }
+
+  .obs { margin-top: 28px; padding-top: 24px; border-top: 2px solid var(--burgundy); }
+  .obs p { font-size: 18px; line-height: 1.56; margin: 0 0 13px; max-width: 1010px; }
+  .obs p:last-child { margin-bottom: 0; }
+  .obs b { font-weight: 700; }
+  .obs .quiet { color: var(--text-secondary); font-size: 17px; }
+
+  .accent {
+    font-family: Lora, Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: 22px; line-height: 1.42; color: var(--text-secondary);
+    text-align: center; margin: 30px 0 26px;
+  }
+
+  .limits {
+    padding-top: 15px; border-top: 1px solid var(--hairline);
+    font-size: 12.5px; line-height: 1.6; color: var(--text-muted); max-width: 1010px;
+  }
+  .limits b { font-weight: 600; color: var(--text-secondary); }
+
+  footer {
+    margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--hairline);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;
+  }
+  footer .left { display: flex; align-items: center; gap: 15px; }
+  footer .left img { height: 19px; width: auto; display: block; }
+  footer .rule { color: var(--hairline); font-size: 15px; }
+  footer .tag {
+    font-size: 11.5px; font-weight: 500; letter-spacing: 0.055em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+  footer .right {
+    text-align: right; font-size: 11.5px; line-height: 1.65;
+    color: var(--text-muted); font-weight: 400;
+  }
+</style>
+
+<div class="sheet">
+
+  <p class="eyebrow">SPARRING &middot; The catch-rate study</p>
+
+  <h1>Who catches the mistakes an AI makes<br>in its own work?</h1>
+
+  <p class="deck">
+    Every combination of two models across three jobs — writing a recommendation, attacking it,
+    and judging which flaws were real. <b>Eight hard problems, about 31 material flaws</b> between
+    them: ones that would change the decision or ship a real defect. Bars are the share of the
+    writer's <i>own</i> material flaws that each kind of review caught.
+  </p>
+
+  <div class="legend">
+    <div class="item"><span class="swatch" style="background:var(--neutral)"></span>
+      <span class="lab">Self-review</span>
+      <span class="sub">— the model that wrote it, re-reading its own work</span></div>
+    <div class="item"><span class="swatch" style="background:var(--burgundy-mid)"></span>
+      <span class="lab">A second instance, same vendor</span>
+      <span class="sub">— a fresh call, told to attack: same weights, no memory of writing it</span></div>
+    <div class="item"><span class="swatch" style="background:var(--burgundy)"></span>
+      <span class="lab">A challenger from a different vendor</span>
+      <span class="sub">— also told to attack</span></div>
+  </div>
+
+  <div class="facet">
+    <h2>Claude wrote it <span class="panel">&middot; a Claude panel decided what counted</span></h2>
+    <div class="row"><div class="rowlab">Claude reviewing itself</div>
+      <div class="track"><div class="bar" style="width:68%;background:var(--neutral)"></div></div>
+      <div class="val">68</div></div>
+    <div class="row"><div class="rowlab">a second Claude</div>
+      <div class="track"><div class="bar" style="width:90%;background:var(--burgundy-mid)"></div></div>
+      <div class="val">90</div></div>
+    <div class="row"><div class="rowlab">a GPT challenger</div>
+      <div class="track"><div class="bar" style="width:94%;background:var(--burgundy)"></div></div>
+      <div class="val">94</div></div>
+  </div>
+
+  <div class="facet">
+    <h2>Claude wrote it <span class="panel">&middot; a GPT panel decided what counted</span></h2>
+    <div class="row"><div class="rowlab">Claude reviewing itself</div>
+      <div class="track"><div class="bar" style="width:73%;background:var(--neutral)"></div></div>
+      <div class="val">73</div></div>
+    <div class="row"><div class="rowlab">a second Claude</div>
+      <div class="track"><div class="bar" style="width:80%;background:var(--burgundy-mid)"></div></div>
+      <div class="val">80</div></div>
+    <div class="row"><div class="rowlab">a GPT challenger</div>
+      <div class="track"><div class="bar" style="width:87%;background:var(--burgundy)"></div></div>
+      <div class="val">87</div></div>
+  </div>
+
+  <div class="facet">
+    <h2>GPT-5.2 wrote it <span class="panel">&middot; a Claude panel decided what counted</span></h2>
+    <div class="row"><div class="rowlab">GPT-5.2 reviewing itself</div>
+      <div class="track"><div class="bar" style="width:74%;background:var(--neutral)"></div></div>
+      <div class="val">74</div></div>
+    <div class="row"><div class="rowlab">a second GPT</div>
+      <div class="track"><div class="bar" style="width:84%;background:var(--burgundy-mid)"></div></div>
+      <div class="val">84</div></div>
+    <div class="row"><div class="rowlab">a Claude challenger</div>
+      <div class="track"><div class="bar" style="width:84%;background:var(--burgundy)"></div></div>
+      <div class="val">84</div></div>
+  </div>
+
+  <div class="facet">
+    <h2>GPT-5.2 wrote it <span class="panel">&middot; a GPT panel decided what counted</span></h2>
+    <div class="row"><div class="rowlab">GPT-5.2 reviewing itself</div>
+      <div class="track"><div class="bar" style="width:84%;background:var(--neutral)"></div></div>
+      <div class="val">84</div></div>
+    <div class="row"><div class="rowlab">a second GPT</div>
+      <div class="track"><div class="bar" style="width:81%;background:var(--burgundy-mid)"></div></div>
+      <div class="val">81</div></div>
+    <div class="row"><div class="rowlab">a Claude challenger</div>
+      <div class="track"><div class="bar" style="width:78%;background:var(--burgundy)"></div></div>
+      <div class="val">78</div></div>
+  </div>
+
+  <div class="control">
+    <h3>The control that says why &mdash; fresh eyes are not the thing</h3>
+    <p>A fourth condition ran alongside these, and it is left out of the groups above because it
+    is not a challenger: a <b>fresh reviewer that is not the author but is told to be neutral
+    rather than to attack.</b> On Claude-written work it lands <i>below</i> the model grading its
+    own paper. So the gain is not fresh eyes. It is the instruction to attack.</p>
+    <div class="row"><div class="rowlab">neutral reviewer &middot; Claude panel</div>
+      <div class="track"><div class="bar" style="width:55%;background:var(--neutral-light)"></div></div>
+      <div class="val">55</div></div>
+    <div class="row"><div class="rowlab">neutral reviewer &middot; GPT panel</div>
+      <div class="track"><div class="bar" style="width:47%;background:var(--neutral-light)"></div></div>
+      <div class="val">47</div></div>
+  </div>
+
+  <div class="obs">
+    <p><b>On these problems, what a second reviewer was worth depended on who did the
+    writing.</b> Claude misses about 3 in every 10 of its own material flaws; a challenger from a
+    different vendor misses about 1. GPT-5.2 catches its own about as well as anything else
+    catches them — and in the last group, better than either challenger.</p>
+    <p class="quiet">And most of that twenty-point gap arrives before you switch vendors. Averaged
+    over the two groups where Claude wrote it, about fifteen of the twenty points are already
+    there at the second instance of the <i>same</i> model; switching vendors adds about five more.
+    Read those fifteen as the attack, not as fresh eyes — see the control above.</p>
+  </div>
+
+  <p class="accent">The same review step is worth twenty points to one writer, and two to another.</p>
+
+  <div class="limits">
+    <b>Source and limits.</b> SPARRING catch-rate study, June 2026 · 8 problems, 31
+    panel-confirmed material flaws · What counted as a flaw was decided by three runs of one
+    <b>model</b> (2 of 3 to carry), not by human experts · Only two writers and two challengers,
+    one per vendor, so vendor, family and version cannot be separated on either side · Claude
+    authored the problem set used to compare Claude against GPT · The full grid was an extension,
+    not part of what was committed to in advance · No significance test — read these as
+    direction, not size.
+  </div>
+
+  <footer>
+    <div class="left">
+      <img src="rflogo-notext-maroon.png" alt="Resource Forge">
+      <span class="rule">|</span>
+      <span class="tag">Systems thinking. Better decisions.</span>
+    </div>
+    <div class="right">
+      resourceforge.com &nbsp;|&nbsp; &copy; 2026 Resource Forge LLC.<br>All rights reserved.
+    </div>
+  </footer>
+
+</div>
