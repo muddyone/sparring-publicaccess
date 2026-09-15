@@ -1,0 +1,675 @@
+{
+ "EXPLORATORY": true,
+ "what": "'New' flaws found by the study's own scorer in the 8 original recommendations (R0), scored 5 times each and never revised; plus the same scorer's counts on three revised conditions.",
+ "problems": [
+  "P-multiregion-ledger",
+  "P-feature-store-skew",
+  "P-zero-downtime-shard",
+  "P-autoscale-stampede",
+  "P-churn-winback",
+  "P-warehouse-siting",
+  "P-pricing-migration",
+  "P-capex-automation"
+ ],
+ "untouched_R0": {
+  "per_problem": {
+   "P-multiregion-ledger": {
+    "score_file_sha": "2e48f608102db118",
+    "listed_flaws": 3,
+    "replicates": [
+     {
+      "rep": 1,
+      "new_count": 1,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 4
+     },
+     {
+      "rep": 2,
+      "new_count": 1,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 4
+     },
+     {
+      "rep": 3,
+      "new_count": 0,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 3
+     },
+     {
+      "rep": 4,
+      "new_count": 1,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 4
+     },
+     {
+      "rep": 5,
+      "new_count": 2,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 5
+     }
+    ],
+    "new_count_mean": 1,
+    "new_count_min": 0,
+    "new_count_max": 2
+   },
+   "P-feature-store-skew": {
+    "score_file_sha": "4860ae2b093c3a41",
+    "listed_flaws": 4,
+    "replicates": [
+     {
+      "rep": 1,
+      "new_count": 3,
+      "remain": 3,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 2,
+      "new_count": 1,
+      "remain": 3,
+      "listed_flaws": 4,
+      "net": 4
+     },
+     {
+      "rep": 3,
+      "new_count": 4,
+      "remain": 3,
+      "listed_flaws": 4,
+      "net": 7
+     },
+     {
+      "rep": 4,
+      "new_count": 2,
+      "remain": 3,
+      "listed_flaws": 4,
+      "net": 5
+     },
+     {
+      "rep": 5,
+      "new_count": 1,
+      "remain": 3,
+      "listed_flaws": 4,
+      "net": 4
+     }
+    ],
+    "new_count_mean": 2.2,
+    "new_count_min": 1,
+    "new_count_max": 4
+   },
+   "P-zero-downtime-shard": {
+    "score_file_sha": "b6ac11b95510bde2",
+    "listed_flaws": 3,
+    "replicates": [
+     {
+      "rep": 1,
+      "new_count": 3,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 6
+     },
+     {
+      "rep": 2,
+      "new_count": 3,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 6
+     },
+     {
+      "rep": 3,
+      "new_count": 4,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 7
+     },
+     {
+      "rep": 4,
+      "new_count": 7,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 10
+     },
+     {
+      "rep": 5,
+      "new_count": 2,
+      "remain": 3,
+      "listed_flaws": 3,
+      "net": 5
+     }
+    ],
+    "new_count_mean": 3.8,
+    "new_count_min": 2,
+    "new_count_max": 7
+   },
+   "P-autoscale-stampede": {
+    "score_file_sha": "3955e034e6404f41",
+    "listed_flaws": 5,
+    "replicates": [
+     {
+      "rep": 1,
+      "new_count": 1,
+      "remain": 4,
+      "listed_flaws": 5,
+      "net": 5
+     },
+     {
+      "rep": 2,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 5,
+      "net": 6
+     },
+     {
+      "rep": 3,
+      "new_count": 2,
+      "remain": 5,
+      "listed_flaws": 5,
+      "net": 7
+     },
+     {
+      "rep": 4,
+      "new_count": 1,
+      "remain": 4,
+      "listed_flaws": 5,
+      "net": 5
+     },
+     {
+      "rep": 5,
+      "new_count": 1,
+      "remain": 4,
+      "listed_flaws": 5,
+      "net": 5
+     }
+    ],
+    "new_count_mean": 1.4,
+    "new_count_min": 1,
+    "new_count_max": 2
+   },
+   "P-churn-winback": {
+    "score_file_sha": "a73c5fe5ee5e6315",
+    "listed_flaws": 4,
+    "replicates": [
+     {
+      "rep": 1,
+      "new_count": 1,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 5
+     },
+     {
+      "rep": 2,
+      "new_count": 0,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 4
+     },
+     {
+      "rep": 3,
+      "new_count": 0,
+      "remain": 3,
+      "listed_flaws": 4,
+      "net": 3
+     },
+     {
+      "rep": 4,
+      "new_count": 0,
+      "remain": 3,
+      "listed_flaws": 4,
+      "net": 3
+     },
+     {
+      "rep": 5,
+      "new_count": 1,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 5
+     }
+    ],
+    "new_count_mean": 0.4,
+    "new_count_min": 0,
+    "new_count_max": 1
+   },
+   "P-warehouse-siting": {
+    "score_file_sha": "5f06784e82b5bfea",
+    "listed_flaws": 4,
+    "replicates": [
+     {
+      "rep": 1,
+      "new_count": 3,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 7
+     },
+     {
+      "rep": 2,
+      "new_count": 1,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 5
+     },
+     {
+      "rep": 3,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 4,
+      "new_count": 1,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 5
+     },
+     {
+      "rep": 5,
+      "new_count": 3,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 7
+     }
+    ],
+    "new_count_mean": 2,
+    "new_count_min": 1,
+    "new_count_max": 3
+   },
+   "P-pricing-migration": {
+    "score_file_sha": "d66705b12679bcdc",
+    "listed_flaws": 4,
+    "replicates": [
+     {
+      "rep": 1,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 2,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 3,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 4,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 5,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     }
+    ],
+    "new_count_mean": 2,
+    "new_count_min": 2,
+    "new_count_max": 2
+   },
+   "P-capex-automation": {
+    "score_file_sha": "ed68ad9ae4c2e791",
+    "listed_flaws": 4,
+    "replicates": [
+     {
+      "rep": 1,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 2,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 3,
+      "new_count": 2,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 6
+     },
+     {
+      "rep": 4,
+      "new_count": 4,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 8
+     },
+     {
+      "rep": 5,
+      "new_count": 4,
+      "remain": 4,
+      "listed_flaws": 4,
+      "net": 8
+     }
+    ],
+    "new_count_mean": 2.8,
+    "new_count_min": 2,
+    "new_count_max": 4
+   }
+  },
+  "new_count_mean": 1.95,
+  "n_scores": 40,
+  "listed_flaws_marked_fixed_mean": 0.275
+ },
+ "revised_same_scorer": {
+  "R1__same": {
+   "new_count_per_problem": [
+    3,
+    2,
+    2,
+    0,
+    2,
+    4,
+    0,
+    4
+   ],
+   "new_count_mean": 2.125,
+   "listed_flaws_left_per_problem": [
+    1,
+    1,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "listed_flaws_fixed_share": 0.871,
+   "net_mean": 2.625,
+   "new_count_mean_minus_untouched": 0.175
+  },
+  "R1__cross": {
+   "new_count_per_problem": [
+    3,
+    1,
+    3,
+    0,
+    5,
+    5,
+    0,
+    4
+   ],
+   "new_count_mean": 2.625,
+   "listed_flaws_left_per_problem": [
+    1,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    1
+   ],
+   "listed_flaws_fixed_share": 0.871,
+   "net_mean": 3.125,
+   "new_count_mean_minus_untouched": 0.675
+  },
+  "R1prime": {
+   "new_count_per_problem": [
+    0,
+    0,
+    3,
+    0,
+    1,
+    3,
+    0,
+    3
+   ],
+   "new_count_mean": 1.25,
+   "listed_flaws_left_per_problem": [
+    0,
+    0,
+    0,
+    2,
+    1,
+    1,
+    1,
+    3
+   ],
+   "listed_flaws_fixed_share": 0.7419,
+   "net_mean": 2.25,
+   "new_count_mean_minus_untouched": -0.7
+  }
+ },
+ "comparisons": {
+  "R1.same_minus_R1prime_new": {
+   "per_problem": [
+    3,
+    2,
+    -1,
+    0,
+    1,
+    1,
+    0,
+    1
+   ],
+   "mean": 0.875,
+   "sd": 1.2464,
+   "se": 0.4407,
+   "higher": 5,
+   "lower": 1,
+   "tied": 2
+  },
+  "R1.cross_minus_R1prime_new": {
+   "per_problem": [
+    3,
+    1,
+    0,
+    0,
+    4,
+    2,
+    0,
+    1
+   ],
+   "mean": 1.375,
+   "sd": 1.5059,
+   "se": 0.5324,
+   "higher": 5,
+   "lower": 0,
+   "tied": 3
+  },
+  "R1prime_minus_untouched_new": {
+   "per_problem": [
+    -1,
+    -2.2,
+    -0.8,
+    -1.4,
+    0.6,
+    1,
+    -2,
+    0.2
+   ],
+   "mean": -0.7,
+   "sd": 1.1904,
+   "se": 0.4209,
+   "higher": 3,
+   "lower": 5,
+   "tied": 0
+  },
+  "R1.same_minus_untouched_new": {
+   "per_problem": [
+    2,
+    -0.2,
+    -1.8,
+    -1.4,
+    1.6,
+    2,
+    -2,
+    1.2
+   ],
+   "mean": 0.175,
+   "sd": 1.7318,
+   "se": 0.6123,
+   "higher": 4,
+   "lower": 4,
+   "tied": 0
+  },
+  "R1.cross_minus_untouched_new": {
+   "per_problem": [
+    2,
+    -1.2,
+    -0.8,
+    -1.4,
+    4.6,
+    3,
+    -2,
+    1.2
+   ],
+   "mean": 0.675,
+   "sd": 2.3903,
+   "se": 0.8451,
+   "higher": 4,
+   "lower": 4,
+   "tied": 0
+  }
+ },
+ "how_to_read": "Sizes of 'new flaws introduced by revision' do not carry: the scorer finds about this many in a draft nobody touched. Differences between drafts scored the same way do carry, because a constant baseline cancels out of a difference (not out of a ratio).",
+ "cross_check_with_stage0_denoise_json": {
+  "P-multiregion-ledger": true,
+  "P-feature-store-skew": true,
+  "P-zero-downtime-shard": true,
+  "P-autoscale-stampede": true,
+  "P-churn-winback": true,
+  "P-warehouse-siting": true,
+  "P-pricing-migration": true,
+  "P-capex-automation": true
+ },
+ "checks": [
+  {
+   "check": "untouched score files found",
+   "claimed": 40,
+   "measured": 40,
+   "reproduces": true
+  },
+  {
+   "check": "mean new flaws on untouched R0",
+   "claimed": 1.95,
+   "measured": 1.95,
+   "reproduces": true
+  },
+  {
+   "check": "sum of new flaws on untouched R0",
+   "claimed": 78,
+   "measured": 78,
+   "reproduces": true
+  },
+  {
+   "check": "mean listed flaws marked fixed on untouched R0",
+   "claimed": 0.275,
+   "measured": 0.275,
+   "reproduces": true
+  },
+  {
+   "check": "nets match stage0-denoise.json round-1 champion nets",
+   "claimed": true,
+   "measured": true,
+   "reproduces": true
+  },
+  {
+   "check": "R1__same mean new flaws (results.md)",
+   "claimed": 2.125,
+   "measured": 2.125,
+   "reproduces": true
+  },
+  {
+   "check": "R1__cross mean new flaws (results.md)",
+   "claimed": 2.625,
+   "measured": 2.625,
+   "reproduces": true
+  },
+  {
+   "check": "R1prime mean new flaws (results.md)",
+   "claimed": 1.25,
+   "measured": 1.25,
+   "reproduces": true
+  }
+ ],
+ "input_manifest_sha256": {
+  "catch-rate-v3-2026-06-28/recommendations.json": "2d5410fb4a6ca30a404071fdb3825318d07f8f49a44023e975eb23ea014ed747",
+  "resolver-iteration-2026-06-29/analysis/stage0-denoise.json": "8d6c425068731fd625a026b6e2514fb6b8aa90dc725a001468c65807ea02a203",
+  "resolver-iteration-2026-06-29/runs/score__R1__cross__P-autoscale-stampede.json": "32c3a4d8a90c5a06365633a62773a448fd021f8620248cc39a26daccd43e8d52",
+  "resolver-iteration-2026-06-29/runs/score__R1__cross__P-capex-automation.json": "9b14225bdd64f4792dc5c07f3143528631dbb58e3c9e1fe42c709ee31543124b",
+  "resolver-iteration-2026-06-29/runs/score__R1__cross__P-churn-winback.json": "373708cb8d771fa2d532e42ca905e248f8eda819e097bfec203c38c72c86065a",
+  "resolver-iteration-2026-06-29/runs/score__R1__cross__P-feature-store-skew.json": "33c45d78913dfc49630bfc8f3542b291cb9112778d03ce35e495671e9cb3f412",
+  "resolver-iteration-2026-06-29/runs/score__R1__cross__P-multiregion-ledger.json": "92cc99f1e37abe2c04b4ac63ed55dfebed17ae8f077c6ae67045a913cfa93659",
+  "resolver-iteration-2026-06-29/runs/score__R1__cross__P-pricing-migration.json": "f538d90fc8d70647f4531299e21ab3e64d3f8911e845b14b047bbaede830d413",
+  "resolver-iteration-2026-06-29/runs/score__R1__cross__P-warehouse-siting.json": "142c8316e94789e729f5d163a86a6b9b917f76cab5ef628cc9ef30f47abfee65",
+  "resolver-iteration-2026-06-29/runs/score__R1__cross__P-zero-downtime-shard.json": "e4bca97ddd53827bc5b3571196a1e94e1e0ac66774529e16a59fef35f8398ded",
+  "resolver-iteration-2026-06-29/runs/score__R1__same__P-autoscale-stampede.json": "cd06223c14fed206eb54bad0e6c4de6cc33cbc6e15352e71d30053c6bc4379c6",
+  "resolver-iteration-2026-06-29/runs/score__R1__same__P-capex-automation.json": "719e082aacc2d66e3ddcf6475b309e1c81d3437c9ba7ec47bf468d90dcbeddb3",
+  "resolver-iteration-2026-06-29/runs/score__R1__same__P-churn-winback.json": "709d456b2ecac564c4a37f873168d8ed2e54044d20d33ac6ae905fd9ca0404f9",
+  "resolver-iteration-2026-06-29/runs/score__R1__same__P-feature-store-skew.json": "d4e170e08731e8efce910b7dde59ac560eb5ac8eb73e3328e55647b5c6b85b9d",
+  "resolver-iteration-2026-06-29/runs/score__R1__same__P-multiregion-ledger.json": "8de54aea85bc6929d9c01d9afbf16ed715049357c1a3613d765b0a832565dfae",
+  "resolver-iteration-2026-06-29/runs/score__R1__same__P-pricing-migration.json": "a1fdafc74be9f3e5f9bcb934eab31ecd1aadd4bc5f6456a59cc57678eedefd86",
+  "resolver-iteration-2026-06-29/runs/score__R1__same__P-warehouse-siting.json": "27e642ab8c915af1f83fb0b10c9be6d144ba130a1791e93e7e0142ac490485d9",
+  "resolver-iteration-2026-06-29/runs/score__R1__same__P-zero-downtime-shard.json": "c2aa5cc71b78c8cee7b34edb176579c5e0ae19a37cd89f71646d9cef2190d7f2",
+  "resolver-iteration-2026-06-29/runs/score__R1prime__P-autoscale-stampede.json": "91e665382a4d6a4425b8a8c0c3de2d423071b58d07b7399f5f55853f76d48cbd",
+  "resolver-iteration-2026-06-29/runs/score__R1prime__P-capex-automation.json": "bcae8775d11a3c1be695a4d5ef14d715fd94d2f4f30a34964e58bc42d743f3c5",
+  "resolver-iteration-2026-06-29/runs/score__R1prime__P-churn-winback.json": "eb340e6419412a8432e5b5f8118589df27224db8a146d843c2d2bef9bdb17395",
+  "resolver-iteration-2026-06-29/runs/score__R1prime__P-feature-store-skew.json": "f33ef7260d5d2160f68a763d57c76c3bf11ab8b87357d3abb89273241a1daac7",
+  "resolver-iteration-2026-06-29/runs/score__R1prime__P-multiregion-ledger.json": "deb83300de80f2581e03e0b956285ff98c4e65667fc6f30f17e36ab8afb01271",
+  "resolver-iteration-2026-06-29/runs/score__R1prime__P-pricing-migration.json": "cace9b5d73ee2e09e05944f89c970ab402b45233ec25dd459ccdfd46f3a2c755",
+  "resolver-iteration-2026-06-29/runs/score__R1prime__P-warehouse-siting.json": "5942fd2efbb26ed4a6754e316f6d27beb57e18cfa4ddc18033eb3faf5099d7b0",
+  "resolver-iteration-2026-06-29/runs/score__R1prime__P-zero-downtime-shard.json": "4f1fdf8c974068321c5a9744448586e85b238da1752c02ccc0a522022835b313",
+  "resolver-iteration-2026-06-29/runs/score__s0__2e48f608102db118__rep1.json": "1f9982224745947973bc6ca952018c3aaa9fadf712e00a4c152b6a4fbeace0db",
+  "resolver-iteration-2026-06-29/runs/score__s0__2e48f608102db118__rep2.json": "40d6f9a7df95afc438ac66e12f6e41410a4d5d9f63757525a55920af74802b1f",
+  "resolver-iteration-2026-06-29/runs/score__s0__2e48f608102db118__rep3.json": "0974c00ed8955691a046ef0666bd5d468940eec223d799b13a301e8a032e8442",
+  "resolver-iteration-2026-06-29/runs/score__s0__2e48f608102db118__rep4.json": "affff6c03691df3d709883c8e021dbeeed9e0a6b98bf635307ebda4b4e74b379",
+  "resolver-iteration-2026-06-29/runs/score__s0__2e48f608102db118__rep5.json": "2dcc919da9cd6b8564bb769fc7a3033acd4c4ba4d971f92323fdfea64d8a7bc4",
+  "resolver-iteration-2026-06-29/runs/score__s0__3955e034e6404f41__rep1.json": "03fb3b656f04b2872630f13717f3f69de51f3a0ea6785dd5fa22466d5eb46535",
+  "resolver-iteration-2026-06-29/runs/score__s0__3955e034e6404f41__rep2.json": "291c275a0b767c848129ffad2ef95b89ad491d36a546de6b7d54922ddbfa1398",
+  "resolver-iteration-2026-06-29/runs/score__s0__3955e034e6404f41__rep3.json": "678ab885b9b53caa3899d8362bccf68245c27dbbb6ab90e55b11d282504474e7",
+  "resolver-iteration-2026-06-29/runs/score__s0__3955e034e6404f41__rep4.json": "2d6542475ae341594e6a8079afe887cf7bda83cbeca70241182155465e3a93b0",
+  "resolver-iteration-2026-06-29/runs/score__s0__3955e034e6404f41__rep5.json": "2fe1166ea205cdfee330dc57236670aa8cf14415f581b689489f9e50f442c4aa",
+  "resolver-iteration-2026-06-29/runs/score__s0__4860ae2b093c3a41__rep1.json": "fad7f4cd6b53d7ea1a71fdfb5f0e466fad5efa8d0231c1a21b94e9ca07f6ffe2",
+  "resolver-iteration-2026-06-29/runs/score__s0__4860ae2b093c3a41__rep2.json": "2502b3ada7fd3514c3c9856b5f9dfbe71a0c1b2e8af7271c429296741e03cd5f",
+  "resolver-iteration-2026-06-29/runs/score__s0__4860ae2b093c3a41__rep3.json": "7e7e2452945801535b60ef490da0b9b12c1139a121ed34b05505d0eadc3aa85f",
+  "resolver-iteration-2026-06-29/runs/score__s0__4860ae2b093c3a41__rep4.json": "7efef5a8456d4f67e9f7a01a7c13300e42649d984e2973554afa3f2376bf7751",
+  "resolver-iteration-2026-06-29/runs/score__s0__4860ae2b093c3a41__rep5.json": "5024bae45c45335039ab4107dbec04c8f68dc192256aaf5dee935f581a64a16f",
+  "resolver-iteration-2026-06-29/runs/score__s0__5f06784e82b5bfea__rep1.json": "0a2d89d0eb4c06f92ff60a54e26aeb34277a5773ecd679c3dcf9edefc9a6b7f1",
+  "resolver-iteration-2026-06-29/runs/score__s0__5f06784e82b5bfea__rep2.json": "2cca0f4bf02694979c68d696116efc602021b127aadad4423a33862626eecc47",
+  "resolver-iteration-2026-06-29/runs/score__s0__5f06784e82b5bfea__rep3.json": "c99de000f75443e2f7a73c92dea4405db89de9a6c8f92a062f20f0fdec9a726b",
+  "resolver-iteration-2026-06-29/runs/score__s0__5f06784e82b5bfea__rep4.json": "25ae87b0b7ae0e9dd18d430e8bc7ba339efb3e9aa9d4d07b2f2cd689946022aa",
+  "resolver-iteration-2026-06-29/runs/score__s0__5f06784e82b5bfea__rep5.json": "9810a7169854bb43a51348a0eb0419b791e55dd2910f728826b47fe24370bb42",
+  "resolver-iteration-2026-06-29/runs/score__s0__a73c5fe5ee5e6315__rep1.json": "084f0712e8c1ba71aefe7a063fd15cdc9d833c6f6eb2e8b9d4142299fe4fc5c2",
+  "resolver-iteration-2026-06-29/runs/score__s0__a73c5fe5ee5e6315__rep2.json": "3ee26fb7409a6d614ee29d87b6b594317f5089705221e37001ae98b66e312ec5",
+  "resolver-iteration-2026-06-29/runs/score__s0__a73c5fe5ee5e6315__rep3.json": "d39bf6f5d4bd8718a78a718ed47d3bbf3b670a484706ec97a35bac9891bb4efe",
+  "resolver-iteration-2026-06-29/runs/score__s0__a73c5fe5ee5e6315__rep4.json": "1d8a62b9ea326858b62a0f21c37624ca22b1a3d34497f1b94e85a8bd987c8c29",
+  "resolver-iteration-2026-06-29/runs/score__s0__a73c5fe5ee5e6315__rep5.json": "64c67d36a7aeeec687460fecae39c94fb9cea6d525a5ba524cda53b88ac96889",
+  "resolver-iteration-2026-06-29/runs/score__s0__b6ac11b95510bde2__rep1.json": "718cfa38434cea25e03d256ad3e5d8fae3348396f7b5bf7fcf54efedfddc9ceb",
+  "resolver-iteration-2026-06-29/runs/score__s0__b6ac11b95510bde2__rep2.json": "13a2e1c446c607de8f0147daefee9ab13538cb517f9a6aaf0a26e5e197b11a3e",
+  "resolver-iteration-2026-06-29/runs/score__s0__b6ac11b95510bde2__rep3.json": "066c28ebdae9eba7d35f292cb48de76517c5ab04eb035389abf710d7eb52dfe1",
+  "resolver-iteration-2026-06-29/runs/score__s0__b6ac11b95510bde2__rep4.json": "82af2189ca745dae8b4f009d62bf78778d3210acef794b3e5085d17861e953a9",
+  "resolver-iteration-2026-06-29/runs/score__s0__b6ac11b95510bde2__rep5.json": "7951489d1c16d195b80c558b04df8337594d8717b7918f17656c4cfe398d59ad",
+  "resolver-iteration-2026-06-29/runs/score__s0__d66705b12679bcdc__rep1.json": "8f51c7ab07d25c46787992c8dd5b6bea2204c01dde5da7cafa38e23578ee097a",
+  "resolver-iteration-2026-06-29/runs/score__s0__d66705b12679bcdc__rep2.json": "6bf177158be5201fd93b86bff90992eb57fbc40df77f334200571aadcb14346f",
+  "resolver-iteration-2026-06-29/runs/score__s0__d66705b12679bcdc__rep3.json": "c15dcd2d1dc0b4f1627b37b4cc8371ede1a45e13ebe6c50f7cad8333a46f33b1",
+  "resolver-iteration-2026-06-29/runs/score__s0__d66705b12679bcdc__rep4.json": "008e8056e3a913ff81505fc34045013e90a1ce0d16f6c191b2308b58435b8118",
+  "resolver-iteration-2026-06-29/runs/score__s0__d66705b12679bcdc__rep5.json": "50881b09f76e9d7299f07104052f3e2551a3587e7b4580ea997021fdcae1a11a",
+  "resolver-iteration-2026-06-29/runs/score__s0__ed68ad9ae4c2e791__rep1.json": "cc087b31d6e7bb9f88911302853bb8753f8c198b5dc990d60b244b93fc8ef0d5",
+  "resolver-iteration-2026-06-29/runs/score__s0__ed68ad9ae4c2e791__rep2.json": "50b07bc8990ed36a25b0944594840d17c81ae1d24e8022557e107910089d4f2a",
+  "resolver-iteration-2026-06-29/runs/score__s0__ed68ad9ae4c2e791__rep3.json": "82d5920c5cb87b8d553f869e4e012c8599656f8b9e001c0b3167aadd1384fb5e",
+  "resolver-iteration-2026-06-29/runs/score__s0__ed68ad9ae4c2e791__rep4.json": "6d959d8c051420a0aa602a5ead66c72be9c3614b51d391b026141dbee900a4e1",
+  "resolver-iteration-2026-06-29/runs/score__s0__ed68ad9ae4c2e791__rep5.json": "9e16c0b348188c664b84498b0ab25228c28d1dcb8a5b2f1e7ecee7e23bd42236"
+ },
+ "script_sha256": "cf5ad0da71dc262506f85198a8f0d70a4dc1f63a32a4282e0b695dcc5bfc230e"
+}

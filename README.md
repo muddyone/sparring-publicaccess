@@ -22,6 +22,11 @@ reader needs to check the papers' claims and reproduce their numbers.
 - **[`docs/spars/`](docs/spars/)** — verbatim records of SPARRING ceremonies run on
   the framework's **own** claims, including the runs that did not converge and the
   rounds where the framework's position lost.
+- **[`docs/corrections/`](docs/corrections/)** — dated corrections to what we have
+  said in public about these results, each with the counts behind it.
+  [`2026-09-14-catch-rate-post/`](docs/corrections/2026-09-14-catch-rate-post/) corrects
+  three sizes stated in the 2026-09-05 catch-rate post ("roughly two-thirds", "about 2"
+  and "most"): they are ceilings on what the revision gave back, not measurements of it.
 
 ## De-identification and exposure posture
 
