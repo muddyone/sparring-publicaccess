@@ -1,0 +1,442 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "DD",
+ "seed": 50000003,
+ "machines": [
+  {
+   "objects": [
+    "varogu",
+    "pulumin",
+    "pobifik",
+    "galopu",
+    "sodorer",
+    "zanima"
+   ],
+   "truth": {
+    "nexioms": [
+     "galopu",
+     "sodorer"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "pobifik",
+      "pulumin",
+      "varogu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "galopu",
+      "pulumin",
+      "varogu"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "sodorer",
+      "zanima"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "sodorer"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "galopu",
+     "sodorer"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: varogu, pulumin, pobifik, galopu, sodorer, zanima.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: varogu, pulumin, pobifik"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: varogu, pulumin, galopu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: sodorer, zanima"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: sodorer"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = galopu, sodorer; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: varogu, pulumin, pobifik, galopu, sodorer, zanima.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were galopu and sodorer.",
+   "note": {
+    "text": "There are 30 possible hypotheses: 15 object pairs \u00d7 two machine modes. Track all hypotheses consistent with each result. For \u201cneeds one,\u201d a test lights iff its subset intersects the pair; for \u201cneeds two,\u201d it lights iff it contains the pair. Four binary tests cannot guarantee identifying all 30 hypotheses, so choose tests that split remaining hypotheses as evenly as possible, prioritizing branches that remain solvable within the test budget. This successful sequence used objects A\u2013F in order: ABC off, ABD on, EF on, E on. The first two results leave either \u201cneeds one\u201d with pair DE or DF, or \u201cneeds two\u201d with pair AD or BD. Testing EF distinguishes the modes; if it lights, testing E distinguishes DE from DF. If EF is off instead, test AD to distinguish AD from BD.",
+    "words_written": 133,
+    "first_draft_words": 133,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "tuvifir",
+    "zipegel",
+    "vemokak",
+    "zufomus",
+    "bisagur",
+    "gumorak"
+   ],
+   "truth": {
+    "nexioms": [
+     "bisagur",
+     "gumorak"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "tuvifir",
+      "vemokak",
+      "zipegel"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "tuvifir",
+      "zipegel",
+      "zufomus"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bisagur",
+      "gumorak",
+      "tuvifir",
+      "vemokak"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bisagur"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bisagur",
+     "gumorak"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: There are 30 possible hypotheses: 15 object pairs \u00d7 two machine modes. Track all hypotheses consistent with each result. For \u201cneeds one,\u201d a test lights iff its subset intersects the pair; for \u201cneeds two,\u201d it lights iff it contains the pair. Four binary tests cannot guarantee identifying all 30 hypotheses, so choose tests that split remaining hypotheses as evenly as possible, prioritizing branches that remain solvable within the test budget. This successful sequence used objects A\u2013F in order: ABC off, ABD on, EF on, E on. The first two results leave either \u201cneeds one\u201d with pair DE or DF, or \u201cneeds two\u201d with pair AD or BD. Testing EF distinguishes the modes; if it lights, testing E distinguishes DE from DF. If EF is off instead, test AD to distinguish AD from BD.\n\nNew machine. Its objects are: tuvifir, zipegel, vemokak, zufomus, bisagur, gumorak.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tuvifir, zipegel, vemokak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tuvifir, zipegel, zufomus"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tuvifir, vemokak, bisagur, gumorak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: bisagur"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = bisagur, gumorak; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: tuvifir, zipegel, vemokak, zufomus, bisagur, gumorak.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 831,
+   "feedback": "The nexioms on this machine were bisagur and gumorak.",
+   "note": {
+    "text": "Track all 30 hypotheses (15 pairs \u00d7 two modes). \u201cNeeds one\u201d lights when a test intersects the pair; \u201cneeds two\u201d lights only when it contains both. Four tests cannot guarantee identifying all hypotheses. Label objects A\u2013F in listed order. This successful sequence was ABC off, ABD off, ACEF on, E on. After the first two negatives, the only \u201cneeds one\u201d pair is EF. The remaining \u201cneeds two\u201d pairs are AE, AF, BE, BF, CD, CE, CF, DE, DF, EF. ACEF on reduces those to AE, AF, CE, CF, EF, while retaining \u201cneeds one\u201d EF. A singleton E lighting rules out every \u201cneeds two\u201d hypothesis, uniquely identifying EF in \u201cneeds one\u201d mode. If E had stayed off, five hypotheses would remain unresolved; this strategy succeeds on some branches, not all.",
+    "words_written": 129,
+    "first_draft_words": 129,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "kizufak",
+    "gitazos",
+    "dopini",
+    "taluman",
+    "dupevir",
+    "tegonol"
+   ],
+   "truth": {
+    "nexioms": [
+     "dopini",
+     "tegonol"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "dopini",
+      "gitazos",
+      "kizufak"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "kizufak",
+      "taluman"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dupevir"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gitazos",
+      "kizufak"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dopini",
+     "tegonol"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: There are 30 possible hypotheses: 15 object pairs \u00d7 two machine modes. Track all hypotheses consistent with each result. For \u201cneeds one,\u201d a test lights iff its subset intersects the pair; for \u201cneeds two,\u201d it lights iff it contains the pair. Four binary tests cannot guarantee identifying all 30 hypotheses, so choose tests that split remaining hypotheses as evenly as possible, prioritizing branches that remain solvable within the test budget. This successful sequence used objects A\u2013F in order: ABC off, ABD on, EF on, E on. The first two results leave either \u201cneeds one\u201d with pair DE or DF, or \u201cneeds two\u201d with pair AD or BD. Testing EF distinguishes the modes; if it lights, testing E distinguishes DE from DF. If EF is off instead, test AD to distinguish AD from BD.\nNote 2: Track all 30 hypotheses (15 pairs \u00d7 two modes). \u201cNeeds one\u201d lights when a test intersects the pair; \u201cneeds two\u201d lights only when it contains both. Four tests cannot guarantee identifying all hypotheses. Label objects A\u2013F in listed order. This successful sequence was ABC off, ABD off, ACEF on, E on. After the first two negatives, the only \u201cneeds one\u201d pair is EF. The remaining \u201cneeds two\u201d pairs are AE, AF, BE, BF, CD, CE, CF, DE, DF, EF. ACEF on reduces those to AE, AF, CE, CF, EF, while retaining \u201cneeds one\u201d EF. A singleton E lighting rules out every \u201cneeds two\u201d hypothesis, uniquely identifying EF in \u201cneeds one\u201d mode. If E had stayed off, five hypotheses would remain unresolved; this strategy succeeds on some branches, not all.\n\nNew machine. Its objects are: kizufak, gitazos, dopini, taluman, dupevir, tegonol.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kizufak, gitazos, dopini"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kizufak, taluman"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: dupevir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kizufak, gitazos"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = dopini, tegonol; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: kizufak, gitazos, dopini, taluman, dupevir, tegonol.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1576,
+   "feedback": "The nexioms on this machine were dopini and tegonol.",
+   "note": {
+    "text": "Label objects A\u2013F in listed order. This machine\u2019s actual pair was CF (dopini, tegonol). Tests were ABC on, AD off, E off, AB off; I answered CF, needs one, correctly identifying the pair, but the observations did not uniquely justify that answer. Three hypotheses remained: CF needing one, AC needing two, and BC needing two. A singleton test such as E is uninformative for every \u201cneeds two\u201d hypothesis and can waste a scarce test. Track all 30 hypotheses explicitly after each result. Four binary tests cannot guarantee distinguishing 30 hypotheses; prioritize branches that can become uniquely solvable within the remaining budget, and recognize when a final answer is only a guess.",
+    "words_written": 111,
+    "first_draft_words": 111,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "tukosi",
+    "dofisis",
+    "gimoza",
+    "zukuku",
+    "roritek",
+    "lolozil"
+   ],
+   "truth": {
+    "nexioms": [
+     "dofisis",
+     "lolozil"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "dofisis",
+      "gimoza",
+      "tukosi"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "dofisis",
+      "tukosi",
+      "zukuku"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "roritek"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dofisis",
+      "tukosi"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dofisis",
+     "tukosi"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: There are 30 possible hypotheses: 15 object pairs \u00d7 two machine modes. Track all hypotheses consistent with each result. For \u201cneeds one,\u201d a test lights iff its subset intersects the pair; for \u201cneeds two,\u201d it lights iff it contains the pair. Four binary tests cannot guarantee identifying all 30 hypotheses, so choose tests that split remaining hypotheses as evenly as possible, prioritizing branches that remain solvable within the test budget. This successful sequence used objects A\u2013F in order: ABC off, ABD on, EF on, E on. The first two results leave either \u201cneeds one\u201d with pair DE or DF, or \u201cneeds two\u201d with pair AD or BD. Testing EF distinguishes the modes; if it lights, testing E distinguishes DE from DF. If EF is off instead, test AD to distinguish AD from BD.\nNote 2: Track all 30 hypotheses (15 pairs \u00d7 two modes). \u201cNeeds one\u201d lights when a test intersects the pair; \u201cneeds two\u201d lights only when it contains both. Four tests cannot guarantee identifying all hypotheses. Label objects A\u2013F in listed order. This successful sequence was ABC off, ABD off, ACEF on, E on. After the first two negatives, the only \u201cneeds one\u201d pair is EF. The remaining \u201cneeds two\u201d pairs are AE, AF, BE, BF, CD, CE, CF, DE, DF, EF. ACEF on reduces those to AE, AF, CE, CF, EF, while retaining \u201cneeds one\u201d EF. A singleton E lighting rules out every \u201cneeds two\u201d hypothesis, uniquely identifying EF in \u201cneeds one\u201d mode. If E had stayed off, five hypotheses would remain unresolved; this strategy succeeds on some branches, not all.\nNote 3: Label objects A\u2013F in listed order. This machine\u2019s actual pair was CF (dopini, tegonol). Tests were ABC on, AD off, E off, AB off; I answered CF, needs one, correctly identifying the pair, but the observations did not uniquely justify that answer. Three hypotheses remained: CF needing one, AC needing two, and BC needing two. A singleton test such as E is uninformative for every \u201cneeds two\u201d hypothesis and can waste a scarce test. Track all 30 hypotheses explicitly after each result. Four binary tests cannot guarantee distinguishing 30 hypotheses; prioritize branches that can become uniquely solvable within the remaining budget, and recognize when a final answer is only a guess.\n\nNew machine. Its objects are: tukosi, dofisis, gimoza, zukuku, roritek, lolozil.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukosi, dofisis, gimoza"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukosi, dofisis, zukuku"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: roritek"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukosi, dofisis"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = tukosi, dofisis; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: tukosi, dofisis, gimoza, zukuku, roritek, lolozil.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 2269
+  }
+ ]
+}

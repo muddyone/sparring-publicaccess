@@ -1,0 +1,9 @@
+{
+  "_note": "Stage 0 candidates only. Final models and settings are pinned by Bart at lock (design note §9). Settings are requests; any a model refuses is dropped and recorded per call.",
+  "models": {
+    "anthropic": {"vendor": "anthropic", "model": "claude-opus-5-5", "settings": {"temperature": 0}, "max_tokens": 2000},
+    "openai":    {"vendor": "openai", "model": "gpt-6.1-sol", "settings": {"temperature": 0, "seed": 20261016, "reasoning_effort": "low"}, "max_tokens": 6000},
+    "gemini":    {"vendor": "gemini", "model": "gemini-3.1-pro-preview", "settings": {"temperature": 0, "seed": 20261016, "reasoning_effort": "low"}, "max_tokens": 6000},
+    "xai":       {"vendor": "xai", "model": "grok-4.7", "settings": {"temperature": 0, "seed": 20261016, "reasoning_effort": "low"}, "max_tokens": 6000}
+  }
+}

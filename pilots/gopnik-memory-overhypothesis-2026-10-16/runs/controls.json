@@ -1,0 +1,137 @@
+{
+  "seed": 20261016,
+  "n_per_rule": 10000,
+  "objects": 6,
+  "max_tests": 6,
+  "blind_guess_floor": 0.03333333333333333,
+  "identifiability": {
+    "hypotheses": 30,
+    "identified": 30,
+    "max_tests_used": 5,
+    "pass": true
+  },
+  "sequences": {
+    "sequences": 1500,
+    "problems": [],
+    "pass": true
+  },
+  "adaptive": {
+    "disjunctive": {
+      "n": 10000,
+      "objects": 6,
+      "budget": 6,
+      "correct": 10000,
+      "accuracy": 1.0,
+      "ci95": [
+        0.9996159875222334,
+        0.9999999999999999
+      ],
+      "nexioms_only": 1.0,
+      "rule_only": 1.0,
+      "max_tests_used": 5
+    },
+    "conjunctive": {
+      "n": 10000,
+      "objects": 6,
+      "budget": 6,
+      "correct": 10000,
+      "accuracy": 1.0,
+      "ci95": [
+        0.9996159875222334,
+        0.9999999999999999
+      ],
+      "nexioms_only": 1.0,
+      "rule_only": 1.0,
+      "max_tests_used": 5
+    }
+  },
+  "random": {
+    "disjunctive": {
+      "n": 10000,
+      "objects": 6,
+      "budget": 6,
+      "correct": 5777,
+      "accuracy": 0.5777,
+      "ci95": [
+        0.5679910292609275,
+        0.5873492952000275
+      ],
+      "nexioms_only": 0.5809,
+      "rule_only": 0.9676,
+      "max_tests_used": 6
+    },
+    "conjunctive": {
+      "n": 10000,
+      "objects": 6,
+      "budget": 6,
+      "correct": 5594,
+      "accuracy": 0.5594,
+      "ci95": [
+        0.5496484330328562,
+        0.5691059462847852
+      ],
+      "nexioms_only": 0.5628,
+      "rule_only": 0.9643,
+      "max_tests_used": 6
+    }
+  },
+  "simulator_check": {
+    "disjunctive": {
+      "simulated": {
+        "n": 10000,
+        "objects": 4,
+        "budget": 4,
+        "correct": 5971,
+        "accuracy": 0.5971,
+        "ci95": [
+          0.5874510589030758,
+          0.6066743658737418
+        ],
+        "nexioms_only": 0.6082,
+        "rule_only": 0.9502,
+        "max_tests_used": 4
+      },
+      "exact": {
+        "both": 0.5982905982905983,
+        "nexioms_only": 0.6076923076923076,
+        "rule_only": 0.9504273504273504,
+        "test_sets": 1365,
+        "truths": 6
+      },
+      "z": -0.24285842123747617
+    },
+    "conjunctive": {
+      "simulated": {
+        "n": 10000,
+        "objects": 4,
+        "budget": 4,
+        "correct": 6010,
+        "accuracy": 0.601,
+        "ci95": [
+          0.5913650012962902,
+          0.6105574281832008
+        ],
+        "nexioms_only": 0.6108,
+        "rule_only": 0.9515,
+        "max_tests_used": 4
+      },
+      "exact": {
+        "both": 0.5982905982905983,
+        "nexioms_only": 0.6076923076923076,
+        "rule_only": 0.9504273504273504,
+        "test_sets": 1365,
+        "truths": 6
+      },
+      "z": 0.5526641746753662
+    }
+  },
+  "checks": {
+    "identifiability": true,
+    "sequences": true,
+    "adaptive_100pct": true,
+    "adaptive_within_budget": true,
+    "simulation_matches_exact_disjunctive": true,
+    "simulation_matches_exact_conjunctive": true
+  },
+  "pass": true
+}

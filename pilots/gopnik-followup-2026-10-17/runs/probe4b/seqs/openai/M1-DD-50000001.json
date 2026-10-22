@@ -1,0 +1,443 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "DD",
+ "seed": 50000001,
+ "machines": [
+  {
+   "objects": [
+    "nukape",
+    "bokiril",
+    "bukati",
+    "ruvidi",
+    "funozes",
+    "vabunan"
+   ],
+   "truth": {
+    "nexioms": [
+     "funozes",
+     "ruvidi"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bokiril",
+      "bukati",
+      "nukape"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bokiril",
+      "funozes",
+      "nukape",
+      "ruvidi"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bokiril",
+      "nukape",
+      "ruvidi"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "funozes"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "funozes",
+     "ruvidi"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: nukape, bokiril, bukati, ruvidi, funozes, vabunan.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, bokiril, bukati"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, bokiril, ruvidi, funozes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, bokiril, ruvidi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: funozes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = ruvidi, funozes; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: nukape, bokiril, bukati, ruvidi, funozes, vabunan.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were funozes and ruvidi.",
+   "note": {
+    "text": "Track hypotheses as (nexiom pair, machine mode). A positive test means the tested set contains at least one nexiom in \u201cone\u201d mode, but both in \u201ctwo\u201d mode; a negative means neither in \u201cone\u201d mode, or at most one in \u201ctwo\u201d mode. Choose tests that divide remaining hypotheses as evenly as possible. A three-object first test splits the 30 initial hypotheses into 15 positive and 15 negative possibilities. Important: four binary tests provide only 16 outcome sequences, so identifying all 30 possibilities is impossible in general. This run succeeded, but the strategy cannot guarantee success. Here, the positive singleton established \u201cone\u201d mode and identified funozes. The initial negative excluded nukape, bokiril, and bukati; the positive test of nukape, bokiril, and ruvidi then identified ruvidi.",
+    "words_written": 123,
+    "first_draft_words": 123,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "logarar",
+    "tusafes",
+    "bonovun",
+    "venekis",
+    "lilusir",
+    "vibigek"
+   ],
+   "truth": {
+    "nexioms": [
+     "bonovun",
+     "lilusir"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bonovun",
+      "logarar",
+      "tusafes"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "logarar",
+      "venekis"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "lilusir",
+      "tusafes"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "tusafes"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bonovun",
+     "lilusir"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track hypotheses as (nexiom pair, machine mode). A positive test means the tested set contains at least one nexiom in \u201cone\u201d mode, but both in \u201ctwo\u201d mode; a negative means neither in \u201cone\u201d mode, or at most one in \u201ctwo\u201d mode. Choose tests that divide remaining hypotheses as evenly as possible. A three-object first test splits the 30 initial hypotheses into 15 positive and 15 negative possibilities. Important: four binary tests provide only 16 outcome sequences, so identifying all 30 possibilities is impossible in general. This run succeeded, but the strategy cannot guarantee success. Here, the positive singleton established \u201cone\u201d mode and identified funozes. The initial negative excluded nukape, bokiril, and bukati; the positive test of nukape, bokiril, and ruvidi then identified ruvidi.\n\nNew machine. Its objects are: logarar, tusafes, bonovun, venekis, lilusir, vibigek.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logarar, tusafes, bonovun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logarar, venekis"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tusafes, lilusir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tusafes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = bonovun, lilusir; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: logarar, tusafes, bonovun, venekis, lilusir, vibigek.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 856,
+   "feedback": "The nexioms on this machine were bonovun and lilusir.",
+   "note": {
+    "text": "Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two modes. For each test, \u201cone\u201d predicts light if the set intersects the pair; \u201ctwo\u201d predicts light only if it contains the whole pair. Eliminate inconsistent hypotheses and split survivors as evenly as possible. Four binary tests cannot guarantee identifying all 30 hypotheses. This run\u2019s tests were {logarar, tusafes, bonovun} +; {logarar, venekis} \u2212; {tusafes, lilusir} +; {tusafes} \u2212. The unique survivor was bonovun + lilusir, needs one. In one mode, the second and fourth negatives exclude logarar, venekis, and tusafes; the positives then force bonovun and lilusir. In two mode, the third positive would require tusafes + lilusir, inconsistent with the first positive. A negative singleton alone does not establish mode.",
+    "words_written": 121,
+    "first_draft_words": 121,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "zezirek",
+    "fenekus",
+    "mufuluk",
+    "tutonas",
+    "soludir",
+    "futetin"
+   ],
+   "truth": {
+    "nexioms": [
+     "futetin",
+     "soludir"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "fenekus",
+      "mufuluk",
+      "zezirek"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fenekus",
+      "soludir",
+      "tutonas",
+      "zezirek"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fenekus",
+      "tutonas",
+      "zezirek"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "soludir",
+      "zezirek"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "soludir",
+     "zezirek"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track hypotheses as (nexiom pair, machine mode). A positive test means the tested set contains at least one nexiom in \u201cone\u201d mode, but both in \u201ctwo\u201d mode; a negative means neither in \u201cone\u201d mode, or at most one in \u201ctwo\u201d mode. Choose tests that divide remaining hypotheses as evenly as possible. A three-object first test splits the 30 initial hypotheses into 15 positive and 15 negative possibilities. Important: four binary tests provide only 16 outcome sequences, so identifying all 30 possibilities is impossible in general. This run succeeded, but the strategy cannot guarantee success. Here, the positive singleton established \u201cone\u201d mode and identified funozes. The initial negative excluded nukape, bokiril, and bukati; the positive test of nukape, bokiril, and ruvidi then identified ruvidi.\nNote 2: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two modes. For each test, \u201cone\u201d predicts light if the set intersects the pair; \u201ctwo\u201d predicts light only if it contains the whole pair. Eliminate inconsistent hypotheses and split survivors as evenly as possible. Four binary tests cannot guarantee identifying all 30 hypotheses. This run\u2019s tests were {logarar, tusafes, bonovun} +; {logarar, venekis} \u2212; {tusafes, lilusir} +; {tusafes} \u2212. The unique survivor was bonovun + lilusir, needs one. In one mode, the second and fourth negatives exclude logarar, venekis, and tusafes; the positives then force bonovun and lilusir. In two mode, the third positive would require tusafes + lilusir, inconsistent with the first positive. A negative singleton alone does not establish mode.\n\nNew machine. Its objects are: zezirek, fenekus, mufuluk, tutonas, soludir, futetin.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zezirek, fenekus, mufuluk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zezirek, fenekus, tutonas, soludir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zezirek, fenekus, tutonas"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zezirek, soludir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = zezirek, soludir; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: zezirek, fenekus, mufuluk, tutonas, soludir, futetin.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1644,
+   "feedback": "The nexioms on this machine were futetin and soludir.",
+   "note": {
+    "text": "Track every surviving (pair, mode) hypothesis; never claim uniqueness without checking both modes. This run\u2019s outcomes were {zezirek, fenekus, mufuluk} \u2212; {zezirek, fenekus, tutonas, soludir} +; {zezirek, fenekus, tutonas} \u2212; {zezirek, soludir} +. Exactly two hypotheses survived: (soludir, futetin; needs one) and (zezirek, soludir; needs two). I guessed the latter, but the former was correct. A positive two-object test does not establish \u201ctwo\u201d mode. Four binary tests cannot distinguish all 30 initial hypotheses, so guaranteed success is impossible. Choose tests by enumerating predicted outcomes and balancing survivors; near the end, prioritize branches that yield unique answers. If ambiguity remains, recognize that the final answer is a guess rather than a deduction.",
+    "words_written": 111,
+    "first_draft_words": 111,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "rudeso",
+    "mivadar",
+    "bumulol",
+    "bovuba",
+    "pusoti",
+    "vufimu"
+   ],
+   "truth": {
+    "nexioms": [
+     "bumulol",
+     "rudeso"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bumulol",
+      "mivadar",
+      "rudeso"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bovuba",
+      "rudeso"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "mivadar"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "rudeso"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bumulol",
+     "rudeso"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track hypotheses as (nexiom pair, machine mode). A positive test means the tested set contains at least one nexiom in \u201cone\u201d mode, but both in \u201ctwo\u201d mode; a negative means neither in \u201cone\u201d mode, or at most one in \u201ctwo\u201d mode. Choose tests that divide remaining hypotheses as evenly as possible. A three-object first test splits the 30 initial hypotheses into 15 positive and 15 negative possibilities. Important: four binary tests provide only 16 outcome sequences, so identifying all 30 possibilities is impossible in general. This run succeeded, but the strategy cannot guarantee success. Here, the positive singleton established \u201cone\u201d mode and identified funozes. The initial negative excluded nukape, bokiril, and bukati; the positive test of nukape, bokiril, and ruvidi then identified ruvidi.\nNote 2: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two modes. For each test, \u201cone\u201d predicts light if the set intersects the pair; \u201ctwo\u201d predicts light only if it contains the whole pair. Eliminate inconsistent hypotheses and split survivors as evenly as possible. Four binary tests cannot guarantee identifying all 30 hypotheses. This run\u2019s tests were {logarar, tusafes, bonovun} +; {logarar, venekis} \u2212; {tusafes, lilusir} +; {tusafes} \u2212. The unique survivor was bonovun + lilusir, needs one. In one mode, the second and fourth negatives exclude logarar, venekis, and tusafes; the positives then force bonovun and lilusir. In two mode, the third positive would require tusafes + lilusir, inconsistent with the first positive. A negative singleton alone does not establish mode.\nNote 3: Track every surviving (pair, mode) hypothesis; never claim uniqueness without checking both modes. This run\u2019s outcomes were {zezirek, fenekus, mufuluk} \u2212; {zezirek, fenekus, tutonas, soludir} +; {zezirek, fenekus, tutonas} \u2212; {zezirek, soludir} +. Exactly two hypotheses survived: (soludir, futetin; needs one) and (zezirek, soludir; needs two). I guessed the latter, but the former was correct. A positive two-object test does not establish \u201ctwo\u201d mode. Four binary tests cannot distinguish all 30 initial hypotheses, so guaranteed success is impossible. Choose tests by enumerating predicted outcomes and balancing survivors; near the end, prioritize branches that yield unique answers. If ambiguity remains, recognize that the final answer is a guess rather than a deduction.\n\nNew machine. Its objects are: rudeso, mivadar, bumulol, bovuba, pusoti, vufimu.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rudeso, mivadar, bumulol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rudeso, bovuba"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: mivadar"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rudeso"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = rudeso, bumulol; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: rudeso, mivadar, bumulol, bovuba, pusoti, vufimu.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 2430
+  }
+ ]
+}

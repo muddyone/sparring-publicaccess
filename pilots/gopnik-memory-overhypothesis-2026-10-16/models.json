@@ -1,0 +1,39 @@
+{
+  "_note": "LOCKED 2026-10-16 (tag gopnik-prereg-2026-10-16; design note \u00a715). Settings are exactly what each API accepted in Stage 0.",
+  "models": {
+    "anthropic": {
+      "vendor": "anthropic",
+      "model": "claude-opus-5-5",
+      "settings": {},
+      "max_tokens": 2000
+    },
+    "openai": {
+      "vendor": "openai",
+      "model": "gpt-6.1-sol",
+      "settings": {
+        "seed": 20261016,
+        "reasoning_effort": "low"
+      },
+      "max_tokens": 6000
+    },
+    "gemini": {
+      "vendor": "gemini",
+      "model": "gemini-3.1-pro-preview",
+      "settings": {
+        "temperature": 0,
+        "reasoning_effort": "low"
+      },
+      "max_tokens": 6000
+    },
+    "xai": {
+      "vendor": "xai",
+      "model": "grok-4.7",
+      "settings": {
+        "temperature": 0,
+        "seed": 20261016,
+        "reasoning_effort": "low"
+      },
+      "max_tokens": 6000
+    }
+  }
+}

@@ -1,0 +1,499 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "CD",
+ "seed": 10000000,
+ "machines": [
+  {
+   "objects": [
+    "logibos",
+    "beremo",
+    "lokaser",
+    "lavovun",
+    "gimomul",
+    "kimofo"
+   ],
+   "truth": {
+    "nexioms": [
+     "beremo",
+     "logibos"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "beremo",
+      "logibos",
+      "lokaser"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gimomul",
+      "kimofo",
+      "lavovun"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "lavovun",
+      "logibos"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "beremo",
+      "logibos"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "lokaser"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "beremo",
+     "logibos"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: logibos, beremo, lokaser, lavovun, gimomul, kimofo.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logibos, beremo, lokaser"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lavovun, gimomul, kimofo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logibos, lavovun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logibos, beremo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lokaser"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = logibos, beremo; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: logibos, beremo, lokaser, lavovun, gimomul, kimofo.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were beremo and logibos.",
+   "note": {
+    "text": "Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After every test, eliminate hypotheses inconsistent with the result. Answer only when exactly one remains; unused tests are fine. For \u201cneeds one,\u201d a positive test means the tested set contains at least one nexiom; a negative test excludes every tested object. For \u201cneeds two,\u201d a positive test means both nexioms are in the tested set; a negative test means they are not both there. Choose tests that split the remaining hypotheses as evenly as possible. Last machine: {logibos, beremo, lokaser} positive; its complement negative; {logibos, lavovun} negative; {logibos, beremo} positive; {lokaser} negative. These results ruled out \u201cneeds one\u201d and uniquely established logibos + beremo, needs two.",
+    "words_written": 118,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "tukobor",
+    "pivula",
+    "godoti",
+    "dirosos",
+    "bibisu",
+    "gutina"
+   ],
+   "truth": {
+    "nexioms": [
+     "dirosos",
+     "tukobor"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "godoti",
+      "pivula",
+      "tukobor"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bibisu",
+      "dirosos",
+      "pivula",
+      "tukobor"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bibisu",
+      "pivula",
+      "tukobor"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dirosos",
+      "tukobor"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "dirosos"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dirosos",
+     "tukobor"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After every test, eliminate hypotheses inconsistent with the result. Answer only when exactly one remains; unused tests are fine. For \u201cneeds one,\u201d a positive test means the tested set contains at least one nexiom; a negative test excludes every tested object. For \u201cneeds two,\u201d a positive test means both nexioms are in the tested set; a negative test means they are not both there. Choose tests that split the remaining hypotheses as evenly as possible. Last machine: {logibos, beremo, lokaser} positive; its complement negative; {logibos, lavovun} negative; {logibos, beremo} positive; {lokaser} negative. These results ruled out \u201cneeds one\u201d and uniquely established logibos + beremo, needs two.\n\nNew machine. Its objects are: tukobor, pivula, godoti, dirosos, bibisu, gutina.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukobor, pivula, godoti"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukobor, pivula, dirosos, bibisu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukobor, pivula, bibisu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukobor, dirosos"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: dirosos"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = tukobor, dirosos; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: tukobor, pivula, godoti, dirosos, bibisu, gutina.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 827,
+   "feedback": "The nexioms on this machine were dirosos and tukobor.",
+   "note": {
+    "text": "Track all 30 hypotheses: 15 possible pairs \u00d7 two modes. Eliminate inconsistent hypotheses after every result, and choose tests that split the survivors roughly evenly. Answer once exactly one remains. For \u201cneeds one,\u201d positive means at least one nexiom is in the tested set; negative excludes all tested objects. For \u201cneeds two,\u201d positive means both nexioms are in the tested set; negative means at least one is absent. Last machine: {tukobor, pivula, godoti} negative; {tukobor, pivula, dirosos, bibisu} positive; {tukobor, pivula, bibisu} negative; {tukobor, dirosos} positive. At that point, survivors were tukobor + dirosos, needs two, or dirosos + gutina, needs one. Testing {dirosos} negative uniquely established tukobor + dirosos, needs two.",
+    "words_written": 112,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "kozunu",
+    "vuzoni",
+    "kavurol",
+    "femovo",
+    "natamol",
+    "zetenu"
+   ],
+   "truth": {
+    "nexioms": [
+     "kavurol",
+     "vuzoni"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "kavurol",
+      "kozunu",
+      "vuzoni"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "femovo",
+      "kozunu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "natamol",
+      "vuzoni"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "kavurol",
+      "kozunu",
+      "zetenu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "kozunu",
+      "vuzoni"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "kavurol",
+     "vuzoni"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After every test, eliminate hypotheses inconsistent with the result. Answer only when exactly one remains; unused tests are fine. For \u201cneeds one,\u201d a positive test means the tested set contains at least one nexiom; a negative test excludes every tested object. For \u201cneeds two,\u201d a positive test means both nexioms are in the tested set; a negative test means they are not both there. Choose tests that split the remaining hypotheses as evenly as possible. Last machine: {logibos, beremo, lokaser} positive; its complement negative; {logibos, lavovun} negative; {logibos, beremo} positive; {lokaser} negative. These results ruled out \u201cneeds one\u201d and uniquely established logibos + beremo, needs two.\nNote 2: Track all 30 hypotheses: 15 possible pairs \u00d7 two modes. Eliminate inconsistent hypotheses after every result, and choose tests that split the survivors roughly evenly. Answer once exactly one remains. For \u201cneeds one,\u201d positive means at least one nexiom is in the tested set; negative excludes all tested objects. For \u201cneeds two,\u201d positive means both nexioms are in the tested set; negative means at least one is absent. Last machine: {tukobor, pivula, godoti} negative; {tukobor, pivula, dirosos, bibisu} positive; {tukobor, pivula, bibisu} negative; {tukobor, dirosos} positive. At that point, survivors were tukobor + dirosos, needs two, or dirosos + gutina, needs one. Testing {dirosos} negative uniquely established tukobor + dirosos, needs two.\n\nNew machine. Its objects are: kozunu, vuzoni, kavurol, femovo, natamol, zetenu.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kozunu, vuzoni, kavurol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kozunu, femovo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: vuzoni, natamol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kozunu, kavurol, zetenu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kozunu, vuzoni"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = vuzoni, kavurol; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: kozunu, vuzoni, kavurol, femovo, natamol, zetenu.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 1585,
+   "feedback": "The nexioms on this machine were kavurol and vuzoni.",
+   "note": {
+    "text": "Track all 30 hypotheses: 15 object pairs \u00d7 two modes. After each result, eliminate inconsistent hypotheses. For \u201cneeds one,\u201d positive means at least one nexiom is tested; negative excludes every tested object. For \u201cneeds two,\u201d positive means both nexioms are tested; negative means at least one is absent. Choose tests that split surviving hypotheses roughly evenly; answer once exactly one remains. Last machine: {kozunu, vuzoni, kavurol} positive; {kozunu, femovo} negative; {vuzoni, natamol} negative; {kozunu, kavurol, zetenu} negative; {kozunu, vuzoni} negative. The first three negatives collectively excluded every object under \u201cneeds one,\u201d ruling that mode out. Under \u201cneeds two,\u201d the initial positive restricted the pair to the initial triple; the final two negatives eliminated kozunu + kavurol and kozunu + vuzoni. Thus vuzoni + kavurol, needs two, was uniquely established with one test unused.",
+    "words_written": 133,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "gemunes",
+    "numinak",
+    "lazarok",
+    "bisamal",
+    "somizes",
+    "kamino"
+   ],
+   "truth": {
+    "nexioms": [
+     "bisamal",
+     "somizes"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "gemunes",
+      "lazarok",
+      "numinak"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bisamal",
+      "gemunes",
+      "numinak",
+      "somizes"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bisamal",
+      "gemunes",
+      "numinak"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bisamal"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "somizes"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bisamal",
+     "somizes"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After every test, eliminate hypotheses inconsistent with the result. Answer only when exactly one remains; unused tests are fine. For \u201cneeds one,\u201d a positive test means the tested set contains at least one nexiom; a negative test excludes every tested object. For \u201cneeds two,\u201d a positive test means both nexioms are in the tested set; a negative test means they are not both there. Choose tests that split the remaining hypotheses as evenly as possible. Last machine: {logibos, beremo, lokaser} positive; its complement negative; {logibos, lavovun} negative; {logibos, beremo} positive; {lokaser} negative. These results ruled out \u201cneeds one\u201d and uniquely established logibos + beremo, needs two.\nNote 2: Track all 30 hypotheses: 15 possible pairs \u00d7 two modes. Eliminate inconsistent hypotheses after every result, and choose tests that split the survivors roughly evenly. Answer once exactly one remains. For \u201cneeds one,\u201d positive means at least one nexiom is in the tested set; negative excludes all tested objects. For \u201cneeds two,\u201d positive means both nexioms are in the tested set; negative means at least one is absent. Last machine: {tukobor, pivula, godoti} negative; {tukobor, pivula, dirosos, bibisu} positive; {tukobor, pivula, bibisu} negative; {tukobor, dirosos} positive. At that point, survivors were tukobor + dirosos, needs two, or dirosos + gutina, needs one. Testing {dirosos} negative uniquely established tukobor + dirosos, needs two.\nNote 3: Track all 30 hypotheses: 15 object pairs \u00d7 two modes. After each result, eliminate inconsistent hypotheses. For \u201cneeds one,\u201d positive means at least one nexiom is tested; negative excludes every tested object. For \u201cneeds two,\u201d positive means both nexioms are tested; negative means at least one is absent. Choose tests that split surviving hypotheses roughly evenly; answer once exactly one remains. Last machine: {kozunu, vuzoni, kavurol} positive; {kozunu, femovo} negative; {vuzoni, natamol} negative; {kozunu, kavurol, zetenu} negative; {kozunu, vuzoni} negative. The first three negatives collectively excluded every object under \u201cneeds one,\u201d ruling that mode out. Under \u201cneeds two,\u201d the initial positive restricted the pair to the initial triple; the final two negatives eliminated kozunu + kavurol and kozunu + vuzoni. Thus vuzoni + kavurol, needs two, was uniquely established with one test unused.\n\nNew machine. Its objects are: gemunes, numinak, lazarok, bisamal, somizes, kamino.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gemunes, numinak, lazarok"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gemunes, numinak, bisamal, somizes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gemunes, numinak, bisamal"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: bisamal"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: somizes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = bisamal, somizes; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: gemunes, numinak, lazarok, bisamal, somizes, kamino.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 2500
+  }
+ ]
+}

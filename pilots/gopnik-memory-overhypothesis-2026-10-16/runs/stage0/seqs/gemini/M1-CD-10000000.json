@@ -1,0 +1,480 @@
+{
+ "model_name": "gemini",
+ "model": "gemini-3.1-pro-preview",
+ "memory": "M1",
+ "kind": "CD",
+ "seed": 10000000,
+ "machines": [
+  {
+   "objects": [
+    "logibos",
+    "beremo",
+    "lokaser",
+    "lavovun",
+    "gimomul",
+    "kimofo"
+   ],
+   "truth": {
+    "nexioms": [
+     "beremo",
+     "logibos"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "beremo",
+      "logibos",
+      "lokaser"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gimomul",
+      "kimofo",
+      "lavovun"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "logibos"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "beremo"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "beremo",
+      "logibos"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "beremo",
+     "logibos"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: logibos, beremo, lokaser, lavovun, gimomul, kimofo.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logibos, beremo, lokaser"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lavovun, gimomul, kimofo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logibos"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: beremo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logibos, beremo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = logibos, beremo; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: logibos, beremo, lokaser, lavovun, gimomul, kimofo.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were beremo and logibos.",
+   "note": {
+    "text": "To find the nexioms and the rule efficiently: 1. Test a group of 3 objects. 2. Test the other group of 3 objects. - If only one group lights up, both nexioms are in that group. Test the objects in that group individually. If none light up alone but two light up together, the rule is \"needs two\" and those two are the nexioms. If one lights up alone, the rule is \"needs one\", and you can find the second nexiom by testing the remaining objects in that group. - If both groups light up, the rule must be \"needs one\", and there is exactly one nexiom in each group. You can then test objects individually to find the specific nexiom in each group. Always use binary search-like splitting to isolate the nexioms within the 6 tests allowed.",
+    "words_written": 138,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "tukobor",
+    "pivula",
+    "godoti",
+    "dirosos",
+    "bibisu",
+    "gutina"
+   ],
+   "truth": {
+    "nexioms": [
+     "dirosos",
+     "tukobor"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "godoti",
+      "pivula",
+      "tukobor"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bibisu",
+      "dirosos",
+      "gutina"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bibisu",
+      "dirosos",
+      "gutina",
+      "tukobor"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "dirosos",
+      "tukobor"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dirosos",
+     "tukobor"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: To find the nexioms and the rule efficiently: 1. Test a group of 3 objects. 2. Test the other group of 3 objects. - If only one group lights up, both nexioms are in that group. Test the objects in that group individually. If none light up alone but two light up together, the rule is \"needs two\" and those two are the nexioms. If one lights up alone, the rule is \"needs one\", and you can find the second nexiom by testing the remaining objects in that group. - If both groups light up, the rule must be \"needs one\", and there is exactly one nexiom in each group. You can then test objects individually to find the specific nexiom in each group. Always use binary search-like splitting to isolate the nexioms within the 6 tests allowed.\n\nNew machine. Its objects are: tukobor, pivula, godoti, dirosos, bibisu, gutina.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukobor, pivula, godoti"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: dirosos, bibisu, gutina"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukobor, dirosos, bibisu, gutina"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukobor, dirosos"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = tukobor, dirosos; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: tukobor, pivula, godoti, dirosos, bibisu, gutina.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 795,
+   "feedback": "The nexioms on this machine were dirosos and tukobor.",
+   "note": {
+    "text": "Note: If you test the first 3 objects and the last 3 objects and neither group lights up, the machine's rule is definitely \"needs two\", and there is exactly one nexiom in each group. To find them, you can test one object from the first group together with all three objects from the second group. If it lights up, that object is the first nexiom, and you can then test it individually with the objects from the second group to find the second nexiom. If it doesn't light up, move to the next object in the first group. This guarantees finding both nexioms within the remaining tests.",
+    "words_written": 107,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "kozunu",
+    "vuzoni",
+    "kavurol",
+    "femovo",
+    "natamol",
+    "zetenu"
+   ],
+   "truth": {
+    "nexioms": [
+     "kavurol",
+     "vuzoni"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "kavurol",
+      "kozunu",
+      "vuzoni"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "femovo",
+      "natamol",
+      "zetenu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "kozunu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "vuzoni"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "kozunu",
+      "vuzoni"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "kavurol",
+      "kozunu"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "kavurol",
+     "vuzoni"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: To find the nexioms and the rule efficiently: 1. Test a group of 3 objects. 2. Test the other group of 3 objects. - If only one group lights up, both nexioms are in that group. Test the objects in that group individually. If none light up alone but two light up together, the rule is \"needs two\" and those two are the nexioms. If one lights up alone, the rule is \"needs one\", and you can find the second nexiom by testing the remaining objects in that group. - If both groups light up, the rule must be \"needs one\", and there is exactly one nexiom in each group. You can then test objects individually to find the specific nexiom in each group. Always use binary search-like splitting to isolate the nexioms within the 6 tests allowed.\nNote 2: Note: If you test the first 3 objects and the last 3 objects and neither group lights up, the machine's rule is definitely \"needs two\", and there is exactly one nexiom in each group. To find them, you can test one object from the first group together with all three objects from the second group. If it lights up, that object is the first nexiom, and you can then test it individually with the objects from the second group to find the second nexiom. If it doesn't light up, move to the next object in the first group. This guarantees finding both nexioms within the remaining tests.\n\nNew machine. Its objects are: kozunu, vuzoni, kavurol, femovo, natamol, zetenu.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kozunu, vuzoni, kavurol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: femovo, natamol, zetenu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kozunu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: vuzoni"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kozunu, vuzoni"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kozunu, kavurol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = vuzoni, kavurol; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: kozunu, vuzoni, kavurol, femovo, natamol, zetenu.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 1387,
+   "feedback": "The nexioms on this machine were kavurol and vuzoni.",
+   "note": {
+    "text": "If you test a group of 3 and it lights up, but the other group of 3 does not, both nexioms are in the first group. To find them and the rule efficiently: Test two of the objects individually (e.g., A, then B). - If both light up, the rule is \"needs one\" and they are the nexioms. - If one lights up, the rule is \"needs one\", that object is a nexiom, and the third untested object (C) is the other nexiom. - If neither lights up, the rule is \"needs two\". To find which two, test the pair {A, B}. If it lights up, they are the nexioms. If it doesn't, test {A, C}. If that lights up, they are the nexioms. If not, the nexioms must be {B, C}. This guarantees finding the answer within the 6 tests.",
+    "words_written": 141,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "gemunes",
+    "numinak",
+    "lazarok",
+    "bisamal",
+    "somizes",
+    "kamino"
+   ],
+   "truth": {
+    "nexioms": [
+     "bisamal",
+     "somizes"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "gemunes",
+      "lazarok",
+      "numinak"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bisamal",
+      "kamino",
+      "somizes"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bisamal"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "somizes"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bisamal",
+     "somizes"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: To find the nexioms and the rule efficiently: 1. Test a group of 3 objects. 2. Test the other group of 3 objects. - If only one group lights up, both nexioms are in that group. Test the objects in that group individually. If none light up alone but two light up together, the rule is \"needs two\" and those two are the nexioms. If one lights up alone, the rule is \"needs one\", and you can find the second nexiom by testing the remaining objects in that group. - If both groups light up, the rule must be \"needs one\", and there is exactly one nexiom in each group. You can then test objects individually to find the specific nexiom in each group. Always use binary search-like splitting to isolate the nexioms within the 6 tests allowed.\nNote 2: Note: If you test the first 3 objects and the last 3 objects and neither group lights up, the machine's rule is definitely \"needs two\", and there is exactly one nexiom in each group. To find them, you can test one object from the first group together with all three objects from the second group. If it lights up, that object is the first nexiom, and you can then test it individually with the objects from the second group to find the second nexiom. If it doesn't light up, move to the next object in the first group. This guarantees finding both nexioms within the remaining tests.\nNote 3: If you test a group of 3 and it lights up, but the other group of 3 does not, both nexioms are in the first group. To find them and the rule efficiently: Test two of the objects individually (e.g., A, then B). - If both light up, the rule is \"needs one\" and they are the nexioms. - If one lights up, the rule is \"needs one\", that object is a nexiom, and the third untested object (C) is the other nexiom. - If neither lights up, the rule is \"needs two\". To find which two, test the pair {A, B}. If it lights up, they are the nexioms. If it doesn't, test {A, C}. If that lights up, they are the nexioms. If not, the nexioms must be {B, C}. This guarantees finding the answer within the 6 tests.\n\nNew machine. Its objects are: gemunes, numinak, lazarok, bisamal, somizes, kamino.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gemunes, numinak, lazarok"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: bisamal, somizes, kamino"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: bisamal"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: somizes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = bisamal, somizes; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: gemunes, numinak, lazarok, bisamal, somizes, kamino.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 2089
+  }
+ ]
+}

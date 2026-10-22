@@ -1,0 +1,486 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "CC",
+ "seed": 50000003,
+ "machines": [
+  {
+   "objects": [
+    "varogu",
+    "pulumin",
+    "pobifik",
+    "galopu",
+    "sodorer",
+    "zanima"
+   ],
+   "truth": {
+    "nexioms": [
+     "galopu",
+     "sodorer"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "pobifik",
+      "pulumin",
+      "varogu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "galopu",
+      "sodorer",
+      "varogu"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "galopu",
+      "pulumin",
+      "varogu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "galopu",
+      "sodorer"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "galopu",
+     "sodorer"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: varogu, pulumin, pobifik, galopu, sodorer, zanima.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: varogu, pulumin, pobifik"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: varogu, galopu, sodorer"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: varogu, pulumin, galopu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: galopu, sodorer"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = galopu, sodorer"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only galopu were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: varogu, pulumin, pobifik, galopu, sodorer, zanima.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were galopu and sodorer.",
+   "note": {
+    "text": "Exactly two objects are nexioms; non-nexioms never affect the output. Do not assume an OR rule. This machine\u2019s nexioms were galopu and sodorer. Tests containing both lit up; tests containing galopu without sodorer did not. Thus galopu alone would not light it. However, we never tested sodorer without galopu, so we cannot conclude that both nexioms were required: sodorer alone might also have activated it. For the next machine, track hypotheses combining each possible nexiom pair with possible response rules. Choose tests that divide the remaining hypotheses as evenly as possible, and plan ahead so the four-test limit still allows identification. Distinguish identifying the nexioms from identifying the activation rule; evidence sufficient for one may not establish the other.",
+    "words_written": 119,
+    "first_draft_words": 119,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "tuvifir",
+    "zipegel",
+    "vemokak",
+    "zufomus",
+    "bisagur",
+    "gumorak"
+   ],
+   "truth": {
+    "nexioms": [
+     "bisagur",
+     "gumorak"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "tuvifir",
+      "vemokak",
+      "zipegel"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bisagur",
+      "gumorak",
+      "tuvifir",
+      "zufomus"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bisagur",
+      "tuvifir",
+      "vemokak",
+      "zipegel",
+      "zufomus"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gumorak",
+      "zufomus"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bisagur",
+     "gumorak"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Exactly two objects are nexioms; non-nexioms never affect the output. Do not assume an OR rule. This machine\u2019s nexioms were galopu and sodorer. Tests containing both lit up; tests containing galopu without sodorer did not. Thus galopu alone would not light it. However, we never tested sodorer without galopu, so we cannot conclude that both nexioms were required: sodorer alone might also have activated it. For the next machine, track hypotheses combining each possible nexiom pair with possible response rules. Choose tests that divide the remaining hypotheses as evenly as possible, and plan ahead so the four-test limit still allows identification. Distinguish identifying the nexioms from identifying the activation rule; evidence sufficient for one may not establish the other.\n\nNew machine. Its objects are: tuvifir, zipegel, vemokak, zufomus, bisagur, gumorak.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tuvifir, zipegel, vemokak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tuvifir, zufomus, bisagur, gumorak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tuvifir, zipegel, vemokak, zufomus, bisagur"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zufomus, gumorak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = bisagur, gumorak"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only bisagur were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: tuvifir, zipegel, vemokak, zufomus, bisagur, gumorak.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 844,
+   "feedback": "The nexioms on this machine were bisagur and gumorak.",
+   "note": {
+    "text": "Exactly two objects are nexioms; non-nexioms never affect the output. This machine\u2019s nexioms were bisagur and gumorak. Both together lit the machine. Bisagur without gumorak did not, and gumorak without bisagur did not. A test containing neither also did not light it. Thus this machine required both nexioms, and bisagur alone would not light it. Do not assume future machines use this same rule. Track hypotheses combining candidate pairs with possible activation rules. Choose tests by how well they separate possible nexiom pairs, planning through the remaining test budget rather than merely balancing the next outcome. Distinguish identifying the pair from identifying its response rule. Use non-nexioms\u2019 irrelevance to reinterpret earlier mixed-object tests as tests of neither, either singleton, or both confirmed nexioms.",
+    "words_written": 123,
+    "first_draft_words": 123,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "kizufak",
+    "gitazos",
+    "dopini",
+    "taluman",
+    "dupevir",
+    "tegonol"
+   ],
+   "truth": {
+    "nexioms": [
+     "dopini",
+     "tegonol"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "dopini",
+      "gitazos",
+      "kizufak"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dupevir",
+      "kizufak",
+      "taluman"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gitazos",
+      "taluman",
+      "tegonol"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dopini",
+      "dupevir",
+      "tegonol"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": null,
+   "forced": true,
+   "outcome": "parse_failure",
+   "parse_errors": [
+    {
+     "reason": "probe unreadable",
+     "reply_tail": "ANSWER: nexioms = dopini, dupevir"
+    }
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Exactly two objects are nexioms; non-nexioms never affect the output. Do not assume an OR rule. This machine\u2019s nexioms were galopu and sodorer. Tests containing both lit up; tests containing galopu without sodorer did not. Thus galopu alone would not light it. However, we never tested sodorer without galopu, so we cannot conclude that both nexioms were required: sodorer alone might also have activated it. For the next machine, track hypotheses combining each possible nexiom pair with possible response rules. Choose tests that divide the remaining hypotheses as evenly as possible, and plan ahead so the four-test limit still allows identification. Distinguish identifying the nexioms from identifying the activation rule; evidence sufficient for one may not establish the other.\nNote 2: Exactly two objects are nexioms; non-nexioms never affect the output. This machine\u2019s nexioms were bisagur and gumorak. Both together lit the machine. Bisagur without gumorak did not, and gumorak without bisagur did not. A test containing neither also did not light it. Thus this machine required both nexioms, and bisagur alone would not light it. Do not assume future machines use this same rule. Track hypotheses combining candidate pairs with possible activation rules. Choose tests by how well they separate possible nexiom pairs, planning through the remaining test budget rather than merely balancing the next outcome. Distinguish identifying the pair from identifying its response rule. Use non-nexioms\u2019 irrelevance to reinterpret earlier mixed-object tests as tests of neither, either singleton, or both confirmed nexioms.\n\nNew machine. Its objects are: kizufak, gitazos, dopini, taluman, dupevir, tegonol.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kizufak, gitazos, dopini"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kizufak, taluman, dupevir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gitazos, taluman, tegonol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: dopini, dupevir, tegonol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = dopini, dupevir"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only dopini were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = dopini, dupevir"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: kizufak, gitazos, dopini, taluman, dupevir, tegonol.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1683,
+   "feedback": "The nexioms on this machine were dopini and tegonol.",
+   "note": {
+    "text": "ANSWER: nexioms = dopini, tegonol",
+    "words_written": 5,
+    "first_draft_words": 5,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "tukosi",
+    "dofisis",
+    "gimoza",
+    "zukuku",
+    "roritek",
+    "lolozil"
+   ],
+   "truth": {
+    "nexioms": [
+     "dofisis",
+     "lolozil"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "dofisis",
+      "gimoza",
+      "tukosi"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "lolozil",
+      "roritek",
+      "zukuku"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dofisis",
+      "roritek",
+      "tukosi",
+      "zukuku"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dofisis",
+      "lolozil",
+      "tukosi"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dofisis",
+     "lolozil"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Exactly two objects are nexioms; non-nexioms never affect the output. Do not assume an OR rule. This machine\u2019s nexioms were galopu and sodorer. Tests containing both lit up; tests containing galopu without sodorer did not. Thus galopu alone would not light it. However, we never tested sodorer without galopu, so we cannot conclude that both nexioms were required: sodorer alone might also have activated it. For the next machine, track hypotheses combining each possible nexiom pair with possible response rules. Choose tests that divide the remaining hypotheses as evenly as possible, and plan ahead so the four-test limit still allows identification. Distinguish identifying the nexioms from identifying the activation rule; evidence sufficient for one may not establish the other.\nNote 2: Exactly two objects are nexioms; non-nexioms never affect the output. This machine\u2019s nexioms were bisagur and gumorak. Both together lit the machine. Bisagur without gumorak did not, and gumorak without bisagur did not. A test containing neither also did not light it. Thus this machine required both nexioms, and bisagur alone would not light it. Do not assume future machines use this same rule. Track hypotheses combining candidate pairs with possible activation rules. Choose tests by how well they separate possible nexiom pairs, planning through the remaining test budget rather than merely balancing the next outcome. Distinguish identifying the pair from identifying its response rule. Use non-nexioms\u2019 irrelevance to reinterpret earlier mixed-object tests as tests of neither, either singleton, or both confirmed nexioms.\nNote 3: ANSWER: nexioms = dopini, tegonol\n\nNew machine. Its objects are: tukosi, dofisis, gimoza, zukuku, roritek, lolozil.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukosi, dofisis, gimoza"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zukuku, roritek, lolozil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukosi, dofisis, zukuku, roritek"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukosi, dofisis, lolozil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = dofisis, lolozil"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only dofisis were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: tukosi, dofisis, gimoza, zukuku, roritek, lolozil.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1725
+  }
+ ]
+}

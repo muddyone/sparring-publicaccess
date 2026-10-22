@@ -1,0 +1,467 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "DD",
+ "seed": 50000003,
+ "machines": [
+  {
+   "objects": [
+    "varogu",
+    "pulumin",
+    "pobifik",
+    "galopu",
+    "sodorer",
+    "zanima"
+   ],
+   "truth": {
+    "nexioms": [
+     "galopu",
+     "sodorer"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "pobifik",
+      "pulumin",
+      "varogu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "galopu",
+      "sodorer",
+      "zanima"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "galopu"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "sodorer"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "galopu",
+     "sodorer"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: varogu, pulumin, pobifik, galopu, sodorer, zanima.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: varogu, pulumin, pobifik"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: galopu, sodorer, zanima"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: galopu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: sodorer"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = galopu, sodorer"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only galopu were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: varogu, pulumin, pobifik, galopu, sodorer, zanima.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were galopu and sodorer.",
+   "note": {
+    "text": "Objects and response rules can change on a new machine; don\u2019t assume this machine\u2019s rule carries over. Here, galopu alone and sodorer alone each lit the detector, and they were confirmed as the two nexioms. The first triple failed to light, while the complementary triple lit. Use tests to learn both the identities and the response rule. A negative group test does not automatically mean every object in that group is non-nexiom: some machines may require both nexioms or respond differently when both are present. Singleton tests that light are especially useful: since non-nexioms never affect the machine, a lighting singleton identifies a nexiom. Keep track of exact tested subsets and outcomes, and answer repeat probes directly from those observations.",
+    "words_written": 120,
+    "first_draft_words": 120,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "tuvifir",
+    "zipegel",
+    "vemokak",
+    "zufomus",
+    "bisagur",
+    "gumorak"
+   ],
+   "truth": {
+    "nexioms": [
+     "bisagur",
+     "gumorak"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "tuvifir",
+      "vemokak",
+      "zipegel"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bisagur",
+      "gumorak",
+      "zufomus"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "zufomus"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bisagur",
+      "gumorak"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bisagur",
+     "gumorak"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Objects and response rules can change on a new machine; don\u2019t assume this machine\u2019s rule carries over. Here, galopu alone and sodorer alone each lit the detector, and they were confirmed as the two nexioms. The first triple failed to light, while the complementary triple lit. Use tests to learn both the identities and the response rule. A negative group test does not automatically mean every object in that group is non-nexiom: some machines may require both nexioms or respond differently when both are present. Singleton tests that light are especially useful: since non-nexioms never affect the machine, a lighting singleton identifies a nexiom. Keep track of exact tested subsets and outcomes, and answer repeat probes directly from those observations.\n\nNew machine. Its objects are: tuvifir, zipegel, vemokak, zufomus, bisagur, gumorak.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tuvifir, zipegel, vemokak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zufomus, bisagur, gumorak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zufomus"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: bisagur, gumorak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = bisagur, gumorak"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only bisagur were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: tuvifir, zipegel, vemokak, zufomus, bisagur, gumorak.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 819,
+   "feedback": "The nexioms on this machine were bisagur and gumorak.",
+   "note": {
+    "text": "Do not carry object identities or response rules over to a new machine. On this machine, the confirmed nexioms were bisagur and gumorak. Observations: {tuvifir, zipegel, vemokak} did not light; {zufomus, bisagur, gumorak} lit; {zufomus} did not light; {bisagur, gumorak} lit. These results alone do not distinguish a rule requiring both nexioms from one where either nexiom suffices: no confirmed nexiom was tested alone. My \u201cno\u201d prediction for bisagur alone was therefore not established by the tests. Track exact subsets and outcomes, distinguish observations from assumptions, and use tests to learn both identities and the response rule. Non-nexioms never affect the machine, but a negative group test does not necessarily exclude nexioms.",
+    "words_written": 112,
+    "first_draft_words": 112,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "kizufak",
+    "gitazos",
+    "dopini",
+    "taluman",
+    "dupevir",
+    "tegonol"
+   ],
+   "truth": {
+    "nexioms": [
+     "dopini",
+     "tegonol"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "dopini",
+      "gitazos",
+      "kizufak"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "kizufak"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dopini",
+      "gitazos"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gitazos"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dopini",
+     "gitazos"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Objects and response rules can change on a new machine; don\u2019t assume this machine\u2019s rule carries over. Here, galopu alone and sodorer alone each lit the detector, and they were confirmed as the two nexioms. The first triple failed to light, while the complementary triple lit. Use tests to learn both the identities and the response rule. A negative group test does not automatically mean every object in that group is non-nexiom: some machines may require both nexioms or respond differently when both are present. Singleton tests that light are especially useful: since non-nexioms never affect the machine, a lighting singleton identifies a nexiom. Keep track of exact tested subsets and outcomes, and answer repeat probes directly from those observations.\nNote 2: Do not carry object identities or response rules over to a new machine. On this machine, the confirmed nexioms were bisagur and gumorak. Observations: {tuvifir, zipegel, vemokak} did not light; {zufomus, bisagur, gumorak} lit; {zufomus} did not light; {bisagur, gumorak} lit. These results alone do not distinguish a rule requiring both nexioms from one where either nexiom suffices: no confirmed nexiom was tested alone. My \u201cno\u201d prediction for bisagur alone was therefore not established by the tests. Track exact subsets and outcomes, distinguish observations from assumptions, and use tests to learn both identities and the response rule. Non-nexioms never affect the machine, but a negative group test does not necessarily exclude nexioms.\n\nNew machine. Its objects are: kizufak, gitazos, dopini, taluman, dupevir, tegonol.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kizufak, gitazos, dopini"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: kizufak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gitazos, dopini"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gitazos"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = gitazos, dopini"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only dopini were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: kizufak, gitazos, dopini, taluman, dupevir, tegonol.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1571,
+   "feedback": "The nexioms on this machine were dopini and tegonol.",
+   "note": {
+    "text": "Do not carry identities or rules across machines. This machine\u2019s confirmed nexioms were dopini and tegonol. Observed: {kizufak, gitazos, dopini} lit; {kizufak} did not; {gitazos, dopini} lit; {gitazos} did not. My answer gitazos + dopini was unjustified: a lighting pair need not contain both nexioms. Since gitazos was actually a non-nexiom and never affects the machine, dopini alone would light; my \u201cno\u201d probe prediction was wrong. Before answering, list all identity pairs and response rules consistent with the observations. Negative singleton tests do not necessarily rule out nexioms, and positive group tests do not establish how many nexioms are present. Choose tests that distinguish remaining possibilities, including objects outside the first positive group. If multiple possibilities survive, recognize the uncertainty rather than treating an assumption as an observation.",
+    "words_written": 128,
+    "first_draft_words": 128,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "tukosi",
+    "dofisis",
+    "gimoza",
+    "zukuku",
+    "roritek",
+    "lolozil"
+   ],
+   "truth": {
+    "nexioms": [
+     "dofisis",
+     "lolozil"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "dofisis",
+      "gimoza",
+      "tukosi"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "tukosi"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dofisis"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gimoza"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dofisis",
+     "roritek"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Objects and response rules can change on a new machine; don\u2019t assume this machine\u2019s rule carries over. Here, galopu alone and sodorer alone each lit the detector, and they were confirmed as the two nexioms. The first triple failed to light, while the complementary triple lit. Use tests to learn both the identities and the response rule. A negative group test does not automatically mean every object in that group is non-nexiom: some machines may require both nexioms or respond differently when both are present. Singleton tests that light are especially useful: since non-nexioms never affect the machine, a lighting singleton identifies a nexiom. Keep track of exact tested subsets and outcomes, and answer repeat probes directly from those observations.\nNote 2: Do not carry object identities or response rules over to a new machine. On this machine, the confirmed nexioms were bisagur and gumorak. Observations: {tuvifir, zipegel, vemokak} did not light; {zufomus, bisagur, gumorak} lit; {zufomus} did not light; {bisagur, gumorak} lit. These results alone do not distinguish a rule requiring both nexioms from one where either nexiom suffices: no confirmed nexiom was tested alone. My \u201cno\u201d prediction for bisagur alone was therefore not established by the tests. Track exact subsets and outcomes, distinguish observations from assumptions, and use tests to learn both identities and the response rule. Non-nexioms never affect the machine, but a negative group test does not necessarily exclude nexioms.\nNote 3: Do not carry identities or rules across machines. This machine\u2019s confirmed nexioms were dopini and tegonol. Observed: {kizufak, gitazos, dopini} lit; {kizufak} did not; {gitazos, dopini} lit; {gitazos} did not. My answer gitazos + dopini was unjustified: a lighting pair need not contain both nexioms. Since gitazos was actually a non-nexiom and never affects the machine, dopini alone would light; my \u201cno\u201d probe prediction was wrong. Before answering, list all identity pairs and response rules consistent with the observations. Negative singleton tests do not necessarily rule out nexioms, and positive group tests do not establish how many nexioms are present. Choose tests that distinguish remaining possibilities, including objects outside the first positive group. If multiple possibilities survive, recognize the uncertainty rather than treating an assumption as an observation.\n\nNew machine. Its objects are: tukosi, dofisis, gimoza, zukuku, roritek, lolozil.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukosi, dofisis, gimoza"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tukosi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: dofisis"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gimoza"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = dofisis, roritek"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only dofisis were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: tukosi, dofisis, gimoza, zukuku, roritek, lolozil.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 2465
+  }
+ ]
+}

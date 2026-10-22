@@ -22,6 +22,11 @@ reader needs to check the papers' claims and reproduce their numbers.
 - **[`docs/spars/`](docs/spars/)** — verbatim records of SPARRING ceremonies run on
   the framework's **own** claims, including the runs that did not converge and the
   rounds where the framework's position lost.
+- **[`what-ai-is/`](what-ai-is/)** — *What AI Is*, a series of position essays on what people
+  are working with when they use AI (Part one: what it is), with the research briefs, citation
+  checks and review records behind each one.
+- **[`pilots/`](pilots/)** — data and records for the small studies the essays cite, including
+  the pre-registered notes-and-rules pilot and its exploratory follow-up.
 - **[`docs/corrections/`](docs/corrections/)** — dated corrections to what we have
   said in public about these results, each with the counts behind it.
   [`2026-09-14-catch-rate-post/`](docs/corrections/2026-09-14-catch-rate-post/) corrects

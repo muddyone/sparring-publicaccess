@@ -1,0 +1,440 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "DD",
+ "seed": 50000000,
+ "machines": [
+  {
+   "objects": [
+    "zebile",
+    "dopaban",
+    "daforor",
+    "semoval",
+    "saneki",
+    "mubades"
+   ],
+   "truth": {
+    "nexioms": [
+     "dopaban",
+     "semoval"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "daforor",
+      "dopaban",
+      "zebile"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "semoval",
+      "zebile"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "dopaban",
+      "saneki"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "zebile"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dopaban",
+     "semoval"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: zebile, dopaban, daforor, semoval, saneki, mubades.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zebile, dopaban, daforor"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zebile, semoval"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: dopaban, saneki"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zebile"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = dopaban, semoval; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: zebile, dopaban, daforor, semoval, saneki, mubades.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were dopaban and semoval.",
+   "note": {
+    "text": "Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After each result, eliminate inconsistent hypotheses. Choose tests that split the remaining hypotheses as evenly as possible; verify that the resulting branches can be resolved within the remaining tests. Four binary tests yield only 16 outcome patterns, so no strategy can guarantee identifying all 30 hypotheses. Aim for the best possible discrimination, and don\u2019t mistake a lucky path for a universally successful strategy. This run worked: ABC lit, AD lit, BE lit, A did not. The disjoint positive tests AD and BE ruled out \u201cneeds two.\u201d A\u2019s negative result then forced D and B to be the nexioms. Here A=zebile, B=dopaban, C=daforor, D=semoval, E=saneki, F=mubades.",
+    "words_written": 117,
+    "first_draft_words": 117,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "semabil",
+    "koramen",
+    "nalezul",
+    "fozatuk",
+    "nilezo",
+    "nafumas"
+   ],
+   "truth": {
+    "nexioms": [
+     "koramen",
+     "semabil"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "koramen",
+      "nalezul",
+      "semabil"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fozatuk",
+      "semabil"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "koramen",
+      "nilezo"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "semabil"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "koramen",
+     "semabil"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After each result, eliminate inconsistent hypotheses. Choose tests that split the remaining hypotheses as evenly as possible; verify that the resulting branches can be resolved within the remaining tests. Four binary tests yield only 16 outcome patterns, so no strategy can guarantee identifying all 30 hypotheses. Aim for the best possible discrimination, and don\u2019t mistake a lucky path for a universally successful strategy. This run worked: ABC lit, AD lit, BE lit, A did not. The disjoint positive tests AD and BE ruled out \u201cneeds two.\u201d A\u2019s negative result then forced D and B to be the nexioms. Here A=zebile, B=dopaban, C=daforor, D=semoval, E=saneki, F=mubades.\n\nNew machine. Its objects are: semabil, koramen, nalezul, fozatuk, nilezo, nafumas.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: semabil, koramen, nalezul"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: semabil, fozatuk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: koramen, nilezo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: semabil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = semabil, koramen; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: semabil, koramen, nalezul, fozatuk, nilezo, nafumas.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 799,
+   "feedback": "The nexioms on this machine were koramen and semabil.",
+   "note": {
+    "text": "Track all 30 hypotheses (15 pairs \u00d7 two modes), eliminating inconsistent ones after each result. Four binary tests cannot guarantee identifying all 30; choose balanced splits and check whether remaining branches are resolvable. This run used A=semabil, B=koramen, C=nalezul, D=fozatuk, E=nilezo, F=nafumas. Tests ABC, AD, BE, and A all lit. Disjoint positive tests AD and BE ruled out \u201cneeds two.\u201d A\u2019s positive result established A as a nexiom, but the other nexiom remained either B or E. Thus the final answer AB was a lucky guess, not a deduction; feedback confirmed AB. After ABC+, AD+, BE+, test B (or E), not A: B+ identifies AB; B\u2212 leaves AE, DB, and DE. No single final test can distinguish all four remaining pairs AB, AE, DB, DE.",
+    "words_written": 125,
+    "first_draft_words": 125,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "rituna",
+    "retibas",
+    "zenepak",
+    "zatatek",
+    "kezila",
+    "matale"
+   ],
+   "truth": {
+    "nexioms": [
+     "matale",
+     "retibas"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "retibas",
+      "rituna",
+      "zenepak"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "rituna",
+      "zatatek"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "retibas",
+      "zenepak"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "retibas"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "retibas",
+     "zenepak"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After each result, eliminate inconsistent hypotheses. Choose tests that split the remaining hypotheses as evenly as possible; verify that the resulting branches can be resolved within the remaining tests. Four binary tests yield only 16 outcome patterns, so no strategy can guarantee identifying all 30 hypotheses. Aim for the best possible discrimination, and don\u2019t mistake a lucky path for a universally successful strategy. This run worked: ABC lit, AD lit, BE lit, A did not. The disjoint positive tests AD and BE ruled out \u201cneeds two.\u201d A\u2019s negative result then forced D and B to be the nexioms. Here A=zebile, B=dopaban, C=daforor, D=semoval, E=saneki, F=mubades.\nNote 2: Track all 30 hypotheses (15 pairs \u00d7 two modes), eliminating inconsistent ones after each result. Four binary tests cannot guarantee identifying all 30; choose balanced splits and check whether remaining branches are resolvable. This run used A=semabil, B=koramen, C=nalezul, D=fozatuk, E=nilezo, F=nafumas. Tests ABC, AD, BE, and A all lit. Disjoint positive tests AD and BE ruled out \u201cneeds two.\u201d A\u2019s positive result established A as a nexiom, but the other nexiom remained either B or E. Thus the final answer AB was a lucky guess, not a deduction; feedback confirmed AB. After ABC+, AD+, BE+, test B (or E), not A: B+ identifies AB; B\u2212 leaves AE, DB, and DE. No single final test can distinguish all four remaining pairs AB, AE, DB, DE.\n\nNew machine. Its objects are: rituna, retibas, zenepak, zatatek, kezila, matale.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rituna, retibas, zenepak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rituna, zatatek"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: retibas, zenepak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: retibas"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = retibas, zenepak; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: rituna, retibas, zenepak, zatatek, kezila, matale.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1547,
+   "feedback": "The nexioms on this machine were matale and retibas.",
+   "note": {
+    "text": "Track all 30 hypotheses (15 pairs \u00d7 two modes), eliminating inconsistent ones after every result. Four binary tests cannot guarantee distinguishing 30 hypotheses; never mistake a guess for a deduction. This run: A=rituna, B=retibas, C=zenepak, D=zatatek, E=kezila, F=matale. Results: ABC+, AD\u2212, BC+, B+. B+ ruled out \u201cneeds two\u201d and established B as a nexiom. AD\u2212 excluded A and D. The surviving pairs were BC, BE, BF, all needing one. I guessed BC; the actual pair was BF. The final B test had a three-hypothesis positive branch, so it could not uniquely identify the pair. Before choosing a test, enumerate both resulting branches and assess what can still be resolved with the remaining tests. If ambiguity remains at the end, recognize that any forced answer is a guess.",
+    "words_written": 127,
+    "first_draft_words": 127,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "foline",
+    "zezenun",
+    "nesutir",
+    "zilizu",
+    "susazil",
+    "pibobal"
+   ],
+   "truth": {
+    "nexioms": [
+     "pibobal",
+     "susazil"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "foline",
+      "nesutir",
+      "zezenun"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "foline",
+      "susazil",
+      "zezenun",
+      "zilizu"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "foline",
+      "zezenun",
+      "zilizu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "susazil"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "pibobal",
+     "susazil"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After each result, eliminate inconsistent hypotheses. Choose tests that split the remaining hypotheses as evenly as possible; verify that the resulting branches can be resolved within the remaining tests. Four binary tests yield only 16 outcome patterns, so no strategy can guarantee identifying all 30 hypotheses. Aim for the best possible discrimination, and don\u2019t mistake a lucky path for a universally successful strategy. This run worked: ABC lit, AD lit, BE lit, A did not. The disjoint positive tests AD and BE ruled out \u201cneeds two.\u201d A\u2019s negative result then forced D and B to be the nexioms. Here A=zebile, B=dopaban, C=daforor, D=semoval, E=saneki, F=mubades.\nNote 2: Track all 30 hypotheses (15 pairs \u00d7 two modes), eliminating inconsistent ones after each result. Four binary tests cannot guarantee identifying all 30; choose balanced splits and check whether remaining branches are resolvable. This run used A=semabil, B=koramen, C=nalezul, D=fozatuk, E=nilezo, F=nafumas. Tests ABC, AD, BE, and A all lit. Disjoint positive tests AD and BE ruled out \u201cneeds two.\u201d A\u2019s positive result established A as a nexiom, but the other nexiom remained either B or E. Thus the final answer AB was a lucky guess, not a deduction; feedback confirmed AB. After ABC+, AD+, BE+, test B (or E), not A: B+ identifies AB; B\u2212 leaves AE, DB, and DE. No single final test can distinguish all four remaining pairs AB, AE, DB, DE.\nNote 3: Track all 30 hypotheses (15 pairs \u00d7 two modes), eliminating inconsistent ones after every result. Four binary tests cannot guarantee distinguishing 30 hypotheses; never mistake a guess for a deduction. This run: A=rituna, B=retibas, C=zenepak, D=zatatek, E=kezila, F=matale. Results: ABC+, AD\u2212, BC+, B+. B+ ruled out \u201cneeds two\u201d and established B as a nexiom. AD\u2212 excluded A and D. The surviving pairs were BC, BE, BF, all needing one. I guessed BC; the actual pair was BF. The final B test had a three-hypothesis positive branch, so it could not uniquely identify the pair. Before choosing a test, enumerate both resulting branches and assess what can still be resolved with the remaining tests. If ambiguity remains at the end, recognize that any forced answer is a guess.\n\nNew machine. Its objects are: foline, zezenun, nesutir, zilizu, susazil, pibobal.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: foline, zezenun, nesutir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: foline, zezenun, zilizu, susazil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: foline, zezenun, zilizu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: susazil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = susazil, pibobal; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: foline, zezenun, nesutir, zilizu, susazil, pibobal.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 2330
+  }
+ ]
+}

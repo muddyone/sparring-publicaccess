@@ -1,0 +1,459 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M0",
+ "kind": "CC",
+ "seed": 50000004,
+ "machines": [
+  {
+   "objects": [
+    "leligu",
+    "barumol",
+    "rifesur",
+    "pizutas",
+    "gorenuk",
+    "letoda"
+   ],
+   "truth": {
+    "nexioms": [
+     "letoda",
+     "pizutas"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "barumol",
+      "leligu",
+      "rifesur"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "barumol",
+      "gorenuk",
+      "leligu",
+      "pizutas"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "leligu",
+      "letoda",
+      "pizutas"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "leligu",
+      "letoda"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "letoda",
+     "pizutas"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: leligu, barumol, rifesur, pizutas, gorenuk, letoda.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: leligu, barumol, rifesur"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: leligu, barumol, pizutas, gorenuk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: leligu, pizutas, letoda"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: leligu, letoda"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = pizutas, letoda"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only letoda were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: leligu, barumol, rifesur, pizutas, gorenuk, letoda.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "ferifa",
+    "kanesus",
+    "ganuben",
+    "vasuki",
+    "vonuze",
+    "sokavur"
+   ],
+   "truth": {
+    "nexioms": [
+     "sokavur",
+     "vasuki"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "ferifa",
+      "ganuben",
+      "kanesus"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "sokavur",
+      "vasuki",
+      "vonuze"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "vasuki"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "sokavur",
+      "vonuze"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "vasuki",
+     "vonuze"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: ferifa, kanesus, ganuben, vasuki, vonuze, sokavur.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: ferifa, kanesus, ganuben"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: vasuki, vonuze, sokavur"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: vasuki"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: vonuze, sokavur"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = vasuki, vonuze"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only vasuki were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: ferifa, kanesus, ganuben, vasuki, vonuze, sokavur.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "gopemal",
+    "bagige",
+    "lisebu",
+    "salepus",
+    "devino",
+    "lelapu"
+   ],
+   "truth": {
+    "nexioms": [
+     "bagige",
+     "lisebu"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bagige",
+      "gopemal"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gopemal",
+      "lisebu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bagige",
+      "devino",
+      "lelapu",
+      "salepus"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "devino",
+      "gopemal",
+      "salepus"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "devino",
+     "salepus"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: gopemal, bagige, lisebu, salepus, devino, lelapu.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gopemal, bagige"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gopemal, lisebu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: bagige, salepus, devino, lelapu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gopemal, salepus, devino"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = salepus, devino"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only devino were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: gopemal, bagige, lisebu, salepus, devino, lelapu.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "fokibos",
+    "mukadis",
+    "megesil",
+    "vifafun",
+    "nisefan",
+    "gupavun"
+   ],
+   "truth": {
+    "nexioms": [
+     "mukadis",
+     "vifafun"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "fokibos",
+      "megesil",
+      "mukadis"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fokibos",
+      "nisefan",
+      "vifafun"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fokibos",
+      "gupavun",
+      "megesil",
+      "mukadis",
+      "nisefan",
+      "vifafun"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fokibos",
+      "gupavun"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "mukadis",
+     "vifafun"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: fokibos, mukadis, megesil, vifafun, nisefan, gupavun.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fokibos, mukadis, megesil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fokibos, vifafun, nisefan"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fokibos, mukadis, megesil, vifafun, nisefan, gupavun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fokibos, gupavun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = mukadis, vifafun"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only mukadis were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: fokibos, mukadis, megesil, vifafun, nisefan, gupavun.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  }
+ ]
+}

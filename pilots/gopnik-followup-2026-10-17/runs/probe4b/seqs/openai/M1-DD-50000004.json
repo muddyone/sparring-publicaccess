@@ -1,0 +1,440 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "DD",
+ "seed": 50000004,
+ "machines": [
+  {
+   "objects": [
+    "leligu",
+    "barumol",
+    "rifesur",
+    "pizutas",
+    "gorenuk",
+    "letoda"
+   ],
+   "truth": {
+    "nexioms": [
+     "letoda",
+     "pizutas"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "barumol",
+      "leligu",
+      "rifesur"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "barumol",
+      "gorenuk",
+      "leligu",
+      "pizutas"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "pizutas"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gorenuk"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "letoda",
+     "pizutas"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: leligu, barumol, rifesur, pizutas, gorenuk, letoda.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: leligu, barumol, rifesur"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: leligu, barumol, pizutas, gorenuk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: pizutas"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gorenuk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = pizutas, letoda; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: leligu, barumol, rifesur, pizutas, gorenuk, letoda.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were letoda and pizutas.",
+   "note": {
+    "text": "Label objects A\u2013F. Track all 30 hypotheses: 15 possible pairs \u00d7 two modes (\u201cone\u201d or \u201ctwo\u201d). A test S lights in \u201cone\u201d mode iff S intersects the pair; in \u201ctwo\u201d mode iff S contains the pair. After each result, eliminate inconsistent hypotheses. Choose tests that split the remaining hypotheses as evenly as possible, checking that every resulting branch can be resolved within the remaining tests. This successful path: ABC off; ABDE on; D on; E off \u21d2 pair DF, needs one. The singleton D lighting proves \u201cone\u201d mode and identifies D. ABC being off excludes A, B, C; E being off then leaves F as the other nexiom. Do not assume this fixed sequence works for other outcomes; plan adaptively.",
+    "words_written": 120,
+    "first_draft_words": 120,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "ferifa",
+    "kanesus",
+    "ganuben",
+    "vasuki",
+    "vonuze",
+    "sokavur"
+   ],
+   "truth": {
+    "nexioms": [
+     "sokavur",
+     "vasuki"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "ferifa",
+      "ganuben",
+      "kanesus"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "ferifa",
+      "kanesus",
+      "vasuki",
+      "vonuze"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "vasuki"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "vonuze"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "sokavur",
+     "vasuki"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Label objects A\u2013F. Track all 30 hypotheses: 15 possible pairs \u00d7 two modes (\u201cone\u201d or \u201ctwo\u201d). A test S lights in \u201cone\u201d mode iff S intersects the pair; in \u201ctwo\u201d mode iff S contains the pair. After each result, eliminate inconsistent hypotheses. Choose tests that split the remaining hypotheses as evenly as possible, checking that every resulting branch can be resolved within the remaining tests. This successful path: ABC off; ABDE on; D on; E off \u21d2 pair DF, needs one. The singleton D lighting proves \u201cone\u201d mode and identifies D. ABC being off excludes A, B, C; E being off then leaves F as the other nexiom. Do not assume this fixed sequence works for other outcomes; plan adaptively.\n\nNew machine. Its objects are: ferifa, kanesus, ganuben, vasuki, vonuze, sokavur.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: ferifa, kanesus, ganuben"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: ferifa, kanesus, vasuki, vonuze"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: vasuki"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: vonuze"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = vasuki, sokavur; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: ferifa, kanesus, ganuben, vasuki, vonuze, sokavur.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 745,
+   "feedback": "The nexioms on this machine were sokavur and vasuki.",
+   "note": {
+    "text": "Label objects A\u2013F in their given order. Track all 30 hypotheses: 15 pairs \u00d7 two modes. For a tested set S, \u201cone\u201d lights iff S intersects the pair; \u201ctwo\u201d lights iff S contains both members. Eliminate inconsistent hypotheses after each result. Successful path: ABC off; ABDE on; D on; E off \u21d2 nexioms D and F, needs one. Here D = vasuki and F = sokavur. A singleton lighting proves \u201cone\u201d mode and identifies that object as a nexiom. ABC off then excludes A, B, C; E off excludes E, leaving F. Do not blindly reuse this sequence for different outcomes. Choose tests adaptively, splitting remaining hypotheses as evenly as possible and checking that all branches can be resolved within the remaining test budget.",
+    "words_written": 124,
+    "first_draft_words": 124,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "gopemal",
+    "bagige",
+    "lisebu",
+    "salepus",
+    "devino",
+    "lelapu"
+   ],
+   "truth": {
+    "nexioms": [
+     "bagige",
+     "lisebu"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bagige",
+      "gopemal",
+      "lisebu"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gopemal",
+      "salepus"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "devino"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bagige",
+      "devino",
+      "gopemal"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bagige",
+     "gopemal"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Label objects A\u2013F. Track all 30 hypotheses: 15 possible pairs \u00d7 two modes (\u201cone\u201d or \u201ctwo\u201d). A test S lights in \u201cone\u201d mode iff S intersects the pair; in \u201ctwo\u201d mode iff S contains the pair. After each result, eliminate inconsistent hypotheses. Choose tests that split the remaining hypotheses as evenly as possible, checking that every resulting branch can be resolved within the remaining tests. This successful path: ABC off; ABDE on; D on; E off \u21d2 pair DF, needs one. The singleton D lighting proves \u201cone\u201d mode and identifies D. ABC being off excludes A, B, C; E being off then leaves F as the other nexiom. Do not assume this fixed sequence works for other outcomes; plan adaptively.\nNote 2: Label objects A\u2013F in their given order. Track all 30 hypotheses: 15 pairs \u00d7 two modes. For a tested set S, \u201cone\u201d lights iff S intersects the pair; \u201ctwo\u201d lights iff S contains both members. Eliminate inconsistent hypotheses after each result. Successful path: ABC off; ABDE on; D on; E off \u21d2 nexioms D and F, needs one. Here D = vasuki and F = sokavur. A singleton lighting proves \u201cone\u201d mode and identifies that object as a nexiom. ABC off then excludes A, B, C; E off excludes E, leaving F. Do not blindly reuse this sequence for different outcomes. Choose tests adaptively, splitting remaining hypotheses as evenly as possible and checking that all branches can be resolved within the remaining test budget.\n\nNew machine. Its objects are: gopemal, bagige, lisebu, salepus, devino, lelapu.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gopemal, bagige, lisebu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gopemal, salepus"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: devino"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gopemal, bagige, devino"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = gopemal, bagige; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: gopemal, bagige, lisebu, salepus, devino, lelapu.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1462,
+   "feedback": "The nexioms on this machine were bagige and lisebu.",
+   "note": {
+    "text": "ANSWER: nexioms = bagige, lisebu; needs = one",
+    "words_written": 8,
+    "first_draft_words": 8,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "fokibos",
+    "mukadis",
+    "megesil",
+    "vifafun",
+    "nisefan",
+    "gupavun"
+   ],
+   "truth": {
+    "nexioms": [
+     "mukadis",
+     "vifafun"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "fokibos",
+      "megesil",
+      "mukadis"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fokibos",
+      "vifafun"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "mukadis",
+      "nisefan"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "nisefan"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "fokibos",
+     "mukadis"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Label objects A\u2013F. Track all 30 hypotheses: 15 possible pairs \u00d7 two modes (\u201cone\u201d or \u201ctwo\u201d). A test S lights in \u201cone\u201d mode iff S intersects the pair; in \u201ctwo\u201d mode iff S contains the pair. After each result, eliminate inconsistent hypotheses. Choose tests that split the remaining hypotheses as evenly as possible, checking that every resulting branch can be resolved within the remaining tests. This successful path: ABC off; ABDE on; D on; E off \u21d2 pair DF, needs one. The singleton D lighting proves \u201cone\u201d mode and identifies D. ABC being off excludes A, B, C; E being off then leaves F as the other nexiom. Do not assume this fixed sequence works for other outcomes; plan adaptively.\nNote 2: Label objects A\u2013F in their given order. Track all 30 hypotheses: 15 pairs \u00d7 two modes. For a tested set S, \u201cone\u201d lights iff S intersects the pair; \u201ctwo\u201d lights iff S contains both members. Eliminate inconsistent hypotheses after each result. Successful path: ABC off; ABDE on; D on; E off \u21d2 nexioms D and F, needs one. Here D = vasuki and F = sokavur. A singleton lighting proves \u201cone\u201d mode and identifies that object as a nexiom. ABC off then excludes A, B, C; E off excludes E, leaving F. Do not blindly reuse this sequence for different outcomes. Choose tests adaptively, splitting remaining hypotheses as evenly as possible and checking that all branches can be resolved within the remaining test budget.\nNote 3: ANSWER: nexioms = bagige, lisebu; needs = one\n\nNew machine. Its objects are: fokibos, mukadis, megesil, vifafun, nisefan, gupavun.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fokibos, mukadis, megesil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fokibos, vifafun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: mukadis, nisefan"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nisefan"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = fokibos, mukadis; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: fokibos, mukadis, megesil, vifafun, nisefan, gupavun.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1516
+  }
+ ]
+}

@@ -1,0 +1,486 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M0",
+ "kind": "CC",
+ "seed": 20000004,
+ "machines": [
+  {
+   "objects": [
+    "sedupal",
+    "lekeken",
+    "bevesir",
+    "lifager",
+    "gulemir",
+    "vanate"
+   ],
+   "truth": {
+    "nexioms": [
+     "gulemir",
+     "sedupal"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bevesir",
+      "lekeken",
+      "sedupal"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gulemir",
+      "lifager",
+      "vanate"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gulemir",
+      "lekeken",
+      "lifager",
+      "sedupal"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gulemir",
+      "lifager",
+      "sedupal"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "lifager",
+      "sedupal"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "gulemir",
+     "sedupal"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: sedupal, lekeken, bevesir, lifager, gulemir, vanate.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: sedupal, lekeken, bevesir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lifager, gulemir, vanate"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: sedupal, lekeken, lifager, gulemir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: sedupal, lifager, gulemir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: sedupal, lifager"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = sedupal, gulemir; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: sedupal, lekeken, bevesir, lifager, gulemir, vanate.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "dozuzi",
+    "sitopir",
+    "rifavas",
+    "benazur",
+    "padilir",
+    "mareke"
+   ],
+   "truth": {
+    "nexioms": [
+     "benazur",
+     "rifavas"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "dozuzi",
+      "rifavas",
+      "sitopir"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "benazur",
+      "mareke",
+      "padilir"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "benazur",
+      "dozuzi",
+      "padilir",
+      "sitopir"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "benazur",
+      "padilir",
+      "rifavas"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "benazur",
+      "rifavas"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "benazur",
+     "rifavas"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: dozuzi, sitopir, rifavas, benazur, padilir, mareke.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: dozuzi, sitopir, rifavas"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: benazur, padilir, mareke"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: dozuzi, sitopir, benazur, padilir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rifavas, benazur, padilir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rifavas, benazur"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = rifavas, benazur; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: dozuzi, sitopir, rifavas, benazur, padilir, mareke.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "fidole",
+    "pudelok",
+    "luvusi",
+    "vokosal",
+    "givumin",
+    "tefepi"
+   ],
+   "truth": {
+    "nexioms": [
+     "fidole",
+     "givumin"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "fidole",
+      "luvusi",
+      "pudelok"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "givumin",
+      "tefepi",
+      "vokosal"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fidole",
+      "givumin",
+      "tefepi",
+      "vokosal"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fidole",
+      "vokosal"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fidole",
+      "givumin"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "fidole",
+     "givumin"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: fidole, pudelok, luvusi, vokosal, givumin, tefepi.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fidole, pudelok, luvusi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: vokosal, givumin, tefepi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fidole, vokosal, givumin, tefepi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fidole, vokosal"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fidole, givumin"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = fidole, givumin; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: fidole, pudelok, luvusi, vokosal, givumin, tefepi.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "netirek",
+    "gazalar",
+    "mefelun",
+    "toradi",
+    "gafilek",
+    "fekada"
+   ],
+   "truth": {
+    "nexioms": [
+     "mefelun",
+     "netirek"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "gazalar",
+      "mefelun",
+      "netirek"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "netirek",
+      "toradi"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gazalar"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "mefelun",
+      "netirek"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "mefelun"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "mefelun",
+     "netirek"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: netirek, gazalar, mefelun, toradi, gafilek, fekada.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: netirek, gazalar, mefelun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: netirek, toradi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gazalar"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: netirek, mefelun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: mefelun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = netirek, mefelun; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: netirek, gazalar, mefelun, toradi, gafilek, fekada.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0
+  }
+ ]
+}

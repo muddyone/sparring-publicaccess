@@ -1,0 +1,453 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "CC",
+ "seed": 50000005,
+ "machines": [
+  {
+   "objects": [
+    "fomeno",
+    "pabosi",
+    "labikir",
+    "vofibal",
+    "zabale",
+    "kodezik"
+   ],
+   "truth": {
+    "nexioms": [
+     "kodezik",
+     "labikir"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "fomeno",
+      "labikir",
+      "pabosi"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fomeno",
+      "pabosi",
+      "vofibal",
+      "zabale"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fomeno",
+      "kodezik",
+      "labikir",
+      "pabosi"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fomeno",
+      "kodezik"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "kodezik",
+     "labikir"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: fomeno, pabosi, labikir, vofibal, zabale, kodezik.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fomeno, pabosi, labikir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fomeno, pabosi, vofibal, zabale"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fomeno, pabosi, labikir, kodezik"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: fomeno, kodezik"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = labikir, kodezik; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: fomeno, pabosi, labikir, vofibal, zabale, kodezik.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were kodezik and labikir.",
+   "note": {
+    "text": "Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After each result, eliminate incompatible hypotheses. Choose tests that split the remaining possibilities as evenly as possible. Important: four binary tests cannot guarantee distinguishing 30 hypotheses (only 16 possible result sequences). Don\u2019t assume every branch will be solvable. This successful sequence used objects A\u2013F in the order given: ABC \u2192 off; ABDE \u2192 off; ABCF \u2192 on; AF \u2192 off. After the first two results, one-nexiom mode is impossible: their combined tested objects leave only F untested, but there must be two nexioms. In two-nexiom mode, the third result narrows the pair to AF, BF, or CF. The last off result eliminates AF but does NOT distinguish BF from CF. Our final choice CF was correct, but lucky\u2014not logically established.",
+    "words_written": 132,
+    "first_draft_words": 132,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "gegopek",
+    "vobabu",
+    "mololo",
+    "fokesi",
+    "safumos",
+    "sizeter"
+   ],
+   "truth": {
+    "nexioms": [
+     "safumos",
+     "sizeter"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "gegopek",
+      "mololo",
+      "vobabu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fokesi",
+      "gegopek",
+      "safumos",
+      "vobabu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gegopek",
+      "mololo",
+      "sizeter",
+      "vobabu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fokesi",
+      "mololo",
+      "safumos"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "fokesi",
+     "sizeter"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After each result, eliminate incompatible hypotheses. Choose tests that split the remaining possibilities as evenly as possible. Important: four binary tests cannot guarantee distinguishing 30 hypotheses (only 16 possible result sequences). Don\u2019t assume every branch will be solvable. This successful sequence used objects A\u2013F in the order given: ABC \u2192 off; ABDE \u2192 off; ABCF \u2192 on; AF \u2192 off. After the first two results, one-nexiom mode is impossible: their combined tested objects leave only F untested, but there must be two nexioms. In two-nexiom mode, the third result narrows the pair to AF, BF, or CF. The last off result eliminates AF but does NOT distinguish BF from CF. Our final choice CF was correct, but lucky\u2014not logically established.\n\nNew machine. Its objects are: gegopek, vobabu, mololo, fokesi, safumos, sizeter.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gegopek, vobabu, mololo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gegopek, vobabu, fokesi, safumos"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gegopek, vobabu, mololo, sizeter"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: mololo, fokesi, safumos"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = fokesi, sizeter; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: gegopek, vobabu, mololo, fokesi, safumos, sizeter.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 878,
+   "feedback": "The nexioms on this machine were safumos and sizeter.",
+   "note": {
+    "text": "ANSWER: nexioms = safumos, sizeter; needs = two",
+    "words_written": 8,
+    "first_draft_words": 8,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "lalakur",
+    "ginozus",
+    "dukabun",
+    "kevuro",
+    "mepinin",
+    "sulabe"
+   ],
+   "truth": {
+    "nexioms": [
+     "lalakur",
+     "sulabe"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "dukabun",
+      "ginozus",
+      "lalakur"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "ginozus",
+      "kevuro",
+      "lalakur",
+      "mepinin"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dukabun",
+      "ginozus",
+      "lalakur",
+      "sulabe"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "lalakur",
+      "sulabe"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "lalakur",
+     "sulabe"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After each result, eliminate incompatible hypotheses. Choose tests that split the remaining possibilities as evenly as possible. Important: four binary tests cannot guarantee distinguishing 30 hypotheses (only 16 possible result sequences). Don\u2019t assume every branch will be solvable. This successful sequence used objects A\u2013F in the order given: ABC \u2192 off; ABDE \u2192 off; ABCF \u2192 on; AF \u2192 off. After the first two results, one-nexiom mode is impossible: their combined tested objects leave only F untested, but there must be two nexioms. In two-nexiom mode, the third result narrows the pair to AF, BF, or CF. The last off result eliminates AF but does NOT distinguish BF from CF. Our final choice CF was correct, but lucky\u2014not logically established.\nNote 2: ANSWER: nexioms = safumos, sizeter; needs = two\n\nNew machine. Its objects are: lalakur, ginozus, dukabun, kevuro, mepinin, sulabe.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lalakur, ginozus, dukabun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lalakur, ginozus, kevuro, mepinin"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lalakur, ginozus, dukabun, sulabe"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lalakur, sulabe"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = lalakur, sulabe; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: lalakur, ginozus, dukabun, kevuro, mepinin, sulabe.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 934,
+   "feedback": "The nexioms on this machine were lalakur and sulabe.",
+   "note": {
+    "text": "Track all 30 hypotheses (15 pairs \u00d7 two modes), eliminating those inconsistent with each result. Four binary tests cannot guarantee identifying all 30; never mistake a guess for a deduction. Label objects A\u2013F in the given order. This machine\u2019s sequence was ABC \u2192 off; ABDE \u2192 off; ABCF \u2192 on; AF \u2192 on. The first two off results rule out one-nexiom mode: only F lies outside their union, and two nexioms are required. In two-nexiom mode, ABCF \u2192 on then leaves exactly AF, BF, or CF. Finally, AF \u2192 on uniquely establishes AF and two-nexiom mode. Here A = lalakur and F = sulabe. If the final AF test had been off, BF and CF would remain indistinguishable. Choose future tests by tracking surviving hypotheses and seeking balanced splits, while recognizing that some branches remain ambiguous.",
+    "words_written": 136,
+    "first_draft_words": 136,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "gidame",
+    "seguri",
+    "miberu",
+    "laretas",
+    "mozivuk",
+    "nasaze"
+   ],
+   "truth": {
+    "nexioms": [
+     "gidame",
+     "seguri"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "gidame",
+      "miberu",
+      "seguri"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gidame",
+      "laretas"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "mozivuk",
+      "seguri"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "miberu"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "gidame",
+     "seguri"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Track all 30 hypotheses: 15 possible nexiom pairs \u00d7 two machine modes. After each result, eliminate incompatible hypotheses. Choose tests that split the remaining possibilities as evenly as possible. Important: four binary tests cannot guarantee distinguishing 30 hypotheses (only 16 possible result sequences). Don\u2019t assume every branch will be solvable. This successful sequence used objects A\u2013F in the order given: ABC \u2192 off; ABDE \u2192 off; ABCF \u2192 on; AF \u2192 off. After the first two results, one-nexiom mode is impossible: their combined tested objects leave only F untested, but there must be two nexioms. In two-nexiom mode, the third result narrows the pair to AF, BF, or CF. The last off result eliminates AF but does NOT distinguish BF from CF. Our final choice CF was correct, but lucky\u2014not logically established.\nNote 2: ANSWER: nexioms = safumos, sizeter; needs = two\nNote 3: Track all 30 hypotheses (15 pairs \u00d7 two modes), eliminating those inconsistent with each result. Four binary tests cannot guarantee identifying all 30; never mistake a guess for a deduction. Label objects A\u2013F in the given order. This machine\u2019s sequence was ABC \u2192 off; ABDE \u2192 off; ABCF \u2192 on; AF \u2192 on. The first two off results rule out one-nexiom mode: only F lies outside their union, and two nexioms are required. In two-nexiom mode, ABCF \u2192 on then leaves exactly AF, BF, or CF. Finally, AF \u2192 on uniquely establishes AF and two-nexiom mode. Here A = lalakur and F = sulabe. If the final AF test had been off, BF and CF would remain indistinguishable. Choose future tests by tracking surviving hypotheses and seeking balanced splits, while recognizing that some branches remain ambiguous.\n\nNew machine. Its objects are: gidame, seguri, miberu, laretas, mozivuk, nasaze.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gidame, seguri, miberu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: gidame, laretas"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: seguri, mozivuk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: miberu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = gidame, seguri; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: gidame, seguri, miberu, laretas, mozivuk, nasaze.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1731
+  }
+ ]
+}

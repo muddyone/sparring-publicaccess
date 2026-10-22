@@ -1,0 +1,426 @@
+{
+ "model_name": "anthropic",
+ "model": "claude-opus-5-5",
+ "memory": "M0",
+ "kind": "CC",
+ "seed": 50000009,
+ "machines": [
+  {
+   "objects": [
+    "kativo",
+    "gifeses",
+    "nirebon",
+    "ponogen",
+    "pofazi",
+    "genefa"
+   ],
+   "truth": {
+    "nexioms": [
+     "nirebon",
+     "pofazi"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "gifeses",
+      "kativo",
+      "nirebon"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gifeses",
+      "kativo",
+      "pofazi",
+      "ponogen"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "genefa",
+      "gifeses",
+      "kativo",
+      "ponogen"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "genefa",
+      "nirebon",
+      "ponogen"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "nirebon",
+     "pofazi"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: kativo, gifeses, nirebon, ponogen, pofazi, genefa.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "I'll start by testing half of the objects. This splits the 30 possibilities (15 possible pairs \u00d7 2 rules) evenly, 15 against 15.\n\nTEST: kativo, gifeses, nirebon"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "After that negative result, 15 possibilities remain:\n- **If one nexiom is enough to light it:** kativo, gifeses and nirebon are all ruled out, so the pair is two of ponogen, pofazi, genefa. That gives 3 cases.\n- **If both are needed:** the pair just can't be two of kativo, gifeses, nirebon. That gives 12 cases.\n\nThree tests can only tell apart 8 outcomes, so I can't guarantee a certain answer. I'll split the cases as evenly as possible.\n\nTesting kativo, gifeses, ponogen, pofazi gives an 8\u20137 split:\n- **Lights up (8 cases):** all 3 \"one is enough\" cases, plus 5 \"both needed\" cases. Those pairs are kativo+ponogen, kativo+pofazi, gifeses+ponogen, gifeses+pofazi and ponogen+pofazi.\n- **Stays dark (7 cases):** all \"both needed\".\n\nTEST: kativo, gifeses, ponogen, pofazi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since both tests stayed dark, the machine must need both nexioms. If one were enough, the second test would have lit up, because it contained ponogen and pofazi.\n\nWith that rule, the machine lights up only when the test contains both nexioms. The pair can't be two of kativo, gifeses, nirebon, or two of kativo, gifeses, ponogen, pofazi. That leaves 7 possible pairs:\n- kativo + genefa\n- gifeses + genefa\n- nirebon + ponogen\n- nirebon + pofazi\n- nirebon + genefa\n- ponogen + genefa\n- pofazi + genefa\n\nTwo tests can only tell apart 4 outcomes, so I may still have to guess between two pairs at the end. I'll split as evenly as possible. Testing kativo, gifeses, ponogen, genefa gives a 3\u20134 split:\n- **Lights up (3 pairs):** kativo + genefa, gifeses + genefa, or ponogen + genefa.\n- **Stays dark (4 pairs):** nirebon + ponogen, nirebon + pofazi, nirebon + genefa, or pofazi + genefa.\n\nTEST: kativo, gifeses, ponogen, genefa"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The machine needs both nexioms, and the third test also stayed dark. That rules out kativo + genefa, gifeses + genefa and ponogen + genefa. Four pairs remain:\n- nirebon + ponogen\n- nirebon + pofazi\n- nirebon + genefa\n- pofazi + genefa\n\nOne test has only two outcomes, so I can't separate four pairs for certain. The best I can do is a 2\u20132 split, which leaves a 50% chance at the end. Testing nirebon, ponogen, genefa does this:\n- **Lights up:** the pair is nirebon + ponogen or nirebon + genefa.\n- **Stays dark:** the pair is nirebon + pofazi or pofazi + genefa.\n\nTEST: nirebon, ponogen, genefa"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "The last test stayed dark, so the pair is either **nirebon + pofazi** or **pofazi + genefa**. The tests can't tell these two apart, so this answer is a 50/50 guess. The rule is certain: the machine needs both nexioms.\n\nANSWER: nexioms = nirebon, pofazi; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: kativo, gifeses, nirebon, ponogen, pofazi, genefa.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "duvenen",
+    "lopoti",
+    "furavu",
+    "masuful",
+    "tupivun",
+    "posipak"
+   ],
+   "truth": {
+    "nexioms": [
+     "furavu",
+     "lopoti"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "duvenen",
+      "furavu",
+      "lopoti"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "duvenen",
+      "masuful"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "lopoti",
+      "tupivun"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "furavu",
+      "lopoti"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "furavu",
+     "lopoti"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: duvenen, lopoti, furavu, masuful, tupivun, posipak.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "I can't guarantee a certain answer here. There are 15 possible pairs and 2 possible rules, so 30 possibilities, but 4 yes/no tests can only tell apart 16 outcomes. So I'll pick each test to split the remaining possibilities as evenly as I can.\n\nFor the first test I'll put half the objects on the machine: duvenen, lopoti and furavu.\n- **If it lights up (15 possibilities left):** either the rule is \"one\" and at least one nexiom is in this group (12 cases), or the rule is \"two\" and both nexioms are in this group (3 cases).\n- **If it stays dark (15 possibilities left):** either the rule is \"one\" and both nexioms are among the other three (3 cases), or the rule is \"two\" and at least one nexiom is outside this group (12 cases).\n\nEither way, half the possibilities are ruled out.\n\nTEST: duvenen, lopoti, furavu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "After the first test there are 15 possibilities left:\n- **Rule \"one\" (12 cases):** at least one nexiom is among duvenen, lopoti and furavu.\n- **Rule \"two\" (3 cases):** both nexioms are among those three (duvenen+lopoti, duvenen+furavu or lopoti+furavu).\n\nThree yes/no tests can only tell apart 8 outcomes, so I still can't guarantee the answer. I'll keep splitting the possibilities as evenly as I can.\n\nNext I'll test duvenen together with masuful:\n- **If it lights up (7 cases):** the rule is \"one\" and the pair includes duvenen or masuful. That leaves duvenen+lopoti, duvenen+furavu, duvenen+masuful, duvenen+tupivun, duvenen+posipak, lopoti+masuful or furavu+masuful.\n- **If it stays dark (8 cases):**\n  - Under rule \"one\", neither duvenen nor masuful is a nexiom. That leaves 5 pairs: lopoti+furavu, lopoti+tupivun, lopoti+posipak, furavu+tupivun or furavu+posipak.\n  - Under rule \"two\", all 3 earlier pairs remain, because none of them is exactly duvenen+masuful.\n\nTEST: duvenen, masuful"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "After two tests, 8 possibilities remain:\n- **Rule \"one\" (5 cases):** lopoti+furavu, lopoti+tupivun, lopoti+posipak, furavu+tupivun or furavu+posipak.\n- **Rule \"two\" (3 cases):** duvenen+lopoti, duvenen+furavu or lopoti+furavu.\n\nTwo yes/no tests can only tell apart 4 outcomes, so I can't guarantee the answer. The best I can do is narrow it to 2 equally likely cases.\n\nNext I'll test lopoti together with tupivun, which splits the 8 cases evenly:\n- **If it lights up (4 cases):** the rule must be \"one\" and the pair is lopoti+furavu, lopoti+tupivun, lopoti+posipak or furavu+tupivun.\n- **If it stays dark (4 cases):** the pair is furavu+posipak under rule \"one\", or duvenen+lopoti, duvenen+furavu or lopoti+furavu under rule \"two\".\n\nTEST: lopoti, tupivun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Four possibilities are left after three tests:\n- **Rule \"one\" (1 case):** furavu+posipak.\n- **Rule \"two\" (3 cases):** duvenen+lopoti, duvenen+furavu or lopoti+furavu.\n\nOne yes/no test can only tell apart 2 outcomes, so I can't guarantee the answer. The best I can do is split the 4 cases evenly, leaving a 50% chance on my final guess.\n\nI'll test lopoti together with furavu:\n- **If it lights up:** it's either furavu+posipak (rule \"one\") or lopoti+furavu (rule \"two\").\n- **If it stays dark:** it's either duvenen+lopoti or duvenen+furavu, both under rule \"two\".\n\nTEST: lopoti, furavu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "Two possibilities fit all four results equally well, so this is a 50/50 guess:\n- **Rule \"one\":** the nexioms are furavu and posipak.\n- **Rule \"two\":** the nexioms are lopoti and furavu.\n\nI'll go with lopoti and furavu under rule \"two\".\n\nANSWER: nexioms = lopoti, furavu; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: duvenen, lopoti, furavu, masuful, tupivun, posipak.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "ruguni",
+    "sifulal",
+    "gakorir",
+    "ruseso",
+    "vutorel",
+    "kutupok"
+   ],
+   "truth": {
+    "nexioms": [
+     "ruseso",
+     "vutorel"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "gakorir",
+      "ruguni",
+      "sifulal"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "ruguni",
+      "ruseso",
+      "sifulal",
+      "vutorel"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "kutupok",
+      "ruguni",
+      "ruseso"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "ruguni",
+      "sifulal",
+      "vutorel"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "ruseso",
+     "vutorel"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: ruguni, sifulal, gakorir, ruseso, vutorel, kutupok.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "With 6 objects there are 15 possible pairs and 2 possible rules, so 30 possibilities in total. Four yes/no tests give at most 16 different outcome patterns, so no strategy is guaranteed to pin down the answer. I'll test adaptively to narrow it down as much as possible, starting with half the objects.\n\nTEST: ruguni, sifulal, gakorir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "After the first test, if the machine needs one nexiom, both nexioms must be among ruseso, vutorel and kutupok (3 possible pairs). If it needs two, any of the 12 pairs not entirely within the first three objects is still possible. That leaves 15 possibilities, but 3 more tests give only 8 outcome patterns, so I can't guarantee certainty. Testing ruguni, sifulal, ruseso and vutorel splits them about evenly: 8 would light it and 7 would not.\n\nTEST: ruguni, sifulal, ruseso, vutorel"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "After two tests, 8 possibilities remain:\n- **Needs one:** the nexioms must be two of ruseso, vutorel and kutupok. Any such pair includes ruseso or vutorel, so all 3 pairs fit both results.\n- **Needs two:** both nexioms must be among ruguni, sifulal, ruseso and vutorel, but not ruguni + sifulal. That leaves ruguni + ruseso, ruguni + vutorel, sifulal + ruseso, sifulal + vutorel and ruseso + vutorel.\n\nTwo tests give at most 4 outcomes, so I can't guarantee the answer. Testing ruguni, ruseso and kutupok splits the 8 evenly:\n- **Lights up (4):** any of the three \"needs one\" pairs, or \"needs two\" with ruguni + ruseso.\n- **Does not light (4):** \"needs two\" with ruguni + vutorel, sifulal + ruseso, sifulal + vutorel, or ruseso + vutorel.\n\nTEST: ruguni, ruseso, kutupok"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Only the \"needs two\" rule now fits, because \"needs one\" would have lit up on the last test (kutupok, ruseso or vutorel would be among the nexioms). Four pairs remain:\n- ruguni + vutorel\n- sifulal + ruseso\n- sifulal + vutorel\n- ruseso + vutorel\n\nOne test can only split these into two groups, so I'll still have to guess between two at the end. Testing ruguni, sifulal and vutorel splits them evenly:\n- **Lights up:** the pair is ruguni + vutorel or sifulal + vutorel.\n- **Does not light:** the pair is sifulal + ruseso or ruseso + vutorel.\n\nTEST: ruguni, sifulal, vutorel"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "The rule is **needs two**: under \"needs one,\" the third test would have lit up. The last test left two pairs that fit every result:\n- sifulal + ruseso\n- ruseso + vutorel\n\nNothing separates them, so the pair below is a coin-flip guess between the two. As expected at the start, four tests could not guarantee the answer.\n\nANSWER: nexioms = ruseso, vutorel; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: ruguni, sifulal, gakorir, ruseso, vutorel, kutupok.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "numokos",
+    "sigage",
+    "zutegon",
+    "zurese",
+    "tusuma",
+    "zinara"
+   ],
+   "truth": {
+    "nexioms": [
+     "sigage",
+     "zutegon"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "numokos",
+      "sigage",
+      "zutegon"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "numokos",
+      "zurese"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "sigage",
+      "tusuma"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "numokos",
+      "zutegon"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "sigage",
+     "zutegon"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: numokos, sigage, zutegon, zurese, tusuma, zinara.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "With 6 objects there are 15 possible pairs and 2 possible rules, so 30 possibilities in all. Four yes/no tests can only tell apart 16 outcomes, so I can't guarantee a correct answer. I'll start by splitting the objects in half and adapt from there.\n\nTEST: numokos, sigage, zutegon"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since the machine lit up for numokos, sigage, zutegon, that leaves 15 possibilities:\n- **Needs one:** at least one nexiom is among those three. That gives 12 pairs.\n- **Needs two:** both nexioms are among those three. That gives 3 pairs.\n\nTesting numokos with zurese splits these into 7 that predict it lights and 8 that predict it stays dark. That is close to an even split.\n\nTEST: numokos, zurese"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "There are 8 possibilities left:\n- **Needs one (5):** sigage+zutegon, sigage+tusuma, sigage+zinara, zutegon+tusuma, zutegon+zinara.\n- **Needs two (3):** numokos+sigage, numokos+zutegon, sigage+zutegon.\n\nTwo tests give at most 4 outcomes, so I can't separate all 8. Testing sigage with tusuma splits them 4 and 4. The first four needs-one pairs predict it lights. Zutegon+zinara and all three needs-two pairs predict it stays dark.\n\nTEST: sigage, tusuma"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Four possibilities remain:\n- **Needs one:** zutegon+zinara.\n- **Needs two:** numokos+sigage, numokos+zutegon, sigage+zutegon.\n\nOne test can't separate four cases. The best I can do is split them 2 and 2:\n- If numokos with zutegon lights up, it is zutegon+zinara (needs one) or numokos+zutegon (needs two).\n- If it stays dark, it is numokos+sigage or sigage+zutegon (both needs two).\n\nTEST: numokos, zutegon"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "The last test leaves two possibilities, both needing two nexioms: numokos+sigage or sigage+zutegon. No test left me able to tell these apart, so this is a guess between equally likely options. I'm confident about the rule and that sigage is a nexiom, but there is a 50% chance the partner is numokos rather than zutegon.\n\nANSWER: nexioms = sigage, zutegon; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: numokos, sigage, zutegon, zurese, tusuma, zinara.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  }
+ ]
+}

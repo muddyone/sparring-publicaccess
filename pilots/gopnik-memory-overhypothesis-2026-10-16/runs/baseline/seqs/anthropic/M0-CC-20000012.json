@@ -1,0 +1,472 @@
+{
+ "model_name": "anthropic",
+ "model": "claude-opus-5-5",
+ "memory": "M0",
+ "kind": "CC",
+ "seed": 20000012,
+ "machines": [
+  {
+   "objects": [
+    "boramo",
+    "midedol",
+    "roboga",
+    "matoner",
+    "bupubon",
+    "sazobun"
+   ],
+   "truth": {
+    "nexioms": [
+     "bupubon",
+     "sazobun"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "boramo",
+      "midedol",
+      "roboga"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bupubon",
+      "matoner",
+      "sazobun"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "matoner"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bupubon",
+      "sazobun"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bupubon"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bupubon",
+     "sazobun"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: boramo, midedol, roboga, matoner, bupubon, sazobun.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "I'll start by testing half of the objects. This splits the 30 possible cases (15 pairs \u00d7 2 rules) into two groups of 15, whichever way it turns out.\n\nTEST: boramo, midedol, roboga"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The machine did not light up with boramo, midedol and roboga. That leaves 15 possibilities:\n- **If one nexiom is enough:** none of those three can be a nexiom. So both nexioms are among matoner, bupubon and sazobun, which gives 3 possible pairs.\n- **If both nexioms are needed:** the only pairs ruled out are those lying entirely within the first group. That leaves 12 possible pairs.\n\nNext I'll test the other three objects together, matoner, bupubon and sazobun.\n- **If it lights up:** both nexioms are among these three, and the rule could be either one. That leaves 6 cases.\n- **If it doesn't light up:** the rule must be \"two\", with one nexiom in each group. That leaves 9 cases.\n\nEither way, the remaining 4 tests are enough to finish.\n\nTEST: matoner, bupubon, sazobun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since the machine lit up with matoner, bupubon and sazobun, both nexioms must be among those three. That holds under either rule, because under \"two\" both would have to be on the machine together.\n\nThat leaves 6 cases: 3 possible pairs (matoner+bupubon, matoner+sazobun, bupubon+sazobun), each with either rule.\n\nNext I'll test matoner alone.\n- **If it lights up:** the rule must be \"one\", since a single object can't light a \"two\" machine. Matoner is then a nexiom, and the pair is matoner+bupubon or matoner+sazobun. That leaves 2 cases.\n- **If it doesn't light up:** either the rule is \"one\" with bupubon+sazobun, or the rule is \"two\" with any of the 3 pairs. That leaves 4 cases.\n\nThree tests will still remain after this, which is enough either way.\n\nTEST: matoner"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since matoner alone did not light up, 4 cases remain:\n- \"one\" rule with bupubon + sazobun\n- \"two\" rule with matoner + bupubon\n- \"two\" rule with matoner + sazobun\n- \"two\" rule with bupubon + sazobun\n\nNext I'll test bupubon and sazobun together.\n- **If it lights up:** the pair is bupubon + sazobun under either rule. Testing bupubon alone would then tell me which rule it is.\n- **If it doesn't light up:** the rule is \"two\" and the pair is either matoner + bupubon or matoner + sazobun. Testing matoner + bupubon would then settle it.\n\nTEST: bupubon, sazobun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since bupubon and sazobun lit up together, the nexioms are bupubon and sazobun. The only open question is the rule.\n\nI'll test bupubon alone.\n- **If it lights up:** one nexiom is enough.\n- **If it doesn't light up:** both nexioms are needed.\n\nTEST: bupubon"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Bupubon is a nexiom, but it did not light the machine on its own. So this machine needs both nexioms together.\n\nAll the results fit this answer:\n- **boramo, midedol, roboga:** no nexioms, no light.\n- **matoner, bupubon, sazobun:** both nexioms, lit.\n- **matoner alone:** no light.\n- **bupubon + sazobun:** lit.\n- **bupubon alone:** no light.\n\nANSWER: nexioms = bupubon, sazobun; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: boramo, midedol, roboga, matoner, bupubon, sazobun.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "sudelok",
+    "kebavus",
+    "denedas",
+    "vetekin",
+    "kizopo",
+    "rugabuk"
+   ],
+   "truth": {
+    "nexioms": [
+     "denedas",
+     "vetekin"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "denedas",
+      "kebavus",
+      "sudelok"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "kebavus",
+      "kizopo",
+      "sudelok",
+      "vetekin"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "denedas",
+      "rugabuk",
+      "vetekin"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "denedas",
+      "vetekin"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "denedas",
+     "vetekin"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: sudelok, kebavus, denedas, vetekin, kizopo, rugabuk.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "I'll start by testing half the objects together, to see whether any nexiom is among the first three.\n\nTEST: sudelok, kebavus, denedas"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since that didn't light up, either the machine needs one nexiom and both are among vetekin, kizopo and rugabuk, or it needs two and they aren't both in the first group. That leaves 15 possibilities. This test splits them roughly in half: 8 predict it lights up and 7 predict it doesn't.\n\nTEST: sudelok, kebavus, vetekin, kizopo"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since test 1 did not light, if the machine needs only one nexiom, both nexioms must be among vetekin, kizopo and rugabuk. Test 2 did not light either, so in that case neither vetekin nor kizopo can be a nexiom. That would leave only rugabuk, which is impossible. So **the machine needs two nexioms**.\n\nWith two needed, a test lights only if it contains both nexioms. I remove every pair that sat entirely inside test 1 or test 2. That leaves 7 possible pairs:\n- sudelok + rugabuk\n- kebavus + rugabuk\n- denedas + vetekin\n- denedas + kizopo\n- denedas + rugabuk\n- vetekin + rugabuk\n- kizopo + rugabuk\n\nI'll test denedas, vetekin and rugabuk together. It lights only for 3 of these pairs (denedas + vetekin, denedas + rugabuk, vetekin + rugabuk). That splits the 7 pairs into groups of 3 and 4, and each group can be narrowed to one pair with the tests I have left.\n\nTEST: denedas, vetekin, rugabuk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Because the machine needs two nexioms, the lit result means two of denedas, vetekin and rugabuk are the nexioms. That leaves 3 possible pairs:\n- denedas + vetekin\n- denedas + rugabuk\n- vetekin + rugabuk\n\nI'll test denedas and vetekin together. If it lights, those two are the nexioms. If it doesn't, one more test will separate the other two pairs.\n\nTEST: denedas, vetekin"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The machine must need two nexioms. The first two tests didn't light, so in \"needs one\" mode none of sudelok, kebavus, denedas, vetekin or kizopo could be a nexiom. That would leave only rugabuk, which isn't enough for two nexioms.\n\nIn \"needs two\" mode, a test lights only when both nexioms are on the machine. Denedas and vetekin together just lit up, so they are the two nexioms. This also agrees with the earlier results: neither of the first two tests had both of them, and the third test did.\n\nANSWER: nexioms = denedas, vetekin; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: sudelok, kebavus, denedas, vetekin, kizopo, rugabuk.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "fivekur",
+    "zazoku",
+    "danovu",
+    "limugan",
+    "fazeges",
+    "lasozik"
+   ],
+   "truth": {
+    "nexioms": [
+     "fivekur",
+     "lasozik"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "danovu",
+      "fivekur",
+      "zazoku"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fazeges",
+      "fivekur",
+      "limugan",
+      "zazoku"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "danovu",
+      "lasozik",
+      "limugan"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fivekur",
+      "lasozik",
+      "zazoku"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fivekur",
+      "lasozik"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "fivekur",
+     "lasozik"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: fivekur, zazoku, danovu, limugan, fazeges, lasozik.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "I'll start by testing three of the six objects. Under \"needs one\" it lights if either nexiom is among them, and under \"needs two\" only if both are. That splits the possibilities roughly in half.\n\nTEST: fivekur, zazoku, danovu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since nothing lit, either the machine needs one and both nexioms are among limugan, fazeges and lasozik (3 cases), or it needs two and the pair isn't entirely within the first three (12 cases). That leaves 15 possibilities.\n\nNext I'll test fivekur, zazoku, limugan and fazeges, which splits them about evenly:\n- **Lit (8 cases):**\n  - needs one with pair {limugan, fazeges}, {limugan, lasozik} or {fazeges, lasozik}, or\n  - needs two with pair {fivekur, limugan}, {fivekur, fazeges}, {zazoku, limugan}, {zazoku, fazeges} or {limugan, fazeges}.\n- **Not lit (7 cases):** needs two, and the pair either includes lasozik or is danovu with limugan or fazeges.\n\nTEST: fivekur, zazoku, limugan, fazeges"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Both tests failed, and the second one included limugan and fazeges. So \"needs one\" is ruled out: under \"needs one\", the first result put both nexioms among limugan, fazeges and lasozik, so the second test would have lit. The machine must need two.\n\nFrom the two failed tests, the pair is one of 7 options:\n- lasozik with fivekur, zazoku, danovu, limugan or fazeges\n- danovu with limugan\n- danovu with fazeges\n\nNext I'll test danovu, limugan and lasozik:\n- **Lit (3 cases):** the pair is {danovu, lasozik}, {limugan, lasozik} or {danovu, limugan}.\n- **Not lit (4 cases):** the pair is {fivekur, lasozik}, {zazoku, lasozik}, {fazeges, lasozik} or {danovu, fazeges}.\n\nTEST: danovu, limugan, lasozik"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The machine needs two, and the third test rules out three more pairs. Four pairs remain:\n- {fivekur, lasozik}\n- {zazoku, lasozik}\n- {fazeges, lasozik}\n- {danovu, fazeges}\n\nNext I'll test fivekur, zazoku and lasozik:\n- **Lit:** the pair is {fivekur, lasozik} or {zazoku, lasozik}.\n- **Not lit:** the pair is {fazeges, lasozik} or {danovu, fazeges}.\n\nEither way, one more test will settle it.\n\nTEST: fivekur, zazoku, lasozik"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "It lit, so the pair is either {fivekur, lasozik} or {zazoku, lasozik}.\n\nNext I'll test fivekur and lasozik together:\n- **Lit:** the nexioms are fivekur and lasozik.\n- **Not lit:** the nexioms are zazoku and lasozik.\n\nTEST: fivekur, lasozik"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "It lit, so the nexioms are fivekur and lasozik, and the machine needs both of them together.\n\nThis matches all five results:\n- **Tests 1 and 2 (not lit):** each had fivekur but not lasozik.\n- **Test 3 (not lit):** it had lasozik but not fivekur.\n- **Tests 4 and 5 (lit):** each had both.\n\nANSWER: nexioms = fivekur, lasozik; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: fivekur, zazoku, danovu, limugan, fazeges, lasozik.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "gutomes",
+    "tikuva",
+    "relupuk",
+    "zepuko",
+    "zikezar",
+    "nisemek"
+   ],
+   "truth": {
+    "nexioms": [
+     "tikuva",
+     "zepuko"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "gutomes",
+      "relupuk",
+      "tikuva"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gutomes",
+      "tikuva",
+      "zepuko",
+      "zikezar"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "gutomes",
+      "nisemek",
+      "zepuko"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "gutomes",
+      "tikuva",
+      "zikezar"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "tikuva",
+      "zepuko"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "tikuva",
+     "zepuko"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": false,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: gutomes, tikuva, relupuk, zepuko, zikezar, nisemek.\nYou have 6 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "There are 15 possible pairs and 2 possible rules, which gives 30 hypotheses. Testing three objects splits them evenly. If it lights, that fits 12 pairs under the \"one\" rule and 3 under the \"two\" rule, so 15 hypotheses either way.\n\nTEST: gutomes, tikuva, relupuk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 5 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The test of gutomes, tikuva and relupuk did not light, which leaves 15 possibilities:\n- **Needs one nexiom:** none of those three can be a nexiom, so the pair is among zepuko, zikezar and nisemek. That gives 3 pairs.\n- **Needs two:** any pair works except one made entirely from gutomes, tikuva and relupuk. That gives 12 pairs.\n\nTesting gutomes, tikuva, zepuko and zikezar splits these 15 into 8 if it lights and 7 if it does not:\n- **Needs one:** all 3 remaining pairs contain zepuko or zikezar, so it would light.\n- **Needs two:** it would light for 5 pairs: gutomes\u2013zepuko, gutomes\u2013zikezar, tikuva\u2013zepuko, tikuva\u2013zikezar and zepuko\u2013zikezar.\n\nTEST: gutomes, tikuva, zepuko, zikezar"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 4 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Two tests have not lit up the machine:\n- **Test 1 (no light):** gutomes, tikuva, relupuk.\n- **Test 2 (light):** gutomes, tikuva, zepuko, zikezar.\n\nThat leaves 8 possibilities:\n- **Needs one nexiom:** the pair is zepuko\u2013zikezar, zepuko\u2013nisemek or zikezar\u2013nisemek.\n- **Needs two:** the pair is gutomes\u2013zepuko, gutomes\u2013zikezar, tikuva\u2013zepuko, tikuva\u2013zikezar or zepuko\u2013zikezar.\n\nTesting gutomes, zepuko and nisemek splits these 4 and 4:\n- **It would light for:** all three \"needs one\" pairs, plus \"needs two\" with gutomes\u2013zepuko.\n- **It would stay dark for:** \"needs two\" with gutomes\u2013zikezar, tikuva\u2013zepuko, tikuva\u2013zikezar or zepuko\u2013zikezar.\n\nTEST: gutomes, zepuko, nisemek"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Every \"needs one\" pair is ruled out, because each would have lit test 3. So this machine needs two nexioms, and four pairs remain:\n- gutomes\u2013zikezar\n- tikuva\u2013zepuko\n- tikuva\u2013zikezar\n- zepuko\u2013zikezar\n\nTesting gutomes, tikuva and zikezar splits these 2 and 2:\n- **It would light for:** gutomes\u2013zikezar or tikuva\u2013zikezar.\n- **It would stay dark for:** tikuva\u2013zepuko or zepuko\u2013zikezar.\n\nOne more test will then settle it.\n\nTEST: gutomes, tikuva, zikezar"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Test 4 did not light, which rules out gutomes\u2013zikezar and tikuva\u2013zikezar. Two pairs remain, both under the \"needs two\" rule:\n- tikuva\u2013zepuko\n- zepuko\u2013zikezar\n\nTesting tikuva and zepuko settles it: it lights only if they are the pair, and stays dark if the pair is zepuko\u2013zikezar.\n\nTEST: tikuva, zepuko"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Test 5 lit with only tikuva and zepuko on the machine, so they are the nexioms. Test 3 had already shown that this machine needs both nexioms together. This answer fits all five results: only test 2 and test 5 had both objects on the machine, and only those lit.\n\nANSWER: nexioms = tikuva, zepuko; needs = two"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: gutomes, tikuva, relupuk, zepuko, zikezar, nisemek.\nYou have 6 tests. Make your first move.",
+   "preamble_chars": 0
+  }
+ ]
+}

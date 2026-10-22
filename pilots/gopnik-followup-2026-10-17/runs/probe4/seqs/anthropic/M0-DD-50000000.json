@@ -1,0 +1,416 @@
+{
+ "model_name": "anthropic",
+ "model": "claude-opus-5-5",
+ "memory": "M0",
+ "kind": "DD",
+ "seed": 50000000,
+ "machines": [
+  {
+   "objects": [
+    "zebile",
+    "dopaban",
+    "daforor",
+    "semoval",
+    "saneki",
+    "mubades"
+   ],
+   "truth": {
+    "nexioms": [
+     "dopaban",
+     "semoval"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "daforor",
+      "dopaban",
+      "zebile"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "semoval",
+      "zebile"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "dopaban",
+      "saneki"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "saneki"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dopaban",
+     "zebile"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: zebile, dopaban, daforor, semoval, saneki, mubades.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "Placing three of the six objects on the machine splits the 30 possible cases (15 pairs \u00d7 2 rules) into two groups of 15, whichever way the light goes.\n\nTEST: zebile, dopaban, daforor"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The machine lit up with zebile, dopaban and daforor on it, so 15 cases are still possible:\n- **Needs one:** 12 cases, any pair with at least one nexiom among those three.\n- **Needs two:** 3 cases, both nexioms among those three.\n\nWith 3 tests there are only 8 possible result patterns, fewer than the 15 remaining cases. So I can't guarantee a correct answer and will aim for the most even splits.\n\nTesting zebile with semoval splits the cases 7 to 8:\n- **Lights up (7 cases):** a needs-one machine where the pair includes zebile or semoval.\n- **Stays dark (8 cases):** the other 5 needs-one pairs, plus all 3 needs-two pairs, since no pair within the first three can be fully on.\n\nTEST: zebile, semoval"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Both tests lit up, so the machine must need only one nexiom. The two-nexiom cases are ruled out because no pair can be both within {zebile, dopaban, daforor} and within {zebile, semoval}.\n\nThat leaves 7 possible pairs:\n- **Pairs with zebile (5):** zebile\u2013dopaban, zebile\u2013daforor, zebile\u2013semoval, zebile\u2013saneki, zebile\u2013mubades.\n- **Pairs with semoval (2):** semoval\u2013dopaban, semoval\u2013daforor.\n\nTwo tests give only 4 possible result patterns, fewer than the 7 pairs, so I still can't guarantee the answer. I'll aim for the most even split.\n\nTesting dopaban with saneki splits the pairs 3 to 4:\n- **Lights up (3):** zebile\u2013dopaban, zebile\u2013saneki, semoval\u2013dopaban.\n- **Stays dark (4):** zebile\u2013daforor, zebile\u2013semoval, zebile\u2013mubades, semoval\u2013daforor.\n\nTEST: dopaban, saneki"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The light came on with dopaban and saneki, so three pairs remain, all on a machine that needs only one nexiom:\n- zebile\u2013dopaban\n- zebile\u2013saneki\n- semoval\u2013dopaban\n\nWith one test there are only two possible results for three pairs, so the best I can do is split them 1 to 2. Testing saneki alone does this:\n- **Lights up:** the pair must be zebile\u2013saneki.\n- **Stays dark:** the pair is zebile\u2013dopaban or semoval\u2013dopaban, and I will have to guess between them.\n\nTEST: saneki"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "Saneki on its own stayed dark, so saneki is not a nexiom. That rules out zebile\u2013saneki.\n\nTwo pairs are still possible, both on a machine that needs only one nexiom:\n- zebile\u2013dopaban\n- semoval\u2013dopaban\n\nDopaban must be a nexiom, but my tests cannot tell zebile from semoval. This answer is a guess between the two, with an even chance of being right.\n\nANSWER: nexioms = zebile, dopaban; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: zebile, dopaban, daforor, semoval, saneki, mubades.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "semabil",
+    "koramen",
+    "nalezul",
+    "fozatuk",
+    "nilezo",
+    "nafumas"
+   ],
+   "truth": {
+    "nexioms": [
+     "koramen",
+     "semabil"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "koramen",
+      "nalezul",
+      "semabil"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fozatuk",
+      "semabil"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "koramen",
+      "nalezul"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "koramen"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "koramen",
+     "semabil"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: semabil, koramen, nalezul, fozatuk, nilezo, nafumas.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "I'll start by testing half of the objects, which splits the 30 possible explanations evenly (15 would light, 15 wouldn't).\n\nTEST: semabil, koramen, nalezul"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Of 30 possible explanations (15 pairs \u00d7 2 rules), 15 are still possible after the first light-up:\n- **Needs one nexiom:** any pair with at least one of semabil, koramen or nalezul. That is 12 pairs.\n- **Needs two nexioms:** a pair taken entirely from those three. That is 3 pairs.\n\nThree tests give at most 8 different result patterns, so I can't guarantee separating all 15. I'll pick the test that splits them most evenly.\n\nTesting semabil + fozatuk:\n- **Lights up (7 cases):** needs-one with semabil in the pair (5 pairs), or needs-one with {koramen, fozatuk} or {nalezul, fozatuk}.\n- **Stays dark (8 cases):** everything else, including all 3 needs-two cases.\n\nTEST: semabil, fozatuk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Every remaining explanation is a **needs one** machine. A needs-two machine would have kept semabil + fozatuk dark, because fozatuk wasn't in the first lit test.\n\nSeven pairs are still possible:\n- **With semabil (5):** {semabil, koramen}, {semabil, nalezul}, {semabil, fozatuk}, {semabil, nilezo}, {semabil, nafumas}.\n- **With fozatuk (2):** {koramen, fozatuk}, {nalezul, fozatuk}.\n\nTwo tests give at most 4 result patterns, so I can't separate all 7 for certain. The best I can do is split them about 4 and 3, then about 2 and 2.\n\nTesting koramen + nalezul:\n- **Lights up (4 cases):** {semabil, koramen}, {semabil, nalezul}, {koramen, fozatuk}, {nalezul, fozatuk}.\n- **Stays dark (3 cases):** {semabil, fozatuk}, {semabil, nilezo}, {semabil, nafumas}.\n\nTEST: koramen, nalezul"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since the machine needs only one nexiom, four pairs are still possible. Each contains semabil or fozatuk, and also koramen or nalezul:\n- {semabil, koramen}\n- {semabil, nalezul}\n- {koramen, fozatuk}\n- {nalezul, fozatuk}\n\nOne test has only two outcomes, so I can't separate all four for certain. Whatever I test, I'll be left guessing between two pairs. Testing koramen alone splits them evenly:\n- **Lights up:** {semabil, koramen} or {koramen, fozatuk}.\n- **Stays dark:** {semabil, nalezul} or {nalezul, fozatuk}.\n\nTEST: koramen"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "The machine **needs one** nexiom, and **koramen** is one of the nexioms, since it lit the machine by itself.\n\nThe tests can't tell me whether the other nexiom is semabil or fozatuk. Both pairs, {semabil, koramen} and {koramen, fozatuk}, fit every result:\n- Test 1 (semabil, koramen, nalezul) lit: koramen was on it.\n- Test 2 (semabil, fozatuk) lit: both pairs include semabil or fozatuk.\n- Test 3 (koramen, nalezul) lit: koramen was on it.\n- Test 4 (koramen) lit: both pairs include koramen.\n\nSo the second nexiom is a 50/50 guess, and I'll pick semabil.\n\nANSWER: nexioms = semabil, koramen; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: semabil, koramen, nalezul, fozatuk, nilezo, nafumas.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "rituna",
+    "retibas",
+    "zenepak",
+    "zatatek",
+    "kezila",
+    "matale"
+   ],
+   "truth": {
+    "nexioms": [
+     "matale",
+     "retibas"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "retibas",
+      "rituna",
+      "zenepak"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "rituna",
+      "zatatek"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "kezila",
+      "retibas"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "kezila"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "retibas",
+     "zenepak"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: rituna, retibas, zenepak, zatatek, kezila, matale.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "With 6 objects there are 15 possible nexiom pairs and 2 possible rules, so 30 possibilities in all. Four yes/no tests give at most 16 outcomes, so no plan can guarantee the right answer. The best I can do is split the possibilities as evenly as I can at each step.\n\nFor the first test I'll put three objects on the machine: rituna, retibas and zenepak. This splits the 30 possibilities exactly 15 and 15:\n- **It lights up** in 15 cases. Either the machine needs one nexiom and at least one of the pair is among these three (12 cases). Or it needs two and both nexioms are among these three (3 cases).\n- **It stays dark** in 15 cases. Either it needs one and both nexioms are among the other three (3 cases). Or it needs two and the pair is not entirely among these three (12 cases).\n\nTEST: rituna, retibas, zenepak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Of the 30 starting possibilities, 15 fit the light:\n- **Needs one (12 cases):** at least one nexiom is among rituna, retibas and zenepak. Three of these pairs lie inside that group and nine have one object on each side.\n- **Needs two (3 cases):** both nexioms are among rituna, retibas and zenepak.\n\nNext I'll test rituna together with zatatek, which splits these 15 cases about as evenly as possible:\n- **It lights up** in 7 cases. All of them need one nexiom. In 2 the pair lies inside the first group and includes rituna. In 5 the pair crosses the groups and includes rituna or zatatek.\n- **It stays dark** in 8 cases. In 5 the machine needs one nexiom and the pair includes neither rituna nor zatatek. The other 3 are all the \"needs two\" cases.\n\nTesting rituna alone would split 5 and 10, and testing rituna with retibas would split 10 and 5. Both are less even.\n\nTwo tests can tell apart at most 4 cases, so the 8-case branch can't be fully resolved. Some risk of guessing at the end can't be avoided.\n\nTEST: rituna, zatatek"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Eight possibilities fit both results so far:\n- **Needs one (5 cases):** neither rituna nor zatatek is a nexiom, and at least one of retibas or zenepak is. The pair is retibas+zenepak, retibas+kezila, retibas+matale, zenepak+kezila or zenepak+matale.\n- **Needs two (3 cases):** the pair is rituna+retibas, rituna+zenepak or retibas+zenepak.\n\nTwo tests give at most 4 outcomes, so at best I can narrow these 8 down to 2 and then guess between them.\n\nI'll test retibas with kezila, which splits the 8 cases exactly 4 and 4:\n- **It lights up** in 4 cases, all needing one nexiom: retibas+zenepak, retibas+kezila, retibas+matale and zenepak+kezila.\n- **It stays dark** in 4 cases. One needs one nexiom: zenepak+matale. Three need two: rituna+retibas, rituna+zenepak and retibas+zenepak.\n\nTEST: retibas, kezila"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Four possibilities remain, and all of them need only one nexiom:\n- retibas + zenepak\n- retibas + kezila\n- retibas + matale\n- zenepak + kezila\n\nOne test can only split these into two groups of two, so after it I will still have to guess between two pairs.\n\nI'll test kezila alone:\n- **If it lights up:** kezila is a nexiom, so the pair is retibas + kezila or zenepak + kezila.\n- **If it stays dark:** kezila is not a nexiom, so the pair is retibas + zenepak or retibas + matale.\n\nTEST: kezila"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "Kezila did not light the machine, so it is not a nexiom. That leaves two pairs that fit all four results, and both need only one nexiom:\n- retibas + zenepak\n- retibas + matale\n\nRetibas is a nexiom either way. The tests cannot tell zenepak from matale as its partner, so this is a 50/50 guess, and I'm going with zenepak.\n\nANSWER: nexioms = retibas, zenepak; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: rituna, retibas, zenepak, zatatek, kezila, matale.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "foline",
+    "zezenun",
+    "nesutir",
+    "zilizu",
+    "susazil",
+    "pibobal"
+   ],
+   "truth": {
+    "nexioms": [
+     "pibobal",
+     "susazil"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "foline",
+      "nesutir",
+      "zezenun"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "foline",
+      "susazil",
+      "zezenun",
+      "zilizu"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "foline",
+      "pibobal",
+      "zilizu"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "pibobal"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "pibobal",
+     "zilizu"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: foline, zezenun, nesutir, zilizu, susazil, pibobal.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "With 15 possible pairs and 2 possible rules, there are 30 hypotheses but only 16 outcomes from 4 tests, so I can't guarantee a certain answer. I'll start by testing half the objects to split the possibilities.\n\nTEST: foline, zezenun, nesutir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The first test did not light up, so 15 possibilities remain:\n- **If one nexiom is enough:** neither nexiom is among foline, zezenun or nesutir. So both are among zilizu, susazil and pibobal, giving 3 possible pairs.\n- **If both nexioms are needed:** the only thing ruled out is both nexioms being in that first group. That leaves 12 possible pairs.\n\nNext I'll test foline, zezenun, zilizu and susazil, because it splits these 15 almost evenly:\n- **Lights up (8 cases):** all 3 one-nexiom pairs, plus the 5 two-nexiom pairs inside this group other than foline + zezenun.\n- **Stays dark (7 cases):** every other two-nexiom pair.\n\nThree tests can only separate 8 outcomes, so I may still have to guess at the end.\n\nTEST: foline, zezenun, zilizu, susazil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Eight possibilities remain:\n- **If one nexiom is enough:** the pair is zilizu + susazil, zilizu + pibobal, or susazil + pibobal.\n- **If both nexioms are needed:** the pair is foline + zilizu, foline + susazil, zezenun + zilizu, zezenun + susazil, or zilizu + susazil.\n\nTwo tests give at most 4 outcomes, so I can't separate all 8. The best I can do is cut them to 2, leaving a 50% guess at the end.\n\nI'll test foline, zilizu and pibobal, which splits the 8 evenly:\n- **Lights up (4 cases):** all three one-nexiom pairs, plus foline + zilizu if both are needed.\n- **Stays dark (4 cases):** foline + susazil, zezenun + zilizu, zezenun + susazil, or zilizu + susazil, all needing both.\n\nEither way, my last test can split the remaining 4 into 2 and 2.\n\nTEST: foline, zilizu, pibobal"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Four possibilities remain:\n- **If one nexiom is enough:** the pair is zilizu + susazil, zilizu + pibobal, or susazil + pibobal.\n- **If both nexioms are needed:** the pair is foline + zilizu.\n\nOne test gives only 2 outcomes, so the best I can do is split these 2 and 2, then guess between the last two.\n\nI'll test pibobal alone:\n- **Lights up:** one nexiom is enough, and the pair is zilizu + pibobal or susazil + pibobal.\n- **Stays dark:** either one is enough with zilizu + susazil, or both are needed with foline + zilizu.\n\nTEST: pibobal"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "Pibobal lit up on its own, so this machine needs only one nexiom, and pibobal is one of them. The other is either zilizu or susazil. Both fit every result so far, so this is a 50/50 guess, and I'll pick zilizu.\n\nANSWER: nexioms = zilizu, pibobal; needs = one"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: foline, zezenun, nesutir, zilizu, susazil, pibobal.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  }
+ ]
+}

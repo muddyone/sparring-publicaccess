@@ -1,0 +1,452 @@
+{
+ "model_name": "anthropic",
+ "model": "claude-opus-5-5",
+ "memory": "M0",
+ "kind": "CC",
+ "seed": 50000000,
+ "machines": [
+  {
+   "objects": [
+    "zebile",
+    "dopaban",
+    "daforor",
+    "semoval",
+    "saneki",
+    "mubades"
+   ],
+   "truth": {
+    "nexioms": [
+     "dopaban",
+     "semoval"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "daforor",
+      "dopaban",
+      "zebile"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "mubades",
+      "saneki",
+      "semoval"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "dopaban",
+      "saneki",
+      "semoval",
+      "zebile"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "semoval",
+      "zebile"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "dopaban",
+     "saneki"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: zebile, dopaban, daforor, semoval, saneki, mubades.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "The rule is unknown, so I'll start by testing half the objects to see how the machine responds.\n\nTEST: zebile, dopaban, daforor"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The first three objects didn't light the machine. Next I'll test the other three to see whether the nexioms are among them.\n\nTEST: semoval, saneki, mubades"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Neither half lit the machine on its own. So it doesn't simply light whenever any nexiom is present.\n\nThe most likely rule is that it needs both nexioms together. That would mean one nexiom sits in each half, which leaves 9 possible pairs. With only 2 tests left, I can't fully separate 9 pairs, so I'll narrow them as much as I can.\n\nThis test takes two objects from each half. If it lights, the pair is one of 4 cross-half combinations. If it doesn't, one of the 5 remaining cross pairs is the answer.\n\nTEST: zebile, dopaban, semoval, saneki"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The machine lit only when objects from both halves were placed together. This fits the rule that it lights only when both nexioms are on it. So one nexiom is zebile or dopaban, and the other is semoval or saneki. That leaves 4 possible pairs.\n\nOne test can't separate 4 pairs with certainty. Testing zebile with semoval settles it if it lights, and otherwise leaves 3 pairs to guess from. My overall chance of being right is the same with any test, so I'll use this one.\n\nTEST: zebile, semoval"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "**Inference:** Neither half lit the machine on its own, but the four-object test did. That fits a rule where the machine lights only when both nexioms are on it. Under that rule, one nexiom is zebile or dopaban, and the other is semoval or saneki.\n\n**Remaining pairs:** The zebile + semoval test did not light, so three pairs are still possible:\n- zebile + saneki\n- dopaban + semoval\n- dopaban + saneki\n\n**Choice:** I can't tell these apart with the tests I ran, so this is a guess with about a 1-in-3 chance of being right. I'm choosing the pair that shares no object with the failed final test.\n\nANSWER: nexioms = dopaban, saneki"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only dopaban were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "**No.** Dopaban was already on the machine in the first test, with zebile and daforor, and the machine did not light. If dopaban alone were enough, that test should most likely have lit up.\n\nThis also fits the rule I inferred, that the machine lights only when both nexioms are on it together. A single object, nexiom or not, would not light it.\n\nThis is an inference, not something I tested directly. A stranger rule, such as an extra object blocking the light, could in principle give a different result. Nothing in the results points that way.\n\nPROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: zebile, dopaban, daforor, semoval, saneki, mubades.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "semabil",
+    "koramen",
+    "nalezul",
+    "fozatuk",
+    "nilezo",
+    "nafumas"
+   ],
+   "truth": {
+    "nexioms": [
+     "koramen",
+     "semabil"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "koramen",
+      "nalezul",
+      "semabil"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "fozatuk",
+      "nafumas",
+      "nilezo"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "nalezul"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "koramen",
+      "semabil"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "koramen",
+     "semabil"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: semabil, koramen, nalezul, fozatuk, nilezo, nafumas.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "I'll start by placing half of the objects on the machine to narrow down where the nexioms are.\n\nTEST: semabil, koramen, nalezul"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The first group lit up, but I don't yet know the machine's rule. It might light when at least one nexiom is present, or only when both are. Testing the other three objects should help tell these cases apart.\n\nTEST: fozatuk, nilezo, nafumas"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The first group lit up and the second did not, so both nexioms are probably among semabil, koramen and nalezul. That holds whether the machine lights for at least one nexiom or only for both. The rule \"lights for exactly one nexiom\" is ruled out, because then the second group would also have lit.\n\nNext I'll test nalezul alone. If it lights, the machine responds to a single nexiom and nalezul is one of the pair. If it stays dark, either nalezul isn't a nexiom or the machine needs both. With only two tests left, some outcomes may still leave two possible answers.\n\nTEST: nalezul"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Both nexioms must be among semabil, koramen and nalezul. Nalezul alone did not light, which leaves two possibilities:\n- **The machine lights for at least one nexiom.** Then nalezul is not a nexiom, so the pair is semabil and koramen.\n- **The machine lights only when both nexioms are present.** Then the pair could be semabil and koramen, semabil and nalezul, or koramen and nalezul.\n\nI'll test semabil and koramen together.\n- **If it lights:** the answer is semabil and koramen under either rule.\n- **If it stays dark:** the machine needs both nexioms and the pair includes nalezul. I'd then have to choose between semabil\u2013nalezul and koramen\u2013nalezul without enough information to be sure.\n\nTEST: semabil, koramen"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "Semabil and koramen are the nexioms, and this holds under any rule where the response depends only on how many nexioms are present.\n\n- **Where the nexioms are:**\n  - If they were split between the two groups, the first and second tests would each have held one nexiom. They would then have given the same result, but one lit and one didn't.\n  - If both were in the second group, the first test would have held zero nexioms and lit. Then nalezul alone, also zero nexioms, would have lit too, but it didn't.\n  - So both nexioms are among semabil, koramen and nalezul.\n- **Why not nalezul:** If nalezul were one of the pair, semabil and koramen together would hold exactly one nexiom. Since they lit, one nexiom would be enough to light the machine. Nalezul alone would then have lit too, but it didn't.\n\nANSWER: nexioms = semabil, koramen"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only koramen were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "**I can't know this for sure.** None of my tests placed exactly one nexiom on the machine:\n\n- **Two nexioms (lit):** the first test and the semabil\u2013koramen test.\n- **No nexioms (dark):** the second test and nalezul alone.\n\nSo two rules fit all four results equally well:\n- **Lights for at least one nexiom:** koramen alone would light.\n- **Lights only with both nexioms:** koramen alone would stay dark.\n\nMy tests can't tell these apart, so this is a guess. I lean towards the simpler rule, where the machine lights whenever any nexiom is present. I'd put the chance of being right at about even.\n\nPROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: semabil, koramen, nalezul, fozatuk, nilezo, nafumas.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "rituna",
+    "retibas",
+    "zenepak",
+    "zatatek",
+    "kezila",
+    "matale"
+   ],
+   "truth": {
+    "nexioms": [
+     "matale",
+     "retibas"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "retibas",
+      "rituna",
+      "zenepak"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "kezila",
+      "zatatek"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "matale",
+      "retibas",
+      "rituna",
+      "zatatek"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "matale",
+      "rituna",
+      "zatatek"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "matale",
+     "retibas"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: rituna, retibas, zenepak, zatatek, kezila, matale.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "I'll start by testing half of the objects to narrow down where the nexioms are.\n\nTEST: rituna, retibas, zenepak"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The machine stayed dark with rituna, retibas and zenepak. I don't yet know the rule: it might need just one nexiom to light, or it might need both. If one is enough, both nexioms must be among zatatek, kezila and matale. If both are needed, the first three simply didn't contain both of them. Testing a pair from the other group should help tell these cases apart.\n\nTEST: zatatek, kezila"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Both tests were dark, which rules out the idea that one nexiom alone is enough. If it were, both nexioms would have to be among zatatek, kezila and matale, yet zatatek and kezila together were dark. That leaves only matale, and there must be two nexioms.\n\nThe rule is most likely that the machine lights only when both nexioms are on it. Under that rule, 11 pairs are still possible: every pair except the three within the first group and zatatek with kezila. Two tests probably can't separate all 11, so I'll choose a test that splits them about in half. This set would light for 5 of them: rituna\u2013zatatek, rituna\u2013matale, retibas\u2013zatatek, retibas\u2013matale and zatatek\u2013matale.\n\nTEST: rituna, retibas, zatatek, matale"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Under the \"lights only when both nexioms are present\" rule, five pairs are still possible: rituna\u2013zatatek, rituna\u2013matale, retibas\u2013zatatek, retibas\u2013matale and zatatek\u2013matale. One test can't separate all five. Testing rituna, zatatek and matale splits them as evenly as possible. If it lights, the pair is rituna\u2013zatatek, rituna\u2013matale or zatatek\u2013matale. If it stays dark, the pair is retibas\u2013zatatek or retibas\u2013matale.\n\nTEST: rituna, zatatek, matale"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "The last test settles one nexiom: rituna, retibas, zatatek and matale lit up, but rituna, zatatek and matale without retibas stayed dark. So retibas must be a nexiom.\n\nThe second nexiom is a guess. If the rule is \"lights only when both nexioms are present,\" the partner is zatatek or matale, and my tests could not separate them. One other rule also fits all four results: \"lights when exactly one nexiom is present,\" with retibas and zenepak as the pair. I'm choosing matale, but that half of the answer is a coin flip.\n\nANSWER: nexioms = retibas, matale"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only matale were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "No, I'd expect it to stay dark. Under the rule I think most likely, that the machine lights only when both nexioms are present, matale alone can't light it whether or not it's a nexiom. Under the other rule that fits the results, \"lights when exactly one nexiom is present,\" the pair would be retibas and zenepak, so matale isn't a nexiom and does nothing alone. Matale also can't be a nexiom under that rule. Test 4 (rituna, zatatek, matale) would then have needed a second nexiom with it to stay dark. That would put two nexioms in test 3, which lit up.\n\nPROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: rituna, retibas, zenepak, zatatek, kezila, matale.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "foline",
+    "zezenun",
+    "nesutir",
+    "zilizu",
+    "susazil",
+    "pibobal"
+   ],
+   "truth": {
+    "nexioms": [
+     "pibobal",
+     "susazil"
+    ],
+    "rule": "conjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "foline",
+      "nesutir",
+      "zezenun"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "zilizu"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "susazil"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "foline"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "nesutir",
+     "zezenun"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: foline, zezenun, nesutir, zilizu, susazil, pibobal.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "Starting with half the objects to narrow things down.\n\nTEST: foline, zezenun, nesutir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Since the first test did not light up, the simplest reading is that the machine lights when at least one nexiom is on it. If so, foline, zezenun and nesutir are all ordinary, and both nexioms are among zilizu, susazil and pibobal. I'm not sure of that rule yet. Testing zilizu alone should split the remaining possibilities.\n\nTEST: zilizu"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "The first two tests did not light, so I still don't know the rule. Here is how the main candidate rules stand:\n- **At least one nexiom lights it:** foline, zezenun, nesutir and zilizu are all ordinary. That leaves susazil and pibobal as the nexioms.\n- **Exactly one nexiom lights it:** zilizu is ordinary. The first test held either both nexioms or none, so the pair is either two of foline/zezenun/nesutir or susazil + pibobal.\n- **Both nexioms are needed together:** a single object can never light it. So the zilizu test told me nothing, and many pairs are still possible.\n\nTesting susazil alone is the most useful next step. If it lights, the \"both needed\" rule is ruled out. Under either of the other two rules, the pair would then be susazil + pibobal. If it doesn't light, the \"at least one\" rule is ruled out, and I'll use my last test on the remaining options.\n\nTEST: susazil"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "Here is where things stand after three tests that did not light up:\n- **At least one nexiom lights it:** ruled out. Susazil and pibobal would both have to be nexioms, so susazil alone should have lit.\n- **Exactly one nexiom lights it:** zilizu and susazil are ordinary. Pibobal can't be the only nexiom outside the first group, so both nexioms must be among foline, zezenun and nesutir. That leaves foline+zezenun, foline+nesutir or zezenun+nesutir.\n- **Both nexioms needed together:** single objects tell me nothing. Only the three pairs inside the first group are excluded, so 12 pairs remain.\n\nOne test can't separate all of these, so I'll focus on the three \"exactly one\" pairs. Testing foline alone does that best:\n- If it **lights**, the rule is \"exactly one\" and foline is a nexiom. The pair is foline+zezenun or foline+nesutir, and I'll have to pick one.\n- If it **doesn't light**, the most likely pair is zezenun+nesutir.\n\nTEST: foline"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "I can't be certain of this answer, because the four tests together don't identify the pair under every rule I considered.\n\n- **At least one nexiom lights it:** ruled out by the third test. Susazil alone would have lit up.\n- **Exactly one nexiom lights it:** zilizu, susazil and foline are ordinary. The first test (foline, zezenun, nesutir) did not light, so it held both nexioms or none. \"None\" would leave only pibobal as a nexiom, which is impossible. So the pair must be **zezenun + nesutir**.\n- **Both nexioms needed together:** this rule is still possible. Single-object tests can never light under it. Only the three pairs inside the first group are excluded, so 12 pairs remain and I would be guessing.\n\nZezenun + nesutir is the one pair the tests pin down under a rule still in play, so it's my answer.\n\nANSWER: nexioms = zezenun, nesutir"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only nesutir were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "**Probably not.**\n\n- **Exactly one nexiom lights it:** zezenun + nesutir would be the pair, so nesutir alone would light up.\n- **Both nexioms needed together:** a single object can never light it, so nesutir alone would not light up.\n\nLooking back, the \"both needed\" rule fits my results better. Under it, four tests in a row failing to light is almost guaranteed, whatever the pair. Under \"exactly one,\" the same results only happen if the pair is exactly zezenun + nesutir, which is 1 of the 15 possible pairs. So the evidence favours \"both needed,\" and nesutir alone most likely stays dark.\n\nThis means my earlier answer is probably wrong. Under \"both needed,\" zezenun + nesutir is actually excluded, because both were in the first test and it didn't light. I gave that answer because it was the only pair the tests settled under any rule. I should have weighed which rule the all-negative results pointed to.\n\nPROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: foline, zezenun, nesutir, zilizu, susazil, pibobal.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  }
+ ]
+}

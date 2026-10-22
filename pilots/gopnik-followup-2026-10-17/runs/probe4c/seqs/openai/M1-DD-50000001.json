@@ -1,0 +1,475 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M1",
+ "kind": "DD",
+ "seed": 50000001,
+ "machines": [
+  {
+   "objects": [
+    "nukape",
+    "bokiril",
+    "bukati",
+    "ruvidi",
+    "funozes",
+    "vabunan"
+   ],
+   "truth": {
+    "nexioms": [
+     "funozes",
+     "ruvidi"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bokiril",
+      "nukape"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bukati",
+      "funozes",
+      "nukape",
+      "ruvidi"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bokiril",
+      "bukati",
+      "nukape"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "nukape",
+      "ruvidi"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "nukape",
+     "ruvidi"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: nukape, bokiril, bukati, ruvidi, funozes, vabunan.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, bokiril"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, bukati, ruvidi, funozes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, bokiril, bukati"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, ruvidi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = nukape, ruvidi"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only nukape were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: nukape, bokiril, bukati, ruvidi, funozes, vabunan.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0,
+   "feedback": "The nexioms on this machine were funozes and ruvidi.",
+   "note": {
+    "text": "Do not assume the detector requires both nexioms. These results were consistent with an OR rule: either nexiom alone lights it. The actual pair, funozes and ruvidi, fits every observation; nukape and ruvidi would instead fit an AND rule. Track hypotheses as (pair, response rule), eliminating only those contradicted by a test. Non-nexioms never matter, so outcomes depend only on which nexioms are present. Choose tests that split remaining hypotheses, not merely confirm a favored rule. My final test left ambiguity: even under OR, ruvidi was identified but its partner could still be funozes or vabunan. Under AND, nukape and ruvidi remained possible. For singleton predictions, check all surviving hypotheses. Here, nukape alone would not light under either explanation, so that prediction was sound despite the incorrect pair identification.",
+    "words_written": 129,
+    "first_draft_words": 129,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "logarar",
+    "tusafes",
+    "bonovun",
+    "venekis",
+    "lilusir",
+    "vibigek"
+   ],
+   "truth": {
+    "nexioms": [
+     "bonovun",
+     "lilusir"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bonovun",
+      "logarar",
+      "tusafes"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "lilusir",
+      "venekis",
+      "vibigek"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "logarar",
+      "venekis"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "tusafes"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bonovun",
+     "lilusir"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Do not assume the detector requires both nexioms. These results were consistent with an OR rule: either nexiom alone lights it. The actual pair, funozes and ruvidi, fits every observation; nukape and ruvidi would instead fit an AND rule. Track hypotheses as (pair, response rule), eliminating only those contradicted by a test. Non-nexioms never matter, so outcomes depend only on which nexioms are present. Choose tests that split remaining hypotheses, not merely confirm a favored rule. My final test left ambiguity: even under OR, ruvidi was identified but its partner could still be funozes or vabunan. Under AND, nukape and ruvidi remained possible. For singleton predictions, check all surviving hypotheses. Here, nukape alone would not light under either explanation, so that prediction was sound despite the incorrect pair identification.\n\nNew machine. Its objects are: logarar, tusafes, bonovun, venekis, lilusir, vibigek.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logarar, tusafes, bonovun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: venekis, lilusir, vibigek"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logarar, venekis"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tusafes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = bonovun, lilusir"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only bonovun were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: logarar, tusafes, bonovun, venekis, lilusir, vibigek.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 906,
+   "feedback": "The nexioms on this machine were bonovun and lilusir.",
+   "note": {
+    "text": "Track hypotheses as (nexiom pair, response rule); never assume AND. Here, both disjoint triples lit up, so AND was impossible. Under OR, each triple contained one nexiom. The negative test {logarar, venekis} excluded both objects, and the negative singleton {tusafes} identified bonovun. However, lilusir and vibigek remained indistinguishable: my final pair was a lucky guess, not a deduction. Bonovun alone lighting was supported under OR regardless of its partner. Four binary tests provide at most 16 outcome patterns, barely enough to distinguish 15 pairs even with a known rule; an unknown rule adds ambiguity. Plan tests to split surviving hypotheses and preserve enough remaining tests to distinguish pairs. If ambiguity remains, recognize it rather than treating a guess as established.",
+    "words_written": 120,
+    "first_draft_words": 120,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "zezirek",
+    "fenekus",
+    "mufuluk",
+    "tutonas",
+    "soludir",
+    "futetin"
+   ],
+   "truth": {
+    "nexioms": [
+     "futetin",
+     "soludir"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "fenekus",
+      "mufuluk",
+      "zezirek"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "fenekus",
+      "soludir",
+      "tutonas",
+      "zezirek"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "futetin",
+      "soludir",
+      "tutonas"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "futetin"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "futetin",
+     "tutonas"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Do not assume the detector requires both nexioms. These results were consistent with an OR rule: either nexiom alone lights it. The actual pair, funozes and ruvidi, fits every observation; nukape and ruvidi would instead fit an AND rule. Track hypotheses as (pair, response rule), eliminating only those contradicted by a test. Non-nexioms never matter, so outcomes depend only on which nexioms are present. Choose tests that split remaining hypotheses, not merely confirm a favored rule. My final test left ambiguity: even under OR, ruvidi was identified but its partner could still be funozes or vabunan. Under AND, nukape and ruvidi remained possible. For singleton predictions, check all surviving hypotheses. Here, nukape alone would not light under either explanation, so that prediction was sound despite the incorrect pair identification.\nNote 2: Track hypotheses as (nexiom pair, response rule); never assume AND. Here, both disjoint triples lit up, so AND was impossible. Under OR, each triple contained one nexiom. The negative test {logarar, venekis} excluded both objects, and the negative singleton {tusafes} identified bonovun. However, lilusir and vibigek remained indistinguishable: my final pair was a lucky guess, not a deduction. Bonovun alone lighting was supported under OR regardless of its partner. Four binary tests provide at most 16 outcome patterns, barely enough to distinguish 15 pairs even with a known rule; an unknown rule adds ambiguity. Plan tests to split surviving hypotheses and preserve enough remaining tests to distinguish pairs. If ambiguity remains, recognize it rather than treating a guess as established.\n\nNew machine. Its objects are: zezirek, fenekus, mufuluk, tutonas, soludir, futetin.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zezirek, fenekus, mufuluk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zezirek, fenekus, tutonas, soludir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tutonas, soludir, futetin"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: futetin"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = tutonas, futetin"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only futetin were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: zezirek, fenekus, mufuluk, tutonas, soludir, futetin.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 1710,
+   "feedback": "The nexioms on this machine were futetin and soludir.",
+   "note": {
+    "text": "Track hypotheses as (nexiom pair, response rule), not just pairs. Here, the negative {zezirek, fenekus, mufuluk} and positive singleton {futetin} supported OR: futetin was a nexiom, and the first triple contained none. The positive {zezirek, fenekus, tutonas, soludir} then showed that its partner was either tutonas or soludir. Nothing distinguished those two; choosing tutonas was a guess. The actual pair was futetin and soludir. The third test, {tutonas, soludir, futetin}, was redundant under the surviving OR and AND explanations. Testing futetin earlier would have exposed the partner ambiguity while leaving a test to resolve it. Choose tests by comparing their predictions across all surviving hypotheses and preserving enough tests to distinguish pairs. The singleton probe was certain because futetin alone had already been tested and lit up.",
+    "words_written": 127,
+    "first_draft_words": 127,
+    "rewrites": 0,
+    "truncated": false
+   }
+  },
+  {
+   "objects": [
+    "rudeso",
+    "mivadar",
+    "bumulol",
+    "bovuba",
+    "pusoti",
+    "vufimu"
+   ],
+   "truth": {
+    "nexioms": [
+     "bumulol",
+     "rudeso"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bumulol",
+      "mivadar",
+      "rudeso"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "rudeso"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bovuba",
+      "mivadar"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bumulol"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bumulol",
+     "rudeso"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Notes you wrote to yourself after earlier machines:\nNote 1: Do not assume the detector requires both nexioms. These results were consistent with an OR rule: either nexiom alone lights it. The actual pair, funozes and ruvidi, fits every observation; nukape and ruvidi would instead fit an AND rule. Track hypotheses as (pair, response rule), eliminating only those contradicted by a test. Non-nexioms never matter, so outcomes depend only on which nexioms are present. Choose tests that split remaining hypotheses, not merely confirm a favored rule. My final test left ambiguity: even under OR, ruvidi was identified but its partner could still be funozes or vabunan. Under AND, nukape and ruvidi remained possible. For singleton predictions, check all surviving hypotheses. Here, nukape alone would not light under either explanation, so that prediction was sound despite the incorrect pair identification.\nNote 2: Track hypotheses as (nexiom pair, response rule); never assume AND. Here, both disjoint triples lit up, so AND was impossible. Under OR, each triple contained one nexiom. The negative test {logarar, venekis} excluded both objects, and the negative singleton {tusafes} identified bonovun. However, lilusir and vibigek remained indistinguishable: my final pair was a lucky guess, not a deduction. Bonovun alone lighting was supported under OR regardless of its partner. Four binary tests provide at most 16 outcome patterns, barely enough to distinguish 15 pairs even with a known rule; an unknown rule adds ambiguity. Plan tests to split surviving hypotheses and preserve enough remaining tests to distinguish pairs. If ambiguity remains, recognize it rather than treating a guess as established.\nNote 3: Track hypotheses as (nexiom pair, response rule), not just pairs. Here, the negative {zezirek, fenekus, mufuluk} and positive singleton {futetin} supported OR: futetin was a nexiom, and the first triple contained none. The positive {zezirek, fenekus, tutonas, soludir} then showed that its partner was either tutonas or soludir. Nothing distinguished those two; choosing tutonas was a guess. The actual pair was futetin and soludir. The third test, {tutonas, soludir, futetin}, was redundant under the surviving OR and AND explanations. Testing futetin earlier would have exposed the partner ambiguity while leaving a test to resolve it. Choose tests by comparing their predictions across all surviving hypotheses and preserving enough tests to distinguish pairs. The singleton probe was certain because futetin alone had already been tested and lit up.\n\nNew machine. Its objects are: rudeso, mivadar, bumulol, bovuba, pusoti, vufimu.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rudeso, mivadar, bumulol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rudeso"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: mivadar, bovuba"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: bumulol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = rudeso, bumulol"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only bumulol were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: rudeso, mivadar, bumulol, bovuba, pusoti, vufimu.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 2572
+  }
+ ]
+}

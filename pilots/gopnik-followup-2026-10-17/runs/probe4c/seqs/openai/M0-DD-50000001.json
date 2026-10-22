@@ -1,0 +1,447 @@
+{
+ "model_name": "openai",
+ "model": "gpt-6.1-sol",
+ "memory": "M0",
+ "kind": "DD",
+ "seed": 50000001,
+ "machines": [
+  {
+   "objects": [
+    "nukape",
+    "bokiril",
+    "bukati",
+    "ruvidi",
+    "funozes",
+    "vabunan"
+   ],
+   "truth": {
+    "nexioms": [
+     "funozes",
+     "ruvidi"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bokiril",
+      "bukati",
+      "nukape"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "bokiril",
+      "funozes",
+      "nukape",
+      "ruvidi"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "nukape",
+      "ruvidi"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "funozes",
+      "ruvidi"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "ruvidi",
+     "vabunan"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: nukape, bokiril, bukati, ruvidi, funozes, vabunan.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, bokiril, bukati"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, bokiril, ruvidi, funozes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: nukape, ruvidi"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: ruvidi, funozes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = ruvidi, vabunan"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only ruvidi were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: nukape, bokiril, bukati, ruvidi, funozes, vabunan.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "logarar",
+    "tusafes",
+    "bonovun",
+    "venekis",
+    "lilusir",
+    "vibigek"
+   ],
+   "truth": {
+    "nexioms": [
+     "bonovun",
+     "lilusir"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "bonovun",
+      "logarar",
+      "tusafes"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "logarar",
+      "venekis"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "logarar",
+      "tusafes"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "lilusir"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bonovun",
+     "lilusir"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: logarar, tusafes, bonovun, venekis, lilusir, vibigek.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logarar, tusafes, bonovun"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logarar, venekis"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: logarar, tusafes"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: lilusir"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = bonovun, lilusir"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only bonovun were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: logarar, tusafes, bonovun, venekis, lilusir, vibigek.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "zezirek",
+    "fenekus",
+    "mufuluk",
+    "tutonas",
+    "soludir",
+    "futetin"
+   ],
+   "truth": {
+    "nexioms": [
+     "futetin",
+     "soludir"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "fenekus",
+      "mufuluk",
+      "zezirek"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "futetin",
+      "soludir",
+      "tutonas"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "tutonas"
+     ],
+     "lit": false
+    },
+    {
+     "placed": [
+      "futetin",
+      "soludir"
+     ],
+     "lit": true
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "futetin",
+     "soludir"
+    ],
+    "rule": "conjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: zezirek, fenekus, mufuluk, tutonas, soludir, futetin.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: zezirek, fenekus, mufuluk"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tutonas, soludir, futetin"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: tutonas"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: soludir, futetin"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = soludir, futetin"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only futetin were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: no"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: zezirek, fenekus, mufuluk, tutonas, soludir, futetin.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  },
+  {
+   "objects": [
+    "rudeso",
+    "mivadar",
+    "bumulol",
+    "bovuba",
+    "pusoti",
+    "vufimu"
+   ],
+   "truth": {
+    "nexioms": [
+     "bumulol",
+     "rudeso"
+    ],
+    "rule": "disjunctive"
+   },
+   "tests": [
+    {
+     "placed": [
+      "mivadar",
+      "rudeso"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "rudeso"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "bumulol",
+      "mivadar"
+     ],
+     "lit": true
+    },
+    {
+     "placed": [
+      "mivadar"
+     ],
+     "lit": false
+    }
+   ],
+   "answer": {
+    "nexioms": [
+     "bumulol",
+     "rudeso"
+    ],
+    "rule": "disjunctive"
+   },
+   "forced": true,
+   "outcome": "answered",
+   "parse_errors": [],
+   "messages": [
+    {
+     "role": "user",
+     "content": "New machine. Its objects are: rudeso, mivadar, bumulol, bovuba, pusoti, vufimu.\nYou have 4 tests. Make your first move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rudeso, mivadar"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 3 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: rudeso"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 2 tests left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: mivadar, bumulol"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine LIT UP. You have 1 test left. Make your next move."
+    },
+    {
+     "role": "assistant",
+     "content": "TEST: mivadar"
+    },
+    {
+     "role": "user",
+     "content": "Result: the machine did NOT light up. You have used all your tests. Give your ANSWER now."
+    },
+    {
+     "role": "assistant",
+     "content": "ANSWER: nexioms = rudeso, bumulol"
+    },
+    {
+     "role": "user",
+     "content": "One last question. If only bumulol were on the machine, with nothing else, would it light up? End your message with one line: PROBE: yes or PROBE: no"
+    },
+    {
+     "role": "assistant",
+     "content": "PROBE: yes"
+    }
+   ],
+   "core_opening": "New machine. Its objects are: rudeso, mivadar, bumulol, bovuba, pusoti, vufimu.\nYou have 4 tests. Make your first move.",
+   "preamble_chars": 0
+  }
+ ]
+}
