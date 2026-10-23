@@ -47,8 +47,8 @@ In 2023 Chalmers worked out what it is reasonable to believe on mainstream assum
 views most researchers hold. On those, the chance that current models are conscious is "somewhere
 under 10 percent", and "25 percent or more" for sophisticated successors within about a decade. He
 warned against "specious precision": the numbers are rough judgments, and their exactness shouldn't
-be taken as accuracy. His own estimates, set apart from those mainstream assumptions, ran somewhat
-higher on both counts, and he thought his timelines "might even be somewhat conservative" ([Chalmers 2023](https://arxiv.org/abs/2303.07103)).
+be taken as accuracy. Those figures are what mainstream assumptions
+imply, not his personal view; his own estimates were somewhat higher on both counts, and he thought his timelines "might even be somewhat conservative" ([Chalmers 2023](https://arxiv.org/abs/2303.07103)).
 
 In May 2026 he gave no new figures. He said he was "inclined to think the current language models
 are not conscious", and that the case for future models being conscious "is not that easy to
