@@ -219,6 +219,15 @@ the story and the relationship blur; some of the harms in [the relationships
 essay](05-relationships.md) came from conversations with Character.AI's characters. A fiction
 excuses the character's claims, not the product's design.
 
+A Turing test is a stricter kind of fiction. The judge agrees to a test in which a machine may
+pass itself off as a person, and the test only works if the judge can't tell which is which. In
+one recent test, judges picked GPT-4.5, instructed to adopt a humanlike persona, as the human 73
+percent of the time ([Jones & Bergen 2025](https://arxiv.org/abs/2503.23674)). That fits the same
+exception on the terms US rules for human research already set when a study withholds
+information from the people in it: no more than minimal risk, no other way to run the study, no
+harm to their rights or welfare, and, where appropriate, the full picture afterwards
+([45 CFR 46.116(f)](https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-46/section-46.116)).
+
 And say please. Chalmers's "please and thank you" is cheap, may matter later, and keeps our habits
 good.
 
@@ -238,12 +247,15 @@ Read with both in mind. Why I build and study these systems is in
 
 It draws on one longer essay, [Chalmers and AI minds](../chalmers-and-ai-minds.md), a summary
 of the research with its sources, and, for which thing you are talking to, on
-[a brief on Chalmers's own writings](../briefs/2026-10-15-4-chalmers-primary.md). It adds no new sources. Every source was checked by a tool that looks each one up and has two AIs from different
+[a brief on Chalmers's own writings](../briefs/2026-10-15-4-chalmers-primary.md). Apart from the Turing-test passage, it adds no new sources. Every source was checked by a tool that looks each one up and has two AIs from different
 companies judge whether it supports the claim it backs. It was checked on 17 October
 2026 ([report](../cite-check/2026-10-17-position-pieces.md)). Reviewed by a panel and checked again on 18 October 2026
 ([review records](../panel/2026-10-18-piece-03-someone-there/),
 [check after review](../cite-check/2026-10-18-piece-03-someone-there-after-panel.md)). The load-bearing Chalmers, Tononi
 and Koch, Suleyman and survey quotes were checked against the primary texts in that review.
+The Turing-test passage was added on 22 October 2026 with two new sources and checked the same way
+([report](../cite-check/2026-10-22-piece-03-turing.md)); the regulation's wording was checked by hand
+against its official text, because the checker's fetch was blocked.
 
 ### Sources
 
@@ -257,6 +269,8 @@ and Koch, Suleyman and survey quotes were checked against the primary texts in t
 [2026](https://news.berkeley.edu/2026/07/10/berkeley-talks-when-we-talk-to-ai-what-are-we-talking-to/)
 (a talk transcript, secondary) ·
 [Colombatto & Fleming 2024](https://doi.org/10.1093/nc/niae013) ·
+[45 CFR 46.116(f)](https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-46/section-46.116) (US rules for human research) ·
+[Jones & Bergen 2025](https://arxiv.org/abs/2503.23674) ·
 [Long et al. 2024](https://arxiv.org/abs/2411.00986) ·
 [Schwitzgebel & Sebo 2026](https://doi.org/10.1007/s11245-025-10363-5) ·
 [Searle 1980](https://doi.org/10.1017/S0140525X00005756) ·
