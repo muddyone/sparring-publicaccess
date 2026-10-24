@@ -438,7 +438,7 @@ stands in for, held to the higher bar its reach demands. That is a claim to test
 We don't ask whether friendship is safe. We ask which ones are, because some friendships are good
 for us and some do terrible damage. AI companions are owed the same question.
 
-With a friend, which kind you get is partly luck. With a companion, it is a choice someone made.
+With a friend, which kind you get is partly luck. With a companion, it is by design.
 
 ---
 
