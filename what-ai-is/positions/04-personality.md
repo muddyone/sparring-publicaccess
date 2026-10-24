@@ -112,10 +112,10 @@ Politeness is the manner. Pleasing is the failure: agreeing because agreement is
 friction. Here is what the alternative looks like, from a real exchange while I was writing this series.
 
 In the essay on learning, a contacts app comes up as a contrast: it stores what it's told, which
-is not yet learning. I spotted a problem with that line and proposed a fix: introducing it with
-"As another common example". The easy reply, the one that tells me what I want to hear, would have
-been "Good idea." Instead, the AI assistant helping me said the problem was real but my fix was
-wrong. My wording would make the contacts app read as a second example of learning, when the
+is not yet learning. I spotted a problem with that line and told the AI assistant helping me
+exactly how to fix it: introduce it with "As another common example". I didn't ask for its
+opinion. The easy reply, the one that tells me what I want to hear, would have been to make the
+change. Instead, it said the problem was real but my fix was wrong. My wording would make the contacts app read as a second example of learning, when the
 whole point was that it isn't one. Then it offered a better line, and I took it.
 
 That is what this essay asks of an assistant's personality. It was friendly, and it agreed where I
