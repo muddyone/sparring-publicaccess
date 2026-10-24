@@ -11,7 +11,8 @@ partly right, about something different from what I first assumed, and it names 
 
 By personality I mean the social layer: a steady tone, a name, humor, small talk, greetings. Not
 what it knows or what it remembers; consistency and memory help too, and I credit them separately
-below. By "it" I mean, as throughout this series, an assistant such as Claude or ChatGPT, or a
+below. Not its judgment either: whether it will tell you you're wrong is the verdict, which the
+rule below keeps separate from the manner. By "it" I mean, as throughout this series, an assistant such as Claude or ChatGPT, or a
 fuller setup that works on its own with files and tools. This essay is about AI at work;
 companionship gets [its own essay](05-relationships.md).
 
@@ -115,11 +116,12 @@ In the essay on learning, a contacts app comes up as a contrast: it stores what 
 is not yet learning. I spotted a problem with that line and told the AI assistant helping me
 exactly how to fix it: introduce it with "As another common example". I didn't ask for its
 opinion. The easy reply, the one that tells me what I want to hear, would have been to make the
-change. Instead, it said the problem was real but my fix was wrong. My wording would make the contacts app read as a second example of learning, when the
-whole point was that it isn't one. Then it offered a better line, and I took it.
+change. Instead, it said the problem was real but my fix was wrong. My wording would make the
+contacts app read as a second example of learning, when the whole point was that it isn't one. Then it offered a better line, and I took it.
 
-That is what this essay asks of an assistant's personality. It was friendly, and it agreed where I
-was right. On the point that mattered, it didn't budge: polite, not pleasing.
+The verdict did the work: on the point that mattered, it didn't budge. The manner made that easy
+to take: it was friendly, and it agreed where I was right. That is what this essay asks of an
+assistant's personality: polite, not pleasing.
 
 ## What would change my mind
 
