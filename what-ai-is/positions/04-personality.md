@@ -119,8 +119,11 @@ opinion. The easy reply, the one that tells me what I want to hear, would have b
 change. Instead, it said the problem was real but my fix was wrong. My wording would make the
 contacts app read as a second example of learning, when the whole point was that it isn't one. Then it offered a better line, and I took it.
 
-The verdict did the work: on the point that mattered, it didn't budge. The manner made that easy
-to take: it was friendly, and it agreed where I was right. That is what this essay asks of an
+Two things happened there, and only one was personality. The verdict did the work: on the point
+that mattered, it didn't budge, and that is where the better line came from. The manner made it
+easy to take: it was friendly, and it agreed where I was right. So the story is not evidence that
+personality improves the work. It shows what the evidence above says personality does: it keeps the
+working relationship easy, even through a correction. That is what this essay asks of an
 assistant's personality: polite, not pleasing.
 
 ## What would change my mind
