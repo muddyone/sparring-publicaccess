@@ -57,7 +57,40 @@ not a measurement; nobody has a way to measure it yet. And some would put the ch
 Seth thinks consciousness in AI is even less likely than Chalmers does
 ([Seth 2025](https://doi.org/10.1017/S0140525X25000032)).
 
-Chalmers draws a practical lesson anyway. He treats today's models as tools, but says we should say
+Others put it far higher. If you have seen a clip of "the godfather of AI" saying AI is already
+conscious, it was most likely Geoffrey Hinton, the computer scientist whose work on neural networks
+underlies today's AI. That work earned him a share of the 2018 Turing Award
+([The Verge 2019](https://www.theverge.com/2019/3/27/18280665/ai-godfathers-turing-award-2018-yoshua-bengio-geoffrey-hinton-yann-lecun))
+and of the 2024 Nobel Prize in Physics
+([Nobel Prize 2024](https://www.nobelprize.org/prizes/physics/2024/press-release/)), and in 2023
+he left Google so he could speak freely about AI's dangers
+([The Guardian 2023](https://www.theguardian.com/technology/2023/may/02/geoffrey-hinton-godfather-of-ai-quits-google-warns-dangers-of-machine-learning)).
+In October 2026 he told The Telegraph, "AI has just as much subjective experience as we do"
+([Futurism 2026](https://futurism.com/artificial-intelligence/nobel-scientist-geoffrey-hinton-ai-conscious-toast)).
+
+His case rests on a view of what experience is. His example is a chatbot with a camera, fooled by a
+prism into pointing the wrong way. Told about the prism, it says, "I have the subjective experience
+that it's over there", using those words, Hinton points out, exactly as we do. The idea that we
+have an "inner theatre" setting us apart from machines is, he says, "just rubbish": subjective
+experience "is just a way of talking about what your perceptual system's telling you when it's not
+working 'properly'"
+([Globe and Mail 2024](https://www.theglobeandmail.com/business/article-geoffrey-hinton-artificial-intelligence-machines-feelings)).
+If he is right about what experience is, his conclusion follows. But that is exactly what is in
+dispute. The chatbot can report how things seem to it. What nobody knows is whether there is
+anything it is like to be the chatbot as it does, and that is the question this essay is about.
+Like Chalmers's view, Hinton's is an argument, not a finding.
+
+Nor is he speaking for most of his field. In May 2024, a survey asked researchers who publish at
+leading AI conferences and journals how likely it was that an AI system with subjective experience
+exists today, and how likely by 2034 and by 2100. The median answers were 1% for today, 25% for
+2034 and 70% for 2100 ([Dreksler et al. 2025](https://arxiv.org/abs/2506.11945)). Its authors
+say this shows what researchers think, not what is true, and AI researchers are not the last word
+on consciousness either. On how these systems learn, Hinton's word carries great weight. Whether
+anyone is experiencing anything is a question about consciousness, which is Chalmers's field more
+than Hinton's, and the students of consciousness this essay cites, from Chalmers to Seth, all put
+today's chance low. So on this question, I weigh Chalmers more.
+
+Even though he thinks current models are probably not conscious, Chalmers draws a practical lesson. He treats today's models as tools, but says we should say
 please and thank you and not be abusive, "because even if they're not moral subjects now…". They
 might become moral subjects, beings whose treatment matters for their own sake, and he expects we
 will look back on this era as one of many moral mistakes
@@ -247,7 +280,7 @@ Read with both in mind. Why I build and study these systems is in
 
 It draws on one longer essay, [Chalmers and AI minds](../chalmers-and-ai-minds.md), a summary
 of the research with its sources, and, for which thing you are talking to, on
-[a brief on Chalmers's own writings](../briefs/2026-10-15-4-chalmers-primary.md). Apart from the Turing-test passage, it adds no new sources. Every source was checked by a tool that looks each one up and has two AIs from different
+[a brief on Chalmers's own writings](../briefs/2026-10-15-4-chalmers-primary.md). Apart from the Turing-test and Hinton passages, it adds no new sources. Every source was checked by a tool that looks each one up and has two AIs from different
 companies judge whether it supports the claim it backs. It was checked on 17 October
 2026 ([report](../cite-check/2026-10-17-position-pieces.md)). Reviewed by a panel and checked again on 18 October 2026
 ([review records](../panel/2026-10-18-piece-03-someone-there/),
@@ -256,6 +289,10 @@ and Koch, Suleyman and survey quotes were checked against the primary texts in t
 The Turing-test passage was added on 22 October 2026 with two new sources and checked the same way
 ([report](../cite-check/2026-10-22-piece-03-turing.md)); the regulation's wording was checked by hand
 against its official text, because the checker's fetch was blocked.
+The Hinton passage was added on 28 October 2026 from
+[a brief on Hinton's view](../briefs/2026-10-28-16-hinton-on-ai-consciousness.md) and checked the
+same way ([report](../cite-check/2026-10-28-piece-03-hinton.md)). His Telegraph interview is quoted
+as Futurism reported it, because the Telegraph page could not be fetched.
 
 ### Sources
 
@@ -269,14 +306,21 @@ against its official text, because the checker's fetch was blocked.
 [2026](https://news.berkeley.edu/2026/07/10/berkeley-talks-when-we-talk-to-ai-what-are-we-talking-to/)
 (a talk transcript, secondary) ·
 [Colombatto & Fleming 2024](https://doi.org/10.1093/nc/niae013) ·
+[Dreksler et al. 2025](https://arxiv.org/abs/2506.11945) ·
+[Futurism 2026](https://futurism.com/artificial-intelligence/nobel-scientist-geoffrey-hinton-ai-conscious-toast)
+(reporting a Telegraph interview, secondary) ·
+[Globe and Mail 2024](https://www.theglobeandmail.com/business/article-geoffrey-hinton-artificial-intelligence-machines-feelings) ·
+[The Guardian 2023](https://www.theguardian.com/technology/2023/may/02/geoffrey-hinton-godfather-of-ai-quits-google-warns-dangers-of-machine-learning) ·
 [45 CFR 46.116(f)](https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-46/section-46.116) (US rules for human research) ·
 [Jones & Bergen 2025](https://arxiv.org/abs/2503.23674) ·
 [Long et al. 2024](https://arxiv.org/abs/2411.00986) ·
+[Nobel Prize 2024](https://www.nobelprize.org/prizes/physics/2024/press-release/) ·
 [Schwitzgebel & Sebo 2026](https://doi.org/10.1007/s11245-025-10363-5) ·
 [Searle 1980](https://doi.org/10.1017/S0140525X00005756) ·
 [Shanahan et al. 2023](https://doi.org/10.1038/s41586-023-06647-8) ·
 [Seth 2025](https://doi.org/10.1017/S0140525X25000032) ·
 [Suleyman 2025](https://mustafa-suleyman.ai/seemingly-conscious-ai-is-coming) ·
-[Tononi & Koch 2015](https://doi.org/10.1098/rstb.2014.0167).
+[Tononi & Koch 2015](https://doi.org/10.1098/rstb.2014.0167) ·
+[The Verge 2019](https://www.theverge.com/2019/3/27/18280665/ai-godfathers-turing-award-2018-yoshua-bengio-geoffrey-hinton-yann-lecun).
 Full references, verification marks and the cite-check record:
 [the report](../chalmers-and-ai-minds.md).

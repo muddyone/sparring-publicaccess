@@ -54,10 +54,12 @@ records.
   [Does it learn? Gopnik, the pattern-machine view, and learning profiles](learning-and-gopnik.md).
   The first two were written as background for an assistant-design method, so they include
   sections on design consequences.
-- **[`briefs/`](briefs/)**: eleven research briefs, with full source lists and marks for how each
+- **[`briefs/`](briefs/)**: twelve research briefs, with full source lists and marks for how each
   source was verified. Briefs 1 to 5 sit behind the personality and Chalmers syntheses. Briefs 6
   to 11 sit behind the essays: the yardstick, curiosity, relationships, how models change between
-  versions, when assistants began to remember, and the author's notes-and-rules study.
+  versions, when assistants began to remember, and the author's notes-and-rules study. Brief 16
+  sits behind the Hinton passage in "Something is there" (briefs 12 to 15 belong to Part two and
+  are not published yet).
 - **[`cite-check/`](cite-check/README.md)**: the citation-check reports, one or more per
   document, and an index that summarizes each run and what was corrected afterwards.
 - **[`panel/`](panel/)**: the review records, one folder per review round.
