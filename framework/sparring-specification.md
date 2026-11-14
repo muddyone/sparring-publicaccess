@@ -2,8 +2,9 @@
 
 **Author:** Barton Niedner
 **Affiliation:** Resource Forge LLC
-**Version:** 1.1 (preprint)
-**Date:** 2026-07-02
+**Version:** 1.3 (preprint)
+**Date:** 2026-11-14
+**Changes in 1.3:** terminal divergence. The Proposer may end at Pattern Lock and emit the field itself as a governed product, the **map**, with its own gate and coverage rider (Sections 3.1, 3.2, 3.4, new 3.7, 5.3; Appendix A).
 **License:** CC-BY-4.0
 **Companion documents:** *The SPARRING Methodology: Reference Implementation* [@niedner2026implementation]; *The SPARRING Methodology: Reader's Guide* [@niedner2026readersguide] (recommended for new readers seeking orientation)
 
@@ -11,7 +12,7 @@
 
 ## Abstract
 
-Agentic systems built on large language models (LLMs) exhibit characteristic failure modes that compound across agent handoffs: pleasing bias, confirmation bias, anchoring, misread questions, specialization blind spots, hallucinated detail, confidently-wrong outputs, and bandwagon contamination. In single-agent interactions these failure modes are tractable; in chains of agents handing outputs to each other, one agent's softened "yes" or invented specific becomes the next agent's premise, and the system reinforces its own assumptions while sounding coherent. This paper presents SPARRING, a methodology (a model-agnostic method) for designing multi-agent decision-making systems that pair two specialists with genuinely different evidence in a structured cross-evidence pressure-test. SPARRING specifies four phases (SPARK, Pattern Lock, the Cut, the Resolver), a two-role mechanic (Generator and Challenger) with role-shifting Challenger function across phases, nine operational disciplines that prevent collapse to theatrical adversariality, and an explicit response protocol for unresolved disagreement. The first three phases (collectively the *Proposer*) iterate under both-must-agree convergence; the fourth (the *Resolver*) runs a single grounded challenge, correcting the chosen option in place and reporting what it cannot absorb, rather than iterating to agreement. SPARRING's scope is high-quality decision-making where iterative pushback produces quality benefits the single-shot path cannot reach; it is not proposed as a default discipline for every prompt. The contribution is structural: SPARRING specifies what must be true of a multi-agent decision system for its quality leverage to be real, and what to do when those conditions cannot be satisfied.
+Agentic systems built on large language models (LLMs) exhibit characteristic failure modes that compound across agent handoffs: pleasing bias, confirmation bias, anchoring, misread questions, specialization blind spots, hallucinated detail, confidently-wrong outputs, and bandwagon contamination. In single-agent interactions these failure modes are tractable; in chains of agents handing outputs to each other, one agent's softened "yes" or invented specific becomes the next agent's premise, and the system reinforces its own assumptions while sounding coherent. This paper presents SPARRING, a methodology (a model-agnostic method) for designing multi-agent decision-making systems that pair two specialists with genuinely different evidence in a structured cross-evidence pressure-test. SPARRING specifies four phases (SPARK, Pattern Lock, the Cut, the Resolver), a two-role mechanic (Generator and Challenger) with role-shifting Challenger function across phases, a front-door input-typing gate that routes questions to generation and committed decisions to evaluation (so a question is not silently graded as a decision), nine operational disciplines that prevent collapse to theatrical adversariality, and an explicit response protocol for unresolved disagreement. The first three phases (collectively the *Proposer*) iterate under both-must-agree convergence; the fourth (the *Resolver*) runs a single grounded challenge, correcting the chosen option in place and reporting what it cannot absorb, rather than iterating to agreement. SPARRING's scope is high-quality decision-making where iterative pushback produces quality benefits the single-shot path cannot reach; it is not proposed as a default discipline for every prompt. The contribution is structural: SPARRING specifies what must be true of a multi-agent decision system for its quality leverage to be real, and what to do when those conditions cannot be satisfied.
 
 ---
 
@@ -38,6 +39,7 @@ Specifically, SPARRING specifies:
 - **Nine operational disciplines** that prevent the structure from collapsing into theatrical adversariality.
 - **A failure-mode applicability boundary** with three explicit cases SPARRING does not address (the model ceiling, pure judgment-shaped questions, low-stakes routine work).
 - **A disagreement-at-cap response protocol** with five canonical responses (pick-a-side-with-tradeoffs, defer, reframe, escalate, synthesize) for cases when the iteration cap is reached without convergence.
+- **A front-door input-typing gate** (Frame and the Presentation, Section 3.6) that classifies the input as a question, a proposition, or a leaning and deterministically routes it to the Proposer or the Resolver -- so a question is never silently graded as though it were a committed decision.
 
 Positioned against prior art (Section 2.3): SPARRING is a variant within the genus of *institutionalized dialectic*. No single element of the design is novel; the contribution is the **engineered conjunction** of these elements — gate-enforced disciplines, a symmetric both-must-agree mutual-veto across the Proposer phases, phase-indexed role-shifting on one persistent Challenger seat, and verifiable, machine-checkable grounding of every challenge — aimed at agent-mediated decisions under pleasing bias. This is held as an absence-of-anticipation claim, and its quality leverage is a testable hypothesis (Sections 5.1, 5.4), not a demonstrated result.
 
@@ -113,7 +115,7 @@ A SPARRING-shaped decision moves through four phases. Each phase has a default i
 
 **SPARK (default ~5 iterations).** Divergent generation. Produce many possible options, framings, or approaches. The Challenger's function in this phase is *expand* -- pressuring the Generator toward more options, less premature filtering, broader coverage of the option space.
 
-**Pattern Lock (default ~2 iterations).** False-novelty detection. The transition between divergent generation and convergent evaluation: identify whether continued SPARK is producing genuinely new options or repetitive variants. Naming false-novelty detection as a discrete phase grants social permission to stop brainstorming without prematurely closing on a single option.
+**Pattern Lock (default ~2 iterations).** False-novelty detection. The transition between divergent generation and convergent evaluation: identify whether continued SPARK is producing genuinely new options or repetitive variants. Naming false-novelty detection as a discrete phase grants social permission to stop brainstorming without prematurely closing on a single option. The Proposer may terminate at Pattern Lock and emit the field itself as its product (a **map**; Section 3.7) when the request asks for breadth rather than a decision. *(Added v1.3.)*
 
 **The Cut (transition, not a generative phase).** Mode shift from generation to evaluation. The Cut is structurally a transition rather than an iterative phase; some implementations carry an iteration count for the Cut, but the count reflects how many evaluations the practitioner runs to choose from the SPARK options, not how many times the Cut itself iterates.
 
@@ -138,7 +140,7 @@ Two roles run throughout the four phases:
 
 **Challenger.** Pressure-tests the Generator's output. Reads the Generator's current proposal plus the topic. Produces a structured pressure-test with cited concerns plus an explicit agreement signal.
 
-The Challenger's *function* shifts per phase: expand in SPARK, filter in Pattern Lock, close in the Cut, stress-test in the Resolver. The role label (Challenger) is the same; the operational behavior differs.
+The Challenger's *function* shifts per phase: expand in SPARK, filter in Pattern Lock, close in the Cut, stress-test in the Resolver. The role label (Challenger) is the same; the operational behavior differs. In map mode (Section 3.7) the Challenger has two further functions in place of close and stress-test: the **frame-attack** before SPARK (name a region the declared search frame omits) and the **completeness attack** after Pattern Lock (name a cited item missing from a region). Each runs on a different vendor from the Generator where one is available. *(Added v1.3.)*
 
 **Convergence.** Across the Proposer's iterative phases, SPARRING requires *both* roles to signal `agree: true` for the loop to converge. Generator-only convergence is structurally suspect: it would reintroduce pleasing-bias drift toward the user's apparent expectation of completion, one of several failure modes the two-role structure exists to defeat. Convergence requires explicit agreement from both roles. The Resolver does not run this both-agree loop: its single grounded challenge is either absorbed by an anchored correction or, when it surfaces a tension no correction resolves, reported to the human through the trust rider -- never smoothed into a manufactured agreement.
 
@@ -170,7 +172,7 @@ SPARRING's structural commitments are encoded in nine disciplines. Without these
 
 SPARRING's base form (Generator + Challenger, four phases, both-must-agree convergence) admits several variants and operational patterns documented as part of SPARRING rather than as future extensions.
 
-**Phase-isolation modes.** SPARK alone (for hypothesis generation when the question is "what are the options"), Pattern Lock alone (as ideation-hygiene tool when divergent thinking has saturated), the Resolver alone (a single grounded-challenge pass on an already-chosen option). Each phase carries enough structure to run independently when the full four-phase loop is not warranted.
+**Phase-isolation modes.** SPARK alone, with no convergence requirement, where the goal is breadth rather than a decision (for hypothesis generation when the question is "what are the options"), Pattern Lock alone (as ideation-hygiene tool when divergent thinking has saturated), the Resolver alone (a single grounded-challenge pass on an already-chosen option). Each phase carries enough structure to run independently when the full four-phase loop is not warranted. SPARK run through Pattern Lock and emitted as the field itself, under its own gate, is the **map** (Section 3.7). *(Added v1.3.)*
 
 **Role variants.** Human-in-the-Generator with AI Challenger (for decisions where the human's framing is the proposal and the AI provides cited pressure-test). AI-Generator with Human-in-the-Challenger (for decisions where the AI's proposal is being audited by a human with deeper domain context). Multi-Challenger ensemble (single Generator, N Challengers each grounding in distinct evidence; convergence requires all N or a configurable threshold). Watching-role Challenger (a long-running agent monitoring an ongoing system rather than a one-shot decision).
 
@@ -195,6 +197,79 @@ When the iteration cap is reached without both roles signaling agreement, D4 ret
 These responses are canonical, not exhaustive. Situations may warrant a response not on the list; the menu's purpose is to make the rarer moves visible, not to constrain the receiving party's judgment.
 
 A note on synthesis specifically: a one-shot synthesis at the disagreement-at-cap boundary is a hybrid of Popper-style falsification (SPARRING's base shape) and Hegelian dialectic (where synthesis becomes the next thesis and gets antithesized in turn). True Hegelian iteration would feed the synthesis back into a fresh SPARRING round to test it the same way the original proposal was tested. That second-pass option is available -- "synthesize, then re-spar the synthesis" -- but is not SPARRING's default because it doubles cost for a relatively rare class of decision. When stakes are very high and the synthesis itself contains novel claims, the second pass is worth considering.
+
+### 3.6 Input typing at the front door: Frame, the Presentation, and routing
+
+Sections 3.1--3.5 describe what happens once a decision is *in* the loop. This section describes the seam *before* it: the front door that decides whether the input is a decision at all, and which half of the ceremony it should enter. Logically this precedes §3.1's phases. *(Added v1.2.)*
+
+**The problem: a question is not a proposition.** SPARRING was defined and tested on **decisions** -- a committed proposition handed in for adversarial evaluation, which is the Resolver's home turf. But two other input types show up in practice: a **question** (no commitment yet; the answer space is still open) and a **hybrid** or **leaning** ("I'm inclined toward X, but is that right?" -- a candidate commitment that is explicitly defeasible). Nothing in the loop as described classifies the input. Hand a bare question straight to the Resolver and it does not refuse or route: the Generator silently does the Proposer's job inside one head -- invents options, commits to one, reconstructs derivations for it -- and the Challenger then pressure-tests only *that one invented option's grounding*. The result is **grounding-tested but never generation-tested**: the correctness gate (§3.1) can pass cleanly on a confident answer to a question that deserved divergence and never got it. Grounding is not the same as "we considered the right alternatives."
+
+The two misclassification directions are **asymmetric**. A proposition misread as a question is merely wasteful (needless regeneration). A question misread as a proposition is *dangerous* -- it is evaluated without ever being generated, the silent failure above. The front door is designed around that asymmetry.
+
+**Frame.** Frame is the classifier at the front door. It types the input into `question | proposition | hybrid`, and -- for a proposition -- runs the Presentation (below). Following D5 (observable triggers) and SPARRING's division of labor between model judgment and deterministic control, the model judges the input type and the earnedness gates, while the **route is derived in code** from those judgments -- never chosen freely by the model. This makes the dangerous misclassification structurally impossible: only an *earned proposition* is ever routed to the Resolver, so a question can never be silently evaluated as a committed decision. Frame emits, per input, `input_type`, a `readiness` verdict (below), the failed gate if any, the derived `route`, an `anchor` (the seeded candidate, below), an `alternative_awareness` signal, a one-line `basis`, and a `confidence`. Classification runs *in front of* the loop and dispatches to the appropriate surface; it is not an in-loop branch.
+
+**The Presentation and the Earnedness Rubric.** Before a fencing bout, a competitor passes *weapons control*: the referee inspects the weapon and tests the point, and a blade that cannot register a touch does not reach the piste. The **Presentation** is that check applied to a proposition. An *earned* proposition is one the Resolver can land a touch on -- it carries enough of a decision that adversarial evaluation has something to score against, rather than having to manufacture the case first (and manufacturing the case is generation, which belongs in the Proposer). The Presentation applies the **Earnedness Rubric** -- three necessary conditions, all of which must hold for the proposition to be *earned*:
+
+- **G1 -- Singular commitment.** Exactly one option is asserted as chosen -- not a menu, not "A or B?" A menu is a choice question and belongs in the Proposer.
+- **G2 -- Load-bearing reason.** At least one stated-or-obvious rationale whose *removal would flip the commitment*. The test is **counterfactual**, which is what makes it robust to gaming: a decorative reason stapled on -- one that, removed, leaves the commitment standing unchanged -- does not count. A commitment with no load-bearing why is not a decision; it is a leaning.
+- **G3 -- Decidable specificity.** The claim is concrete enough to be graded true/false or good/bad. A claim too vague to grade is sent back to be sharpened first.
+
+A soft signal, **S1 -- Alternative-awareness** (evidence that other options were seen and set aside), does not gate on its own but lowers confidence and is surfaced when the routing decision is presented to the human. The Presentation's verdict is recorded as **`readiness`** (`pass` | `fail` | `n/a`) -- an *input-readiness* gate at the front door. It is deliberately named `readiness`, not "presentation" as a field, to avoid collision with the correctness gate's separate use of "presentation" (how a hard specific is *stated* -- as fact vs. as estimate; §3.1). The two are different gates asking different questions: the Presentation asks *is there something here to evaluate?* (front door); the correctness gate asks *is the evaluated answer honestly grounded?* (back gate).
+
+**Failing the Presentation is a reclassification, not a rejection.** A proposition that fails G2 -- a commitment with no load-bearing reason -- is exactly a leaning, reached from the other direction; it is routed to the Proposer with its assertion **seeded** as a named option in SPARK's field. A G1 failure (a menu) is a choice question and enters the Proposer as one; a G3 failure (too vague) is sent back to be sharpened, then generated. Nothing is discarded at the front door; an unearned proposition is sent to earn its place among generated options, not turned away.
+
+**Routing rules.** The derivation is deterministic:
+
+1. **Question -> the Proposer.** Generate the answer (Frame may sharpen the question first).
+2. **Hybrid / leaning -> the Proposer, with the leaning seeded.** The candidate enters SPARK's field as one contender.
+3. **Proposition, earned -> the Resolver.** The Presentation passed; the decision is cleared for the piste.
+4. **Proposition, unearned -> the Proposer**, seeded (on a G2 failure) or as a choice question (G1) or after sharpening (G3).
+
+Every routing decision is surfaced to the human as a decision with its basis, and recorded, before the ceremony spends -- because misclassification is the expensive error and its two directions are asymmetric.
+
+**Seeded generation -- competing without privilege.** When a leaning or a demoted assertion is seeded into SPARK's field, it enters as *one option among many*, not as a favored default. It is carried through Pattern Lock and the Cut and survives only if it wins on the merits; a seed that loses the Cut is reported as having lost. This is what keeps the front door honest: the human's leaning is taken seriously enough to enter the field as a real contender, and tested seriously enough that it is not rubber-stamped. The hybrid is therefore the *richest* input, not an awkward edge case -- a candidate and an open field at once.
+
+**How the front door maps to the operating surfaces.** The front door does double duty across the phase-isolation modes of §3.4. The Proposer-only surface (question or leaning in, committed proposition out -- never a graded answer) runs *Frame then the Proposer*. The Resolver-only surface runs the Presentation as its own front-door check and, when handed a question or an unearned leaning, offers to generate first rather than silently evaluating. The full four-phase ceremony runs *Frame -> Proposer -> Resolver* end to end. In every case, generation lives in the Proposer and evaluation lives in the Resolver; the front door's job is only to route the input to the right one and to keep a question from being graded as though it were a decision.
+
+### 3.7 Terminal divergence: the map
+
+Some requests want the field, not a verdict: "what haven't I considered about this spec?", "how could this fail?", "what are the risks?". For these, the Proposer runs SPARK and Pattern Lock and emits the field itself. The Cut and the Resolver do not run. This is **map mode**. It is in-method: convergence is not constitutive of SPARRING, adversarial pressure is, and the Challenger works in both phases before the Cut. *(Added v1.3.)*
+
+A decision's characteristic failure is sounding more certain than its evidence; the correctness gate checks that. A map fails differently: by implying the whole space has been seen, by padding (repetition and noise that look like thoroughness), and by presenting ungrounded items as if they came from evidence. Map mode therefore carries its own checks, each named for what it shows and no more. None of them is called "complete" or "grounded", because none of them shows that.
+
+**The search frame is declared before generation.** A map's guarantee is scoped to a declared **search frame**, a list of regions, never to the world. The frame is supplied by the requester (a named taxonomy, a failure-class list, the artifact's structure crossed with named lenses) or, when none is given, drafted by Frame and marked *drafted*. The Generator never declares its own frame, because a Generator that names its own regions can name regions it has already covered. Before SPARK, a different-vendor Challenger runs a **frame-attack**, asked to name a region the frame omits. Accepted additions join the frame. The frame is then recorded verbatim, with a hash. A region added later is logged with its reason and counts as unprobed until it is probed.
+
+**Each region gets a probe and an attack.** Per region:
+
+- **Probed:** the trace holds at least one generation call scoped to the region, and the items it yielded carry the region tag. This is read mechanically from the trace.
+- **Attacked:** after Pattern Lock, a different-vendor Challenger gets one **completeness attack** under a fixed **attack contract**. The prompt template is part of the manifest and is hashed. The Challenger sees the region definition, the source and the whole field. It must return either candidate items, each with an anchor, or an explicit *none found* together with what it searched. Any other reply does not count as an attack.
+- **Held:** the attack produced no candidate that is both new and cited (anchor class a or b, below).
+
+The region label is **HELD** when every declared region was probed, attacked and held. It is **YIELDING** when every region was probed but an attack landed a new cited item, an attack was missing or broke the contract, or a drafted frame skipped the frame-attack. It is **UNPROBED** when any declared region was never probed. A landed attack's item joins the field with its provenance. One attack runs per region by default; a deployment may budget more rounds, and the rider reports how many ran. HELD means only that this Challenger, under this contract, found nothing more. It does not mean exhaustive, even relative to the frame.
+
+**"New" is a judgment, disclosed and biased toward caution.** Whether a candidate is new is a semantic match against the field. For every candidate judged *not new*, the rider pairs it with the field item it was matched to. Ties go to *new*, so an unsure matcher errs toward caution. A confidently wrong "not new" can still produce a false HELD. Showing every match makes that error visible; it does not prevent it. The matcher (prompt and model) is fixed in the manifest and hashed, so a label can be traced to the matcher that produced it. Labels are still not reproducible, because model calls are not deterministic. A label belongs to one run, not to the field. Speculative candidates (class c) are reported but do not make a region YIELDING; otherwise imagination alone would make HELD unreachable.
+
+**Provenance and anchors per item.** Every item carries its region (or regions); its anchor class; its origin (`spark`, `frame-attack` or `completeness-attack`); the role and vendor of the model that raised it; and the ids of any SPARK items Pattern Lock merged into it. Anchor classes:
+
+- **a -- cited source:** a locus in the source (a section, a line, a quoted claim). The **citation check** confirms the locus exists: the quoted text is found, or the section exists. A class a item whose locus is not there is a **fabricated anchor**.
+- **b -- cited ground:** a named external ground. The anchor carries a **title** (a taxonomy, checklist, incident record or stated constraint) and an **entry identifier** within it. The citation check confirms only that both fields are present and non-empty; "industry best practice" has no entry identifier and fails. A miss downgrades the item to class c, with a note. The check does not confirm that the entry exists in the named ground, or that it says what the item claims.
+- **c -- speculative:** marked as such, with its reasoning basis.
+
+Classes a and b are called **cited**, not grounded: a real locus or entry does not show that the item follows from it. A deployment may run an optional **support check**, a different-vendor judgment of whether each cited locus or ground supports its item (*supported / partly / not supported*). It is reported as a model judgment, and an item judged *not supported* moves to class c. When it does not run, the rider says so.
+
+**No item budget and no ranking.** Map mode never asks for a target count. In the author's own testing, asking a model for more items yielded more output, not more answer: with an item budget the field grew, the share of useful items fell, and redundancy rose. Breadth comes from the frame and the attacks. Pattern Lock's merges are reported (count and share), not gated, because a redundancy gate would rest on an unsolved materiality judgment. Items are ordered by region and, within a region, by a stated mechanical order (anchor class, then origin). An importance ranking is a verdict, and map mode leaves verdicts to the reader.
+
+**The map gate** returns PASS / REVIEW / FAIL:
+
+- **FAIL:** a fabricated class a anchor, or a frame not recorded before generation.
+- **REVIEW:** an overall label other than HELD; or more than half the items in class c; or a skipped frame-attack.
+- **PASS:** neither of the above. PASS says every region's attack held, every cited source locus exists, and every named ground is named specifically. It does not say the map is complete, that a named ground says what the item claims, or that any citation supports its item (unless the support check ran). A map whose own Challenger found something missing cannot PASS.
+
+**The coverage rider** stands beside the field, the map's counterpart to the trust rider. It gives: (1) the search frame verbatim, marked *supplied* or *drafted*, with the frame-attack's additions; (2) each region's label and the overall label, with each candidate judged *not new* beside the field item it was matched to; (3) the gate verdict, with what it does and does not claim; (4) anchor-class counts and shares, whether the support check ran and its counts, and origin counts; (5) Pattern Lock merges as a count and a share; (6) optionally, a capture-recapture coverage estimate (below); and (7) the fixed limit sentences: *"This map covers the frame above as far as a cross-vendor Challenger could find. It says nothing about regions outside that frame, or gaps every model shares."* Until the completeness attack's recovery rate has been measured, the rider adds: *"The completeness attack's recovery rate is unmeasured."*
+
+**Capture-recapture is a disclosure, never a gate.** When a deployment runs at least 2 trials across at least 2 adversaries, the rider may show a Chao1 or Good-Turing estimate of coverage, with its method and trial counts and the line *"estimate of how thoroughly the reachable space was sampled; says nothing about the unreachable one."* No label, gate verdict or ordering may depend on it. The estimate rests on matching findings across trials, and in the author's own testing that kind of judgment disagreed on many individual verdicts while a pooled figure held steady. It also has a single demonstration so far. It stays a disclosure until it is validated on a second subject with a fixed matching rule.
+
+**Terminal point.** For the four-phase method this specification governs, the map is emitted after Pattern Lock and the completeness attacks. The Cut does not run. Raw SPARK output is a debugging view, never the terminal artifact.
 
 ---
 
@@ -299,6 +374,8 @@ A specification that praised its own contribution would exhibit one of the failu
 
 **Multi-agent designs have their own failure modes** beyond the family SPARRING addresses: coordination overhead, handoff drift, integration of conflicting outputs, delayed convergence. A poorly-designed multi-agent system can produce *worse* results than a single well-designed agent. This is not a critique of SPARRING per se -- SPARRING is precisely a method for designing multi-agent systems that avoid these failure modes -- but the "carefully designed" qualifier in Section 5.1 is doing real work.
 
+**A map cannot see past what its models share.** Map mode's guarantees (Section 3.7) are relative to a declared search frame and to what a cross-vendor Challenger can find. A HELD region shows that the attack found nothing more. It cannot show that nothing more exists, because vendors share training data and alignment conventions, and a gap invisible to all of them is never proposed and never counted as missing. The same limit is why the capture-recapture estimate may be disclosed but never gates: it bounds sampling error, not systematic blindness. Map mode states this in every coverage rider rather than leaving the reader to infer it. *(Added v1.3.)*
+
 **Persona-only specialization is weaker than role-labels suggest.** Two agents with the same training data and the same source pool, given different role names, produce more correlated outputs than the role-label structure implies. D2's distinct-evidence requirement is exactly the response to this concern; it is the design problem the discipline was constructed to answer, not a residual flaw.
 
 **Pleasing bias in the model weights remains a residual risk.** Specialization through a carefully-crafted system prompt can substantially constrain pleasing bias -- more than naive critique credits -- but the residual risk (the agent pleasing the user's *expectation of seeing structured challenge*) is harder to counter via prompt alone. This is the sharper version of the concern; D6 (measurability) is SPARRING's response, since meta-sycophancy is detectable at the rubric layer when training-layer defenses are insufficient.
@@ -372,7 +449,13 @@ Production validation across multiple deployments and decision types remains fut
 
 **Anchored correction.** The Resolver's revise step: the chosen option is corrected *in place*, exactly where the grounded challenge landed, carrying forward what was sound -- rather than discarded and re-decided from scratch.
 
-**Challenger.** One of the two roles in the SPARRING mechanic. Produces structured pressure-tests of the Generator's proposals with cited concerns. Function shifts per phase: expand (SPARK), filter (Pattern Lock), close (the Cut), stress-test (the Resolver).
+**Attack contract.** The fixed, hashed prompt template a completeness attack runs under (Section 3.7). It requires either candidate items, each with an anchor, or an explicit *none found* with what was searched; any other reply does not count as an attack.
+
+**Challenger.** One of the two roles in the SPARRING mechanic. Produces structured pressure-tests of the Generator's proposals with cited concerns. Function shifts per phase: expand (SPARK), filter (Pattern Lock), close (the Cut), stress-test (the Resolver); in map mode, frame-attack and completeness attack (Section 3.7).
+
+**Cited.** The status of a map item whose anchor passed the citation check (Section 3.7): a class a item whose source locus exists, or a class b item whose named ground carries a title and an entry identifier. Distinct from *supported*, which only the optional support check judges.
+
+**Completeness attack.** The Challenger's map-mode move after Pattern Lock (Section 3.7): one attack per region, under the attack contract, to name a cited item the region is missing. A different vendor from the Generator where available.
 
 **Compounding failure mode.** A failure mode that worsens across agent handoffs in a chain because each agent's output becomes the next agent's premise. Distinct from single-shot failure modes that are tractable at the individual-agent level.
 
@@ -380,29 +463,51 @@ Production validation across multiple deployments and decision types remains fut
 
 **Correctness gate (definitiveness gate).** The Resolver's check that every hard specific in the corrected answer (a number, a date, a named quantity) either traces to the given evidence or is explicitly marked as an estimate. Returns PASS / REVIEW / FAIL. Judges whether the answer is stated more definitively than its evidence supports, not whether a claim is true of the world.
 
+**Coverage rider.** The companion to a map's field (Section 3.7), the map's counterpart to the trust rider: the search frame verbatim, each region's label with the matches behind it, the map gate's verdict and its limits, anchor and origin counts, Pattern Lock's merges, an optional capture-recapture estimate, and the fixed limit sentences.
+
 **Cut, the.** The transition phase between divergent generation (SPARK + Pattern Lock) and convergent evaluation (the Resolver). Structurally a mode shift rather than an iterative phase; the closing phase of the Proposer.
 
 **Dialectic Surface.** Discipline 8. The asynchronous, persistent, shared, threadable communication channel where humans and agents exchange escalation, correction, and ongoing dialogue.
 
 **Disagreement at cap.** The state where the iteration cap has been reached without both-role agreement. SPARRING's response protocol specifies five canonical responses for this case.
 
+**Earnedness Rubric.** The three necessary conditions the Presentation applies to a proposition (Section 3.6): G1 singular commitment (exactly one option asserted), G2 load-bearing reason (a rationale whose removal would flip the commitment -- tested counterfactually), G3 decidable specificity (concrete enough to grade). All three must hold for the proposition to be *earned*. A soft signal, S1 alternative-awareness, informs confidence without gating.
+
+**Frame.** The front-door classifier (Section 3.6). Types an input as `question | proposition | hybrid`, runs the Presentation on a proposition, and derives -- in code, not by free model choice -- the route to the Proposer or the Resolver. Emits the input type, the `readiness` verdict, the failed gate if any, the route, the seeded `anchor`, an alternative-awareness signal, a basis, and a confidence.
+
 **Generator.** One of the two roles in the SPARRING mechanic. Produces proposals, framings, or evaluations of the topic. Reads the topic plus (in iteration rounds 2+) the Challenger's prior pressure-test.
 
+**Input type.** The classification Frame assigns at the front door: a *question* (no commitment yet), a *proposition* (a decision asserted as chosen, with reasoning), or a *hybrid / leaning* (one candidate named but explicitly still open). The type determines the route (Section 3.6).
+
 **Iteration cap.** The maximum number of rounds the loop runs before disagreement returns to the human or parent agent. Defaults are starting points; the right cap is dynamic per topic.
+
+**Map.** The Proposer's field emitted as a terminal product, after Pattern Lock and the completeness attacks, with no Cut and no verdict (Section 3.7). Governed by the map gate and carried with a coverage rider.
+
+**Map gate.** The map's check (Section 3.7). FAIL on a fabricated source anchor or a search frame not recorded before generation; REVIEW on an overall region label other than HELD, a majority of speculative items, or a skipped frame-attack; otherwise PASS. PASS does not claim the map is complete.
 
 **Pattern Lock.** The second phase of the SPARRING loop. False-novelty detection: identifying whether continued SPARK is producing genuinely new options or repetitive variants.
 
 **PNP (Polite, Not Pleasing).** The rule the Challenger runs on, most visibly in the Resolver: raise objections without softening them, and never to look agreeable. Formerly the name of the fourth phase (now the Resolver); it persists as a transferable discipline that shifts behavior even when prepended to a single prompt outside the full loop.
 
+**Presentation, the.** The front-door move (Section 3.6) that applies the Earnedness Rubric to a proposition to decide whether it is a genuine decision (earned -> the Resolver) or an assertion in declarative clothing (unearned -> back to the Proposer, seeded). An *input-readiness* gate, distinct from the correctness (definitiveness) gate, which is a back gate on the Resolver's output. Named by analogy to fencing's weapons control. Its verdict is recorded as `readiness`.
+
 **Proposer, the.** The first three phases of the SPARRING loop taken together -- SPARK, Pattern Lock, and the Cut -- the divergent-to-convergent front end that generates options and narrows to a chosen one under both-must-agree convergence. Paired with the Resolver.
 
+**Readiness.** The Presentation's verdict field (`pass` | `fail` | `n/a`) -- whether a proposition is *earned* and ready for the Resolver (Section 3.6). Named `readiness` to avoid collision with the correctness gate's separate use of "presentation" (whether a hard specific is stated as fact vs. as estimate).
+
 **Reference Record.** Discipline 9. The persistent, structured, auditable, searchable, curated record of decisions, spar artifacts, and accumulated institutional knowledge.
+
+**Region label.** A map region's status (Section 3.7): **HELD** (probed, attacked, and the attack found nothing new and cited), **YIELDING** (probed, but an attack landed a new cited item, no valid attack ran, or a drafted search frame skipped the frame-attack), or **UNPROBED** (never probed). HELD records that an attack held; it does not mean exhaustive.
 
 **Resolver, the.** The fourth phase of the SPARRING loop (formerly PNP). Takes the chosen option and pressure-tests it in a single grounded challenge, then corrects the option in place (anchored correction), runs the correctness (definitiveness) gate, and emits a two-part output -- recommendation plus trust rider. Does not iterate to agreement. Distinct from the lowercase *evidence-base resolver*, a deployment component that assigns distinct evidence bases to the two roles (see the Reference Implementation).
 
 **Role + Domain Knowledge.** The mandatory layer of a persona: expertise scope, evidence-base scope, behavioral invariants, operational conventions, handoff authority. Specified in the companion Reference Implementation document.
 
 **Persona layer.** The optional, lightweight layer of a persona: voice, tone, structural output conventions, optional anthropomorphization. Adopted per project fit; skippable when project context does not warrant it.
+
+**Search frame.** The declared list of regions a map's search covers (Section 3.7), fixed before SPARK by the requester or drafted by Frame, attacked once by a different-vendor Challenger, and recorded verbatim with a hash. Never declared by the Generator. Distinct from *Frame*, the front-door classifier.
+
+**Seeded generation.** Injecting a candidate -- a hybrid's leaning, or a demoted unearned proposition's assertion -- into SPARK's field as one option among many (Section 3.6). The seed competes without privilege: it is carried through Pattern Lock and the Cut and survives only if it wins on the merits; a seed that loses the Cut is reported as having lost.
 
 **SPARK.** The first phase of the SPARRING loop. Divergent generation of options, framings, or approaches.
 
