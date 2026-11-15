@@ -1,0 +1,56 @@
+{
+  "method": "projection onto the NCBE taxonomy, then exact set arithmetic",
+  "group_a": {
+    "model": "gpt-5.2",
+    "rung": "g1n"
+  },
+  "group_b": {
+    "model": "gpt-5.2",
+    "rung": "g4"
+  },
+  "taxonomy_nodes": 350,
+  "k": 2,
+  "judge": "claude-opus-4-8",
+  "per_run_nodes": [
+    11,
+    9,
+    9,
+    13,
+    10,
+    10,
+    14,
+    15,
+    13,
+    12
+  ],
+  "pool_a": 15,
+  "pool_b": 17,
+  "shared": 8,
+  "a_only": [
+    "Contracts > Performance, breach, and discharge > Obligations of good faith and fair dealing",
+    "Family Law > Child custody > Modification",
+    "Family Law > Child custody > Visitation",
+    "Family Law > Parent, child, and state > Duty to support",
+    "Family Law > Separation, divorce, dissolution, and annulment > Child support",
+    "Family Law > Separation, divorce, dissolution, and annulment > Jurisdiction and recognition of decrees",
+    "Real Property > Ownership of real property > Cotenancy"
+  ],
+  "b_only": [
+    "Contracts > Defenses to enforceability > Duress and undue influence",
+    "Contracts > Defenses to enforceability > Fraud, misrepresentation, and nondisclosure",
+    "Contracts > Defenses to enforceability > Illegality, unconscionability, and public policy",
+    "Contracts > Formation of contracts > Consideration (bargained-for exchange)",
+    "Contracts > Formation of contracts > Mutual assent (including offer and acceptance, and unilateral, bilateral, and implied-in-fact contracts)",
+    "Real Property > Mortgages/security devices > Discharge of the mortgage",
+    "Real Property > Mortgages/security devices > Security relationships",
+    "Real Property > Mortgages/security devices > Types of security devices",
+    "Real Property > Ownership of real property > Special problems"
+  ],
+  "within_a": 0.12814102564102564,
+  "within_b": 0.14067307692307693,
+  "a_misses_vs_b": 0.33475073241172315,
+  "lift": 0.2066097067706975,
+  "novelty_rate": 0.40687912087912087,
+  "self_novelty_rate": 0.14036907536907536,
+  "novelty_lift": 0.26651004551004553
+}

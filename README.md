@@ -19,6 +19,11 @@ reader needs to check the papers' claims and reproduce their numbers.
     *Auditable adversarial review for AI-in-the-loop decisions* — an empirical
     report on SPARRING's **Resolver** (pre-registered null → governance by
     verifiable challenge).
+  - **[`papers/2026-measurement-failures/`](papers/2026-measurement-failures/)** —
+    *Twenty-four results that didn't mean what their labels said* — the
+    **Measurement** paper's source and its data and code archive: a case series of
+    measurement instruments that reported something other than what their names
+    said. Start at its [`README.md`](papers/2026-measurement-failures/README.md).
 - **[`docs/spars/`](docs/spars/)** — verbatim records of SPARRING ceremonies run on
   the framework's **own** claims, including the runs that did not converge and the
   rounds where the framework's position lost.

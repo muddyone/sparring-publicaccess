@@ -1,0 +1,296 @@
+{
+  "fact_pattern": "July 2019 / Decedents\u2019 Estates / Conflict Of Laws",
+  "k": 2,
+  "match_model": "gpt-5.2",
+  "audit_model": "claude-opus-4-8",
+  "method": "key-relative (supersedes generator-to-generator residual)",
+  "results": {
+    "g1": {
+      "emitted": 34.2,
+      "weighted_recall": 0.98,
+      "yield": 0.4544129002952532,
+      "noise_rate": 0.2550897115602998,
+      "redundancy": 0.3073313649784238,
+      "offkey_rate": 0.16598985540162012,
+      "control": 0.9666666666666667,
+      "n_runs": 5,
+      "recall_min": 0.9,
+      "recall_max": 1.0,
+      "missed": [
+        "(6)"
+      ]
+    },
+    "g3": {
+      "emitted": 19.2,
+      "weighted_recall": 1.0,
+      "yield": 0.6818247490383713,
+      "noise_rate": 0.06158395096475592,
+      "redundancy": 0.2677024111079839,
+      "offkey_rate": 0.1711367545423273,
+      "control": 1.0,
+      "n_runs": 5,
+      "recall_min": 1.0,
+      "recall_max": 1.0,
+      "missed": []
+    },
+    "g4": {
+      "emitted": 6.8,
+      "weighted_recall": 0.35000000000000003,
+      "yield": 0.3388095238095238,
+      "noise_rate": 0.6361904761904762,
+      "redundancy": 0.025,
+      "offkey_rate": 0.05,
+      "control": 0.43333333333333335,
+      "n_runs": 5,
+      "recall_min": 0.2,
+      "recall_max": 0.55,
+      "missed": [
+        "(1)",
+        "(3)",
+        "(4)",
+        "(5)",
+        "(6)"
+      ]
+    }
+  },
+  "per_run": {
+    "g1": [
+      {
+        "emitted": 34,
+        "weighted_recall": 1.0,
+        "signal": 15,
+        "yield": 0.4411764705882353,
+        "noise": 8,
+        "noise_rate": 0.23529411764705882,
+        "duplicates": 11,
+        "redundancy": 0.3235294117647059,
+        "offkey": 7,
+        "offkey_rate": 0.20588235294117646,
+        "control": 1.0,
+        "missed_points": []
+      },
+      {
+        "emitted": 37,
+        "weighted_recall": 1.0,
+        "signal": 17,
+        "yield": 0.4594594594594595,
+        "noise": 11,
+        "noise_rate": 0.2972972972972973,
+        "duplicates": 10,
+        "redundancy": 0.2702702702702703,
+        "offkey": 6,
+        "offkey_rate": 0.16216216216216217,
+        "control": 1.0,
+        "missed_points": []
+      },
+      {
+        "emitted": 35,
+        "weighted_recall": 1.0,
+        "signal": 15,
+        "yield": 0.42857142857142855,
+        "noise": 11,
+        "noise_rate": 0.3142857142857143,
+        "duplicates": 9,
+        "redundancy": 0.2571428571428571,
+        "offkey": 4,
+        "offkey_rate": 0.11428571428571428,
+        "control": 1.0,
+        "missed_points": []
+      },
+      {
+        "emitted": 30,
+        "weighted_recall": 1.0,
+        "signal": 18,
+        "yield": 0.6,
+        "noise": 6,
+        "noise_rate": 0.2,
+        "duplicates": 6,
+        "redundancy": 0.2,
+        "offkey": 7,
+        "offkey_rate": 0.23333333333333334,
+        "control": 1.0,
+        "missed_points": []
+      },
+      {
+        "emitted": 35,
+        "weighted_recall": 0.9,
+        "signal": 12,
+        "yield": 0.34285714285714286,
+        "noise": 8,
+        "noise_rate": 0.22857142857142856,
+        "duplicates": 17,
+        "redundancy": 0.4857142857142857,
+        "offkey": 4,
+        "offkey_rate": 0.11428571428571428,
+        "control": 0.8333333333333334,
+        "missed_points": [
+          "(6)"
+        ]
+      }
+    ],
+    "g3": [
+      {
+        "emitted": 17,
+        "weighted_recall": 1.0,
+        "signal": 13,
+        "yield": 0.7647058823529411,
+        "noise": 1,
+        "noise_rate": 0.058823529411764705,
+        "duplicates": 3,
+        "redundancy": 0.17647058823529413,
+        "offkey": 3,
+        "offkey_rate": 0.17647058823529413,
+        "control": 1.0,
+        "missed_points": []
+      },
+      {
+        "emitted": 22,
+        "weighted_recall": 1.0,
+        "signal": 13,
+        "yield": 0.5909090909090909,
+        "noise": 2,
+        "noise_rate": 0.09090909090909091,
+        "duplicates": 7,
+        "redundancy": 0.3181818181818182,
+        "offkey": 2,
+        "offkey_rate": 0.09090909090909091,
+        "control": 1.0,
+        "missed_points": []
+      },
+      {
+        "emitted": 20,
+        "weighted_recall": 1.0,
+        "signal": 13,
+        "yield": 0.65,
+        "noise": 1,
+        "noise_rate": 0.05,
+        "duplicates": 6,
+        "redundancy": 0.3,
+        "offkey": 2,
+        "offkey_rate": 0.1,
+        "control": 1.0,
+        "missed_points": []
+      },
+      {
+        "emitted": 19,
+        "weighted_recall": 1.0,
+        "signal": 14,
+        "yield": 0.7368421052631579,
+        "noise": 1,
+        "noise_rate": 0.05263157894736842,
+        "duplicates": 4,
+        "redundancy": 0.21052631578947367,
+        "offkey": 4,
+        "offkey_rate": 0.21052631578947367,
+        "control": 1.0,
+        "missed_points": []
+      },
+      {
+        "emitted": 18,
+        "weighted_recall": 1.0,
+        "signal": 12,
+        "yield": 0.6666666666666666,
+        "noise": 1,
+        "noise_rate": 0.05555555555555555,
+        "duplicates": 6,
+        "redundancy": 0.3333333333333333,
+        "offkey": 5,
+        "offkey_rate": 0.2777777777777778,
+        "control": 1.0,
+        "missed_points": []
+      }
+    ],
+    "g4": [
+      {
+        "emitted": 8,
+        "weighted_recall": 0.3,
+        "signal": 4,
+        "yield": 0.5,
+        "noise": 4,
+        "noise_rate": 0.5,
+        "duplicates": 0,
+        "redundancy": 0.0,
+        "offkey": 1,
+        "offkey_rate": 0.125,
+        "control": 0.5,
+        "missed_points": [
+          "(3)",
+          "(4)",
+          "(5)"
+        ]
+      },
+      {
+        "emitted": 5,
+        "weighted_recall": 0.2,
+        "signal": 1,
+        "yield": 0.2,
+        "noise": 4,
+        "noise_rate": 0.8,
+        "duplicates": 0,
+        "redundancy": 0.0,
+        "offkey": 0,
+        "offkey_rate": 0.0,
+        "control": 0.3333333333333333,
+        "missed_points": [
+          "(3)",
+          "(4)",
+          "(5)",
+          "(6)"
+        ]
+      },
+      {
+        "emitted": 7,
+        "weighted_recall": 0.55,
+        "signal": 2,
+        "yield": 0.2857142857142857,
+        "noise": 5,
+        "noise_rate": 0.7142857142857143,
+        "duplicates": 0,
+        "redundancy": 0.0,
+        "offkey": 0,
+        "offkey_rate": 0.0,
+        "control": 0.3333333333333333,
+        "missed_points": [
+          "(1)",
+          "(4)"
+        ]
+      },
+      {
+        "emitted": 8,
+        "weighted_recall": 0.3,
+        "signal": 3,
+        "yield": 0.375,
+        "noise": 4,
+        "noise_rate": 0.5,
+        "duplicates": 1,
+        "redundancy": 0.125,
+        "offkey": 1,
+        "offkey_rate": 0.125,
+        "control": 0.5,
+        "missed_points": [
+          "(3)",
+          "(4)",
+          "(5)"
+        ]
+      },
+      {
+        "emitted": 6,
+        "weighted_recall": 0.4,
+        "signal": 2,
+        "yield": 0.3333333333333333,
+        "noise": 4,
+        "noise_rate": 0.6666666666666666,
+        "duplicates": 0,
+        "redundancy": 0.0,
+        "offkey": 0,
+        "offkey_rate": 0.0,
+        "control": 0.5,
+        "missed_points": [
+          "(1)",
+          "(3)",
+          "(4)"
+        ]
+      }
+    ]
+  }
+}

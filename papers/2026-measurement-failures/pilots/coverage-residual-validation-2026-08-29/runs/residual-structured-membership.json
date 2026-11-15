@@ -1,0 +1,59 @@
+{
+  "group_a": {
+    "model": "gpt-5.2",
+    "rung": "g1n",
+    "runs": [
+      "february-2018-family-law.g1n.r1.json",
+      "february-2018-family-law.g1n.r2.json",
+      "february-2018-family-law.g1n.r3.json",
+      "february-2018-family-law.g1n.r4.json",
+      "february-2018-family-law.g1n.r5.json"
+    ]
+  },
+  "group_b": {
+    "model": "gpt-5.2",
+    "rung": "g4",
+    "runs": [
+      "february-2018-family-law.g4.r1.json",
+      "february-2018-family-law.g4.r2.json",
+      "february-2018-family-law.g4.r3.json",
+      "february-2018-family-law.g4.r4.json",
+      "february-2018-family-law.g4.r5.json"
+    ]
+  },
+  "method": "directed membership (no pooled clustering)",
+  "n_candidates": 281,
+  "k": 2,
+  "judge": "claude-opus-4-8",
+  "pool_a": 276,
+  "pool_b": 274,
+  "shared": 269,
+  "a_only": 7,
+  "b_only": 5,
+  "b_only_labels": [
+    "Mutual assent (including offer and acceptance, and unilateral, bilateral, and implied-in-fact contracts)",
+    "Consideration (bargained-for exchange)",
+    "Special problems",
+    "Types of security devices",
+    "Security relationships"
+  ],
+  "within_a": 0.020841948482592052,
+  "within_b": 0.1356021833479583,
+  "a_misses_vs_b": 0.01964372379727762,
+  "lift": -0.0011982246853144314,
+  "novelty_rate": 0.024800847945299027,
+  "self_novelty_rate": 0.02116720437374702,
+  "novelty_lift": 0.003633643571552006,
+  "per_run_covers": [
+    272,
+    266,
+    264,
+    274,
+    263,
+    261,
+    261,
+    226,
+    142,
+    216
+  ]
+}

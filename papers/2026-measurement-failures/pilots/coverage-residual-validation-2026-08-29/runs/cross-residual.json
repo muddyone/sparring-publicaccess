@@ -1,0 +1,747 @@
+{
+  "vendor_a": {
+    "model": "gpt-5.2",
+    "runs": [
+      "february-2018-family-law.g1.r1.json",
+      "february-2018-family-law.g1.r2.json",
+      "february-2018-family-law.g1.r3.json",
+      "february-2018-family-law.g1.r4.json",
+      "february-2018-family-law.g1.r5.json"
+    ]
+  },
+  "vendor_b": {
+    "model": "claude-opus-4-8",
+    "runs": [
+      "february-2018-family-law.g3.r1.json",
+      "february-2018-family-law.g3.r2.json",
+      "february-2018-family-law.g3.r3.json",
+      "february-2018-family-law.g3.r4.json",
+      "february-2018-family-law.g3.r5.json"
+    ]
+  },
+  "joint_pool": 69,
+  "pool_a": 64,
+  "pool_b": 32,
+  "shared": 27,
+  "a_only": 37,
+  "b_only": 5,
+  "within_a": 0.15114945651627115,
+  "within_b": 0.15963005633657806,
+  "a_misses_vs_b": 0.03756611299805432,
+  "b_misses_vs_a": 0.5533152816083965,
+  "lift": -0.11358334351821683,
+  "items_per_run_a": 56,
+  "items_per_run_b": 22.2,
+  "verbosity_ratio": 2.5225225225225225,
+  "per_run_sets": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      26,
+      27,
+      29,
+      30,
+      31,
+      34,
+      36,
+      37,
+      40,
+      43,
+      44,
+      45,
+      46,
+      47,
+      51,
+      52,
+      53,
+      54,
+      56,
+      57,
+      58,
+      61,
+      62,
+      63,
+      65,
+      66,
+      68
+    ],
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      26,
+      27,
+      28,
+      32,
+      34,
+      35,
+      36,
+      38,
+      40,
+      41,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      51,
+      53,
+      54,
+      56,
+      57,
+      58,
+      62,
+      63,
+      64,
+      68
+    ],
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      30,
+      34,
+      35,
+      36,
+      37,
+      41,
+      43,
+      44,
+      45,
+      46,
+      49,
+      51,
+      53,
+      54,
+      56,
+      57,
+      58,
+      62,
+      63,
+      66
+    ],
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      10,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      30,
+      31,
+      32,
+      33,
+      35,
+      36,
+      37,
+      39,
+      43,
+      44,
+      45,
+      46,
+      48,
+      51,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      62,
+      68
+    ],
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27,
+      30,
+      31,
+      35,
+      36,
+      43,
+      44,
+      45,
+      46,
+      47,
+      51,
+      53,
+      54,
+      56,
+      57,
+      58,
+      60,
+      62,
+      63,
+      68
+    ],
+    [
+      2,
+      3,
+      6,
+      10,
+      14,
+      15,
+      17,
+      18,
+      19,
+      21,
+      24,
+      25,
+      26,
+      45,
+      50,
+      53,
+      54,
+      57,
+      58
+    ],
+    [
+      2,
+      3,
+      5,
+      6,
+      7,
+      10,
+      11,
+      14,
+      15,
+      17,
+      18,
+      19,
+      21,
+      25,
+      26,
+      45,
+      50,
+      53,
+      54,
+      57,
+      58
+    ],
+    [
+      2,
+      3,
+      6,
+      10,
+      14,
+      15,
+      17,
+      18,
+      19,
+      21,
+      25,
+      26,
+      27,
+      44,
+      45,
+      50,
+      51,
+      53,
+      54,
+      56,
+      57,
+      58,
+      67
+    ],
+    [
+      1,
+      2,
+      3,
+      6,
+      10,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      25,
+      26,
+      27,
+      42,
+      45,
+      54,
+      57,
+      58,
+      59
+    ],
+    [
+      1,
+      2,
+      3,
+      6,
+      10,
+      11,
+      14,
+      15,
+      17,
+      18,
+      19,
+      21,
+      25,
+      27,
+      44,
+      45,
+      54,
+      57,
+      58
+    ]
+  ],
+  "run_order": [
+    "february-2018-family-law.g1.r1.json",
+    "february-2018-family-law.g1.r2.json",
+    "february-2018-family-law.g1.r3.json",
+    "february-2018-family-law.g1.r4.json",
+    "february-2018-family-law.g1.r5.json",
+    "february-2018-family-law.g3.r1.json",
+    "february-2018-family-law.g3.r2.json",
+    "february-2018-family-law.g3.r3.json",
+    "february-2018-family-law.g3.r4.json",
+    "february-2018-family-law.g3.r5.json"
+  ],
+  "k": 3,
+  "cluster_model": "claude-opus-4-8",
+  "clusters": [
+    {
+      "stratum": "a_only",
+      "representative": "Co-parenting ability",
+      "n_runs": 5
+    },
+    {
+      "stratum": "shared",
+      "representative": "Opportunity for independent counsel",
+      "n_runs": 7
+    },
+    {
+      "stratum": "shared",
+      "representative": "Adequacy of financial disclosure",
+      "n_runs": 10
+    },
+    {
+      "stratum": "shared",
+      "representative": "Active appreciation of business",
+      "n_runs": 10
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Timing and opportunity to review",
+      "n_runs": 5
+    },
+    {
+      "stratum": "shared",
+      "representative": "Fault and alimony",
+      "n_runs": 4
+    },
+    {
+      "stratum": "shared",
+      "representative": "Adultery relevance to custody",
+      "n_runs": 10
+    },
+    {
+      "stratum": "shared",
+      "representative": "Fault in property division",
+      "n_runs": 6
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Executed before marriage",
+      "n_runs": 2
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Alimony if prenup invalid",
+      "n_runs": 1
+    },
+    {
+      "stratum": "shared",
+      "representative": "Alimony waiver enforceability",
+      "n_runs": 10
+    },
+    {
+      "stratum": "b_only",
+      "representative": "Anna's parentage/legitimacy at birth",
+      "n_runs": 2
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Effect of conflict post-affair",
+      "n_runs": 2
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Separate vs marital property",
+      "n_runs": 3
+    },
+    {
+      "stratum": "shared",
+      "representative": "Classification of auto repair business",
+      "n_runs": 10
+    },
+    {
+      "stratum": "shared",
+      "representative": "Custody standard: best interests",
+      "n_runs": 10
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Business income during marriage",
+      "n_runs": 1
+    },
+    {
+      "stratum": "shared",
+      "representative": "Commingling of inherited stocks",
+      "n_runs": 10
+    },
+    {
+      "stratum": "shared",
+      "representative": "Title vs source of funds",
+      "n_runs": 10
+    },
+    {
+      "stratum": "shared",
+      "representative": "Custody provision unenforceable",
+      "n_runs": 10
+    },
+    {
+      "stratum": "shared",
+      "representative": "Child support nonwaivable",
+      "n_runs": 6
+    },
+    {
+      "stratum": "shared",
+      "representative": "Third-party caregiver role",
+      "n_runs": 10
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Child\u2019s age and needs",
+      "n_runs": 4
+    },
+    {
+      "stratum": "shared",
+      "representative": "Child\u2019s relationship with each parent",
+      "n_runs": 4
+    },
+    {
+      "stratum": "shared",
+      "representative": "Duress/undue pressure timing",
+      "n_runs": 6
+    },
+    {
+      "stratum": "shared",
+      "representative": "Commingling/transmutation business",
+      "n_runs": 10
+    },
+    {
+      "stratum": "shared",
+      "representative": "Equitable distribution factors",
+      "n_runs": 9
+    },
+    {
+      "stratum": "shared",
+      "representative": "Continuity and stability",
+      "n_runs": 8
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Custody vs visitation distinction",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "David\u2019s attorney involvement",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Third-party custody limits",
+      "n_runs": 4
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Debt allocation",
+      "n_runs": 3
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Waste/dissipation via affair",
+      "n_runs": 2
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Domestic relations public policy",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Domestic violence not alleged",
+      "n_runs": 3
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Mortgage payments from earnings",
+      "n_runs": 4
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Work schedules and availability",
+      "n_runs": 5
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Effect of adultery on enforcement",
+      "n_runs": 3
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Effect of equal incomes on alimony",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Effective upon marriage",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Fault vs no-fault divorce grounds",
+      "n_runs": 2
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Fraud/misrepresentation",
+      "n_runs": 2
+    },
+    {
+      "stratum": "b_only",
+      "representative": "Gender-neutral custody standards",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Goodwill valuation",
+      "n_runs": 5
+    },
+    {
+      "stratum": "shared",
+      "representative": "Property classification clause",
+      "n_runs": 7
+    },
+    {
+      "stratum": "shared",
+      "representative": "Joint vs. sole physical custody",
+      "n_runs": 10
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Waiver of disclosure",
+      "n_runs": 5
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Legal vs physical custody",
+      "n_runs": 3
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Marital labor contributions",
+      "n_runs": 2
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Marital income classification",
+      "n_runs": 1
+    },
+    {
+      "stratum": "b_only",
+      "representative": "Meg's relationship with Anna",
+      "n_runs": 3
+    },
+    {
+      "stratum": "shared",
+      "representative": "Parental fitness and conduct",
+      "n_runs": 6
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Parenting plan and visitation",
+      "n_runs": 1
+    },
+    {
+      "stratum": "shared",
+      "representative": "Severability/partial enforcement",
+      "n_runs": 8
+    },
+    {
+      "stratum": "shared",
+      "representative": "Primary caregiver history",
+      "n_runs": 10
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Potential custody modification standard",
+      "n_runs": 1
+    },
+    {
+      "stratum": "shared",
+      "representative": "UPAA governs agreement",
+      "n_runs": 6
+    },
+    {
+      "stratum": "shared",
+      "representative": "Voluntariness of execution",
+      "n_runs": 10
+    },
+    {
+      "stratum": "shared",
+      "representative": "Unconscionability at execution",
+      "n_runs": 10
+    },
+    {
+      "stratum": "b_only",
+      "representative": "Property allocation clause validity",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Proposed living arrangement",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Public assistance limitation",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Reimbursement/credit claims",
+      "n_runs": 5
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Relocation implications",
+      "n_runs": 4
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Spousal support availability",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Student loan characterization",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Temporary orders pending divorce",
+      "n_runs": 2
+    },
+    {
+      "stratum": "b_only",
+      "representative": "Timing/independent counsel considerations",
+      "n_runs": 1
+    },
+    {
+      "stratum": "a_only",
+      "representative": "Writing and signature",
+      "n_runs": 4
+    }
+  ]
+}

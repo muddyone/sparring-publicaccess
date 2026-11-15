@@ -1,0 +1,124 @@
+fact pattern : July 2020 / Secured Transactions
+matcher gpt-5.2   blind judge claude-opus-4-8   beyond claude-opus-4-8   k=2
+recount: off-key under EXCLUSIVE match (as published) vs PARTIAL credit
+
+  july-2020-secured-transactions.g1.r1                 offkey 0.09 -> 0.09   (+0 upheld, 10 struck)
+  july-2020-secured-transactions.g1.r2                 offkey 0.03 -> 0.03   (+0 upheld, 19 struck)
+  july-2020-secured-transactions.g1.r3                 offkey 0.21 -> 0.27   (+2 upheld, 13 struck)
+  july-2020-secured-transactions.g1.r4                 offkey 0.13 -> 0.13   (+0 upheld, 11 struck)
+  july-2020-secured-transactions.g1.r5                 offkey 0.06 -> 0.09   (+1 upheld, 12 struck)
+  july-2020-secured-transactions.g3.r1                 offkey 0.10 -> 0.10   (+0 upheld, 10 struck)
+  july-2020-secured-transactions.g3.r2                 offkey 0.12 -> 0.29   (+3 upheld, 4 struck)
+  july-2020-secured-transactions.g3.r3                 offkey 0.16 -> 0.16   (+0 upheld, 4 struck)
+  july-2020-secured-transactions.g3.r4                 offkey 0.11 -> 0.11   (+0 upheld, 9 struck)
+  july-2020-secured-transactions.g3.r5                 offkey 0.00 -> 0.00   (+0 upheld, 8 struck)
+  july-2020-secured-transactions.g4collapse.r1         offkey 0.20 -> 0.20   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4collapse.r2         offkey 0.20 -> 0.20   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4collapse.r3         offkey 0.40 -> 0.40   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4collapse.r4         offkey 0.40 -> 0.40   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4collapse.r5         offkey 0.40 -> 0.40   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4relabel.r1          offkey 0.20 -> 0.20   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4relabel.r2          offkey 0.40 -> 0.40   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4relabel.r3          offkey 0.40 -> 0.40   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4relabel.r4          offkey 0.17 -> 0.17   (+0 upheld, 0 struck)
+  july-2020-secured-transactions.g4relabel.r5          offkey 0.20 -> 0.20   (+0 upheld, 0 struck)
+
+============================================================================================
+rung         items  yield  offkey excl  offkey partial  dual  claim  struck   description
+--------------------------------------------------------------------------------------------
+g1              34   0.62         0.10            0.12  17.4   13.6    13.0   gpt-5.2, natural
+g3              18   0.84         0.10            0.13  13.4    7.6     7.0   claude-opus-4-8, natural
+g4               9   0.92         0.53            0.58   3.6    1.6     1.2   structured walk, REAL map
+g4collapse       5   0.72         0.32            0.32   2.0    0.0     0.0   structured walk, COLLAPSED map
+g4relabel        5   0.66         0.27            0.27   2.0    0.0     0.0   structured walk, RELABELLED map
+============================================================================================
+offkey excl    = as published: signal items the matcher cited for NO key point
+offkey partial = corrected: plus dual-purpose items whose extra material was
+                 named by one model and confirmed off-key by a second
+dual/claim/struck = items tested / beyond claimed / claims struck by pass F
+
+struck > 0 is the guard working: pass E over-claimed and pass F caught it.
+
+wrote <repo>/pilots/coverage-residual-validation-2026-08-29/scripts/../runs/july-2020-secured-transactions.offkey-recount.json
+fact pattern : July 2019 / Decedents’ Estates / Conflict Of Laws
+matcher gpt-5.2   blind judge claude-opus-4-8   beyond claude-opus-4-8   k=2
+recount: off-key under EXCLUSIVE match (as published) vs PARTIAL credit
+
+  july-2019-decedents-estates-conflict-of-laws.g1.r1   offkey 0.12 -> 0.18   (+2 upheld, 1 struck)
+  july-2019-decedents-estates-conflict-of-laws.g1.r2   offkey 0.14 -> 0.16   (+1 upheld, 1 struck)
+  july-2019-decedents-estates-conflict-of-laws.g1.r3   offkey 0.20 -> 0.26   (+2 upheld, 0 struck)
+  july-2019-decedents-estates-conflict-of-laws.g1.r4   offkey 0.20 -> 0.27   (+2 upheld, 3 struck)
+  july-2019-decedents-estates-conflict-of-laws.g1.r5   offkey 0.11 -> 0.14   (+1 upheld, 3 struck)
+  july-2019-decedents-estates-conflict-of-laws.g3.r1   offkey 0.18 -> 0.24   (+1 upheld, 1 struck)
+  july-2019-decedents-estates-conflict-of-laws.g3.r2   offkey 0.05 -> 0.18   (+3 upheld, 2 struck)
+  july-2019-decedents-estates-conflict-of-laws.g3.r3   offkey 0.25 -> 0.35   (+2 upheld, 1 struck)
+  july-2019-decedents-estates-conflict-of-laws.g3.r4   offkey 0.21 -> 0.26   (+1 upheld, 2 struck)
+  july-2019-decedents-estates-conflict-of-laws.g3.r5   offkey 0.22 -> 0.28   (+1 upheld, 0 struck)
+  july-2019-decedents-estates-conflict-of-laws.g4.r1   offkey 0.12 -> 0.12   (+0 upheld, 1 struck)
+  july-2019-decedents-estates-conflict-of-laws.g4.r2   offkey 0.00 -> 0.00   (+0 upheld, 0 struck)
+  july-2019-decedents-estates-conflict-of-laws.g4.r3   offkey 0.00 -> 0.00   (+0 upheld, 0 struck)
+  july-2019-decedents-estates-conflict-of-laws.g4.r4   offkey 0.00 -> 0.00   (+0 upheld, 1 struck)
+  july-2019-decedents-estates-conflict-of-laws.g4.r5   offkey 0.00 -> 0.00   (+0 upheld, 0 struck)
+
+============================================================================================
+rung         items  yield  offkey excl  offkey partial  dual  claim  struck   description
+--------------------------------------------------------------------------------------------
+g1              34   0.46         0.15            0.20  10.4    3.2     1.6   gpt-5.2, natural
+g3              19   0.66         0.18            0.26   9.4    2.8     1.2   claude-opus-4-8, natural
+g4               7   0.34         0.03            0.03   2.2    0.4     0.4   structured walk, REAL map
+============================================================================================
+offkey excl    = as published: signal items the matcher cited for NO key point
+offkey partial = corrected: plus dual-purpose items whose extra material was
+                 named by one model and confirmed off-key by a second
+dual/claim/struck = items tested / beyond claimed / claims struck by pass F
+
+struck > 0 is the guard working: pass E over-claimed and pass F caught it.
+
+wrote <repo>/pilots/coverage-residual-validation-2026-08-29/scripts/../runs/july-2019-decedents-estates-conflict-of-laws.offkey-recount.json
+fact pattern : February 2018 / Family Law
+matcher gpt-5.2   blind judge claude-opus-4-8   beyond claude-opus-4-8   k=2
+recount: off-key under EXCLUSIVE match (as published) vs PARTIAL credit
+
+  february-2018-family-law.g1.r1                       offkey 0.00 -> 0.07   (+4 upheld, 12 struck)
+  february-2018-family-law.g1.r2                       offkey 0.04 -> 0.05   (+1 upheld, 16 struck)
+  february-2018-family-law.g1.r3                       offkey 0.03 -> 0.07   (+2 upheld, 17 struck)
+  february-2018-family-law.g1.r4                       offkey 0.02 -> 0.05   (+2 upheld, 16 struck)
+  february-2018-family-law.g1.r5                       offkey 0.04 -> 0.08   (+2 upheld, 20 struck)
+  february-2018-family-law.g1n.r1                      offkey 0.06 -> 0.11   (+3 upheld, 6 struck)
+  february-2018-family-law.g1n.r2                      offkey 0.06 -> 0.10   (+2 upheld, 16 struck)
+  february-2018-family-law.g1n.r3                      offkey 0.06 -> 0.08   (+1 upheld, 17 struck)
+  february-2018-family-law.g1n.r4                      offkey 0.02 -> 0.03   (+1 upheld, 8 struck)
+  february-2018-family-law.g1n.r5                      offkey 0.03 -> 0.05   (+1 upheld, 17 struck)
+  february-2018-family-law.g3.r1                       offkey 0.00 -> 0.09   (+2 upheld, 1 struck)
+  february-2018-family-law.g3.r2                       offkey 0.05 -> 0.19   (+3 upheld, 8 struck)
+  february-2018-family-law.g3.r3                       offkey 0.04 -> 0.04   (+0 upheld, 12 struck)
+  february-2018-family-law.g3.r4                       offkey 0.00 -> 0.04   (+1 upheld, 5 struck)
+  february-2018-family-law.g3.r5                       offkey 0.00 -> 0.00   (+0 upheld, 3 struck)
+  february-2018-family-law.g3n.r1                      offkey 0.04 -> 0.05   (+1 upheld, 12 struck)
+  february-2018-family-law.g3n.r2                      offkey 0.04 -> 0.04   (+0 upheld, 10 struck)
+  february-2018-family-law.g3n.r3                      offkey 0.02 -> 0.05   (+2 upheld, 13 struck)
+  february-2018-family-law.g3n.r4                      offkey 0.05 -> 0.07   (+1 upheld, 12 struck)
+  february-2018-family-law.g3n.r5                      offkey 0.00 -> 0.02   (+1 upheld, 17 struck)
+  february-2018-family-law.g4.r1                       offkey 0.00 -> 0.00   (+0 upheld, 2 struck)
+  february-2018-family-law.g4.r2                       offkey 0.29 -> 0.29   (+0 upheld, 0 struck)
+  february-2018-family-law.g4.r3                       offkey 0.27 -> 0.27   (+0 upheld, 0 struck)
+  february-2018-family-law.g4.r4                       offkey 0.00 -> 0.00   (+0 upheld, 2 struck)
+  february-2018-family-law.g4.r5                       offkey 0.25 -> 0.25   (+0 upheld, 0 struck)
+
+============================================================================================
+rung         items  yield  offkey excl  offkey partial  dual  claim  struck   description
+--------------------------------------------------------------------------------------------
+g1              56   0.45         0.03            0.06  23.6   18.4    16.2   gpt-5.2, natural
+g1n             63   0.46         0.05            0.07  26.0   14.4    12.8   gpt-5.2, ~55-item budget
+g3              22   0.82         0.02            0.07  17.8    7.0     5.8   claude-opus-4-8, natural
+g3n             56   0.51         0.03            0.05  26.8   13.8    12.8   claude-opus-4-8, ~55-item budget
+g4              13   0.60         0.16            0.16   5.4    0.8     0.8   structured walk, REAL map
+============================================================================================
+offkey excl    = as published: signal items the matcher cited for NO key point
+offkey partial = corrected: plus dual-purpose items whose extra material was
+                 named by one model and confirmed off-key by a second
+dual/claim/struck = items tested / beyond claimed / claims struck by pass F
+
+struck > 0 is the guard working: pass E over-claimed and pass F caught it.
+
+wrote <repo>/pilots/coverage-residual-validation-2026-08-29/scripts/../runs/february-2018-family-law.offkey-recount.json
