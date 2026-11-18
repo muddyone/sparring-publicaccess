@@ -4,14 +4,14 @@ The polished, citation-ready document set for SPARRING. These are the artifacts 
 
 ## Where this fits
 
-SPARRING has two layers of documentation in this repository, and they serve different purposes:
+SPARRING has two layers of documentation, and they serve different purposes:
 
 | Layer | Location | Audience | Cadence |
 |---|---|---|---|
-| **Working notes** (continuously evolving) | [`../notes.md`](../notes.md), [`../reference-deployment.md`](../reference-deployment.md), [`../deployment-walkthrough.md`](../deployment-walkthrough.md), [`../decision-frameworks.md`](../decision-frameworks.md), [`../monte-carlo-design.md`](../monte-carlo-design.md) | Practitioners and contributors who want the live state of SPARRING, including in-flight refinements, failure-mode discoveries, and ongoing design decisions. | Updated as SPARRING evolves. |
+| **Working notes** (continuously evolving) | Private working material (`notes.md`, `reference-deployment.md`, `deployment-walkthrough.md`, `decision-frameworks.md`, `monte-carlo-design.md`). Not included in this repository. | The project's own working layer: in-flight refinements, failure-mode discoveries, and ongoing design decisions. | Updated as SPARRING evolves. |
 | **Professional distribution** (versioned, citation-ready) | This directory. | Readers who want a frozen v1.0 reference -- academics evaluating SPARRING, peers reading it linearly, anyone citing it formally. | Updated only at versioned releases. |
 
-Both layers are public; the difference is stability vs. currency. If you want to *cite* SPARRING in a paper, cite this directory at a tagged version. If you want to *use* SPARRING and stay current, read the working notes.
+Only the professional distribution is public; the working notes are private working material, and this repository does not include them. If you want to *cite* SPARRING in a paper, cite this directory at a tagged version.
 
 ## Reading order
 
@@ -69,4 +69,4 @@ These documents were derived from the working-notes layer cited above. Future ve
 
 ## License
 
-All documents in this directory are licensed CC BY 4.0 (Creative Commons Attribution 4.0 International), matching the rest of the SPARRING documentation in this repository. See the repository [`LICENSE`](../../LICENSE) for the full text. Free to share, adapt, and build upon, including for commercial purposes, with attribution to Barton Niedner / Resource Forge LLC.
+All documents in this directory are licensed CC BY 4.0 (Creative Commons Attribution 4.0 International), matching the rest of the SPARRING documentation in this repository. See the repository [`LICENSE`](../LICENSE) for the full text. Free to share, adapt, and build upon, including for commercial purposes, with attribution to Barton Niedner / Resource Forge LLC.
