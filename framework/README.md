@@ -9,7 +9,7 @@ SPARRING has two layers of documentation, and they serve different purposes:
 | Layer | Location | Audience | Cadence |
 |---|---|---|---|
 | **Working notes** (continuously evolving) | Private working material (`notes.md`, `reference-deployment.md`, `deployment-walkthrough.md`, `decision-frameworks.md`, `monte-carlo-design.md`). Not included in this repository. | The project's own working layer: in-flight refinements, failure-mode discoveries, and ongoing design decisions. | Updated as SPARRING evolves. |
-| **Professional distribution** (versioned, citation-ready) | This directory. | Readers who want a frozen v1.0 reference -- academics evaluating SPARRING, peers reading it linearly, anyone citing it formally. | Updated only at versioned releases. |
+| **Professional distribution** (versioned, citation-ready) | This directory. | Readers who want a frozen, versioned reference -- academics evaluating SPARRING, peers reading it linearly, anyone citing it formally. | Updated only at versioned releases. |
 
 Only the professional distribution is public; the working notes are private working material, and this repository does not include them. If you want to *cite* SPARRING in a paper, cite this directory at a tagged version.
 
@@ -63,9 +63,9 @@ The same commands generate HTML or LaTeX by changing the output extension (`.htm
 
 ## Versioning and provenance
 
-Current version: 1.0 (preprint), 2026-04-30 / 2026-05-01.
+Each document carries its own version and date in its header: the Specification is at 1.5 (2026-11-14), and the Reader's Guide and the Reference Implementation are at 1.0.
 
-These documents were derived from the working-notes layer cited above. Future versioned releases of this directory will carry their own version numbers and dates; the working notes will continue to evolve in between releases. Use a tagged version of this repo (e.g., a future `v1.0-pro-distribution-YYYY-MM-DD`) when citing the polished forms in any context where citation stability matters.
+These documents were derived from the working-notes layer cited above. Future versioned releases of this directory will carry their own version numbers and dates; the working notes will continue to evolve in between releases. Use a tagged version of this repo when citing the polished forms in any context where citation stability matters.
 
 ## License
 
