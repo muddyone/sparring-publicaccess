@@ -356,7 +356,7 @@ that customer's records, found by your own system, not by whatever name or order
 narrow the sending in the tool's settings: it can reply only to the person who wrote in, with no attachments, and
 it has no way to issue a refund or change an account. Those go to a person.
 
-That doesn't make it safe. One thing is left that no setting takes away: what it says, in your name, to whoever
+That limits the harm; it doesn't remove it. One thing is left that no setting takes away: what it says, in your name, to whoever
 wrote. A planted line, or a plain mistake, can still make it promise something you never offered, and telling it to leave any promise to a person is a rule, not a key. What these limits do is keep the cost down: a bad reply to one
 person, not your data in a stranger's hands. So have someone read a sample of what it sent. That finds problems,
 but only after they've gone out.
