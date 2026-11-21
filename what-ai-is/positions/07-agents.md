@@ -348,6 +348,24 @@ shows how to split a job that way.
    the model or the setup has changed: a new version, a new tool connected, a new permission. And never let
    earned trust hand it all three parts of step 2.
 
+What if no one can press send? Some jobs are built to have an agent write and send on its own, such as an
+auto-responder that answers customer email. That breaks step 3 on purpose: every reply it sends is one you can't take back, and no one is asked first. Willison's test still applies. The agent has to read things anyone could have written,
+and it has to send, so the part to take away is the private data. Give it only what it needs to answer, such as
+your hours, your prices, and your common questions. If it has to look up a customer's own order, let it see only
+that customer's records, found by your own system, not by whatever name or order number the email gives. It doesn't remove the private-data part, but it shrinks it: the most a planted line can make it reveal is what that customer could already see, plus whatever you gave it to answer from. Then
+narrow the sending in the tool's settings: it can reply only to the person who wrote in, with no attachments, and
+it has no way to issue a refund or change an account. Those go to a person.
+
+That doesn't make it safe. One thing is left that no setting takes away: what it says, in your name, to whoever
+wrote. A planted line, or a plain mistake, can still make it promise something you never offered, and telling it to leave any promise to a person is a rule, not a key. What these limits do is keep the cost down: a bad reply to one
+person, not your data in a stranger's hands. So have someone read a sample of what it sent. That finds problems,
+but only after they've gone out.
+
+At the other end, a chat assistant that answers you, with nothing connected, isn't acting for you; you are. Its answer goes nowhere
+until you use it. But seeing an answer isn't checking it, any more than
+seeing an approval prompt is reading it, and step 5 applies here too: an answer is a claim, not a result. If
+you'll act on it in a way you can't undo, check it first. That changes once the chat can see your files or email, or browse the web, or its answer goes straight into something that acts on it. Then it's acting for you, and the same questions apply, starting with Willison's test.
+
 Here's how this works on my own projects, and where I fall short of it. I have several AI agents working on a
 project at once: one builds, one checks the builder's work, one keeps the plan. This week one of them fixed
 broken links on a page of mine that anyone can read, and a second checked the fix. Then they stopped, because
