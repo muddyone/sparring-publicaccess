@@ -323,6 +323,8 @@ You can limit an agent in two ways. You can tell it, "ask me before you send any
 holds only as long as nothing talks the agent out of it, including a line someone planted in an email. Or you can
 switch off its ability to send in the tool's settings, the controls in the app itself. That's taking the key
 away, and nothing the agent reads can change it. Where you can, take the key.
+Taking the key doesn't stop it from doing the job: it can still write the draft, and you press send. Step 2
+shows how to split a job that way.
 
 1. **Ask what it can touch, not how smart it is.** Which files, accounts, money, people? Give it what the job
    needs and nothing more. If it only needs to read, don't let it write. Set those limits in the tool's
